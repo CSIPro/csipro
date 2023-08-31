@@ -7,7 +7,7 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-center bg-primary text-primary-foreground ${poppins.className}`}
     >
-      <span className="text-2xl md:text-7xl flex gap-2">
+      <span className="text-2xl sm:text-5xl md:text-6xl flex gap-2">
         <h1>CSI PRO</h1>
         <h1 className="font-bold uppercase text-primary bg-white px-2">
           Coming soon
