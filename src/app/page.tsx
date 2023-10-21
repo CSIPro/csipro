@@ -75,6 +75,54 @@ export default function Page() {
         </div>
         <MainButton>Ver todos los proyectos</MainButton>
       </section>
+      <section className="flex w-full flex-col items-center gap-4 p-2">
+        <h3 className="text-center text-lg text-muted">¿Quiénes somos?</h3>
+        <div className="flex w-full flex-col items-center justify-between gap-2 text-center">
+          <p>
+            Somos estudiantes de la Universidad de Sonora en la búsqueda de
+            innovar por medio del desarrollo de software
+          </p>
+        </div>
+      </section>
+      <section className="flex w-full flex-col items-center gap-4 p-2">
+        <h3 className="text-center text-lg text-muted">
+          ¿Qué es lo que hacemos?
+        </h3>
+        <div className="flex w-full flex-col items-center justify-between gap-2 text-center">
+          <p>
+            Desarrollamos soluciones para la Universidad de Sonora y terceros
+            con tecnologías de la información y buscamos despertar la curiosidad
+            de las personas por el software
+          </p>
+        </div>
+      </section>
+      <section className="flex w-full flex-col items-center gap-4 p-2">
+        <h3 className="text-center text-lg text-muted">Noticias</h3>
+        <div className="flex w-full flex-col items-center justify-between gap-2 overflow-hidden rounded-xl border border-gray-400 text-center">
+          <div className="relative h-40 w-full">
+            <Image
+              fill
+              src="/assets/news/nasa-space-apps-2023.jpg"
+              alt="Foto de la primera edición de CSI PRO TALKS"
+              className="object-cover"
+            />
+          </div>
+          <div className="flex w-full flex-col items-center justify-between gap-1 p-2">
+            <h3 className="text-center text-muted">
+              Miembros del CSI PRO ganan hackatón 2022
+            </h3>
+            <span className="flex items-center gap-1 text-gray-500">
+              <p>Jane Doe</p>|<p>28 de febrero de 2023</p>
+            </span>
+            <p className="line-clamp-3 text-justify">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed
+              sem vel nibh molestie blandit et a erat
+            </p>
+            <MainButton>Ver más</MainButton>
+          </div>
+        </div>
+        <MainButton>Ver todas las noticias</MainButton>
+      </section>
     </div>
   );
 }
