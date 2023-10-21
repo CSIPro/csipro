@@ -1,12 +1,80 @@
+import { Header } from "@/components/header/header";
+import { MainButton } from "@/components/ui/main-button";
+import Image from "next/image";
+
 export default function Page() {
   return (
-    <main className="font-sans flex min-h-screen flex-col items-center justify-center bg-primary text-primary-foreground">
-      <span className="text-2xl sm:text-5xl md:text-6xl flex gap-2">
-        <h1>CSI PRO</h1>
-        <h1 className="font-bold uppercase text-primary bg-white px-2">
-          Coming soon
-        </h1>
+    <div className="relative flex min-h-screen flex-col items-center gap-4 bg-white font-sans text-muted">
+      <Header />
+      <section className="flex w-full flex-col items-center gap-4 p-2">
+        <div className="py-4" />
+        <h2 className="text-center text-xl text-muted">
+          Un espacio de <span className="text-primary">desarrollo</span>,{" "}
+          <span className="text-primary">innovación</span> e{" "}
+          <span className="text-primary">investigación</span> en la Universidad
+          de Sonora
+        </h2>
+        <p className="text-center text-sm text-muted">
+          Lo más importante para nosotros es demostrar las maravillas que la
+          tecnología puede hacer y lograr despertar la curiosidad por ella
+        </p>
+        <MainButton>Nosotros</MainButton>
+        <div className="relative h-96 w-full overflow-hidden rounded-xl">
+          <Image
+            fill
+            src="/assets/pictures/csipro-members.webp"
+            alt="Foto de los miembros del CSI PRO"
+            className="object-cover"
+          />
+        </div>
+      </section>
+      <span className="flex w-full items-center justify-between">
+        <hr className="w-full border-muted" />
+        <h2 className="whitespace-nowrap px-4 text-xl">Vista general</h2>
+        <hr className="w-full border-muted" />
       </span>
-    </main>
+      <section className="flex w-full flex-col items-center gap-4 p-2">
+        <h3 className="text-center text-lg text-muted">Eventos 2023</h3>
+        <div className="relative h-80 w-full overflow-hidden rounded-xl">
+          <Image
+            fill
+            src="/assets/pictures/csipro-reboot.jpg"
+            alt="Foto de la primera edición de CSI PRO TALKS"
+            className="blur-xs object-cover brightness-50"
+          />
+          <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-between p-2">
+            <span className="flex flex-col items-center self-end rounded-md bg-white p-2 text-xs text-muted">
+              <p className="text-sm">06</p>
+              <p>marzo</p>
+            </span>
+            <span className="text-center text-white">
+              <p className="text-sm">Primera edición</p>
+              <h3 className="text-3xl font-medium">CSI PRO TALKS</h3>
+            </span>
+            <MainButton>Registrarse</MainButton>
+          </div>
+        </div>
+        <MainButton>Ver todos los eventos</MainButton>
+      </section>
+      <section className="flex w-full flex-col items-center gap-4 p-2">
+        <h3 className="text-center text-lg text-muted">Proyectos</h3>
+        <div className="flex h-96 w-full flex-col items-center justify-between overflow-hidden rounded-xl bg-[#00c795] p-2 text-white">
+          <h3 className="text-center text-3xl font-bold">SISLAB</h3>
+          <div className="relative h-3/5 w-full">
+            <Image
+              fill
+              src="/assets/projects/sislab/sislab-login-mobile.png"
+              alt="Mockup del proyecto SISLAB"
+              className="object-contain"
+            />
+          </div>
+          <p className="text-center">
+            Sistema de solicitudes para laboratorios
+          </p>
+          <MainButton>Ver más</MainButton>
+        </div>
+        <MainButton>Ver todos los proyectos</MainButton>
+      </section>
+    </div>
   );
 }

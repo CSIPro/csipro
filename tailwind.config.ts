@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      blur: {
+        xs: "2px",
+      },
       fontFamily: {
         sans: ["var(--font-poppins)"],
         mono: ["var(--font-fira)"],
