@@ -1,8 +1,22 @@
 import { Header } from "@/components/header/header";
 import { MainButton } from "@/components/ui/main-button";
+import getPayloadClient from "@/payload/payloadClient";
 import Image from "next/image";
+import { eventSchema } from "@/payload/collections/events";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
 
-export default function Page() {
+export default async function Page() {
+  const payload = await getPayloadClient();
+
+  const events = await payload.find({ collection: "events" });
+
+  // for (const descObj of events.docs[0].description) {
+  //   console.log(descObj);
+  // }
+
+  const csiproReboot = eventSchema.parse(events.docs[0]);
+
   return (
     <div className="relative flex min-h-screen flex-col items-center gap-4 bg-white font-sans text-muted">
       <Header />
@@ -38,18 +52,22 @@ export default function Page() {
         <div className="relative h-80 w-full overflow-hidden rounded-xl">
           <Image
             fill
-            src="/assets/pictures/csipro-reboot.jpg"
-            alt="Foto de la primera edición de CSI PRO TALKS"
-            className="blur-xs object-cover brightness-50"
+            src={csiproReboot.image.url}
+            alt={csiproReboot.image.title}
+            className="object-cover blur-xs brightness-50"
           />
           <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-between p-2">
             <span className="flex flex-col items-center self-end rounded-md bg-white p-2 text-xs text-muted">
-              <p className="text-sm">06</p>
-              <p>marzo</p>
+              <p className="text-sm">
+                {format(new Date(csiproReboot.date), "dd")}
+              </p>
+              <p>
+                {format(new Date(csiproReboot.date), "LLLL", { locale: es })}
+              </p>
             </span>
             <span className="text-center text-white">
-              <p className="text-sm">Primera edición</p>
-              <h3 className="text-3xl font-medium">CSI PRO TALKS</h3>
+              <p className="text-sm">{csiproReboot.subtitle}</p>
+              <h3 className="text-3xl font-medium">{csiproReboot.title}</h3>
             </span>
             <MainButton>Registrarse</MainButton>
           </div>

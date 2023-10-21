@@ -21,6 +21,7 @@ const roboto = Roboto({
 });
 
 import "@/styles/globals.css";
+import "@/styles/payload.css";
 
 export const metadata: Metadata = {
   title: "Home - CSI PRO",
