@@ -10,7 +10,7 @@ export const Header = () => {
   return (
     <Sheet>
       <header className="sticky top-0 z-50 w-full border-b bg-primary">
-        <div className="container relative flex h-12 items-center justify-between gap-8 md:justify-normal">
+        <div className="container relative flex h-14 items-center justify-between gap-8 md:justify-normal">
           <div className="flex items-center gap-2">
             <Image
               src="/assets/csipro.svg"

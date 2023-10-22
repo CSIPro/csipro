@@ -5,6 +5,7 @@ import { slateEditor } from "@payloadcms/richtext-slate";
 import { buildConfig } from "payload/config";
 
 import { EventsCollection } from "./collections/events";
+import { FeaturedMediaCollection } from "./collections/featured-media";
 import { MediaCollection } from "./collections/media";
 
 export default buildConfig({
@@ -12,6 +13,7 @@ export default buildConfig({
     // Your collections here
     MediaCollection,
     EventsCollection,
+    FeaturedMediaCollection,
   ],
   globals: [
     // Your globals here

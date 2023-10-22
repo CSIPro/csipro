@@ -24,7 +24,7 @@ import "@/styles/globals.css";
 import "@/styles/payload.css";
 
 export const metadata: Metadata = {
-  title: "Home - CSI PRO",
+  title: "CSI PRO",
   description:
     "CSI PRO es un laboratorio de desarrollo de software, investigación e innovación tecnológica perteneciente a la carrera de Ingeniería en Sistemas de Información en la Universidad de Sonora.",
 };

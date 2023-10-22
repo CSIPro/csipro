@@ -1,28 +1,61 @@
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { Metadata } from "next";
 import Image from "next/image";
 
+import { Carousel } from "@/components/carousel/carousel";
+import { CarouselItem } from "@/components/carousel/carousel-item";
 import { Header } from "@/components/header/header";
 import { MainButton } from "@/components/ui/main-button";
 import { eventSchema } from "@/payload/collections/events";
+import {
+  featuredMediaSchema,
+  mediaWrapperSchema,
+} from "@/payload/collections/featured-media";
 import { getPayloadClient } from "@/payload/payload-client";
+
+export const metadata: Metadata = {
+  title: "Inicio - CSI PRO",
+  description:
+    "Bienvenido al portal del CSI PRO, un laboratorio dedicado al desarrollo de software, la investigación e innovación tecnológica en la Universidad de Sonora",
+};
 
 export default async function Page() {
   const payload = await getPayloadClient();
 
   const events = await payload.find({ collection: "events" });
-
-  // for (const descObj of events.docs[0].description) {
-  //   console.log(descObj);
-  // }
+  const featuredMedia = await payload.find({
+    collection: "featured-media",
+    where: {
+      title: {
+        equals: "Landing",
+      },
+    },
+  });
 
   const csiproReboot = eventSchema.parse(events.docs[0]);
+  const landingMedia = featuredMediaSchema.parse(featuredMedia.docs[0]);
 
   return (
     <div className="relative flex min-h-screen flex-col items-center gap-4 bg-white font-sans text-muted">
       <Header />
       <section className="flex w-full flex-col items-center gap-4 p-2">
-        <div className="py-4" />
+        <Carousel>
+          {landingMedia.media.map((pic) => {
+            const picture = mediaWrapperSchema.parse(pic);
+
+            return (
+              <CarouselItem key={picture.id}>
+                <Image
+                  fill
+                  src={picture.image.url}
+                  alt={picture.image.title}
+                  className="object-cover"
+                />
+              </CarouselItem>
+            );
+          })}
+        </Carousel>
         <h2 className="text-center text-xl text-muted">
           Un espacio de <span className="text-primary">desarrollo</span>,{" "}
           <span className="text-primary">innovación</span> e{" "}
