@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import { z } from "zod";
+
 import { mediaSchema } from "./media";
 
 export const eventSchema = z.object({

@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { HiMenu } from "react-icons/hi";
 
 import { Button } from "../ui/button";
 import { Sheet, SheetTrigger } from "../ui/sheet";
-import Image from "next/image";
 
 export const Header = () => {
   return (

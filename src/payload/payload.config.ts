@@ -1,9 +1,11 @@
 import path from "path";
-import { buildConfig } from "payload/config";
+
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
-import { MediaCollection } from "./collections/media";
+import { buildConfig } from "payload/config";
+
 import { EventsCollection } from "./collections/events";
+import { MediaCollection } from "./collections/media";
 
 export default buildConfig({
   collections: [

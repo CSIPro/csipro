@@ -1,10 +1,11 @@
-import { Header } from "@/components/header/header";
-import { MainButton } from "@/components/ui/main-button";
-import getPayloadClient from "@/payload/payloadClient";
-import Image from "next/image";
-import { eventSchema } from "@/payload/collections/events";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import Image from "next/image";
+
+import { Header } from "@/components/header/header";
+import { MainButton } from "@/components/ui/main-button";
+import { eventSchema } from "@/payload/collections/events";
+import { getPayloadClient } from "@/payload/payload-client";
 
 export default async function Page() {
   const payload = await getPayloadClient();

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { ReactNode } from "react";
 import { Fira_Mono, Poppins, Roboto } from "next/font/google";
+import { ReactNode } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],

@@ -9,6 +9,6 @@ const nextConfig = {
 module.exports = withPayload(nextConfig, {
   configPath: path.resolve(__dirname, "./src/payload/payload.config.ts"),
   cssPath: path.resolve(__dirname, "./src/styles/payload.css"),
-  payloadPath: path.resolve(process.cwd(), "./src/payload/payloadClient.ts"),
+  payloadPath: path.resolve(process.cwd(), "./src/payload/payload-client.ts"),
   adminRoute: "/admin",
 });

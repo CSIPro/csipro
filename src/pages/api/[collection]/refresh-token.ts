@@ -1,10 +1,10 @@
-import handler from '@payloadcms/next-payload/dist/handlers/[collection]/refresh-token'
+import handler from "@payloadcms/next-payload/dist/handlers/[collection]/refresh-token";
 
-export default handler
+export default handler;
 
 export const config = {
   api: {
     bodyParser: false,
     externalResolver: true,
-  }
-}
+  },
+};
