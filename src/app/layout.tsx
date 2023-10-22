@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="es"
       className={`${poppins.variable} ${fira.variable} ${roboto.variable}`}
     >
-      <body className="font-sans text-white">{children}</body>
+      <body className="bg-white font-sans text-muted">{children}</body>
     </html>
   );
 }

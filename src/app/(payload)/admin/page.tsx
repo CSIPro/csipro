@@ -1,7 +1,7 @@
 "use client";
 
 import Root from "payload/dist/admin/Root";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const PayloadAdmin = () => {
   const [mounted, setMounted] = useState(false);

@@ -1,10 +1,13 @@
 import { CollectionConfig } from "payload/types";
 import { z } from "zod";
 
+import { eventTypeSchema } from "./event-types";
 import { mediaSchema } from "./media";
 
 export const eventSchema = z.object({
+  id: z.string(),
   image: mediaSchema,
+  type: eventTypeSchema,
   title: z.string(),
   subtitle: z.string(),
   description: z.array(
@@ -21,6 +24,14 @@ export const EventsCollection: CollectionConfig = {
       name: "image",
       type: "upload",
       relationTo: "media",
+      required: true,
+    },
+    {
+      name: "type",
+      type: "relationship",
+      relationTo: "event-types",
+      hasMany: false,
+      index: true,
       required: true,
     },
     {
