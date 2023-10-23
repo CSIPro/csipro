@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3008",
     "build": "next build",
     "start": "next start",
     "deploy": "npm ci && next build && next start -p 3001",
@@ -12,6 +12,8 @@
   "dependencies": {
     "@payloadcms/next-payload": "^0.1.8",
     "@payloadcms/richtext-slate": "^1.0.6",
+    "@payloadcms/bundler-webpack": "^1.0.4",
+    "@payloadcms/db-mongodb": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-slot": "^1.0.2",

@@ -19,6 +19,9 @@ export const eventSchema = z.object({
 
 export const EventsCollection: CollectionConfig = {
   slug: "events",
+  admin: {
+    useAsTitle: "title",
+  },
   fields: [
     {
       name: "image",

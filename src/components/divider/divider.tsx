@@ -14,7 +14,9 @@ export const Divider: FC<HTMLAttributes<HTMLSpanElement>> = ({
       )}
     >
       <hr className="w-full border-primary" />
-      <h2 className="whitespace-nowrap text-xl text-primary">{children}</h2>
+      <p className="whitespace-nowrap text-center text-lg text-primary">
+        {children}
+      </p>
       <hr className="w-full border-primary" />
     </span>
   );

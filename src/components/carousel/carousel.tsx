@@ -32,11 +32,11 @@ export const Carousel: FC<Props> = ({ children, ...props }) => {
   return (
     <div
       className={cn(
-        "flex w-full flex-col items-center rounded-sm border border-gray-300",
+        "flex h-80 max-h-fit w-full flex-col items-center rounded-md border border-gray-300 md:h-[28rem]",
         props.className,
       )}
     >
-      <div className="relative h-64 w-full overflow-hidden rounded-t-sm bg-primary md:h-80">
+      <div className="relative flex h-full w-full overflow-hidden rounded-t-md bg-primary">
         <div
           className={cn(
             "absolute left-0 top-0 flex h-full w-full transition-transform duration-300",
