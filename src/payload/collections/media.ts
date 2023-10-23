@@ -17,8 +17,8 @@ export const mediaSchema = z.object({
 export const MediaCollection: CollectionConfig = {
   slug: "media",
   upload: {
-    staticURL: "/media",
-    staticDir: "../../public/media",
+    staticURL: "/cms/media",
+    staticDir: "../../public/cms/media",
     mimeTypes: ["image/*"],
   },
   fields: [

@@ -20,6 +20,9 @@ export const pageSchema = z.object({
 
 export const PageCollection: CollectionConfig = {
   slug: "pages",
+  admin: {
+    defaultColumns: ["title", "subtitle"],
+  },
   fields: [
     {
       name: "metaTitle",

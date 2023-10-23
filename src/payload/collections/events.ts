@@ -21,6 +21,7 @@ export const EventsCollection: CollectionConfig = {
   slug: "events",
   admin: {
     useAsTitle: "title",
+    defaultColumns: ["title", "type", "date"],
   },
   fields: [
     {
@@ -55,6 +56,11 @@ export const EventsCollection: CollectionConfig = {
       name: "date",
       type: "date",
       required: true,
+      admin: {
+        date: {
+          pickerAppearance: "dayAndTime",
+        },
+      },
     },
     {
       name: "link",

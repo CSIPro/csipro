@@ -10,6 +10,7 @@ export const EventTypesCollection: CollectionConfig = {
   slug: "event-types",
   admin: {
     useAsTitle: "title",
+    defaultColumns: ["title"],
   },
   fields: [
     {
