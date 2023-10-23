@@ -67,14 +67,14 @@ export default async function Page() {
       <Header />
       <div className="flex flex-col items-center gap-4">
         <Section>
-          <div className="flex flex-col gap-2 md:gap-8 md:p-2">
-            <h2 className="text-center text-xl text-muted md:text-start">
+          <div className="flex flex-col gap-2 md:gap-12 md:self-start md:p-2 md:pt-12">
+            <h2 className="text-center text-xl text-muted md:text-start md:text-2xl">
               Un espacio de <span className="text-primary">desarrollo</span>,{" "}
               <span className="text-primary">innovación</span> e{" "}
               <span className="text-primary">investigación</span> en la
               Universidad de Sonora
             </h2>
-            <p className="text-center text-sm text-muted md:text-start">
+            <p className="text-center text-xs text-muted md:text-start md:text-sm">
               Lo más importante para nosotros es demostrar las maravillas que la
               tecnología puede hacer
             </p>
