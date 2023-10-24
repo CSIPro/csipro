@@ -25,7 +25,7 @@ export const CarouselControls: FC<Props> = ({
       >
         <BiSolidChevronLeft />
       </Button>
-      <span className="flex items-center gap-1 text-center text-white">
+      <span className="flex grow items-center justify-center gap-1 text-center text-white">
         <p className="text-white">{current + 1}</p>/
         <p className="text-white">{length}</p>
       </span>

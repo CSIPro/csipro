@@ -8,6 +8,7 @@ import { EventCard } from "@/components/events/event-card";
 import { Header } from "@/components/header/header";
 import { Section } from "@/components/section/section";
 import { MainButton } from "@/components/ui/main-button";
+import { StyledLink } from "@/components/ui/styled-link";
 import { eventSchema } from "@/payload/collections/events";
 import { mediaWrapperSchema } from "@/payload/collections/featured-media";
 import { pageSchema } from "@/payload/collections/page";
@@ -66,7 +67,7 @@ export default function Home({
               <EventCard key={event.id} event={event} />
             ))}
           </div>
-          <MainButton>Ver todos los eventos</MainButton>
+          <StyledLink href="#">Ver todos los eventos</StyledLink>
         </Section>
         <Section className="flex w-full flex-col items-center">
           <h3 className="text-center text-lg text-muted">Proyectos</h3>
