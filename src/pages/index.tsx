@@ -1,4 +1,4 @@
-import { Metadata, ResolvingMetadata } from "next";
+import { InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 
 import { Carousel } from "@/components/carousel/carousel";
@@ -13,55 +13,10 @@ import { mediaWrapperSchema } from "@/payload/collections/featured-media";
 import { pageSchema } from "@/payload/collections/page";
 import { getPayloadClient } from "@/payload/payload-client";
 
-export async function generateMetadata(
-  _: unknown,
-  _parent: ResolvingMetadata,
-): Promise<Metadata> {
-  try {
-    const payload = await getPayloadClient();
-    const payloadPages = await payload.find({
-      collection: "pages",
-      where: {
-        metaTitle: {
-          equals: "Inicio",
-        },
-      },
-    });
-
-    const page = pageSchema.parse(payloadPages.docs[0]);
-
-    return {
-      title: `${page.metaTitle} - CSI PRO`,
-      description: page.metaDescription,
-      keywords: page.metaKeywords?.map(({ keyword }) => keyword),
-    };
-  } catch (error) {
-    return {};
-  }
-}
-
-export default async function Page() {
-  const payload = await getPayloadClient();
-
-  const payloadPages = await payload.find({
-    collection: "pages",
-    where: {
-      metaTitle: {
-        equals: "Inicio",
-      },
-    },
-  });
-  const payloadEvents = await payload.find({
-    collection: "events",
-    sort: "-date",
-  });
-
-  const landingMedia =
-    payloadPages.docs.length > 0
-      ? pageSchema.parse(payloadPages.docs[0])
-      : null;
-  const events = payloadEvents.docs.map((event) => eventSchema.parse(event));
-
+export default function Home({
+  events,
+  landingMedia,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className="relative flex min-h-screen flex-col items-center bg-gray-200 font-sans text-muted">
       <Header />
@@ -183,4 +138,34 @@ export default async function Page() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const payload = await getPayloadClient();
+
+  const payloadPages = await payload.find({
+    collection: "pages",
+    where: {
+      metaTitle: {
+        equals: "Inicio",
+      },
+    },
+  });
+  const payloadEvents = await payload.find({
+    collection: "events",
+    sort: "-date",
+  });
+
+  const landingMedia =
+    payloadPages.docs.length > 0
+      ? pageSchema.parse(payloadPages.docs[0])
+      : null;
+  const events = payloadEvents.docs.map((event) => eventSchema.parse(event));
+
+  return {
+    props: {
+      landingMedia,
+      events,
+    },
+  };
 }
