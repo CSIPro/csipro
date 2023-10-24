@@ -12,11 +12,7 @@ const PayloadAdmin = () => {
 
   if (!mounted) return null;
 
-  return (
-    <section className="flex min-h-screen w-full text-white">
-      <Root />
-    </section>
-  );
+  return <Root />;
 };
 
 export default PayloadAdmin;
