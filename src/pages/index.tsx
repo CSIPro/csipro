@@ -19,8 +19,6 @@ export default function Home({
   events,
   landingPage,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log(landingPage?.metaKeywords);
-
   return (
     <>
       <Head>
@@ -33,7 +31,7 @@ export default function Home({
             .join(",")}
         />
       </Head>
-      <div className="relative flex min-h-screen flex-col items-center bg-gray-200 font-sans text-muted">
+      <div className="relative flex min-h-screen flex-col items-center bg-white font-sans text-muted">
         <Header />
         <div className="flex flex-col items-center gap-4">
           <Section>
