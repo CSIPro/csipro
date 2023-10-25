@@ -10,6 +10,7 @@ import { Header } from "@/components/header/header";
 import { Section } from "@/components/section/section";
 import { MainButton } from "@/components/ui/main-button";
 import { StyledLink } from "@/components/ui/styled-link";
+import { generateKeywords } from "@/lib/utils";
 import { eventSchema } from "@/payload/collections/events";
 import { mediaWrapperSchema } from "@/payload/collections/featured-media";
 import { pageSchema } from "@/payload/collections/page";
@@ -26,9 +27,7 @@ export default function Home({
         <meta name="description" content={landingPage?.metaDescription} />
         <meta
           name="keywords"
-          content={landingPage?.metaKeywords
-            ?.map((keyword) => keyword.keyword)
-            .join(",")}
+          content={generateKeywords(landingPage?.metaKeywords)}
         />
       </Head>
       <div className="relative flex min-h-screen flex-col items-center bg-white font-sans text-muted">
