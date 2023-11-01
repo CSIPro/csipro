@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { ReactNode } from "react";
 import { Fira_Mono, Poppins, Roboto } from "next/font/google";
+import { ReactNode } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,9 +21,10 @@ const roboto = Roboto({
 });
 
 import "@/styles/globals.css";
+import "@/styles/payload.css";
 
 export const metadata: Metadata = {
-  title: "Home - CSI PRO",
+  title: "CSI PRO",
   description:
     "CSI PRO es un laboratorio de desarrollo de software, investigación e innovación tecnológica perteneciente a la carrera de Ingeniería en Sistemas de Información en la Universidad de Sonora.",
 };
@@ -34,7 +35,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="es"
       className={`${poppins.variable} ${fira.variable} ${roboto.variable}`}
     >
-      <body className="font-sans text-white">{children}</body>
+      <body className="bg-white font-sans text-muted">{children}</body>
     </html>
   );
 }
