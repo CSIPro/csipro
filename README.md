@@ -1,6 +1,6 @@
 # CSI PRO Web
 
-**CSI PRO Web** is a webpage developed to show the people who we are, what we do and how we do it.
+**CSI PRO Web** is a webpage developed to provide information about CSI PRO, advertise events, and show off our projects.
 
 ## Stack
 
