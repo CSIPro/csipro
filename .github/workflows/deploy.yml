@@ -35,6 +35,9 @@ jobs:
       - name: Check linting
         run: pnpm lint
 
+      - name: Build project
+        run: pnpm build
+
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
@@ -51,4 +54,4 @@ jobs:
           rsync -rvz --delete --exclude=".git" --exclude="node_modules" ./ unison-production:/var/www/csipro.isi.unison.mx/
 
       - name: SSH to Production and install dependencies
-        run: ssh unison-production "cd /var/www/csipro.isi.unison.mx && pnpm install"
+        run: ssh unison-production "cd /var/www/csipro.isi.unison.mx && source ~/.bashrc && pnpm install"
