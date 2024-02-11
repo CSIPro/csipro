@@ -54,4 +54,4 @@ jobs:
           rsync -rvz --delete --exclude=".git" --exclude="node_modules" ./ unison-production:/var/www/csipro.isi.unison.mx/
 
       - name: SSH to Production and install dependencies
-        run: ssh unison-production "cd /var/www/csipro.isi.unison.mx && source ~/.bashrc && ~/.local/share/pnpm/pnpm install"
+        run: ssh unison-production "cd /var/www/csipro.isi.unison.mx && rm -rf node_modules && ~/.local/share/pnpm/pnpm --prod install"
