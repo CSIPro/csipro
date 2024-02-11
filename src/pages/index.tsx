@@ -4,9 +4,9 @@ export default function Home() {
   return (
     <>
       <div className="flex h-screen w-screen items-center justify-center bg-muted">
-        <span className="flex flex-wrap items-center justify-center gap-2 font-poppins text-6xl text-primary-foreground">
+        <span className="flex flex-wrap items-center justify-center gap-2 font-poppins text-2xl text-primary-foreground md:text-6xl">
           <h1 className="">CSI PRO</h1>
-          <span className="flex min-h-0 min-w-0 bg-primary p-1 font-medium text-white">
+          <span className="flex flex-wrap bg-primary p-1 text-center font-medium text-white">
             <Typewriter
               onInit={(typewriter) => {
                 typewriter.typeString("COMING SOON").start();
