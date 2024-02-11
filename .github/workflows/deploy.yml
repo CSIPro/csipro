@@ -51,4 +51,7 @@ jobs:
 
       - name: Transfer files to Production
         run: |
-          rsync -rvz --delete --exclude=".git" ./ unison-production:/var/www/csipro.isi.unison.mx/
+          rsync -rvz --delete --exclude=".git" --exclude="node_modules" ./ unison-production:/var/www/csipro.isi.unison.mx/
+
+      - name: SSH to Production and install dependencies
+        run: ssh unison-production "cd /var/www/csipro.isi.unison.mx && source ~/.bashrc && ~/.local/share/pnpm/pnpm install"
