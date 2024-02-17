@@ -12,13 +12,15 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+const fonts = `${GeistSans.variable} ${poppins.variable} font-sans`;
+
 // Add Framer Motion
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <ThemeProvider attribute="class">
-        <main className={`${GeistSans.variable} ${poppins.variable} font-sans`}>
-          <Navbar />
+        <Navbar className={fonts} />
+        <main className={fonts}>
           <Component {...pageProps} />
         </main>
       </ThemeProvider>
