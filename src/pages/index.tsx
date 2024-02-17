@@ -4,8 +4,6 @@ import Typewriter from "typewriter-effect";
 export default function Home() {
   //Hook to know what the current theme is
   const { systemTheme, theme, setTheme } = useTheme();
-  //Initially, I set the theme to the system theme
-  const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <>
