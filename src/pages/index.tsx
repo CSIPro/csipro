@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex h-screen w-screen items-center justify-center bg-primary dark:bg-muted">
+      <div className="flex h-screen w-full items-center justify-center bg-primary dark:bg-muted">
         <span className="flex flex-wrap items-center justify-center gap-2 font-poppins text-2xl text-primary-foreground md:text-6xl">
           <h1 className="">CSI PRO</h1>
           <span className="flex flex-wrap bg-primary-foreground p-1 text-center font-medium text-primary dark:bg-primary dark:text-white">

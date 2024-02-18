@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ThemeProvider attribute="class">
         <Navbar className={fonts} />
-        <main className={fonts}>
+        <main className={`${fonts} mx-auto max-w-5xl`}>
           <Component {...pageProps} />
         </main>
         <Footer className={fonts} />
