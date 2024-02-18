@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
+import { Footer } from "@/components/footer/footer";
 import { Navbar } from "@/components/navbar/navbar";
 
 const poppins = Poppins({
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <main className={fonts}>
           <Component {...pageProps} />
         </main>
+        <Footer className={fonts} />
       </ThemeProvider>
     </>
   );
