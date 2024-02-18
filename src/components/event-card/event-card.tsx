@@ -55,7 +55,7 @@ const EventCard: React.FC<EventCardProps> = (props) => {
       </h1>
       <hr className="border-1 my-4 border-primary" />
       <div className="flex items-center justify-between text-sm font-semibold text-white">
-        <span>23 días restantes</span>
+        <span></span>
         <span>1:00 p.m. - 2:00 p.m.</span>
       </div>
       <div className="mt-4 flex justify-center">
