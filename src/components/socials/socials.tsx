@@ -38,7 +38,12 @@ const SocialLink: FC<Props> = (props) => {
   const social = socials[props.variant];
 
   return (
-    <Link href={social.url} target="_blank" rel="noopener noreferrer">
+    <Link
+      href={social.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2"
+    >
       <Image src={social.src} alt={social.alt} width={24} height={24} />
     </Link>
   );
