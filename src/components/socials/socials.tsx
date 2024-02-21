@@ -1,32 +1,37 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
+
+import { FacebookLogo } from "./logos/facebook-logo";
+import { GithubLogo } from "./logos/github-logo";
+import { InstagramLogo } from "./logos/instagram-logo";
+import { LinkedinLogo } from "./logos/linkedin-logo";
+import { TwitterLogo } from "./logos/twitter-logo";
 
 const socials = {
   twitter: {
     url: "https://twitter.com/csipro_dev",
     alt: "Twitter",
-    src: "/socials/twitter.svg",
+    icon: TwitterLogo,
   },
   facebook: {
     url: "https://facebook.com/csipro.dev",
     alt: "Facebook",
-    src: "/socials/facebook.svg",
+    icon: FacebookLogo,
   },
   instagram: {
     url: "https://instagram.com/csipro.dev",
     alt: "Instagram",
-    src: "/socials/instagram.svg",
+    icon: InstagramLogo,
   },
   linkedin: {
     url: "https://www.linkedin.com/company/csi-pro",
     alt: "LinkedIn",
-    src: "/socials/linkedin.svg",
+    icon: LinkedinLogo,
   },
   github: {
     url: "https://github.com/csipro",
     alt: "GitHub",
-    src: "/socials/github.svg",
+    icon: GithubLogo,
   },
 } as const;
 
@@ -42,9 +47,9 @@ const SocialLink: FC<Props> = (props) => {
       href={social.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-2"
+      className="h-full w-full p-2"
     >
-      <Image src={social.src} alt={social.alt} width={24} height={24} />
+      <social.icon className="fill-muted transition-colors duration-300 dark:fill-white" />
     </Link>
   );
 };

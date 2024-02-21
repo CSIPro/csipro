@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const LinkedinLogo: FC<Props> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={72} height={72}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
     <g fill="none" fillRule="evenodd">
       <path
         d="M8 72h56a8 8 0 0 0 8-8V8a8 8 0 0 0-8-8H8a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8Z"

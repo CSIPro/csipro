@@ -8,8 +8,6 @@ export const FacebookLogo: FC<Props> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
-    width={1365.331}
-    height={1365.331}
     style={{
       shapeRendering: "geometricPrecision",
       textRendering: "geometricPrecision",
