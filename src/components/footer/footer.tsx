@@ -18,7 +18,12 @@ interface FooterProps {
 
 export const Footer: FC<FooterProps> = (props) => {
   return (
-    <footer className={cn("w-full border-t border-t-primary", props.className)}>
+    <footer
+      className={cn(
+        "w-full border-t border-t-primary bg-white dark:bg-muted",
+        props.className,
+      )}
+    >
       <div className="mx-auto flex max-w-5xl flex-col gap-4 p-4">
         <div className="flex w-full flex-col gap-6">
           <Link href="#">Inicio</Link>
