@@ -2,14 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiMongodb, SiReact, SiVercel } from "react-icons/si";
 
+const projectTypes = {
+  webapp: "Aplicación web",
+  mobile: "Aplicación móvil",
+  desktop: "Aplicación de escritorio",
+};
+
 interface ProjectCardProps {
   title: string;
   description: string;
+  projectType: keyof typeof projectTypes;
   image: string;
   imageAlt: string;
-  projecttype: string;
 }
+
 export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
+  const projectType = projectTypes[props.projectType];
+
   return (
     <div className="px-4 py-4">
       <div className="relative flex flex-col overflow-hidden rounded border border-stone-200 dark:border-stone-800 ">
@@ -28,7 +37,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
             <p className="text-sm">{props.description}</p>
           </div>
           <div className=" flex w-full items-center justify-between pt-1 text-muted dark:text-white">
-            <p className="text-sm">{props.projecttype}</p>
+            <p className="text-sm">{projectType}</p>
             <div className="flex gap-2 text-xl">
               <SiVercel />
               <SiReact />

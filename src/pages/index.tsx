@@ -49,14 +49,14 @@ export default function Home() {
         description="Sistema de laboratorios"
         image="/assets/SISLAB.png"
         imageAlt="SISLAB"
-        projecttype="Aplicación web"
+        projectType="webapp"
       />
       <ProjectCard
-        title="SAÚL"
-        description="ARIZA"
+        title="lkhlidhas"
+        description="iojh"
         image="/assets/SISLAB.png"
         imageAlt="SISLAB"
-        projecttype="Aplicación AMOR"
+        projectType="webapp"
       />
     </>
   );
