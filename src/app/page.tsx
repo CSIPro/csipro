@@ -2,6 +2,7 @@ import Image from "next/image";
 // import { useTheme } from "next-themes";
 
 import EventCard from "@/components/event-card/event-card";
+import { Typewriter } from "@/components/typewriter/typewriter";
 
 const fetchEvents = async () => {
   const eventsRes = await fetch(
@@ -45,6 +46,7 @@ export default async function Home() {
           />
         </div>
       </div>
+
       <EventCard
         title={event.titulo}
         type={event.tipo}
