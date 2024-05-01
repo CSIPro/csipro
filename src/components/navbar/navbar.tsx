@@ -31,7 +31,7 @@ export const Navbar: FC<Props> = ({ className }) => {
               CSI PRO
             </h1>
             <span className="flex flex-wrap bg-primary p-1 text-center font-medium text-primary text-white dark:bg-primary">
-              <Typewriter></Typewriter>
+              <Typewriter text="BIENVENIDOS"></Typewriter>
             </span>
           </div>
         </Link>
