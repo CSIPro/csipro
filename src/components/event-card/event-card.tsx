@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
+import { Typewriter } from "../typewriter/typewriter";
 
 interface EventCardProps {
   type: string;
@@ -15,6 +16,7 @@ interface EventCardProps {
 
 const EventCard: React.FC<EventCardProps> = (props) => {
   return (
+    
     <div className="max-w-sm rounded border border-primary bg-[#160D2A] p-4">
       <div className="flex select-none justify-between">
         <div>
@@ -49,7 +51,7 @@ const EventCard: React.FC<EventCardProps> = (props) => {
           )}
         </div>
       </div>
-
+      <Typewriter text="PRUEBA ESTILO" textStyle={{ color: 'PURPLE', fontSize: '40px' }}></Typewriter>
       <h1 className={"select-none text-2xl font-semibold text-white"}>
         {props.title}
       </h1>

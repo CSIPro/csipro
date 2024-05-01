@@ -2,24 +2,22 @@
 import TypewriterLive from "typewriter-effect";
 
 interface TypewriterProps {
-    text: string;
+  text: string;
+  textStyle?: React.CSSProperties;
 }
 
-export const Typewriter: React.FC<TypewriterProps> = ({ text }) => {
+export const Typewriter: React.FC<TypewriterProps> = ({ text, textStyle }) => {
   return (
-    <TypewriterLive
-      onInit={(typewriter) => {
-        typewriter.typeString(text).start();
-      }}
-      options={{
-        cursor: "",
-        delay: 50,
-      }}
-    />
+    <span style={textStyle}>
+      <TypewriterLive
+        onInit={(typewriter) => {
+          typewriter.typeString(text).start();
+        }}
+        options={{
+          cursor: "",
+          delay: 50,
+        }}
+      />
+    </span>
   );
 };
-
-
-//Poner que sea configurable el estilo 
-//El className permite configuar el navbar
-
