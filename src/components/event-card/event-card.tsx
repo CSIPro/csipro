@@ -51,7 +51,6 @@ const EventCard: React.FC<EventCardProps> = (props) => {
           )}
         </div>
       </div>
-      <Typewriter text="PRUEBA ESTILO" textStyle={{ color: 'PURPLE', fontSize: '40px' }}></Typewriter>
       <h1 className={"select-none text-2xl font-semibold text-white"}>
         {props.title}
       </h1>

@@ -30,9 +30,7 @@ export const Navbar: FC<Props> = ({ className }) => {
             <h1 className="text-xl font-medium text-primary dark:text-white">
               CSI PRO
             </h1>
-            <span className="flex flex-wrap bg-primary p-1 text-center font-medium text-primary text-white dark:bg-primary">
-              <Typewriter text="BIENVENIDOS"></Typewriter>
-            </span>
+            <Typewriter text="BIENVENIDOS"></Typewriter>
           </div>
         </Link>
       </div>
