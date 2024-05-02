@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { FC, HTMLAttributes } from "react";
-//import Typewriter from "typewriter-effect";
 
 import { cn } from "@/lib/utils";
 

@@ -1,5 +1,4 @@
 import Image from "next/image";
-// import { useTheme } from "next-themes";
 
 import EventCard from "@/components/event-card/event-card";
 
