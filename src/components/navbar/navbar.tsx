@@ -1,5 +1,3 @@
-//"use client";
-
 import Link from "next/link";
 import { FC, HTMLAttributes } from "react";
 //import Typewriter from "typewriter-effect";
