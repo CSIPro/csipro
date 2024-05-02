@@ -49,7 +49,6 @@ const EventCard: React.FC<EventCardProps> = (props) => {
           )}
         </div>
       </div>
-
       <h1 className={"select-none text-2xl font-semibold text-white"}>
         {props.title}
       </h1>
