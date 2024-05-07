@@ -3,6 +3,10 @@ import { FC, HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 
+import {
+  BrandingHeader,
+  BrandingHeaderTitle,
+} from "../branding-header/branding-header";
 import { CsiproLogo } from "../socials/logos/csipro-logo";
 import { Typewriter } from "../typewriter/typewriter";
 
@@ -24,10 +28,10 @@ export const Navbar: FC<Props> = ({ className }) => {
             <div className="flex aspect-square w-10 items-center justify-center rounded-sm p-1.5">
               <CsiproLogo className="fill-primary dark:fill-white" />
             </div>
-            <h1 className="text-xl font-medium text-primary dark:text-white">
-              CSI PRO
-            </h1>
-            <Typewriter text="BIENVENIDOS"></Typewriter>
+            <BrandingHeader className="text-xl font-normal">
+              <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
+              <Typewriter text="BIENVENIDOS"></Typewriter>
+            </BrandingHeader>
           </div>
         </Link>
       </div>

@@ -5,6 +5,12 @@ import React from "react";
 
 import { Button } from "@/components/ui/button";
 
+import {
+  BrandingHeader,
+  BrandingHeaderHighlight,
+  BrandingHeaderTitle,
+} from "../branding-header/branding-header";
+
 interface EventCardProps {
   type: string;
   date: string;
@@ -20,14 +26,10 @@ const EventCard: React.FC<EventCardProps> = (props) => {
   return (
     <div className="max-w-sm rounded border border-primary bg-[#160D2A] p-4">
       <div className="flex select-none justify-between">
-        <div>
-          <span className="flex flex-wrap items-center justify-center gap-2 text-lg font-semibold text-primary-foreground">
-            <h1 className="">CSI PRO</h1>
-            <span className="flex flex-wrap bg-primary px-1 text-center font-semibold text-white">
-              {props.type}
-            </span>
-          </span>
-        </div>
+        <BrandingHeader>
+          <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
+          <BrandingHeaderHighlight>{props.type}</BrandingHeaderHighlight>
+        </BrandingHeader>
         <div>
           <h1 className="bg-primary px-1 text-lg font-semibold uppercase text-white">
             {format(props.date, "dd MMM", { locale: es })}
