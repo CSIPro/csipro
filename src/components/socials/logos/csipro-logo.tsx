@@ -8,8 +8,6 @@ export const CsiproLogo: FC<Props> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
-    width={568.537}
-    height={397.721}
     viewBox="0 0 150.425 105.23"
   >
     <path
