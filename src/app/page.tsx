@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import EventCard from "@/components/event-card/event-card";
+import { SectionTitle } from "@/components/section-title/section-title";
 
 const fetchEvents = async () => {
   const eventsRes = await fetch(
@@ -45,7 +46,7 @@ export default async function Home() {
           />
         </div>
       </div>
-
+      <SectionTitle>Nuevos eventos</SectionTitle>
       <EventCard
         title={event.titulo}
         type={event.tipo}
