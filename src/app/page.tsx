@@ -5,6 +5,7 @@ import EventCard from "@/components/event-card/event-card";
 const fetchEvents = async () => {
   const eventsRes = await fetch(
     "https://admin.csipro.isi.unison.mx/api/eventos",
+    { cache: "no-store" },
   );
 
   return await eventsRes.json();
@@ -23,7 +24,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex w-full flex-col gap-4 sm:flex-row">
+      <div className="flex w-full flex-col items-center gap-4 sm:flex-row">
         <div className="px-4 py-6">
           <h1 className="text-4xl font-semibold sm:text-5xl">
             Un espacio de <span className="text-primary">desarrollo</span>,
@@ -53,6 +54,7 @@ export default async function Home() {
         image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
         imageAlt="imagen de evento"
         spots={event.cupos}
+        location={event.lugar}
       />
       <div className="flex w-full flex-col px-4 py-6">
         {/* <button

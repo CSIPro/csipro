@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
 import Image from "next/image";
 import React from "react";
 
@@ -11,6 +13,7 @@ interface EventCardProps {
   spots?: number;
   title: string;
   duration: number;
+  location: string;
 }
 
 const EventCard: React.FC<EventCardProps> = (props) => {
@@ -26,8 +29,8 @@ const EventCard: React.FC<EventCardProps> = (props) => {
           </span>
         </div>
         <div>
-          <h1 className="bg-primary px-1 text-lg font-semibold text-white">
-            {props.date}
+          <h1 className="bg-primary px-1 text-lg font-semibold uppercase text-white">
+            {format(props.date, "dd MMM", { locale: es })}
           </h1>
         </div>
       </div>
@@ -49,12 +52,12 @@ const EventCard: React.FC<EventCardProps> = (props) => {
           )}
         </div>
       </div>
-      <h1 className={"select-none text-2xl font-semibold text-white"}>
+      <h1 className={"select-text text-2xl font-semibold text-white"}>
         {props.title}
       </h1>
       <hr className="border-1 my-4 border-primary" />
       <div className="flex items-center justify-between text-sm font-semibold text-white">
-        <span></span>
+        <span>{props.location}</span>
         <span>1:00 p.m. - 2:00 p.m.</span>
       </div>
       <div className="mt-4 flex justify-center">

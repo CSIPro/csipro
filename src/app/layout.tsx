@@ -32,7 +32,9 @@ export default function RootLayout({
       <body className={`${fonts} bg-white dark:bg-muted`}>
         <Navbar />
         <AppProviders>
-          <main className="mx-auto max-w-5xl">{children}</main>
+          <main className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center">
+            {children}
+          </main>
         </AppProviders>
         <Footer />
       </body>
