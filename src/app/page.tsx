@@ -13,15 +13,11 @@ const fetchEvents = async () => {
 };
 
 export default async function Home() {
-  //Hook to know what the current theme is
-  // const { theme, setTheme } = useTheme();
-
   const events = (await fetchEvents()).docs;
 
   const event = events[0];
 
   const eventDate = new Date(event.fecha);
-  const formattedDate = `${eventDate.getMonth()}-${eventDate.getDate()}`;
 
   return (
     <>
@@ -50,23 +46,14 @@ export default async function Home() {
       <EventCard
         title={event.titulo}
         type={event.tipo}
-        date={formattedDate}
+        date={eventDate}
         duration={event.duracion}
         image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
         imageAlt="imagen de evento"
         spots={event.cupos}
         location={event.lugar}
+        time={new Date(event.hora)}
       />
-      <div className="flex w-full flex-col px-4 py-6">
-        {/* <button
-          onClick={() =>
-            theme === "dark" ? setTheme("light") : setTheme("dark")
-          }
-          className="rounded-lg bg-primary px-8 py-2 font-poppins text-2xl text-white transition-colors duration-300 ease-in-out hover:bg-muted hover:text-white dark:bg-primary dark:text-white dark:hover:bg-primary-foreground dark:hover:text-primary md:text-4xl"
-        >
-          Change theme
-        </button> */}
-      </div>
     </>
   );
 }

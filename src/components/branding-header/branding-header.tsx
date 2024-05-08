@@ -11,7 +11,7 @@ export const BrandingHeader: FC<Props> = ({ className, children }) => {
   return (
     <span
       className={cn(
-        "flex select-none items-center justify-center gap-1 text-lg font-semibold",
+        "flex select-none items-center justify-center gap-1 text-lg font-semibold uppercase",
         className,
       )}
     >
@@ -30,7 +30,7 @@ export const BrandingHeaderHighlight: FC<Props> = ({ className, children }) => {
   return (
     <span
       className={cn(
-        "bg-primary px-1 text-center tracking-wide text-white",
+        "rounded bg-primary px-1 text-center tracking-wide text-white",
         className,
       )}
     >
