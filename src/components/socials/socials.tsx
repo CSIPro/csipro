@@ -47,7 +47,7 @@ const SocialLink: FC<Props> = (props) => {
       href={social.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="h-full w-10 p-2"
+      className="h-full w-10 p-2 md:w-8"
     >
       <social.icon className="fill-muted transition-colors duration-300 dark:fill-white" />
     </Link>
