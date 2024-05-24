@@ -12,6 +12,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "date-fns": "^3.6.0",
     "framer-motion": "^11.0.3",
     "geist": "^1.2.2",
     "lucide-react": "^0.323.0",
@@ -22,7 +23,8 @@
     "react-hook-form": "^7.50.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "typewriter-effect": "^2.21.0"
+    "typewriter-effect": "^2.21.0",
+    "zod": "^3.23.7"
   },
   "devDependencies": {
     "@types/node": "^20",

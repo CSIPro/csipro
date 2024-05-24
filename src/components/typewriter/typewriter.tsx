@@ -1,8 +1,10 @@
 "use client";
 import { HTMLAttributes } from "react";
-import TypewriterLive from "typewriter-effect";
+import TypewriterEffect from "typewriter-effect";
 
 import { cn } from "@/lib/utils";
+
+import { BrandingHeaderHighlight } from "../branding-header/branding-header";
 
 interface TypewriterProps {
   className?: HTMLAttributes<HTMLDivElement>["className"];
@@ -11,13 +13,8 @@ interface TypewriterProps {
 
 export const Typewriter: React.FC<TypewriterProps> = ({ text, className }) => {
   return (
-    <span
-      className={cn(
-        "flex flex-wrap bg-primary p-1 text-center font-medium text-primary text-white",
-        className,
-      )}
-    >
-      <TypewriterLive
+    <BrandingHeaderHighlight className={cn("font-medium", className)}>
+      <TypewriterEffect
         onInit={(typewriter) => {
           typewriter.typeString(text).start();
         }}
@@ -26,6 +23,6 @@ export const Typewriter: React.FC<TypewriterProps> = ({ text, className }) => {
           delay: 50,
         }}
       />
-    </span>
+    </BrandingHeaderHighlight>
   );
 };
