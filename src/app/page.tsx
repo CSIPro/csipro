@@ -95,18 +95,44 @@ export default async function Home() {
         </div>
       </section>
 
-      <SectionTitle>Nuevos eventos</SectionTitle>
-      <EventCard
-        title={event.titulo}
-        type={event.tipo}
-        date={eventDate}
-        duration={event.duracion}
-        image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
-        imageAlt={event.imagen_principal.alt}
-        spots={event.cupos}
-        location={event.lugar}
-        time={new Date(event.hora)}
-      />
+      <section className="w-full">
+        <SectionTitle>Nuevos eventos</SectionTitle>
+        <div className="flex flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
+          <EventCard
+            title={event.titulo}
+            type={event.tipo}
+            date={eventDate}
+            duration={event.duracion}
+            image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
+            imageAlt={event.imagen_principal.alt}
+            spots={event.cupos}
+            location={event.lugar}
+            time={new Date(event.hora)}
+          />
+          <EventCard
+            title={event.titulo}
+            type={event.tipo}
+            date={eventDate}
+            duration={event.duracion}
+            image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
+            imageAlt={event.imagen_principal.alt}
+            spots={event.cupos}
+            location={event.lugar}
+            time={new Date(event.hora)}
+          />
+          <EventCard
+            title={event.titulo}
+            type={event.tipo}
+            date={eventDate}
+            duration={event.duracion}
+            image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
+            imageAlt={event.imagen_principal.alt}
+            spots={event.cupos}
+            location={event.lugar}
+            time={new Date(event.hora)}
+          />
+        </div>
+      </section>
     </>
   );
 }
