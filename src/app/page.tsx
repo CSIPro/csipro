@@ -31,12 +31,6 @@ const fetchEvents = async () => {
 export default async function Home() {
   const eventsRes = await fetchEvents();
 
-  const events = eventsRes.docs;
-
-  const event = events[0];
-
-  const eventDate = new Date(event.fecha);
-
   return (
     <>
       <div className="flex w-full flex-col items-center gap-4 sm:flex-row">
@@ -71,15 +65,15 @@ export default async function Home() {
               className="rounded"
               unoptimized
             />
-            <div className="animate-floating absolute -left-1.5 top-10 rounded bg-[#0074F9] p-1.5 shadow-md shadow-black/25">
+            <div className="absolute -left-1.5 top-10 animate-floating rounded bg-[#0074F9] p-1.5 shadow-md shadow-black/25">
               5 proyectos activos
             </div>
 
-            <div className="animate-floating absolute -right-1.5 top-[60%] rounded bg-[#00C792] p-1.5 shadow-md shadow-black/25">
+            <div className="absolute -right-1.5 top-[60%] animate-floating rounded bg-[#00C792] p-1.5 shadow-md shadow-black/25">
               Fundado en 2014
             </div>
 
-            <div className="animate-floating absolute -left-1.5 bottom-12 rounded bg-primary p-1.5 shadow-md shadow-black/25">
+            <div className="absolute -left-1.5 bottom-12 animate-floating rounded bg-primary p-1.5 shadow-md shadow-black/25">
               38 miembros
             </div>
           </div>
