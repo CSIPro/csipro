@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        "circuit-board": "url('/assets/patterns/circuit-board.svg')",
+      },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
         poppins: ["var(--font-poppins)"],
