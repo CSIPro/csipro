@@ -33,7 +33,10 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex w-full flex-col items-center gap-4 sm:flex-row">
+      <section className="relative flex w-full flex-col items-center gap-4 sm:flex-row">
+        <div className="absolute -z-10 size-full blur-3xl">
+          <div className="absolute left-1/2 top-1/2 size-[150vw] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgb(95,54,190)_0%,rgb(23,23,23)_62%)] opacity-80 blur-3xl [clip-path:ellipse(50%_37%_at_50%_50%)] sm:size-[60vw] sm:opacity-60"></div>
+        </div>
         <div className="px-4 py-6">
           <h1 className="text-4xl font-semibold sm:text-5xl">
             Un espacio de <span className="text-primary">desarrollo</span>,
@@ -52,7 +55,7 @@ export default async function Home() {
             unoptimized
           />
         </div>
-      </div>
+      </section>
       <section>
         <SectionTitle>¿QUIÉNES SOMOS?</SectionTitle>
         <div className="flex w-full flex-col items-center gap-3 px-2">
