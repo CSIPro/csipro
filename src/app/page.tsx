@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import EventCard from "@/components/event-card/event-card";
+import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,9 +35,15 @@ export default async function Home() {
   return (
     <>
       <section className="relative flex w-full flex-col items-center gap-4 sm:flex-row">
-        <div className="absolute -z-10 size-full blur-3xl">
-          <div className="absolute left-1/2 top-1/2 size-[150vw] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgb(95,54,190)_0%,rgb(23,23,23)_62%)] opacity-80 blur-3xl [clip-path:ellipse(50%_37%_at_50%_50%)] sm:size-[60vw] sm:opacity-60"></div>
-        </div>
+        <GlowContainer>
+          {/* Basic usage */}
+          {/* <Glow breathe /> */}
+          {/* Overlayed glows within a group */}
+          <GlowGroup turn>
+            <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(123,30,114,1)_100%);] [clip-path:circle(50%_at_50%_50%)]" />
+            <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(49,0,163,1)_57%);] [clip-path:polygon(26%_10%,_49%_52%,_96%_56%,_93%_70%,_85%_80%,_77%_85%,_68%_90%,_58%_94%,_49%_94%,_38%_91%,_28%_87%,_18%_79%,_14%_71%,_8%_63%,_6%_55%,_7%_43%,_11%_31%,_15%_21%)]" />
+          </GlowGroup>
+        </GlowContainer>
         <div className="px-4 py-6">
           <h1 className="text-4xl font-semibold sm:text-5xl">
             Un espacio de <span className="text-primary">desarrollo</span>,
