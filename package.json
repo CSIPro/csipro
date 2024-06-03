@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "next lint"
+    "lint": "next lint --fix"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
