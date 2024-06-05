@@ -152,15 +152,15 @@
                 },
                 "createdAt": "2024-05-07T20:17:45.802Z",
                 "updatedAt": "2024-05-07T20:17:45.802Z",
-                "url": "/public/assets/github-event.jpg"
+                "url": "remah.png"
             },
             "imagenes_secundarias": [],
             "tecnologias": [
                 "JavaScript",
-                "React",
-                "Node.js",
-                "MongoDB",
-                "Express"
+                "Python",
+                "HTML",
+                "CSS",
+                "TailwindCSS"
             ],
             "fecha_incio": "2024-03-12T12:00:00.000Z",
             "fecha_termino": "2024-03-12T12:00:00.000Z",
@@ -171,7 +171,7 @@
         },
         {
             "id": "2",
-            "nombre": "REMAH",
+            "nombre": "Movilidad urbana",
             "participantes": [
                 {
                     "id": "663a8a6d8fe79a87cf89ec79",
@@ -284,7 +284,7 @@
                 }
             ],
             "tipo_sistema": "Aplicacion web",
-            "descripcion": "Red de Monitoreo Ambiental",
+            "descripcion": "Construyendo ciudades más eficientes y sostenibles",
             "imagen_principal": {
                 "id": "663a8c698c41e43fcd0a89aa",
                 "alt": "Extracto de código de proyecto personal",
@@ -321,15 +321,15 @@
                 },
                 "createdAt": "2024-05-07T20:17:45.802Z",
                 "updatedAt": "2024-05-07T20:17:45.802Z",
-                "url": "/public/assets/github-event.jpg"
+                "url": "movilidad.svg"
             },
             "imagenes_secundarias": [],
             "tecnologias": [
                 "JavaScript",
-                "React",
-                "Node.js",
-                "MongoDB",
-                "Express"
+                "HTML",
+                "CSS",
+                "TailwindCSS",
+                "Python"
             ],
             "fecha_incio": "2024-03-12T12:00:00.000Z",
             "fecha_termino": "2024-03-12T12:00:00.000Z",
@@ -340,7 +340,7 @@
         },
         {
             "id": "3",
-            "nombre": "REMAH",
+            "nombre": "SISLAB",
             "participantes": [
                 {
                     "id": "663a8a6d8fe79a87cf89ec79",
@@ -453,7 +453,7 @@
                 }
             ],
             "tipo_sistema": "Aplicacion web",
-            "descripcion": "Red de Monitoreo Ambiental",
+            "descripcion": "Sistema de solicitud de laboratorios de la Unison",
             "imagen_principal": {
                 "id": "663a8c698c41e43fcd0a89aa",
                 "alt": "Extracto de código de proyecto personal",
@@ -490,7 +490,7 @@
                 },
                 "createdAt": "2024-05-07T20:17:45.802Z",
                 "updatedAt": "2024-05-07T20:17:45.802Z",
-                "url": "/public/assets/github-event.jpg"
+                "url": "sislab.png"
             },
             "imagenes_secundarias": [],
             "tecnologias": [

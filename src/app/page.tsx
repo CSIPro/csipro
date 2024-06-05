@@ -32,7 +32,7 @@ const fetchEvents = async () => {
 
 const fetchProjects = async () => {
   const projectsRes = await fetch(
-    "https://02896138ff014f809697da7c02c68a50.api.mockbin.io/",
+    "https://61782c327d8c40adb456eeb3ab52b40e.api.mockbin.io/",
     {
       cache: "no-store",
     },

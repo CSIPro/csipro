@@ -31,14 +31,15 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       <h1 className={"select-text text-2xl font-semibold text-white"}>
         {props.name}
       </h1>
-      <Image
-        src="remah.png"
-        width={500}
-        height={300}
-        alt="foto de portada"
-        className="rounded"
-        unoptimized
-      />
+      <div className="relative h-72 w-full overflow-hidden rounded">
+        <Image
+          fill
+          src={props.principal_image}
+          alt="pic"
+          className="object-cover"
+          unoptimized
+        />
+      </div>
       <hr className="border-1 my-4 border-primary" />
       <div className="flex items-center justify-between text-sm font-semibold text-white">
         <span>{props.description}</span>
