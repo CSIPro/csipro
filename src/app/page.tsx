@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import EventCard from "@/components/event-card/event-card";
+import ProjectCard from "@/components/project-card/project-card";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,6 +9,7 @@ import {
   generateEmptyResponse,
 } from "@/models/cms-response";
 import { Event } from "@/models/events";
+import { Project } from "@/models/projects";
 
 const fetchEvents = async () => {
   const eventsRes = await fetch(
@@ -28,8 +30,29 @@ const fetchEvents = async () => {
   return events.success ? events.data : generateEmptyResponse();
 };
 
+const fetchProjects = async () => {
+  const projectsRes = await fetch(
+    "https://02896138ff014f809697da7c02c68a50.api.mockbin.io/",
+    {
+      cache: "no-store",
+    },
+  );
+  if (!projectsRes.ok) {
+    return generateEmptyResponse();
+  }
+
+  const ProjectsResponse = createResponseSchema(Project);
+
+  const projectsData = await projectsRes.json();
+
+  const projects = ProjectsResponse.safeParse(projectsData);
+
+  return projects.success ? projects.data : generateEmptyResponse();
+};
+
 export default async function Home() {
   const eventsRes = await fetchEvents();
+  const projectsRes = await fetchProjects();
 
   return (
     <>
@@ -106,6 +129,23 @@ export default async function Home() {
                 spots={event.cupos}
                 location={event.lugar}
                 time={new Date(event.hora)}
+              />
+            );
+          })}
+        </div>
+      </section>
+      <section className="w-full pb-3">
+        <SectionTitle>Nuestros proyectos</SectionTitle>
+        <div className="flex flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
+          {projectsRes.docs.slice(0, 3).map((project) => {
+            return (
+              <ProjectCard
+                key={project.id}
+                name={project.nombre}
+                system_type={project.tipo_sistema}
+                description={project.descripcion}
+                technology={project.tecnologias}
+                principal_image={project.imagen_principal.url}
               />
             );
           })}

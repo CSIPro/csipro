@@ -1,0 +1,520 @@
+{
+    "docs": [
+        {
+            "id": "1",
+            "nombre": "REMAH",
+            "participantes": [
+                {
+                    "id": "663a8a6d8fe79a87cf89ec79",
+                    "nombres": "Ilse",
+                    "apellidos": "Espinoza Flores",
+                    "email": "iespinoza@test.com",
+                    "redes": [],
+                    "fecha_entrada": "2022-11-15T12:00:00.000Z",
+                    "foto": {
+                        "id": "663158a33307b1abca1770a0",
+                        "alt": "Saúl Ramos",
+                        "filename": "hkgrimmtroupe.jpg",
+                        "mimeType": "image/jpeg",
+                        "filesize": 127606,
+                        "width": 1280,
+                        "height": 720,
+                        "sizes": {
+                            "thumbnail": {
+                                "width": 400,
+                                "height": 300,
+                                "mimeType": "image/jpeg",
+                                "filesize": 20881,
+                                "filename": "hkgrimmtroupe-400x300.jpg",
+                                "url": "/media/hkgrimmtroupe-400x300.jpg"
+                            },
+                            "card": {
+                                "width": 768,
+                                "height": 1024,
+                                "mimeType": "image/jpeg",
+                                "filesize": 70340,
+                                "filename": "hkgrimmtroupe-768x1024.jpg",
+                                "url": "/media/hkgrimmtroupe-768x1024.jpg"
+                            },
+                            "tablet": {
+                                "width": 1024,
+                                "height": 576,
+                                "mimeType": "image/jpeg",
+                                "filesize": 68622,
+                                "filename": "hkgrimmtroupe-1024x576.jpg",
+                                "url": "/media/hkgrimmtroupe-1024x576.jpg"
+                            }
+                        },
+                        "createdAt": "2024-04-30T20:46:27.393Z",
+                        "updatedAt": "2024-04-30T20:46:27.393Z",
+                        "url": "/media/hkgrimmtroupe.jpg"
+                    },
+                    "cargo": "Miembro",
+                    "createdAt": "2024-05-07T20:09:17.829Z",
+                    "updatedAt": "2024-05-07T20:09:17.829Z"
+                },
+                {
+                    "id": "663a87148fe79a87cf89ec16",
+                    "nombres": "Karla Arleth",
+                    "apellidos": "Lerma Molina",
+                    "email": "karlaarlethlerma@gmail.com",
+                    "redes": [
+                        {
+                            "nombre": "LinkedIn",
+                            "link": "https://www.linkedin.com/in/karla-lerma-a43134200",
+                            "id": "663a8714eedf8308d873719f"
+                        },
+                        {
+                            "nombre": "Twitter",
+                            "link": "https://twitter.com/KarlaALerma",
+                            "id": "663a8714eedf8308d87371a0"
+                        }
+                    ],
+                    "fecha_entrada": "2022-11-01T12:00:00.000Z",
+                    "foto": {
+                        "id": "663158a33307b1abca1770a0",
+                        "alt": "Saúl Ramos",
+                        "filename": "hkgrimmtroupe.jpg",
+                        "mimeType": "image/jpeg",
+                        "filesize": 127606,
+                        "width": 1280,
+                        "height": 720,
+                        "sizes": {
+                            "thumbnail": {
+                                "width": 400,
+                                "height": 300,
+                                "mimeType": "image/jpeg",
+                                "filesize": 20881,
+                                "filename": "hkgrimmtroupe-400x300.jpg",
+                                "url": "/media/hkgrimmtroupe-400x300.jpg"
+                            },
+                            "card": {
+                                "width": 768,
+                                "height": 1024,
+                                "mimeType": "image/jpeg",
+                                "filesize": 70340,
+                                "filename": "hkgrimmtroupe-768x1024.jpg",
+                                "url": "/media/hkgrimmtroupe-768x1024.jpg"
+                            },
+                            "tablet": {
+                                "width": 1024,
+                                "height": 576,
+                                "mimeType": "image/jpeg",
+                                "filesize": 68622,
+                                "filename": "hkgrimmtroupe-1024x576.jpg",
+                                "url": "/media/hkgrimmtroupe-1024x576.jpg"
+                            }
+                        },
+                        "createdAt": "2024-04-30T20:46:27.393Z",
+                        "updatedAt": "2024-04-30T20:46:27.393Z",
+                        "url": "/media/hkgrimmtroupe.jpg"
+                    },
+                    "cargo": "Vicepresidenta",
+                    "createdAt": "2024-05-07T19:55:00.837Z",
+                    "updatedAt": "2024-05-08T04:53:01.764Z"
+                }
+            ],
+            "tipo_sistema": "Aplicacion web",
+            "descripcion": "Red de Monitoreo Ambiental",
+            "imagen_principal": {
+                "id": "663a8c698c41e43fcd0a89aa",
+                "alt": "Extracto de código de proyecto personal",
+                "filename": "CSIPRO-marketing-coding.jpg",
+                "mimeType": "image/jpeg",
+                "filesize": 170228,
+                "width": 1497,
+                "height": 998,
+                "sizes": {
+                    "thumbnail": {
+                        "width": 400,
+                        "height": 300,
+                        "mimeType": "image/jpeg",
+                        "filesize": 27579,
+                        "filename": "CSIPRO-marketing-coding-400x300.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-400x300.jpg"
+                    },
+                    "card": {
+                        "width": 768,
+                        "height": 1024,
+                        "mimeType": "image/jpeg",
+                        "filesize": 149646,
+                        "filename": "CSIPRO-marketing-coding-768x1024.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-768x1024.jpg"
+                    },
+                    "tablet": {
+                        "width": 1024,
+                        "height": 683,
+                        "mimeType": "image/jpeg",
+                        "filesize": 107197,
+                        "filename": "CSIPRO-marketing-coding-1024x683.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-1024x683.jpg"
+                    }
+                },
+                "createdAt": "2024-05-07T20:17:45.802Z",
+                "updatedAt": "2024-05-07T20:17:45.802Z",
+                "url": "/public/assets/github-event.jpg"
+            },
+            "imagenes_secundarias": [],
+            "tecnologias": [
+                "JavaScript",
+                "React",
+                "Node.js",
+                "MongoDB",
+                "Express"
+            ],
+            "fecha_incio": "2024-03-12T12:00:00.000Z",
+            "fecha_termino": "2024-03-12T12:00:00.000Z",
+            "estado": "Activo",
+            "url": "https://remah.unison.mx/",
+            "github_url": "https://remah.unison.mx/",
+            "color": "#f44336"
+        },
+        {
+            "id": "2",
+            "nombre": "REMAH",
+            "participantes": [
+                {
+                    "id": "663a8a6d8fe79a87cf89ec79",
+                    "nombres": "Ilse",
+                    "apellidos": "Espinoza Flores",
+                    "email": "iespinoza@test.com",
+                    "redes": [],
+                    "fecha_entrada": "2022-11-15T12:00:00.000Z",
+                    "foto": {
+                        "id": "663158a33307b1abca1770a0",
+                        "alt": "Saúl Ramos",
+                        "filename": "hkgrimmtroupe.jpg",
+                        "mimeType": "image/jpeg",
+                        "filesize": 127606,
+                        "width": 1280,
+                        "height": 720,
+                        "sizes": {
+                            "thumbnail": {
+                                "width": 400,
+                                "height": 300,
+                                "mimeType": "image/jpeg",
+                                "filesize": 20881,
+                                "filename": "hkgrimmtroupe-400x300.jpg",
+                                "url": "/media/hkgrimmtroupe-400x300.jpg"
+                            },
+                            "card": {
+                                "width": 768,
+                                "height": 1024,
+                                "mimeType": "image/jpeg",
+                                "filesize": 70340,
+                                "filename": "hkgrimmtroupe-768x1024.jpg",
+                                "url": "/media/hkgrimmtroupe-768x1024.jpg"
+                            },
+                            "tablet": {
+                                "width": 1024,
+                                "height": 576,
+                                "mimeType": "image/jpeg",
+                                "filesize": 68622,
+                                "filename": "hkgrimmtroupe-1024x576.jpg",
+                                "url": "/media/hkgrimmtroupe-1024x576.jpg"
+                            }
+                        },
+                        "createdAt": "2024-04-30T20:46:27.393Z",
+                        "updatedAt": "2024-04-30T20:46:27.393Z",
+                        "url": "/media/hkgrimmtroupe.jpg"
+                    },
+                    "cargo": "Miembro",
+                    "createdAt": "2024-05-07T20:09:17.829Z",
+                    "updatedAt": "2024-05-07T20:09:17.829Z"
+                },
+                {
+                    "id": "663a87148fe79a87cf89ec16",
+                    "nombres": "Karla Arleth",
+                    "apellidos": "Lerma Molina",
+                    "email": "karlaarlethlerma@gmail.com",
+                    "redes": [
+                        {
+                            "nombre": "LinkedIn",
+                            "link": "https://www.linkedin.com/in/karla-lerma-a43134200",
+                            "id": "663a8714eedf8308d873719f"
+                        },
+                        {
+                            "nombre": "Twitter",
+                            "link": "https://twitter.com/KarlaALerma",
+                            "id": "663a8714eedf8308d87371a0"
+                        }
+                    ],
+                    "fecha_entrada": "2022-11-01T12:00:00.000Z",
+                    "foto": {
+                        "id": "663158a33307b1abca1770a0",
+                        "alt": "Saúl Ramos",
+                        "filename": "hkgrimmtroupe.jpg",
+                        "mimeType": "image/jpeg",
+                        "filesize": 127606,
+                        "width": 1280,
+                        "height": 720,
+                        "sizes": {
+                            "thumbnail": {
+                                "width": 400,
+                                "height": 300,
+                                "mimeType": "image/jpeg",
+                                "filesize": 20881,
+                                "filename": "hkgrimmtroupe-400x300.jpg",
+                                "url": "/media/hkgrimmtroupe-400x300.jpg"
+                            },
+                            "card": {
+                                "width": 768,
+                                "height": 1024,
+                                "mimeType": "image/jpeg",
+                                "filesize": 70340,
+                                "filename": "hkgrimmtroupe-768x1024.jpg",
+                                "url": "/media/hkgrimmtroupe-768x1024.jpg"
+                            },
+                            "tablet": {
+                                "width": 1024,
+                                "height": 576,
+                                "mimeType": "image/jpeg",
+                                "filesize": 68622,
+                                "filename": "hkgrimmtroupe-1024x576.jpg",
+                                "url": "/media/hkgrimmtroupe-1024x576.jpg"
+                            }
+                        },
+                        "createdAt": "2024-04-30T20:46:27.393Z",
+                        "updatedAt": "2024-04-30T20:46:27.393Z",
+                        "url": "/media/hkgrimmtroupe.jpg"
+                    },
+                    "cargo": "Vicepresidenta",
+                    "createdAt": "2024-05-07T19:55:00.837Z",
+                    "updatedAt": "2024-05-08T04:53:01.764Z"
+                }
+            ],
+            "tipo_sistema": "Aplicacion web",
+            "descripcion": "Red de Monitoreo Ambiental",
+            "imagen_principal": {
+                "id": "663a8c698c41e43fcd0a89aa",
+                "alt": "Extracto de código de proyecto personal",
+                "filename": "CSIPRO-marketing-coding.jpg",
+                "mimeType": "image/jpeg",
+                "filesize": 170228,
+                "width": 1497,
+                "height": 998,
+                "sizes": {
+                    "thumbnail": {
+                        "width": 400,
+                        "height": 300,
+                        "mimeType": "image/jpeg",
+                        "filesize": 27579,
+                        "filename": "CSIPRO-marketing-coding-400x300.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-400x300.jpg"
+                    },
+                    "card": {
+                        "width": 768,
+                        "height": 1024,
+                        "mimeType": "image/jpeg",
+                        "filesize": 149646,
+                        "filename": "CSIPRO-marketing-coding-768x1024.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-768x1024.jpg"
+                    },
+                    "tablet": {
+                        "width": 1024,
+                        "height": 683,
+                        "mimeType": "image/jpeg",
+                        "filesize": 107197,
+                        "filename": "CSIPRO-marketing-coding-1024x683.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-1024x683.jpg"
+                    }
+                },
+                "createdAt": "2024-05-07T20:17:45.802Z",
+                "updatedAt": "2024-05-07T20:17:45.802Z",
+                "url": "/public/assets/github-event.jpg"
+            },
+            "imagenes_secundarias": [],
+            "tecnologias": [
+                "JavaScript",
+                "React",
+                "Node.js",
+                "MongoDB",
+                "Express"
+            ],
+            "fecha_incio": "2024-03-12T12:00:00.000Z",
+            "fecha_termino": "2024-03-12T12:00:00.000Z",
+            "estado": "Activo",
+            "url": "https://remah.unison.mx/",
+            "github_url": "https://remah.unison.mx/",
+            "color": "#f44336"
+        },
+        {
+            "id": "3",
+            "nombre": "REMAH",
+            "participantes": [
+                {
+                    "id": "663a8a6d8fe79a87cf89ec79",
+                    "nombres": "Ilse",
+                    "apellidos": "Espinoza Flores",
+                    "email": "iespinoza@test.com",
+                    "redes": [],
+                    "fecha_entrada": "2022-11-15T12:00:00.000Z",
+                    "foto": {
+                        "id": "663158a33307b1abca1770a0",
+                        "alt": "Saúl Ramos",
+                        "filename": "hkgrimmtroupe.jpg",
+                        "mimeType": "image/jpeg",
+                        "filesize": 127606,
+                        "width": 1280,
+                        "height": 720,
+                        "sizes": {
+                            "thumbnail": {
+                                "width": 400,
+                                "height": 300,
+                                "mimeType": "image/jpeg",
+                                "filesize": 20881,
+                                "filename": "hkgrimmtroupe-400x300.jpg",
+                                "url": "/media/hkgrimmtroupe-400x300.jpg"
+                            },
+                            "card": {
+                                "width": 768,
+                                "height": 1024,
+                                "mimeType": "image/jpeg",
+                                "filesize": 70340,
+                                "filename": "hkgrimmtroupe-768x1024.jpg",
+                                "url": "/media/hkgrimmtroupe-768x1024.jpg"
+                            },
+                            "tablet": {
+                                "width": 1024,
+                                "height": 576,
+                                "mimeType": "image/jpeg",
+                                "filesize": 68622,
+                                "filename": "hkgrimmtroupe-1024x576.jpg",
+                                "url": "/media/hkgrimmtroupe-1024x576.jpg"
+                            }
+                        },
+                        "createdAt": "2024-04-30T20:46:27.393Z",
+                        "updatedAt": "2024-04-30T20:46:27.393Z",
+                        "url": "/media/hkgrimmtroupe.jpg"
+                    },
+                    "cargo": "Miembro",
+                    "createdAt": "2024-05-07T20:09:17.829Z",
+                    "updatedAt": "2024-05-07T20:09:17.829Z"
+                },
+                {
+                    "id": "663a87148fe79a87cf89ec16",
+                    "nombres": "Karla Arleth",
+                    "apellidos": "Lerma Molina",
+                    "email": "karlaarlethlerma@gmail.com",
+                    "redes": [
+                        {
+                            "nombre": "LinkedIn",
+                            "link": "https://www.linkedin.com/in/karla-lerma-a43134200",
+                            "id": "663a8714eedf8308d873719f"
+                        },
+                        {
+                            "nombre": "Twitter",
+                            "link": "https://twitter.com/KarlaALerma",
+                            "id": "663a8714eedf8308d87371a0"
+                        }
+                    ],
+                    "fecha_entrada": "2022-11-01T12:00:00.000Z",
+                    "foto": {
+                        "id": "663158a33307b1abca1770a0",
+                        "alt": "Saúl Ramos",
+                        "filename": "hkgrimmtroupe.jpg",
+                        "mimeType": "image/jpeg",
+                        "filesize": 127606,
+                        "width": 1280,
+                        "height": 720,
+                        "sizes": {
+                            "thumbnail": {
+                                "width": 400,
+                                "height": 300,
+                                "mimeType": "image/jpeg",
+                                "filesize": 20881,
+                                "filename": "hkgrimmtroupe-400x300.jpg",
+                                "url": "/media/hkgrimmtroupe-400x300.jpg"
+                            },
+                            "card": {
+                                "width": 768,
+                                "height": 1024,
+                                "mimeType": "image/jpeg",
+                                "filesize": 70340,
+                                "filename": "hkgrimmtroupe-768x1024.jpg",
+                                "url": "/media/hkgrimmtroupe-768x1024.jpg"
+                            },
+                            "tablet": {
+                                "width": 1024,
+                                "height": 576,
+                                "mimeType": "image/jpeg",
+                                "filesize": 68622,
+                                "filename": "hkgrimmtroupe-1024x576.jpg",
+                                "url": "/media/hkgrimmtroupe-1024x576.jpg"
+                            }
+                        },
+                        "createdAt": "2024-04-30T20:46:27.393Z",
+                        "updatedAt": "2024-04-30T20:46:27.393Z",
+                        "url": "/media/hkgrimmtroupe.jpg"
+                    },
+                    "cargo": "Vicepresidenta",
+                    "createdAt": "2024-05-07T19:55:00.837Z",
+                    "updatedAt": "2024-05-08T04:53:01.764Z"
+                }
+            ],
+            "tipo_sistema": "Aplicacion web",
+            "descripcion": "Red de Monitoreo Ambiental",
+            "imagen_principal": {
+                "id": "663a8c698c41e43fcd0a89aa",
+                "alt": "Extracto de código de proyecto personal",
+                "filename": "CSIPRO-marketing-coding.jpg",
+                "mimeType": "image/jpeg",
+                "filesize": 170228,
+                "width": 1497,
+                "height": 998,
+                "sizes": {
+                    "thumbnail": {
+                        "width": 400,
+                        "height": 300,
+                        "mimeType": "image/jpeg",
+                        "filesize": 27579,
+                        "filename": "CSIPRO-marketing-coding-400x300.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-400x300.jpg"
+                    },
+                    "card": {
+                        "width": 768,
+                        "height": 1024,
+                        "mimeType": "image/jpeg",
+                        "filesize": 149646,
+                        "filename": "CSIPRO-marketing-coding-768x1024.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-768x1024.jpg"
+                    },
+                    "tablet": {
+                        "width": 1024,
+                        "height": 683,
+                        "mimeType": "image/jpeg",
+                        "filesize": 107197,
+                        "filename": "CSIPRO-marketing-coding-1024x683.jpg",
+                        "url": "/media/CSIPRO-marketing-coding-1024x683.jpg"
+                    }
+                },
+                "createdAt": "2024-05-07T20:17:45.802Z",
+                "updatedAt": "2024-05-07T20:17:45.802Z",
+                "url": "/public/assets/github-event.jpg"
+            },
+            "imagenes_secundarias": [],
+            "tecnologias": [
+                "JavaScript",
+                "React",
+                "Node.js",
+                "MongoDB",
+                "Express"
+            ],
+            "fecha_incio": "2024-03-12T12:00:00.000Z",
+            "fecha_termino": "2024-03-12T12:00:00.000Z",
+            "estado": "Activo",
+            "url": "https://remah.unison.mx/",
+            "github_url": "https://remah.unison.mx/",
+            "color": "#f44336"
+        }
+    ],
+    "totalDocs": 3,
+    "limit": 10,
+    "totalPages": 1,
+    "page": 1,
+    "pagingCounter": 1,
+    "hasPrevPage": false,
+    "hasNextPage": false,
+    "prevPage": null,
+    "nextPage": null
+}
