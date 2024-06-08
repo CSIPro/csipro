@@ -15,7 +15,7 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   return (
     <div className="flex w-full justify-center">
-      <div className="gradient-border h-full w-full max-w-md p-4 sm:max-w-80">
+      <div className="h-full w-full max-w-md p-4 gradient-border">
         <div className="relative flex h-72 w-full justify-center md:h-48">
           <Image
             fill
