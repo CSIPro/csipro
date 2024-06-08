@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config = {
   darkMode: ["class"],
@@ -87,7 +88,36 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    tailwindcssAnimate,
+    function ({
+      addUtilities,
+    }: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      addUtilities: (utilities: Record<string, any>) => void;
+    }) {
+      const newUtilities = {
+        ".gradient-border": {
+          position: "relative",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            borderTop: "1px solid",
+            borderRight: "1px solid",
+            borderBottom: "1px solid",
+            borderImage:
+              "linear-gradient(170deg, rgba(0,199,146,1) 0%, rgba(255,158,69,1) 32%, rgba(252,143,255,1) 66%, rgba(137,95,233,1) 100%) 1",
+            zIndex: "0",
+          },
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 } satisfies Config;
 
 export default config;

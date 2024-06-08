@@ -14,14 +14,22 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   return (
-    <div>
-      <div className="h-96 w-80 rounded-2xl p-4 sm:max-w-80">
-        <div className="relative h-72 w-full overflow-hidden md:h-48">
+    <div className="flex w-full justify-center">
+      <div className="gradient-border h-full w-full max-w-md p-4 sm:max-w-80">
+        <div className="relative flex h-72 w-full justify-center md:h-48">
           <Image
             fill
             src={"lines.png"}
             alt="pic"
             className="object-cover"
+            unoptimized
+          />
+          <Image
+            width={200}
+            height={100}
+            src={props.principal_image}
+            alt="principal_image"
+            className="object-contain"
             unoptimized
           />
         </div>
