@@ -80,11 +80,23 @@ const config = {
           "50%": { transform: "translate(0, 8px);" },
           "100%": { transform: "translate(0, -0px);" },
         },
+        breathe: {
+          "50%": { transform: "scale(1.25) translate(-37.5%, -37.5%)" },
+        },
+        "about-turn": {
+          "0%": { transform: "rotate(0deg)" },
+          "40%": { transform: "rotate(10deg)" },
+          "70%": { transform: "rotate(90deg)" },
+          "100%": { transform: "rotate(100deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         floating: "floating 5s ease-in-out infinite",
+        breathe: "breathe 5s ease-in-out infinite alternate",
+        "about-turn": "about-turn 6s ease-in-out infinite alternate",
+        "slow-spin": "spin 5s linear infinite",
       },
     },
   },

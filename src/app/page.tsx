@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import EventCard from "@/components/event-card/event-card";
+import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { ProjectCard } from "@/components/project-card/project-card";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
@@ -57,7 +58,16 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex w-full flex-col items-center gap-4 sm:flex-row">
+      <section className="relative flex w-full flex-col items-center gap-4 sm:flex-row">
+        <GlowContainer>
+          {/* Basic usage */}
+          {/* <Glow breathe /> */}
+          {/* Overlayed glows within a group */}
+          <GlowGroup turn>
+            <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(123,30,114,1)_100%);] [clip-path:circle(50%_at_50%_50%)]" />
+            <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(49,0,163,1)_57%);] [clip-path:polygon(26%_10%,_49%_52%,_96%_56%,_93%_70%,_85%_80%,_77%_85%,_68%_90%,_58%_94%,_49%_94%,_38%_91%,_28%_87%,_18%_79%,_14%_71%,_8%_63%,_6%_55%,_7%_43%,_11%_31%,_15%_21%)]" />
+          </GlowGroup>
+        </GlowContainer>
         <div className="px-4 py-6">
           <h1 className="text-4xl font-semibold sm:text-5xl">
             Un espacio de <span className="text-primary">desarrollo</span>,
@@ -76,7 +86,7 @@ export default async function Home() {
             unoptimized
           />
         </div>
-      </div>
+      </section>
       <section>
         <SectionTitle>¿QUIÉNES SOMOS?</SectionTitle>
         <div className="flex w-full flex-col items-center gap-3 px-2">
