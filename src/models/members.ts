@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 import { Media } from "./media";
+import { Position } from "./positions";
+import { SocialMedia } from "./social-media";
 
 export const Member = z.object({
   id: z.string(),
@@ -10,12 +12,12 @@ export const Member = z.object({
   redes: z.array(
     z.object({
       id: z.string(),
-      nombre: z.string(),
+      nombre: SocialMedia,
       link: z.string().url(),
     }),
   ),
   fecha_entrada: z.string().datetime(),
-  cargo: z.string(),
+  cargo: Position.or(z.string()),
   foto: Media.or(z.string()),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
