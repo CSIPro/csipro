@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import EventCard from "@/components/event-card/event-card";
-import ProjectCard from "@/components/project-card/project-card";
+import { ProjectCard } from "@/components/project-card/project-card";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,11 +32,12 @@ const fetchEvents = async () => {
 
 const fetchProjects = async () => {
   const projectsRes = await fetch(
-    "https://61782c327d8c40adb456eeb3ab52b40e.api.mockbin.io/",
+    "https://admin.csipro.isi.unison.mx/api/proyectos",
     {
       cache: "no-store",
     },
   );
+
   if (!projectsRes.ok) {
     return generateEmptyResponse();
   }
@@ -142,10 +143,9 @@ export default async function Home() {
               <ProjectCard
                 key={project.id}
                 name={project.nombre}
-                system_type={project.tipo_sistema}
-                description={project.descripcion}
-                technology={project.tecnologias}
-                principal_image={project.imagen_principal.url}
+                systemType={project.tipo_sistema}
+                stack={project.tecnologias ?? []}
+                principalImage={project.imagen_principal.url}
               />
             );
           })}
