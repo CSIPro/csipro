@@ -68,7 +68,7 @@ export default async function Home() {
             <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(49,0,163,1)_57%);] [clip-path:polygon(26%_10%,_49%_52%,_96%_56%,_93%_70%,_85%_80%,_77%_85%,_68%_90%,_58%_94%,_49%_94%,_38%_91%,_28%_87%,_18%_79%,_14%_71%,_8%_63%,_6%_55%,_7%_43%,_11%_31%,_15%_21%)]" />
           </GlowGroup>*/}
         </GlowContainer>
-        <div className="px-4 pb-6 pt-20">
+        <div className="px-4 pt-10  sm:pb-6 sm:pt-20">
           <h1 className="text-center text-4xl font-bold  sm:text-6xl ">
             Un espacio de <span className="text-primary">desarrollo</span>,
             <br />
@@ -82,21 +82,21 @@ export default async function Home() {
         </div>
         <Button
           variant="outline"
-          className="rounded-2xl px-5 py-7 text-2xl font-bold uppercase "
+          className="px-4 py-4 text-[14px] font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl "
         >
           Get Started
         </Button>
-        <div className="py-5"></div>
-        <div className=" relative aspect-video w-8/12   ">
+        <div className="sm:py-5"></div>
+        <div className=" relative aspect-video w-11/12 sm:w-8/12   ">
           <Image
             src="portada.jpg"
             fill={true}
             alt="foto de portada"
-            className="rounded-2xl object-cover"
+            className="rounded-lg object-cover  opacity-70 sm:rounded-2xl"
             unoptimized
           />
         </div>
-        <div className="py-24"></div>
+        <div className="sm:py-24"></div>
       </section>
       <section>
         <SectionTitle>¿QUIÉNES SOMOS?</SectionTitle>
