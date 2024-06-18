@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={`${fonts} bg-white dark:bg-muted`}>
+      <body className={`${fonts} relative bg-white dark:bg-muted`}>
         <Navbar />
         <AppProviders>
           <main className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center">
