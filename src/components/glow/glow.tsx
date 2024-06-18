@@ -10,7 +10,10 @@ interface ContainerProps {
 export const GlowContainer: FC<ContainerProps> = ({ children, className }) => {
   return (
     <div
-      className={cn("absolute -z-10 size-full opacity-50 blur-2xl", className)}
+      className={cn(
+        "absolute -z-10 size-full overflow-hidden opacity-50 blur-2xl",
+        className,
+      )}
     >
       {children}
     </div>
