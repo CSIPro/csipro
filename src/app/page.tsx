@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import EventCard from "@/components/event-card/event-card";
-import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
+import { Glow, GlowContainer } from "@/components/glow/glow";
 import { ProjectCard } from "@/components/project-card/project-card";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
