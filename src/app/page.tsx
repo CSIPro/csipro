@@ -68,6 +68,11 @@ export default async function Home() {
             <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(49,0,163,1)_57%);] [clip-path:polygon(26%_10%,_49%_52%,_96%_56%,_93%_70%,_85%_80%,_77%_85%,_68%_90%,_58%_94%,_49%_94%,_38%_91%,_28%_87%,_18%_79%,_14%_71%,_8%_63%,_6%_55%,_7%_43%,_11%_31%,_15%_21%)]" />
           </GlowGroup>*/}
         </GlowContainer>
+        <div className="absolute -z-10 overflow-hidden rounded-full border border-[#5F36BE] border-opacity-10 bg-transparent p-16 sm:p-48"></div>
+        <div className="absolute -z-10 overflow-hidden rounded-full border border-[#5F36BE] border-opacity-10 bg-transparent p-24 sm:p-64"></div>
+        <div className="absolute -z-10 overflow-hidden rounded-full border border-[#5F36BE] border-opacity-10 bg-transparent p-32 sm:p-80"></div>
+        <div className="absolute -z-10 overflow-hidden rounded-full border border-[#5F36BE] border-opacity-10 bg-transparent p-40 sm:p-96"></div>
+        <div className="absolute -z-10 overflow-hidden rounded-full border border-[#5F36BE] border-opacity-10 bg-transparent p-48 sm:p-[28rem]"></div>
         <div className="px-4 pt-10  sm:pb-6 sm:pt-20">
           <h1 className="text-center text-4xl font-bold  sm:text-6xl ">
             Un espacio de <span className="text-primary">desarrollo</span>,
