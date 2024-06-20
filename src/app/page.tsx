@@ -28,7 +28,18 @@ const fetchEvents = async () => {
 
   const events = EventsResponse.safeParse(eventsData);
 
-  return events.success ? events.data : generateEmptyResponse();
+  if (!events.success) {
+    return generateEmptyResponse();
+  }
+
+  events.data.docs.sort((a, b) => {
+    return (
+      new Date(b.fechas_horas[b.fechas_horas.length - 1].fecha_hora).getTime() -
+      new Date(a.fechas_horas[a.fechas_horas.length - 1].fecha_hora).getTime()
+    );
+  });
+
+  return events.data;
 };
 
 const fetchProjects = async () => {
@@ -125,21 +136,19 @@ export default async function Home() {
 
       <section className="w-full pb-3">
         <SectionTitle>Nuevos eventos</SectionTitle>
-        <div className="flex flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
-          {eventsRes.docs.slice(0, 3).map((event) => {
-            const eventDate = new Date(event.fecha);
+        <div className="flex flex-col items-center gap-3 px-2 sm:grid sm:grid-cols-3 sm:justify-center sm:gap-8">
+          {eventsRes.docs.slice(0, 6).map((event) => {
             return (
               <EventCard
                 key={event.id}
                 title={event.titulo}
                 type={event.tipo}
-                date={eventDate}
+                dates={event.fechas_horas}
                 duration={event.duracion}
                 image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
                 imageAlt={event.imagen_principal.alt}
-                spots={event.cupos}
+                spots={event.cupos - event.asistentes.length}
                 location={event.lugar}
-                time={new Date(event.hora)}
               />
             );
           })}

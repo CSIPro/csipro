@@ -10,30 +10,39 @@ export const Media = z.object({
   height: z.number(),
   url: z.string(),
   sizes: z.object({
-    thumbnail: z.object({
-      width: z.number(),
-      height: z.number(),
-      mimeType: z.string(),
-      filesize: z.number(),
-      filename: z.string(),
-      url: z.string(),
-    }),
-    card: z.object({
-      width: z.number(),
-      height: z.number(),
-      mimeType: z.string(),
-      filesize: z.number(),
-      filename: z.string(),
-      url: z.string(),
-    }),
-    tablet: z.object({
-      width: z.number(),
-      height: z.number(),
-      mimeType: z.string(),
-      filesize: z.number(),
-      filename: z.string(),
-      url: z.string(),
-    }),
+    thumbnail: z
+      .object({
+        width: z.number().optional().nullable(),
+        height: z.number().optional().nullable(),
+        mimeType: z.string().optional().nullable(),
+        filesize: z.number().optional().nullable(),
+        filename: z.string().optional().nullable(),
+        url: z.string().optional().nullable(),
+      })
+      .optional()
+      .nullable(),
+    card: z
+      .object({
+        width: z.number().optional().nullable(),
+        height: z.number().optional().nullable(),
+        mimeType: z.string().optional().nullable(),
+        filesize: z.number().optional().nullable(),
+        filename: z.string().optional().nullable(),
+        url: z.string().optional().nullable(),
+      })
+      .optional()
+      .nullable(),
+    tablet: z
+      .object({
+        width: z.number().optional().nullable(),
+        height: z.number().optional().nullable(),
+        mimeType: z.string().optional().nullable(),
+        filesize: z.number().optional().nullable(),
+        filename: z.string().optional().nullable(),
+        url: z.string().optional().nullable(),
+      })
+      .optional()
+      .nullable(),
   }),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
