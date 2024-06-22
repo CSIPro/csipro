@@ -102,7 +102,7 @@ export default async function Home() {
             src="portada.jpg"
             fill={true}
             alt="foto de portada"
-            className="rounded-lg object-cover opacity-70 sm:rounded-2xl"
+            className="rounded-lg object-cover sm:rounded-2xl"
             unoptimized
           />
         </div>
