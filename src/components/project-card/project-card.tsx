@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
+import { Media } from "@/models/media";
 import { Technology } from "@/models/technology";
 
 type MappedTechnology = {
@@ -11,42 +12,44 @@ type MappedTechnology = {
 
 interface ProjectCardProps {
   name: string;
+  subtitle: string;
   systemType: string;
-  description?: string;
   stack: Array<MappedTechnology>;
-  principalImage: string;
+  thumbnail: Media;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   return (
     <div className="flex w-full max-w-md justify-center rounded-2xl gradient-border">
-      <div className="h-full w-full rounded-[15px] bg-muted p-4">
-        <div className="relative flex h-72 w-full justify-center md:h-48">
-          <Image fill src="/lines.png" alt="pic" className="object-cover" />
+      <div className="flex h-full w-full flex-col gap-2 rounded-[15px] bg-muted p-4">
+        <div className="relative flex h-64 w-full justify-center md:h-48">
           <Image
             fill
-            src={`https://admin.csipro.isi.unison.mx${props.principalImage}`}
-            alt="principal_image"
+            src="/lines.png"
+            alt="Cuadrícula de fondo"
+            className="object-cover"
+          />
+          <Image
+            fill
+            src={`https://admin.csipro.isi.unison.mx${props.thumbnail.url}`}
+            alt={props.thumbnail.alt}
             className="z-10 object-contain"
           />
         </div>
-        <div className="py-2"></div>
         <div className="text-2xl font-bold">{props.name}</div>
-        <div className="flex h-14 items-center justify-between text-base font-normal">
-          <span>{props.description ?? "Lorem ipsum dolor sit amet"}</span>
+        <div className="line-clamp-2 h-12 justify-between text-base font-normal">
+          <span>{props.subtitle}</span>
         </div>
-        <div className="py-2"></div>
-        <hr className="border-1 border-primary" />
-        <div className="py-2"></div>
+        <hr className="border border-primary" />
         <div className="flex items-center justify-between">
           <div className="align-text-bottom text-sm">{props.systemType}</div>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             {props.stack.map((tech) => (
               <Image
                 key={tech.id}
-                src={`https://admin.csipro.isi.unison.mx${props.principalImage}`}
-                alt={`Technology ${tech.tecnologia.nombre}`}
-                className="h-3 w-3"
+                src={`https://admin.csipro.isi.unison.mx${tech.tecnologia.logo_monocromatico.url}`}
+                alt={tech.tecnologia.logo.alt}
+                className="size-5"
                 width={32}
                 height={32}
               />

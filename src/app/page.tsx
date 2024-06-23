@@ -169,15 +169,16 @@ export default async function Home() {
       </Section>
       <Section className="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
-        <div className="flex flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
+        <div className="flex w-full flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
           {projectsRes.docs.slice(0, 3).map((project) => {
             return (
               <ProjectCard
                 key={project.id}
                 name={project.nombre}
+                subtitle={project.subtitulo}
                 systemType={project.tipo_sistema}
                 stack={project.tecnologias ?? []}
-                principalImage={project.imagen_principal.url}
+                thumbnail={project.imagen_principal}
               />
             );
           })}
