@@ -22,7 +22,7 @@ export const Navbar: FC<Props> = ({ className }) => {
         className,
       )}
     >
-      <div className="mx-auto flex h-full max-w-5xl items-center justify-between p-4">
+      <div className="mx-auto flex h-full max-w-6xl items-center justify-between p-4">
         <Link href="/" className="font-poppins text-xl">
           <div className="flex items-center justify-center gap-4">
             <div className="flex aspect-square w-10 items-center justify-center rounded-sm p-1.5">

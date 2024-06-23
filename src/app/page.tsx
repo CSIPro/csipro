@@ -1,8 +1,9 @@
 import Image from "next/image";
 
 import EventCard from "@/components/event-card/event-card";
-import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
+import { Glow, GlowContainer } from "@/components/glow/glow";
 import { ProjectCard } from "@/components/project-card/project-card";
+import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
 import {
@@ -69,36 +70,57 @@ export default async function Home() {
 
   return (
     <>
-      <section className="relative flex w-full flex-col items-center gap-4 sm:flex-row">
-        {/* <GlowContainer> */}
-        {/* Basic usage */}
-        {/* <Glow breathe /> */}
-        {/* Overlayed glows within a group */}
-        {/* <GlowGroup turn>
+      <Section>
+        <div className="absolute inset-0 -z-10 size-full overflow-hidden">
+          <div className="absolute left-1/2 top-1/2 size-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-stone-400 border-opacity-10 bg-transparent sm:size-80 "></div>
+          <div className="absolute left-1/2 top-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full border border-stone-400 border-opacity-10 bg-transparent sm:size-[28rem]"></div>
+          <div className="absolute left-1/2 top-1/2 size-72 -translate-x-1/2 -translate-y-1/2 rounded-full border border-stone-400 border-opacity-10 bg-transparent sm:size-[36rem]"></div>
+          <div className="absolute left-1/2 top-1/2 size-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-stone-400 border-opacity-10 bg-transparent sm:size-[44rem]"></div>
+          <div className="absolute left-1/2 top-1/2 size-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-stone-400 border-opacity-10 bg-transparent sm:size-[52rem]"></div>
+        </div>
+
+        <GlowContainer>
+          {/* Basic usage */}
+          <Glow breathe />
+          {/* Overlayed glows within a group */}
+          {/*<GlowGroup turn>
             <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(123,30,114,1)_100%);] [clip-path:circle(50%_at_50%_50%)]" />
             <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(49,0,163,1)_57%);] [clip-path:polygon(26%_10%,_49%_52%,_96%_56%,_93%_70%,_85%_80%,_77%_85%,_68%_90%,_58%_94%,_49%_94%,_38%_91%,_28%_87%,_18%_79%,_14%_71%,_8%_63%,_6%_55%,_7%_43%,_11%_31%,_15%_21%)]" />
-          </GlowGroup> */}
-        {/* </GlowContainer> */}
-        <div className="px-4 py-6">
-          <h1 className="text-4xl font-semibold sm:text-5xl">
+          </GlowGroup>*/}
+        </GlowContainer>
+
+        <div className="px-4 pt-10  sm:pb-6 sm:pt-20">
+          <h1 className="text-center text-4xl font-bold  sm:text-6xl ">
             Un espacio de <span className="text-primary">desarrollo</span>,
-            <span className="text-primary"> innovación</span> e
-            <span className="text-primary"> investigación</span> en la
-            Universidad de Sonora
+            <br />
+            <span className="text-primary"> innovación</span> &
+            <span className="text-primary "> investigación</span>
+            <br />
+            <span className="text-xl font-semibold sm:text-4xl ">
+              en la Universidad de Sonora
+            </span>
           </h1>
         </div>
-        <div className="max-w-full px-4 py-6 sm:max-w-2xl">
+        <Button
+          variant="outline"
+          className="px-4 py-4 text-[14px] font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl "
+        >
+          Get Started
+        </Button>
+        <div className="sm:py-5"></div>
+        <div className=" relative aspect-video w-11/12 sm:w-8/12   ">
           <Image
             src="portada.jpg"
-            width={500}
-            height={300}
+            fill={true}
             alt="foto de portada"
-            className="rounded"
+            className="rounded-lg object-cover sm:rounded-2xl"
             unoptimized
           />
         </div>
-      </section>
-      <section>
+        <div className="sm:py-24"></div>
+      </Section>
+
+      <Section>
         <SectionTitle>¿QUIÉNES SOMOS?</SectionTitle>
         <div className="flex w-full flex-col items-center gap-3 px-2">
           <div className="relative w-fit">
@@ -132,9 +154,9 @@ export default async function Home() {
             Más de nosotros
           </Button>
         </div>
-      </section>
+      </Section>
 
-      <section className="w-full pb-3">
+      <Section>
         <SectionTitle>Nuevos eventos</SectionTitle>
         <div className="flex flex-col items-center gap-3 px-2 sm:grid sm:grid-cols-3 sm:justify-center sm:gap-8">
           {eventsRes.docs.slice(0, 6).map((event) => {
@@ -153,8 +175,8 @@ export default async function Home() {
             );
           })}
         </div>
-      </section>
-      <section className="w-full pb-32 pt-32">
+      </Section>
+      <Section className="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
         <div className="flex flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
           {projectsRes.docs.slice(0, 3).map((project) => {
@@ -169,7 +191,7 @@ export default async function Home() {
             );
           })}
         </div>
-      </section>
+      </Section>
     </>
   );
 }
