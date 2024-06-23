@@ -158,7 +158,7 @@ export default async function Home() {
 
       <Section>
         <SectionTitle>Nuevos eventos</SectionTitle>
-        <div className="flex flex-col items-center gap-3 px-2 sm:grid sm:grid-cols-3 sm:justify-center sm:gap-8">
+        <div className="flex w-full flex-col items-center gap-3 px-2 sm:grid sm:grid-cols-3 sm:justify-center sm:gap-8">
           {eventsRes.docs.slice(0, 6).map((event) => {
             return (
               <EventCard
