@@ -167,7 +167,7 @@ export default async function Home() {
           })}
         </div>
       </Section>
-      <Section className="pb-16">
+      <Section classNameDiv="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
         <div className="flex w-full flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
           {projectsRes.docs.slice(0, 3).map((project) => {
