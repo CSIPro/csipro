@@ -25,7 +25,7 @@ export const Chip: FC<Props> = ({
   return (
     <span
       className={cn(
-        "rounded-full border bg-transparent px-2 py-0.5 text-sm uppercase",
+        "rounded-full border bg-transparent px-2 py-0.5 text-xs uppercase xl:text-sm",
         variants[variant],
         className,
       )}

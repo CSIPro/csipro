@@ -69,7 +69,7 @@ const EventCard: React.FC<EventCardProps> = (props) => {
   const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
 
   return (
-    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 sm:w-[22rem]">
+    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 sm:w-80 xl:w-[22rem]">
       <div className="flex select-none items-center justify-between">
         <BrandingHeader>
           <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>

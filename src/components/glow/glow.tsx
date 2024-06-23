@@ -22,7 +22,8 @@ export const GlowContainer: FC<ContainerProps> = ({ children, className }) => {
 
 const glowSizes = {
   small: "size-[72vw] sm:size-[24vw]",
-  normal: "size-[180vw] sm:size-[80vw]",
+  normal:
+    "size-[180vw] sm:size-[80vw] lg:size-[72vw] xl:size-[64vw] 2xl:size-[56vw]",
 };
 
 interface GlowProps {
