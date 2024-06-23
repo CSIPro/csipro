@@ -11,7 +11,7 @@ export const GlowContainer: FC<ContainerProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        "absolute -z-10 size-full overflow-hidden opacity-50 blur-2xl",
+        "absolute -z-10 size-full overflow-hidden opacity-80 blur-2xl",
         className,
       )}
     >
@@ -40,7 +40,7 @@ export const Glow: FC<GlowProps> = ({
   return (
     <div
       className={cn(
-        "absolute left-1/2 top-1/2 origin-center -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgb(95,54,190)_0%,rgb(23,23,23)_62%)] blur-3xl [clip-path:ellipse(50%_30%_at_50%_50%)]",
+        "absolute left-1/2 top-1/2 origin-center -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgba(95,54,190,0.62)_0%,rgba(95,54,190,0)_62%)] blur-3xl [clip-path:ellipse(50%_30%_at_50%_50%)]",
         glowSizes[size],
         className,
         breathe && "animate-breathe",
