@@ -22,7 +22,8 @@ export const GlowContainer: FC<ContainerProps> = ({ children, className }) => {
 
 const glowSizes = {
   small: "size-[72vw] sm:size-[24vw]",
-  normal:
+  normal: "size-[180vw] sm:size-[80vw] 2xl:size-[72vw]",
+  specific:
     "size-[180vw] sm:size-[80vw] lg:size-[72vw] xl:size-[64vw] 2xl:size-[56vw]",
 };
 
@@ -40,7 +41,7 @@ export const Glow: FC<GlowProps> = ({
   return (
     <div
       className={cn(
-        "absolute left-1/2 top-1/2 origin-center -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgba(95,54,190,0.62)_0%,rgba(95,54,190,0)_62%)] blur-3xl [clip-path:ellipse(50%_30%_at_50%_50%)]",
+        "absolute left-1/2 top-1/2 origin-center -translate-x-1/2 -translate-y-1/2 blur-3xl [clip-path:ellipse(50%_30%_at_50%_50%)]",
         glowSizes[size],
         className,
         breathe && "animate-breathe",
