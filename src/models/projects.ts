@@ -17,6 +17,7 @@ export const Project = z.object({
   nombre: z.string(),
   participantes: z.array(Member).optional(),
   tipo_sistema: ProjectType,
+  subtitulo: z.string(),
   imagen_principal: Media,
   imagenes_secundarias: z.array(Media).optional(),
   tecnologias: z
