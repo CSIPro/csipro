@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { Suspense } from "react";
 
-import EventCard from "@/components/event-card/event-card";
+import EventsSection from "@/components/events-section/events-section";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { ProjectCard } from "@/components/project-card/project-card";
 import { Section } from "@/components/section/section";
@@ -10,38 +11,7 @@ import {
   createResponseSchema,
   generateEmptyResponse,
 } from "@/models/cms-response";
-import { Event } from "@/models/events";
 import { Project } from "@/models/projects";
-
-const fetchEvents = async () => {
-  const eventsRes = await fetch(
-    "https://admin.csipro.isi.unison.mx/api/eventos",
-    { cache: "no-store" },
-  );
-
-  if (!eventsRes.ok) {
-    return generateEmptyResponse();
-  }
-
-  const EventsResponse = createResponseSchema(Event);
-
-  const eventsData = await eventsRes.json();
-
-  const events = EventsResponse.safeParse(eventsData);
-
-  if (!events.success) {
-    return generateEmptyResponse();
-  }
-
-  events.data.docs.sort((a, b) => {
-    return (
-      new Date(b.fechas_horas[b.fechas_horas.length - 1].fecha_hora).getTime() -
-      new Date(a.fechas_horas[a.fechas_horas.length - 1].fecha_hora).getTime()
-    );
-  });
-
-  return events.data;
-};
 
 const fetchProjects = async () => {
   const projectsRes = await fetch(
@@ -64,9 +34,18 @@ const fetchProjects = async () => {
   return projects.success ? projects.data : generateEmptyResponse();
 };
 
-export default async function Home() {
-  const eventsRes = await fetchEvents();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: {
+    limit?: string;
+    page?: string;
+  };
+}) {
   const projectsRes = await fetchProjects();
+  const limit = Number(searchParams?.limit) || 3;
+  const currentPage = Number(searchParams?.page) || 1;
+  console.log(limit, currentPage);
 
   return (
     <>
@@ -111,7 +90,7 @@ export default async function Home() {
           Get Started
         </Button>
         <div className="sm:py-5"></div>
-        <div className=" relative aspect-video w-11/12 sm:w-8/12   ">
+        <div className=" relative aspect-video w-11/12 sm:w-8/12">
           <Image
             src="portada.jpg"
             fill={true}
@@ -183,23 +162,12 @@ export default async function Home() {
           </GlowGroup>
         </GlowContainer>
         <SectionTitle>Nuevos eventos</SectionTitle>
-        <div className="flex w-full flex-col items-center gap-3 px-2 sm:grid sm:grid-cols-2 sm:items-center sm:justify-items-center sm:gap-4 lg:grid-cols-3 lg:gap-8">
-          {eventsRes.docs.slice(0, 6).map((event) => {
-            return (
-              <EventCard
-                key={event.id}
-                title={event.titulo}
-                type={event.tipo}
-                dates={event.fechas_horas}
-                duration={event.duracion}
-                image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
-                imageAlt={event.imagen_principal.alt}
-                spots={event.cupos - event.asistentes.length}
-                location={event.lugar}
-              />
-            );
-          })}
-        </div>
+        <Suspense key={limit + currentPage} fallback={<span>Loading...</span>}>
+          <EventsSection
+            limit={limit}
+            currentPage={currentPage}
+          ></EventsSection>
+        </Suspense>
       </Section>
       <Section className="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
