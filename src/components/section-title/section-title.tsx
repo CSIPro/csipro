@@ -9,10 +9,10 @@ interface Props {
 
 export const SectionTitle: FC<Props> = ({ children, className }) => {
   return (
-    <div className="flex w-full py-4 md:justify-center">
+    <div className="flex w-full py-4">
       <h2
         className={cn(
-          "bg-primary p-2 text-xl font-medium uppercase text-white",
+          "min-w-72 bg-primary p-2 text-center text-xl font-medium uppercase text-white",
           className,
         )}
       >

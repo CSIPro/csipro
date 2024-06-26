@@ -14,12 +14,7 @@
     "sourceType": "module",
     "project": true
   },
-  "plugins": [
-    "import",
-    "react",
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["import", "react", "@typescript-eslint", "prettier"],
   "root": true,
   "rules": {
     "prettier/prettier": "error",
@@ -66,10 +61,7 @@
           "builtin",
           "external",
           "internal",
-          [
-            "sibling",
-            "parent"
-          ],
+          ["sibling", "parent"],
           "index",
           "unknown"
         ]
@@ -78,10 +70,7 @@
   },
   "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
       "typescript": {

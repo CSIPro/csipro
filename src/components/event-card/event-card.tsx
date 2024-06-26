@@ -1,69 +1,124 @@
-import { format } from "date-fns";
+/* eslint-disable prettier/prettier */
+import { format, isFuture, isPast } from "date-fns";
 import { es } from "date-fns/locale";
 import Image from "next/image";
 import React from "react";
+import { FaRegCalendar } from "react-icons/fa6";
+import { IoLocation } from "react-icons/io5";
 
 import { Button } from "@/components/ui/button";
+import { EventDate } from "@/models/events";
 
 import {
   BrandingHeader,
   BrandingHeaderHighlight,
   BrandingHeaderTitle,
 } from "../branding-header/branding-header";
+import { Chip } from "../chip/chip";
+
+const chipVariants = {
+  completed: {
+    variant: "gray",
+    label: "Completed",
+  },
+  ongoing: {
+    variant: "blue",
+    label: "Ongoing",
+  },
+  singleDay: {
+    variant: "yellow",
+    label: "Single-day",
+  },
+  multiDay: {
+    variant: "orange",
+    label: "Multi-day",
+  },
+} as const;
 
 interface EventCardProps {
   type: string;
-  date: Date;
+  dates: Array<EventDate>;
   image: string;
   imageAlt: string;
   spots?: number;
   title: string;
   duration: number;
   location: string;
-  time: Date;
 }
 
 const EventCard: React.FC<EventCardProps> = (props) => {
+  const dates = props.dates
+    .map((date) => new Date(date.fecha_hora))
+    .sort((a, b) => a.getTime() - b.getTime());
+
+  const isCompleted = dates.every((date) => isPast(date));
+  const isScheduled = dates.every((date) => isFuture(date));
+
+  const isOngoing = !isCompleted && !isScheduled;
+
+  const isMultiDay = dates.length > 1;
+
+  const chipVariant = isCompleted
+    ? chipVariants["completed"]
+    : isOngoing
+    ? chipVariants["ongoing"]
+    : isMultiDay
+    ? chipVariants["multiDay"]
+    : chipVariants["singleDay"];
+
+  const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
+
   return (
-    <div className="w-full rounded border border-primary bg-[#160D2A] p-4 sm:max-w-80">
-      <div className="flex select-none justify-between">
+    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 sm:w-80 xl:w-[22rem]">
+      <div className="flex select-none items-center justify-between">
         <BrandingHeader>
           <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
           <BrandingHeaderHighlight>{props.type}</BrandingHeaderHighlight>
         </BrandingHeader>
-        <div>
-          <BrandingHeaderHighlight className="py-1 text-lg font-semibold uppercase">
-            {format(props.date, "dd MMM", { locale: es })}
-          </BrandingHeaderHighlight>
-        </div>
+        <Chip variant={chipVariant.variant}>{chipVariant.label}</Chip>
       </div>
+      <div className="py-2"></div>
+      <h1 className="select-text text-center text-xl font-medium text-white">
+        {props.title}
+      </h1>
+      <div className="py-1"></div>
+      <hr className="border-1 border-[#2D1B55]" />
       <div className="py-2"></div>
       <div className="relative h-72 w-full overflow-hidden rounded md:h-52">
         <Image
           fill
           src={props.image}
           alt={props.imageAlt}
-          className="object-cover"
+          className="object-contain"
         />
-        <div className="absolute bottom-0 right-0 rounded-tl bg-primary px-1 text-white">
+        <div className="absolute bottom-0 right-0 rounded bg-primary px-2 py-1 text-xs font-semibold text-white">
           {props.spots === 1 ? (
-            <span>{props.spots} cupo disponible</span>
+            <span>{`${props.spots} cupo disponible`}</span>
           ) : (
-            <span>{props.spots} cupos disponibles</span>
+            <span>{`${props.spots} cupos disponibles`}</span>
           )}
         </div>
       </div>
-      <div className="py-2"></div>
-      <h1 className={"select-text text-2xl font-semibold text-white"}>
-        {props.title}
-      </h1>
-      <hr className="border-1 my-4 border-primary" />
-      <div className="flex items-center justify-between text-sm font-semibold text-white">
-        <span>{props.location}</span>
-        <span>{format(props.time, "hh:mm aaaa", { locale: es })}</span>
+      <div className="py-1"></div>
+      <Chip>{isOngoing ? "Próxima fecha" : "Inicio"}</Chip>
+      <div className="py-0.5"></div>
+      <div className="flex flex-col items-start gap-2 text-sm text-white">
+        <div className="flex w-full items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <FaRegCalendar />
+            <span>{format(nextDate, "PPP", { locale: es })}</span>
+          </div>
+          <span>{format(nextDate, "hh:mm aaaa", { locale: es })}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <IoLocation />
+          <span>{props.location}</span>
+        </div>
       </div>
       <div className="mt-4 flex justify-center">
-        <Button variant="outline">Registrate aquí</Button>
+        <Button variant="outline" className="rounded-xl">
+          {isScheduled ? "Registrate aquí" : "Más información"}
+        </Button>
       </div>
     </div>
   );

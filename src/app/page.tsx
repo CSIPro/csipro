@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { Suspense } from "react";
 
-import EventCard from "@/components/event-card/event-card";
-import { Glow, GlowContainer } from "@/components/glow/glow";
+import EventsSection from "@/components/events-section/events-section";
+import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { ProjectCard } from "@/components/project-card/project-card";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
@@ -10,27 +11,7 @@ import {
   createResponseSchema,
   generateEmptyResponse,
 } from "@/models/cms-response";
-import { Event } from "@/models/events";
 import { Project } from "@/models/projects";
-
-const fetchEvents = async () => {
-  const eventsRes = await fetch(
-    "https://admin.csipro.isi.unison.mx/api/eventos",
-    { cache: "no-store" },
-  );
-
-  if (!eventsRes.ok) {
-    return generateEmptyResponse();
-  }
-
-  const EventsResponse = createResponseSchema(Event);
-
-  const eventsData = await eventsRes.json();
-
-  const events = EventsResponse.safeParse(eventsData);
-
-  return events.success ? events.data : generateEmptyResponse();
-};
 
 const fetchProjects = async () => {
   const projectsRes = await fetch(
@@ -53,9 +34,18 @@ const fetchProjects = async () => {
   return projects.success ? projects.data : generateEmptyResponse();
 };
 
-export default async function Home() {
-  const eventsRes = await fetchEvents();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: {
+    limit?: string;
+    page?: string;
+  };
+}) {
   const projectsRes = await fetchProjects();
+  const limit = Number(searchParams?.limit) || 3;
+  const currentPage = Number(searchParams?.page) || 1;
+  console.log(limit, currentPage);
 
   return (
     <>
@@ -70,7 +60,10 @@ export default async function Home() {
 
         <GlowContainer>
           {/* Basic usage */}
-          <Glow breathe />
+          <Glow
+            breathe
+            className="bg-[radial-gradient(circle,rgba(95,54,190,0.62)_0%,rgba(95,54,190,0)_62%)]"
+          />
           {/* Overlayed glows within a group */}
           {/*<GlowGroup turn>
             <Glow className="bg-[radial-gradient(circle,rgba(115,115,115,1)_0%,rgba(123,30,114,1)_100%);] [clip-path:circle(50%_at_50%_50%)]" />
@@ -97,7 +90,7 @@ export default async function Home() {
           Get Started
         </Button>
         <div className="sm:py-5"></div>
-        <div className=" relative aspect-video w-11/12 sm:w-8/12   ">
+        <div className=" relative aspect-video w-11/12 sm:w-8/12">
           <Image
             src="portada.jpg"
             fill={true}
@@ -146,26 +139,35 @@ export default async function Home() {
       </Section>
 
       <Section>
+        <GlowContainer>
+          <GlowGroup className="origin-[12%_50%] 2xl:origin-[25%_50%]">
+            <Glow
+              size="specific"
+              className="left-[12%] bg-[radial-gradient(circle,rgba(49,0,163,0.57)_0%,rgba(49,0,163,0)_60%);] [clip-path:polygon(48%_55%,_94%_61%,_92%_75%,_87%_80%,_81%_86%,_75%_89%,_67%_92%,_59%_93%,_52%_94%,_47%_94%,_41%_92%,_33%_88%,_26%_84%,_19%_79%,_11%_73%,_11%_73%,_7%_67%,_4%_59%,_3%_54%,_3%_47%,_7%_39%,_9%_32%,_14%_27%,_16%_22%,_19%_17%,_24%_13%,_31%_11%);] 2xl:left-1/4"
+            />
+            <Glow
+              size="specific"
+              className="left-[12%] bg-[radial-gradient(circle,rgba(123,30,114,1)_0%,rgba(123,30,114,0)_50%);] [clip-path:polygon(49%_55%,_98%_61%,_97%_54%,_96%_48%,_94%_41%,_92%_34%,_87%_29%,_82%_24%,_79%_18%,_73%_14%,_67%_11%,_60%_6%,_54%_6%,_47%_4%,_41%_4%,_33%_8%,_27%_12%,_21%_15%)] 2xl:left-1/4"
+            />
+          </GlowGroup>
+          <GlowGroup className="origin-[88%_25%] 2xl:origin-[75%_25%]">
+            <Glow
+              size="specific"
+              className="left-[88%] top-[25%] bg-[radial-gradient(circle,rgba(255,158,69,0.45)_0%,rgba(255,158,69,0)_50%);] [clip-path:polygon(48%_56%,_4%_56%,_5%_63%,_8%_71%,_11%_76%,_15%_82%,_19%_86%,_24%_90%,_30%_95%,_37%_98%,_46%_99%,_53%_99%,_62%_99%,_68%_96%,_73%_95%,_82%_94%,_85%_87%,_89%_82%);] 2xl:left-3/4"
+            />
+            <Glow
+              size="specific"
+              className="left-[88%] top-[25%] bg-[radial-gradient(circle,rgba(135,51,165,0.5)_0%,rgba(135,51,165,0)_50%);] [clip-path:polygon(50%_54%,_5%_53%,_7%_43%,_9%_36%,_11%_32%,_15%_25%,_20%_21%,_27%_18%,_30%_14%,_37%_11%,_43%_8%,_51%_8%,_58%_8%,_67%_11%,_76%_16%,_81%_20%,_88%_25%,_91%_31%,_92%_37%,_94%_43%,_94%_51%,_94%_58%,_93%_66%,_91%_74%,_89%_80%,_86%_86%,_81%_90%,_77%_92%);] 2xl:left-3/4"
+            />
+          </GlowGroup>
+        </GlowContainer>
         <SectionTitle>Nuevos eventos</SectionTitle>
-        <div className="flex flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
-          {eventsRes.docs.slice(0, 3).map((event) => {
-            const eventDate = new Date(event.fecha);
-            return (
-              <EventCard
-                key={event.id}
-                title={event.titulo}
-                type={event.tipo}
-                date={eventDate}
-                duration={event.duracion}
-                image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
-                imageAlt={event.imagen_principal.alt}
-                spots={event.cupos}
-                location={event.lugar}
-                time={new Date(event.hora)}
-              />
-            );
-          })}
-        </div>
+        <Suspense key={limit + currentPage} fallback={<span>Loading...</span>}>
+          <EventsSection
+            limit={limit}
+            currentPage={currentPage}
+          ></EventsSection>
+        </Suspense>
       </Section>
       <Section classNameDiv="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
