@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
+import { Chip } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { ProjectCard } from "@/components/project-card/project-card";
