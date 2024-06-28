@@ -27,7 +27,7 @@ export const Chip: FC<Props> = ({
   return (
     <span
       className={cn(
-        "rounded-full border px-2 py-0.5 text-xs uppercase xl:text-sm",
+        "flex w-fit flex-row items-center gap-2 rounded-full border px-3 py-1",
         variants[variant],
         !background && "bg-transparent",
         className,
@@ -36,4 +36,33 @@ export const Chip: FC<Props> = ({
       {children}
     </span>
   );
+};
+
+interface TextProps {
+  children: ReactNode;
+  className?: string;
+  uppercase?: boolean;
+}
+
+export const ChipLabel: FC<TextProps> = ({
+  className,
+  children,
+  uppercase = false,
+}) => {
+  return (
+    <span
+      className={cn("text-xs xl:text-sm", uppercase && "uppercase", className)}
+    >
+      {children}
+    </span>
+  );
+};
+
+interface IconProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export const ChipIcon: FC<IconProps> = ({ className, children }) => {
+  return <span className={cn(className)}>{children}</span>;
 };

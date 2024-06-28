@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { Suspense } from "react";
+import { HiOutlineUserCircle } from "react-icons/hi";
+import { LuSquareCode } from "react-icons/lu";
+import { TbSeeding } from "react-icons/tb";
 
-import { Chip } from "@/components/chip/chip";
+import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { ProjectCard } from "@/components/project-card/project-card";
@@ -106,6 +109,27 @@ export default async function Home({
       <Section>
         <SectionTitle>¿QUIÉNES SOMOS?</SectionTitle>
         <div className="flex w-full flex-col items-center gap-3 px-2">
+          <div>
+            <Chip background>
+              <ChipIcon>
+                <TbSeeding />
+              </ChipIcon>
+              <ChipLabel className="text-sm">Fundado en 2014</ChipLabel>
+            </Chip>
+            <Chip background>
+              <ChipIcon>
+                <HiOutlineUserCircle />
+              </ChipIcon>
+              <ChipLabel className="text-sm">18 Miembros</ChipLabel>
+            </Chip>
+            <Chip background>
+              <ChipIcon>
+                <LuSquareCode />
+              </ChipIcon>
+              <ChipLabel className="text-sm">5 Proyectos Activos</ChipLabel>
+            </Chip>
+          </div>
+
           <div className="relative w-fit">
             <Image
               src="nosotros.JPG"

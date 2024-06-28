@@ -14,7 +14,7 @@ import {
   BrandingHeaderHighlight,
   BrandingHeaderTitle,
 } from "../branding-header/branding-header";
-import { Chip } from "../chip/chip";
+import { Chip, ChipLabel } from "../chip/chip";
 
 const chipVariants = {
   completed: {
@@ -61,10 +61,10 @@ const EventCard: React.FC<EventCardProps> = (props) => {
   const chipVariant = isCompleted
     ? chipVariants["completed"]
     : isOngoing
-    ? chipVariants["ongoing"]
-    : isMultiDay
-    ? chipVariants["multiDay"]
-    : chipVariants["singleDay"];
+      ? chipVariants["ongoing"]
+      : isMultiDay
+        ? chipVariants["multiDay"]
+        : chipVariants["singleDay"];
 
   const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
 
@@ -75,7 +75,9 @@ const EventCard: React.FC<EventCardProps> = (props) => {
           <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
           <BrandingHeaderHighlight>{props.type}</BrandingHeaderHighlight>
         </BrandingHeader>
-        <Chip variant={chipVariant.variant}>{chipVariant.label}</Chip>
+        <Chip variant={chipVariant.variant}>
+          <ChipLabel uppercase>{chipVariant.label}</ChipLabel>
+        </Chip>
       </div>
       <div className="py-2"></div>
       <h1 className="select-text text-center text-xl font-medium text-white">
@@ -100,7 +102,9 @@ const EventCard: React.FC<EventCardProps> = (props) => {
         </div>
       </div>
       <div className="py-1"></div>
-      <Chip>{isOngoing ? "Próxima fecha" : "Inicio"}</Chip>
+      <Chip>
+        <ChipLabel uppercase>{isOngoing ? "Próxima fecha" : "Inicio"}</ChipLabel>
+      </Chip>
       <div className="py-0.5"></div>
       <div className="flex flex-col items-start gap-2 text-sm text-white">
         <div className="flex w-full items-center justify-between gap-2">
