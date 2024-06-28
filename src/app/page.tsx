@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { Suspense } from "react";
+import { HiOutlineUserCircle } from "react-icons/hi";
+import { LuSquareCode } from "react-icons/lu";
+import { TbSeeding } from "react-icons/tb";
 
+import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { ProjectCard } from "@/components/project-card/project-card";
@@ -103,38 +107,60 @@ export default async function Home({
       </Section>
 
       <Section>
-        <SectionTitle>¿QUIÉNES SOMOS?</SectionTitle>
-        <div className="flex w-full flex-col items-center gap-3 px-2">
-          <div className="relative w-fit">
+        <SectionTitle>NOSOTROS</SectionTitle>
+        <GlowContainer>
+          <Glow
+            className="left-[20%] size-[72vw] bg-[radial-gradient(circle,rgba(95,54,190,0.62)_0%,rgba(95,54,190,0)_90%)] [clip-path:ellipse(50%_50%_at_50%_50%)] md:top-[35%] md:size-[64vw] lg:top-[40%] lg:size-[48vw] xl:left-[8%] xl:top-[50%] xl:size-[36vw] 2xl:left-[10%]"
+            size="small"
+          />
+        </GlowContainer>
+        <div className="flex w-full flex-col items-center gap-5 px-4 pb-4 md:flex-row md:gap-6 md:pb-12 lg:gap-16">
+          <div className="relative aspect-[3/4] h-fit w-full md:aspect-[4/3]">
             <Image
-              src="nosotros.JPG"
-              width={500}
-              height={300}
+              src="nosotros.webp"
+              // width={500}
+              // height={300}
+              fill
               alt="foto de portada"
-              className="rounded"
+              className="rounded-3xl md:rounded-2xl md:object-cover md:object-[50%_15%]"
               unoptimized
             />
-            <div className="absolute -left-1.5 top-10 animate-floating rounded bg-[#0074F9] p-1.5 shadow-md shadow-black/25">
-              5 proyectos activos
-            </div>
-
-            <div className="absolute -right-1.5 top-[60%] animate-floating rounded bg-[#00C792] p-1.5 shadow-md shadow-black/25">
-              Fundado en 2014
-            </div>
-
-            <div className="absolute -left-1.5 bottom-12 animate-floating rounded bg-primary p-1.5 shadow-md shadow-black/25">
-              38 miembros
-            </div>
           </div>
-          <p className="text-lg">
-            Somos estudiantes de la Universidad de Sonora en la búsqueda de
-            innovar. Realizamos e implementamos tecnologías, tales como software
-            desarrollado por nosotros
-          </p>
+          <div className="flex w-full flex-col items-center gap-5 md:items-start">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 md:justify-start">
+              <Chip background>
+                <ChipIcon>
+                  <TbSeeding />
+                </ChipIcon>
+                <ChipLabel className="text-sm">Fundado en 2014</ChipLabel>
+              </Chip>
+              <Chip background>
+                <ChipIcon>
+                  <HiOutlineUserCircle />
+                </ChipIcon>
+                <ChipLabel className="text-sm">18 Miembros</ChipLabel>
+              </Chip>
+              <Chip background>
+                <ChipIcon>
+                  <LuSquareCode />
+                </ChipIcon>
+                <ChipLabel className="text-sm">5 Proyectos Activos</ChipLabel>
+              </Chip>
+            </div>
+            <h2 className="text-center font-poppins text-3xl">
+              ¿Quiénes Somos?
+            </h2>
+            <p className="text-base">
+              Somos estudiantes de la{" "}
+              <span className="text-primary">Universidad de Sonora</span> en la
+              búsqueda de innovar. Realizamos e implementamos tecnologías, tales
+              como software desarrollado por nosotros
+            </p>
 
-          <Button variant="outline" className="text-base">
-            Más de nosotros
-          </Button>
+            <Button variant="outline" className="text-base">
+              Más de nosotros
+            </Button>
+          </div>
         </div>
       </Section>
 
