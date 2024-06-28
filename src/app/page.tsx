@@ -111,7 +111,7 @@ export default async function Home({
         <div className="flex w-full flex-col items-center gap-5 px-4">
           <div className="relative w-fit">
             <Image
-              src="nosotros.JPG"
+              src="nosotros.webp"
               width={500}
               height={300}
               alt="foto de portada"
