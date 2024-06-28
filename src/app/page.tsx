@@ -107,9 +107,19 @@ export default async function Home({
       </Section>
 
       <Section>
-        <SectionTitle>¿QUIÉNES SOMOS?</SectionTitle>
-        <div className="flex w-full flex-col items-center gap-3 px-2">
-          <div>
+        <SectionTitle>NOSOTROS</SectionTitle>
+        <div className="flex w-full flex-col items-center gap-5 px-4">
+          <div className="relative w-fit">
+            <Image
+              src="nosotros.JPG"
+              width={500}
+              height={300}
+              alt="foto de portada"
+              className="rounded-3xl"
+              unoptimized
+            />
+          </div>
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3">
             <Chip background>
               <ChipIcon>
                 <TbSeeding />
@@ -129,32 +139,12 @@ export default async function Home({
               <ChipLabel className="text-sm">5 Proyectos Activos</ChipLabel>
             </Chip>
           </div>
-
-          <div className="relative w-fit">
-            <Image
-              src="nosotros.JPG"
-              width={500}
-              height={300}
-              alt="foto de portada"
-              className="rounded"
-              unoptimized
-            />
-            <div className="absolute -left-1.5 top-10 animate-floating rounded bg-[#0074F9] p-1.5 shadow-md shadow-black/25">
-              5 proyectos activos
-            </div>
-
-            <div className="absolute -right-1.5 top-[60%] animate-floating rounded bg-[#00C792] p-1.5 shadow-md shadow-black/25">
-              Fundado en 2014
-            </div>
-
-            <div className="absolute -left-1.5 bottom-12 animate-floating rounded bg-primary p-1.5 shadow-md shadow-black/25">
-              38 miembros
-            </div>
-          </div>
-          <p className="text-lg">
-            Somos estudiantes de la Universidad de Sonora en la búsqueda de
-            innovar. Realizamos e implementamos tecnologías, tales como software
-            desarrollado por nosotros
+          <h2 className="text-center font-poppins text-3xl">¿Quiénes Somos?</h2>
+          <p className="text-base">
+            Somos estudiantes de la{" "}
+            <span className="text-primary">Universidad de Sonora</span> en la
+            búsqueda de innovar. Realizamos e implementamos tecnologías, tales
+            como software desarrollado por nosotros
           </p>
 
           <Button variant="outline" className="text-base">
