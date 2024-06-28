@@ -108,48 +108,59 @@ export default async function Home({
 
       <Section>
         <SectionTitle>NOSOTROS</SectionTitle>
-        <div className="flex w-full flex-col items-center gap-5 px-4">
-          <div className="relative w-fit">
+        <GlowContainer>
+          <Glow
+            className="left-[20%] size-[72vw] bg-[radial-gradient(circle,rgba(95,54,190,0.62)_0%,rgba(95,54,190,0)_90%)] [clip-path:ellipse(50%_50%_at_50%_50%)] md:top-[35%] md:size-[64vw] lg:top-[40%] lg:size-[48vw] xl:left-[8%] xl:top-[50%] xl:size-[36vw] 2xl:left-[10%]"
+            size="small"
+          />
+        </GlowContainer>
+        <div className="flex w-full flex-col items-center gap-5 px-4 pb-4 md:flex-row md:gap-6 md:pb-12 lg:gap-16">
+          <div className="relative aspect-[3/4] h-fit w-full md:aspect-[4/3]">
             <Image
               src="nosotros.webp"
-              width={500}
-              height={300}
+              // width={500}
+              // height={300}
+              fill
               alt="foto de portada"
-              className="rounded-3xl"
+              className="rounded-3xl md:rounded-2xl md:object-cover md:object-[50%_15%]"
               unoptimized
             />
           </div>
-          <div className="flex flex-row flex-wrap items-center justify-center gap-3">
-            <Chip background>
-              <ChipIcon>
-                <TbSeeding />
-              </ChipIcon>
-              <ChipLabel className="text-sm">Fundado en 2014</ChipLabel>
-            </Chip>
-            <Chip background>
-              <ChipIcon>
-                <HiOutlineUserCircle />
-              </ChipIcon>
-              <ChipLabel className="text-sm">18 Miembros</ChipLabel>
-            </Chip>
-            <Chip background>
-              <ChipIcon>
-                <LuSquareCode />
-              </ChipIcon>
-              <ChipLabel className="text-sm">5 Proyectos Activos</ChipLabel>
-            </Chip>
-          </div>
-          <h2 className="text-center font-poppins text-3xl">¿Quiénes Somos?</h2>
-          <p className="text-base">
-            Somos estudiantes de la{" "}
-            <span className="text-primary">Universidad de Sonora</span> en la
-            búsqueda de innovar. Realizamos e implementamos tecnologías, tales
-            como software desarrollado por nosotros
-          </p>
+          <div className="flex w-full flex-col items-center gap-5 md:items-start">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 md:justify-start">
+              <Chip background>
+                <ChipIcon>
+                  <TbSeeding />
+                </ChipIcon>
+                <ChipLabel className="text-sm">Fundado en 2014</ChipLabel>
+              </Chip>
+              <Chip background>
+                <ChipIcon>
+                  <HiOutlineUserCircle />
+                </ChipIcon>
+                <ChipLabel className="text-sm">18 Miembros</ChipLabel>
+              </Chip>
+              <Chip background>
+                <ChipIcon>
+                  <LuSquareCode />
+                </ChipIcon>
+                <ChipLabel className="text-sm">5 Proyectos Activos</ChipLabel>
+              </Chip>
+            </div>
+            <h2 className="text-center font-poppins text-3xl">
+              ¿Quiénes Somos?
+            </h2>
+            <p className="text-base">
+              Somos estudiantes de la{" "}
+              <span className="text-primary">Universidad de Sonora</span> en la
+              búsqueda de innovar. Realizamos e implementamos tecnologías, tales
+              como software desarrollado por nosotros
+            </p>
 
-          <Button variant="outline" className="text-base">
-            Más de nosotros
-          </Button>
+            <Button variant="outline" className="text-base">
+              Más de nosotros
+            </Button>
+          </div>
         </div>
       </Section>
 
