@@ -13,6 +13,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
+    "embla-carousel-react": "^8.1.5",
     "framer-motion": "^11.0.3",
     "geist": "^1.2.2",
     "lucide-react": "^0.323.0",
