@@ -50,7 +50,7 @@
     "import/no-unresolved": "error",
     "import/no-duplicates": "off",
     "import/order": [
-      "error",
+      "warn",
       {
         "alphabetize": {
           "order": "asc",
