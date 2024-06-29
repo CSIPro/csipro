@@ -45,11 +45,14 @@ export default async function EventsSection({
   currentPage: number;
 }) {
   const eventsRes = await fetchEvents(limit, currentPage);
-  console.log(eventsRes.docs.length);
+
+  const totalPages = Math.min(Math.ceil(eventsRes.totalDocs / limit), 5);
+  const { page, prevPage, nextPage } = eventsRes;
+
   return (
     <>
       <div className="flex w-full flex-col items-center gap-3 px-2 sm:grid sm:grid-cols-2 sm:items-center sm:justify-items-center sm:gap-4 lg:grid-cols-3 lg:gap-8">
-        {eventsRes.docs.slice(0, 3).map((event) => {
+        {eventsRes.docs.map((event) => {
           return (
             <EventCard
               key={event.id}
@@ -65,7 +68,12 @@ export default async function EventsSection({
           );
         })}
       </div>
-      <EventsPagination />
+      <EventsPagination
+        currentPage={page}
+        totalPages={totalPages}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
     </>
   );
 }
