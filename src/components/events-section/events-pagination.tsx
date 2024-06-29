@@ -12,14 +12,14 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-interface Props {
+export interface EventsPaginationProps {
   currentPage: number;
   totalPages: number;
   nextPage?: number | null;
   prevPage?: number | null;
 }
 
-export const EventsPagination: FC<Props> = ({
+export const EventsPagination: FC<EventsPaginationProps> = ({
   currentPage,
   totalPages,
   nextPage,
