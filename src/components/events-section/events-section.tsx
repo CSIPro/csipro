@@ -4,8 +4,6 @@ import {
 } from "@/models/cms-response";
 import { Event } from "@/models/events";
 
-import { EventsPagination } from "./events-pagination";
-import EventCard from "../event-card/event-card";
 import { EventsWrapper } from "./events-wrapper";
 
 const fetchEvents = async (limit: number, currentPage: number) => {

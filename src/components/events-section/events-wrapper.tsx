@@ -43,7 +43,7 @@ export const EventsWrapper: FC<EventsWrapperProps> = ({
   ) : (
     <MobileEvents>
       {events.map((event) => (
-        <CarouselItem key={event.id}>
+        <CarouselItem key={event.id} className="basis-5/6 sm:basis-3/4">
           <EventCard
             title={event.titulo}
             type={event.tipo}
@@ -70,7 +70,7 @@ const DesktopEvents: FC<DesktopEventsProps> = ({
 }) => {
   return (
     <>
-      <div className="flex w-full flex-col items-center gap-3 px-2 sm:grid sm:grid-cols-2 sm:items-center sm:justify-items-center sm:gap-4 lg:grid-cols-3 lg:gap-8">
+      <div className="flex w-full flex-col items-center gap-3 px-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-items-center sm:gap-4 lg:grid-cols-3">
         {children}
       </div>
       <EventsPagination {...paginationProps} />
