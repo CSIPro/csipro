@@ -42,14 +42,12 @@ export default async function Home({
   searchParams,
 }: {
   searchParams?: {
-    limit?: string;
     page?: string;
   };
 }) {
   const projectsRes = await fetchProjects();
-  const limit = Number(searchParams?.limit) || 3;
+  const limit = 6;
   const currentPage = Number(searchParams?.page) || 1;
-  console.log(limit, currentPage);
 
   return (
     <>

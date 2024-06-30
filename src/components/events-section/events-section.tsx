@@ -4,8 +4,7 @@ import {
 } from "@/models/cms-response";
 import { Event } from "@/models/events";
 
-import { EventsPagination } from "./events-pagination";
-import EventCard from "../event-card/event-card";
+import { EventsWrapper } from "./events-wrapper";
 
 const fetchEvents = async (limit: number, currentPage: number) => {
   const eventsRes = await fetch(
@@ -45,27 +44,17 @@ export default async function EventsSection({
   currentPage: number;
 }) {
   const eventsRes = await fetchEvents(limit, currentPage);
-  console.log(eventsRes.docs.length);
+
+  const totalPages = Math.min(Math.ceil(eventsRes.totalDocs / limit), 5);
+  const { docs, page, prevPage, nextPage } = eventsRes;
+
   return (
-    <>
-      <div className="flex w-full flex-col items-center gap-3 px-2 sm:grid sm:grid-cols-2 sm:items-center sm:justify-items-center sm:gap-4 lg:grid-cols-3 lg:gap-8">
-        {eventsRes.docs.slice(0, 3).map((event) => {
-          return (
-            <EventCard
-              key={event.id}
-              title={event.titulo}
-              type={event.tipo}
-              dates={event.fechas_horas}
-              duration={event.duracion}
-              image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
-              imageAlt={event.imagen_principal.alt}
-              spots={event.cupos - event.asistentes.length}
-              location={event.lugar}
-            />
-          );
-        })}
-      </div>
-      <EventsPagination />
-    </>
+    <EventsWrapper
+      events={docs}
+      currentPage={page}
+      totalPages={totalPages}
+      prevPage={prevPage}
+      nextPage={nextPage}
+    />
   );
 }

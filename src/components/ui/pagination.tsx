@@ -1,5 +1,3 @@
-"use client";
-
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
@@ -39,12 +37,14 @@ PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = {
   isActive?: boolean;
+  disabled?: boolean;
 } & Pick<ButtonProps, "size"> &
   React.ComponentProps<typeof Link>;
 
 const PaginationLink = ({
   className,
   isActive,
+  disabled = false,
   size = "icon",
   ...props
 }: PaginationLinkProps) => (
@@ -55,6 +55,9 @@ const PaginationLink = ({
         variant: isActive ? "outline" : "ghost",
         size,
       }),
+      "rounded-full p-2",
+      disabled &&
+        "cursor-not-allowed opacity-20 hover:bg-transparent hover:text-white",
       className,
     )}
     scroll={false}
@@ -70,11 +73,10 @@ const PaginationPrevious = ({
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={cn("gap-1 pl-2.5", className)}
+    className={cn("gap-1", className)}
     {...props}
   >
-    <ChevronLeft className="h-4 w-4" />
-    <span>Previous</span>
+    <ChevronLeft className="size-6" />
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
@@ -86,11 +88,10 @@ const PaginationNext = ({
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={cn("gap-1 pr-2.5", className)}
+    className={cn("gap-1", className)}
     {...props}
   >
-    <span>Next</span>
-    <ChevronRight className="h-4 w-4" />
+    <ChevronRight className="size-6" />
   </PaginationLink>
 );
 PaginationNext.displayName = "PaginationNext";

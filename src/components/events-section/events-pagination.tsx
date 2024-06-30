@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { usePathname } from "next/navigation";
+import { FC } from "react";
 
 import {
   Pagination,
@@ -12,41 +12,64 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export function EventsPagination() {
-  const searchParams = useSearchParams();
+export interface EventsPaginationProps {
+  currentPage: number;
+  totalPages: number;
+  nextPage?: number | null;
+  prevPage?: number | null;
+}
+
+export const EventsPagination: FC<EventsPaginationProps> = ({
+  currentPage,
+  totalPages,
+  nextPage,
+  prevPage,
+}) => {
   const pathname = usePathname();
-  const createQueryString = useCallback(
-    (limit: string, page: string) => {
-      const params = new URLSearchParams();
-      params.set("limit", limit);
-      params.set("page", page);
-      console.log(params.toString());
-      return pathname + "?" + params.toString();
-    },
-    [searchParams],
-  );
+
+  const createQueryString = (page: string) => {
+    const params = new URLSearchParams();
+    params.set("page", page);
+
+    return pathname + "?" + params.toString();
+  };
+
+  const prevPageUrl =
+    prevPage && prevPage > 0 ? createQueryString(prevPage.toString()) : "#";
+
+  const nextPageUrl =
+    nextPage && nextPage <= totalPages
+      ? createQueryString(nextPage.toString())
+      : "#";
+
   return (
     <>
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious href="#" />
+            <PaginationPrevious
+              href={prevPageUrl}
+              disabled={prevPageUrl.includes("#")}
+            />
           </PaginationItem>
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <PaginationItem key={`Events page item ${index + 1}`}>
+              <PaginationLink
+                isActive={index + 1 === currentPage}
+                href={createQueryString((index + 1).toString())}
+              >
+                {index + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
           <PaginationItem>
-            <PaginationLink href={createQueryString("3", "1")}>
-              1
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href={createQueryString("3", "2")}>
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
+            <PaginationNext
+              href={nextPageUrl}
+              disabled={nextPageUrl.includes("#")}
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
     </>
   );
-}
+};

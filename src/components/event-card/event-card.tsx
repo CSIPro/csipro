@@ -61,15 +61,15 @@ const EventCard: React.FC<EventCardProps> = (props) => {
   const chipVariant = isCompleted
     ? chipVariants["completed"]
     : isOngoing
-      ? chipVariants["ongoing"]
-      : isMultiDay
-        ? chipVariants["multiDay"]
-        : chipVariants["singleDay"];
+    ? chipVariants["ongoing"]
+    : isMultiDay
+    ? chipVariants["multiDay"]
+    : chipVariants["singleDay"];
 
   const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
 
   return (
-    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 sm:w-80 xl:w-[22rem]">
+    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 md:w-full xl:w-[22rem]">
       <div className="flex select-none items-center justify-between">
         <BrandingHeader>
           <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
@@ -80,9 +80,11 @@ const EventCard: React.FC<EventCardProps> = (props) => {
         </Chip>
       </div>
       <div className="py-2"></div>
-      <h1 className="select-text text-center text-xl font-medium text-white">
-        {props.title}
-      </h1>
+      <div className="flex h-14 w-full items-center justify-center">
+        <h1 className="line-clamp-2 select-text text-center text-xl font-medium text-white">
+          {props.title}
+        </h1>
+      </div>
       <div className="py-1"></div>
       <hr className="border-1 border-[#2D1B55]" />
       <div className="py-2"></div>
@@ -93,17 +95,21 @@ const EventCard: React.FC<EventCardProps> = (props) => {
           alt={props.imageAlt}
           className="object-contain"
         />
-        <div className="absolute bottom-0 right-0 rounded bg-primary px-2 py-1 text-xs font-semibold text-white">
-          {props.spots === 1 ? (
-            <span>{`${props.spots} cupo disponible`}</span>
-          ) : (
-            <span>{`${props.spots} cupos disponibles`}</span>
-          )}
-        </div>
+        {isScheduled && (
+          <div className="absolute bottom-0 right-0 rounded bg-primary px-2 py-1 text-xs font-semibold text-white">
+            {props.spots === 1 ? (
+              <span>{`${props.spots} cupo disponible`}</span>
+            ) : (
+              <span>{`${props.spots} cupos disponibles`}</span>
+            )}
+          </div>
+        )}
       </div>
       <div className="py-1"></div>
       <Chip>
-        <ChipLabel uppercase>{isOngoing ? "Próxima fecha" : "Inicio"}</ChipLabel>
+        <ChipLabel uppercase>
+          {isOngoing ? "Próxima fecha" : "Inicio"}
+        </ChipLabel>
       </Chip>
       <div className="py-0.5"></div>
       <div className="flex flex-col items-start gap-2 text-sm text-white">
