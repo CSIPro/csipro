@@ -23,7 +23,7 @@ export const Project = z.object({
   tecnologias: z
     .array(z.object({ id: z.string(), tecnologia: Technology }))
     .optional(),
-  fecha_incio: z.string().datetime(),
+  fecha_inicio: z.string().datetime(),
   fecha_termino: z.string().datetime().optional(),
   estado: ProjectStatus,
   url: z.string().optional(),
