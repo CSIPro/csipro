@@ -23,6 +23,7 @@ const fetchEvents = async (limit: number, currentPage: number) => {
   const events = EventsResponse.safeParse(eventsData);
 
   if (!events.success) {
+    console.log(events.error);
     return generateEmptyResponse();
   }
 

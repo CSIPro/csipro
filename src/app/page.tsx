@@ -7,36 +7,10 @@ import { TbSeeding } from "react-icons/tb";
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
-import { ProjectCard } from "@/components/project-card/project-card";
+import ProjectsSection from "@/components/projects-section/projects-section";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
-import {
-  createResponseSchema,
-  generateEmptyResponse,
-} from "@/models/cms-response";
-import { Project } from "@/models/projects";
-
-const fetchProjects = async () => {
-  const projectsRes = await fetch(
-    "https://admin.csipro.isi.unison.mx/api/proyectos",
-    {
-      cache: "no-store",
-    },
-  );
-
-  if (!projectsRes.ok) {
-    return generateEmptyResponse();
-  }
-
-  const ProjectsResponse = createResponseSchema(Project);
-
-  const projectsData = await projectsRes.json();
-
-  const projects = ProjectsResponse.safeParse(projectsData);
-
-  return projects.success ? projects.data : generateEmptyResponse();
-};
 
 export default async function Home({
   searchParams,
@@ -45,7 +19,6 @@ export default async function Home({
     page?: string;
   };
 }) {
-  const projectsRes = await fetchProjects();
   const limit = 6;
   const currentPage = Number(searchParams?.page) || 1;
 
@@ -195,20 +168,7 @@ export default async function Home({
       </Section>
       <Section classNameDiv="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
-        <div className="flex w-full flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
-          {projectsRes.docs.slice(0, 3).map((project) => {
-            return (
-              <ProjectCard
-                key={project.id}
-                name={project.nombre}
-                subtitle={project.subtitulo}
-                systemType={project.tipo_sistema}
-                stack={project.tecnologias ?? []}
-                thumbnail={project.imagen_principal}
-              />
-            );
-          })}
-        </div>
+        <ProjectsSection />
       </Section>
     </>
   );

@@ -3,7 +3,7 @@
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -216,7 +216,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="h-4 w-4" />
+      <ChevronLeft className="size-8" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -235,7 +235,7 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-8 w-8 rounded-full",
+        "absolute h-8 w-8 rounded-full disabled:opacity-0",
         orientation === "horizontal"
           ? "-right-12 top-1/2 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -245,7 +245,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight className="h-4 w-4" />
+      <ChevronRight className="size-8" />
       <span className="sr-only">Next slide</span>
     </Button>
   );
@@ -280,7 +280,7 @@ const CarouselNavigation = React.forwardRef<
     <nav
       ref={ref}
       className={cn(
-        "relative flex w-full items-center justify-center gap-2 py-4",
+        "relative flex w-full items-center justify-center gap-2 py-4 md:gap-5 md:pb-0 md:pt-7",
         className,
       )}
       {...props}
@@ -307,7 +307,7 @@ const CarouselDot = React.forwardRef<HTMLButtonElement, CarouselDotProps>(
       <Button
         ref={ref}
         className={cn(
-          "size-4 rounded-full border border-primary p-0 transition-colors duration-300",
+          "size-4 rounded-full border border-primary p-0 transition-colors duration-300 sm:size-3  ",
           isActive
             ? "bg-primary hover:bg-primary/35 focus:bg-primary"
             : "bg-transparent hover:bg-transparent focus:bg-transparent",
