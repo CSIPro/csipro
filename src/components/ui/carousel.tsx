@@ -280,7 +280,7 @@ const CarouselNavigation = React.forwardRef<
     <nav
       ref={ref}
       className={cn(
-        "relative flex w-full items-center justify-center gap-2 py-4",
+        "relative flex w-full items-center justify-center gap-2 py-4 md:gap-5 md:pb-0 md:pt-7",
         className,
       )}
       {...props}
@@ -307,7 +307,7 @@ const CarouselDot = React.forwardRef<HTMLButtonElement, CarouselDotProps>(
       <Button
         ref={ref}
         className={cn(
-          "size-4 rounded-full border border-primary p-0 transition-colors duration-300",
+          "size-4 rounded-full border border-primary p-0 transition-colors duration-300 sm:size-3  ",
           isActive
             ? "bg-primary hover:bg-primary/35 focus:bg-primary"
             : "bg-transparent hover:bg-transparent focus:bg-transparent",
