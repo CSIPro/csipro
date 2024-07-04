@@ -31,9 +31,11 @@ const fetchProjects = async () => {
   const projectsData = await projectsRes.json();
 
   const projects = ProjectsResponse.safeParse(projectsData);
-  console.log(projects.error);
-
-  return projects.success ? projects.data : generateEmptyResponse();
+  if (!projects.success) {
+    console.log(projects.error);
+    return generateEmptyResponse();
+  }
+  return projects.data;
 };
 
 export default async function ProjectsSection() {

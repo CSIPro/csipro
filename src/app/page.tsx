@@ -169,20 +169,6 @@ export default async function Home({
       <Section classNameDiv="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
         <ProjectsSection />
-        {/* <div className="flex w-full flex-col items-center gap-3 px-2 sm:flex-row sm:justify-center">
-          {projectsRes.docs.slice(0, 3).map((project) => {
-            return (
-              <ProjectCard
-                key={project.id}
-                name={project.nombre}
-                subtitle={project.subtitulo}
-                systemType={project.tipo_sistema}
-                stack={project.tecnologias ?? []}
-                thumbnail={project.imagen_principal}
-              />
-            );
-          })}
-        </div> */}
       </Section>
     </>
   );
