@@ -10,6 +10,8 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNavigation,
+  CarouselPrevious,
+  CarouselNext,
 } from "../ui/carousel";
 
 const fetchProjects = async () => {
@@ -56,7 +58,8 @@ export default async function ProjectsSection() {
           </CarouselItem>
         ))}
       </CarouselContent>
-
+      <CarouselPrevious className="left-0 top-[45%] size-11  disabled:hidden" />
+      <CarouselNext className="right-0 top-[45%] size-11  disabled:hidden" />
       <CarouselNavigation name="Projects" />
     </Carousel>
   );
