@@ -6,6 +6,7 @@ import { TbSeeding } from "react-icons/tb";
 
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
+import { EventSectionSkeleton } from "@/components/events-section/events-section-skeleton";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { HeroCard } from "@/components/hero-carousel/hero-card";
 import { HeroCarousel } from "@/components/hero-carousel/hero-carousel";
@@ -171,7 +172,10 @@ export default async function Home({
           </GlowGroup>
         </GlowContainer>
         <SectionTitle>Nuevos eventos</SectionTitle>
-        <Suspense key={limit + currentPage} fallback={<span>Loading...</span>}>
+        <Suspense
+          key={limit + currentPage}
+          fallback={<EventSectionSkeleton></EventSectionSkeleton>}
+        >
           <EventsSection
             limit={limit}
             currentPage={currentPage}
