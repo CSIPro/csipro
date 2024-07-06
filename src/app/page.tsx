@@ -68,7 +68,7 @@ export default async function Home({
         <div className="sm:py-5"></div>
         <HeroCarousel></HeroCarousel>
 
-        <div className="sm:py-24"></div>
+        <div className="py-7 sm:py-24"></div>
       </Section>
 
       <Section>

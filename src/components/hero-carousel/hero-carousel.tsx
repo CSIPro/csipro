@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
+import { useMediaQuery } from "usehooks-ts";
 
 import { cn } from "@/lib/utils";
 
@@ -14,6 +15,7 @@ const dummyImages = [
 ];
 
 export const HeroCarousel: FC<Props> = (props) => {
+  const isMobile = useMediaQuery("(max-width: 640px)");
   const [images, setImages] = useState(dummyImages);
   useEffect(() => {
     setInterval(() => {
@@ -24,12 +26,16 @@ export const HeroCarousel: FC<Props> = (props) => {
       });
     }, 5000);
   }, []);
+  const scaleFactor = isMobile ? 0.05 : 0.1;
+  const minScale = isMobile ? 0.9 : 0.8;
+  const translateFactor = isMobile ? 1 : 2;
+  const minTranslate = isMobile ? 2 : 4;
   return (
     <div className="relative aspect-video w-11/12 sm:w-8/12">
       {images.map((image, i) => {
-        const scale = Math.max(1 - i * 0.1, 0.8);
+        const scale = Math.max(1 - i * scaleFactor, minScale);
         const zIndex = images.length - i;
-        const translateY = Math.min(i * 2, 4);
+        const translateY = Math.min(i * translateFactor, minTranslate);
         const brightness = Math.max(1 - i * 0.4, 0.2);
         return (
           <motion.div
