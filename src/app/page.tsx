@@ -11,6 +11,7 @@ import ProjectsSection from "@/components/projects-section/projects-section";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
+import { HeroCarousel } from "@/components/hero-carousel/hero-carousel";
 
 export default async function Home({
   searchParams,
@@ -65,15 +66,8 @@ export default async function Home({
           Get Started
         </Button>
         <div className="sm:py-5"></div>
-        <div className=" relative aspect-video w-11/12 sm:w-8/12">
-          <Image
-            src="portada.jpg"
-            fill={true}
-            alt="foto de portada"
-            className="rounded-lg object-cover sm:rounded-2xl"
-            unoptimized
-          />
-        </div>
+        <HeroCarousel></HeroCarousel>
+
         <div className="sm:py-24"></div>
       </Section>
 
