@@ -8,6 +8,7 @@ import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { HeroCarousel } from "@/components/hero-carousel/hero-carousel";
+import { HeroContextProvider } from "@/components/hero-carousel/hero-context";
 import ProjectsSection from "@/components/projects-section/projects-section";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
@@ -71,7 +72,9 @@ export default async function Home({
           Get Started
         </Button>
         <div className="sm:py-5"></div>
-        <HeroCarousel images={dummyImages}></HeroCarousel>
+        <HeroContextProvider images={dummyImages}>
+          <HeroCarousel></HeroCarousel>
+        </HeroContextProvider>
 
         <div className="py-7 sm:py-24"></div>
       </Section>
