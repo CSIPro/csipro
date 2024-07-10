@@ -7,16 +7,18 @@ import { useMediaQuery } from "usehooks-ts";
 
 import { cn } from "@/lib/utils";
 
-interface Props {}
-const dummyImages = [
-  { id: 1, url: "/portada.jpg" },
-  { id: 2, url: "/portada2.jpg" },
-  { id: 3, url: "/portada4.jpg" },
-];
+interface HeroImage {
+  id: number;
+  url: string;
+}
+
+interface Props {
+  images: Array<HeroImage>;
+}
 
 export const HeroCarousel: FC<Props> = (props) => {
   const isMobile = useMediaQuery("(max-width: 640px)");
-  const [images, setImages] = useState(dummyImages);
+  const [images, setImages] = useState(props.images);
   useEffect(() => {
     setInterval(() => {
       setImages((prevImages) => {
