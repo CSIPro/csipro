@@ -1,6 +1,13 @@
 "use client";
 
-import { FC, ReactNode, createContext, useEffect, useState } from "react";
+import {
+  FC,
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useMediaQuery } from "usehooks-ts";
 
 export interface HeroImage {
@@ -18,17 +25,17 @@ interface HeroContextProps {
   findCardIndex: (id: number) => number;
 }
 
-const defaultContextValue: HeroContextProps = {
-  findCardIndex: (id: number) => -1,
-  images: [],
-  isMobile: true,
-  minScale: 0.9,
-  minTranslate: 2,
-  scaleFactor: 0.05,
-  translateFactor: 1,
-};
+// const defaultContextValue: HeroContextProps = {
+//   findCardIndex: (id: number) => -1,
+//   images: [],
+//   isMobile: true,
+//   minScale: 0.9,
+//   minTranslate: 2,
+//   scaleFactor: 0.05,
+//   translateFactor: 1,
+// };
 
-export const HeroContext = createContext<HeroContextProps>(defaultContextValue);
+export const HeroContext = createContext<HeroContextProps | null>(null);
 
 interface ProviderProps {
   children: ReactNode;
@@ -77,4 +84,12 @@ export const HeroContextProvider: FC<ProviderProps> = (props) => {
       {props.children}
     </HeroContext.Provider>
   );
+};
+
+export const useHeroCarousel = () => {
+  const context = useContext(HeroContext);
+  if (!context) {
+    throw new Error("No se cuenta con HeroContextProvider");
+  }
+  return context;
 };

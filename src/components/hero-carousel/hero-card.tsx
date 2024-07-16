@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FC, ReactNode, useContext } from "react";
+import { FC, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { HeroContext } from "./hero-context";
+import { useHeroCarousel } from "./hero-context";
 
 interface Props {
   children: ReactNode;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const HeroCard: FC<Props> = (props) => {
-  const context = useContext(HeroContext);
+  const context = useHeroCarousel();
   const imageIndex = context.findCardIndex(props.imageId);
   const scale = Math.max(
     1 - imageIndex * context.scaleFactor,
