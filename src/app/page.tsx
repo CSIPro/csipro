@@ -7,6 +7,8 @@ import { TbSeeding } from "react-icons/tb";
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
+import { HeroCard } from "@/components/hero-carousel/hero-card";
+import { HeroCarousel } from "@/components/hero-carousel/hero-carousel";
 import ProjectsSection from "@/components/projects-section/projects-section";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
@@ -21,6 +23,11 @@ export default async function Home({
 }) {
   const limit = 6;
   const currentPage = Number(searchParams?.page) || 1;
+  const dummyImages = [
+    { id: 1, url: "/portada.jpg" },
+    { id: 2, url: "/portada2.jpg" },
+    { id: 3, url: "/portada4.jpg" },
+  ];
 
   return (
     <>
@@ -65,16 +72,21 @@ export default async function Home({
           Get Started
         </Button>
         <div className="sm:py-5"></div>
-        <div className=" relative aspect-video w-11/12 sm:w-8/12">
-          <Image
-            src="portada.jpg"
-            fill={true}
-            alt="foto de portada"
-            className="rounded-lg object-cover sm:rounded-2xl"
-            unoptimized
-          />
-        </div>
-        <div className="sm:py-24"></div>
+
+        <HeroCarousel images={dummyImages}>
+          {dummyImages.map((img) => (
+            <HeroCard key={`heroCard ${img.id}`} imageId={img.id}>
+              <Image
+                src={img.url}
+                width={800}
+                height={400}
+                alt="foto de portada"
+                className=" object-cover"
+              />
+            </HeroCard>
+          ))}
+        </HeroCarousel>
+        <div className="py-7 sm:py-24"></div>
       </Section>
 
       <Section>

@@ -60,8 +60,8 @@ export default async function ProjectsSection() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="left-0 top-[45%] size-11  disabled:hidden" />
-      <CarouselNext className="right-0 top-[45%] size-11  disabled:hidden" />
+      <CarouselPrevious className="left-0 top-[45%] hidden size-11 disabled:hidden sm:inline-flex" />
+      <CarouselNext className="right-0 top-[45%] hidden size-11 disabled:hidden sm:inline-flex" />
       <CarouselNavigation name="Projects" />
     </Carousel>
   );

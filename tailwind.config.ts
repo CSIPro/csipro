@@ -80,6 +80,11 @@ const config = {
           "50%": { transform: "translate(0, 8px);" },
           "100%": { transform: "translate(0, -0px);" },
         },
+        shrinking: {
+          "0%": { zIndex: "-20", transform: "scale(0.75) translateY(6rem)" },
+          "50%": { zIndex: "5", transform: "scale(1) translateY(0)" },
+          "100%": { zIndex: "-10", transform: "scale(0.9) translateY(3rem)" },
+        },
         breathe: {
           "50%": { transform: "scale(1.25) translate(-37.5%, -37.5%)" },
         },
@@ -94,7 +99,8 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         floating: "floating 5s ease-in-out infinite",
-        breathe: "breathe 5s ease-in-out infinite alternate",
+        breathe: "breathe 10s ease-in-out infinite alternate",
+        shrinking: "shrinking 5s ease-in-out infinite alternate",
         "about-turn": "about-turn 6s ease-in-out infinite alternate",
         "slow-spin": "spin 5s linear infinite",
       },
