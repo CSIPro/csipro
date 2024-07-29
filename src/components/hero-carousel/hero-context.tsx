@@ -25,16 +25,6 @@ interface HeroContextProps {
   findCardIndex: (id: number) => number;
 }
 
-// const defaultContextValue: HeroContextProps = {
-//   findCardIndex: (id: number) => -1,
-//   images: [],
-//   isMobile: true,
-//   minScale: 0.9,
-//   minTranslate: 2,
-//   scaleFactor: 0.05,
-//   translateFactor: 1,
-// };
-
 export const HeroContext = createContext<HeroContextProps | null>(null);
 
 interface ProviderProps {
