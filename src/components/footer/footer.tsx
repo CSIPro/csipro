@@ -77,7 +77,7 @@ export const Footer: FC<FooterProps> = (props) => {
         <div className="sm:py-8"></div>
         <div className="flex w-full flex-col items-center justify-center gap-1 text-center text-xs sm:flex-row sm:justify-between sm:gap-2 sm:text-start">
           <div>
-            <p>&copy; 2024 CSI PRO | Universidad de Sonora</p>
+            <p>&copy; 2025 CSI PRO | Universidad de Sonora</p>
             <p>Todos los derechos reservados.</p>
           </div>
           <div className="sm:text-end">
