@@ -19,25 +19,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: latest
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Check linting
-        run: pnpm lint
-
-      - name: Build project
-        run: pnpm build
-
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
@@ -51,7 +32,7 @@ jobs:
 
       - name: Transfer files to Production
         run: |
-          rsync -rvz --delete --exclude=".git" --exclude="node_modules" ./ unison-production:/var/www/csipro.isi.unison.mx/
+          rsync -rvz --delete --exclude=".git" --exclude="node_modules" --exclude=".next" ./ unison-production:/var/www/csipro.isi.unison.mx/
 
       - name: SSH to Production and install dependencies
-        run: ssh unison-production "cd /var/www/csipro.isi.unison.mx && rm -rf node_modules && ~/.local/share/pnpm/pnpm --prod install"
+        run: ssh unison-production "bash -i -c 'cd /var/www/csipro.isi.unison.mx && pnpm --prod install && pm2 reload csipro.isi.unison.mx'"
