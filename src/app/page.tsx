@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { Suspense } from "react";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { LuSquareCode } from "react-icons/lu";
 import { TbSeeding } from "react-icons/tb";
 
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
-import { EventSectionSkeleton } from "@/components/events-section/events-section-skeleton";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { HeroCard } from "@/components/hero-carousel/hero-card";
 import { HeroCarousel } from "@/components/hero-carousel/hero-carousel";
