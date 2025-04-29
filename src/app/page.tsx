@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Suspense } from "react";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { LuSquareCode } from "react-icons/lu";
 import { TbSeeding } from "react-icons/tb";
@@ -171,12 +170,7 @@ export default async function Home({
           </GlowGroup>
         </GlowContainer>
         <SectionTitle>Nuevos eventos</SectionTitle>
-        <Suspense key={limit + currentPage} fallback={<span>Loading...</span>}>
-          <EventsSection
-            limit={limit}
-            currentPage={currentPage}
-          ></EventsSection>
-        </Suspense>
+        <EventsSection limit={limit} currentPage={currentPage}></EventsSection>
       </Section>
       <Section classNameDiv="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
