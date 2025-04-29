@@ -172,15 +172,7 @@ export default async function Home({
           </GlowGroup>
         </GlowContainer>
         <SectionTitle>Nuevos eventos</SectionTitle>
-        <Suspense
-          key={limit + currentPage}
-          fallback={<EventSectionSkeleton></EventSectionSkeleton>}
-        >
-          <EventsSection
-            limit={limit}
-            currentPage={currentPage}
-          ></EventsSection>
-        </Suspense>
+        <EventsSection limit={limit} currentPage={currentPage}></EventsSection>
       </Section>
       <Section classNameDiv="pb-16">
         <SectionTitle>Nuestros proyectos</SectionTitle>
