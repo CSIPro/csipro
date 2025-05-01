@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { FC } from "react";
 
+import { cn } from "@/lib/utils";
+
 import { FacebookLogo } from "./logos/facebook-logo";
 import { GithubLogo } from "./logos/github-logo";
 import { InstagramLogo } from "./logos/instagram-logo";
@@ -37,6 +39,7 @@ const socials = {
 
 interface Props {
   variant: keyof typeof socials;
+  className?: string;
 }
 
 const SocialLink: FC<Props> = (props) => {
@@ -49,13 +52,36 @@ const SocialLink: FC<Props> = (props) => {
       rel="noopener noreferrer"
       className="h-full w-10 p-2 sm:w-8"
     >
-      <social.icon className="fill-muted transition-colors duration-300 dark:fill-white" />
+      <social.icon
+        className={cn(
+          "fill-muted transition-colors duration-300 dark:fill-white",
+          props.className,
+        )}
+      />
     </Link>
   );
 };
 
-export const Twitter = () => <SocialLink variant="twitter" />;
-export const Facebook = () => <SocialLink variant="facebook" />;
-export const Instagram = () => <SocialLink variant="instagram" />;
-export const LinkedIn = () => <SocialLink variant="linkedin" />;
-export const GitHub = () => <SocialLink variant="github" />;
+interface SocialProps {
+  className?: string;
+}
+
+export const Twitter: FC<SocialProps> = ({ className }) => (
+  <SocialLink variant="twitter" className={cn(className)} />
+);
+
+export const Facebook: FC<SocialProps> = ({ className }) => (
+  <SocialLink variant="facebook" className={cn(className)} />
+);
+
+export const Instagram: FC<SocialProps> = ({ className }) => (
+  <SocialLink variant="instagram" className={cn(className)} />
+);
+
+export const LinkedIn: FC<SocialProps> = ({ className }) => (
+  <SocialLink variant="linkedin" className={cn(className)} />
+);
+
+export const GitHub: FC<SocialProps> = ({ className }) => (
+  <SocialLink variant="github" className={cn(className)} />
+);

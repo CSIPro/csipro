@@ -28,12 +28,12 @@ export default function Page() {
           Enterate al instante en nuestras redes sociales
         </p>
 
-        <div className="flex w-full items-center justify-around pb-10 pt-4 sm:w-auto sm:justify-normal sm:gap-4 lg:gap-8">
-          <Twitter />
-          <Facebook />
-          <Instagram />
-          <LinkedIn />
-          <GitHub />
+        <div className="flex items-center justify-center gap-2 pb-10 pt-4">
+          <Twitter className="h-4 w-4" />
+          <Facebook className="h-4 w-4" />
+          <Instagram className="h-4 w-4" />
+          <LinkedIn className="h-4 w-4" />
+          <GitHub className="h-4 w-4" />
         </div>
       </section>
 
