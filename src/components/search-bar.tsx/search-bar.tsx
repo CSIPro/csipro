@@ -11,7 +11,7 @@ export const SearchBar: FC<SearchBarProps> = ({
   placeholder = "Buscar en página...",
 }) => {
   return (
-    <div className="rounded-2xl border border-white/10 p-3 shadow-inner">
+    <div className="rounded-2xl border border-[#281D3A] p-3 shadow-inner">
       <div className="flex items-center overflow-hidden rounded-xl border border-white/20 bg-[#0f0f1a] text-white shadow-md">
         <div className="flex items-center px-3">
           <Search className="h-4 w-4 text-white/50" />

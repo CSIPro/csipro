@@ -19,16 +19,16 @@ export default function Page() {
         <p className="justify-center px-2 text-center text-base sm:text-xl">
           Inscribete para ampliar tus conocimientos
         </p>
-      </section>
 
-      <SearchBar placeholder="Buscar eventos..."></SearchBar>
+        <div className="px-4 py-5">
+          <SearchBar placeholder="Buscar eventos..."></SearchBar>
+        </div>
 
-      <section>
         <p className="justify-center px-2 text-center text-base sm:text-xl">
           Enterate al instante en nuestras redes sociales
         </p>
 
-        <div className="flex w-full items-center justify-around pt-4 sm:w-auto sm:justify-normal sm:gap-4 lg:gap-8">
+        <div className="flex w-full items-center justify-around pb-10 pt-4 sm:w-auto sm:justify-normal sm:gap-4 lg:gap-8">
           <Twitter />
           <Facebook />
           <Instagram />
