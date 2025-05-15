@@ -17,8 +17,8 @@ export const Member = z.object({
     }),
   ),
   fecha_entrada: z.string().datetime(),
+  foto: Media,
   cargo: Position.or(z.string()),
-  foto: Media.or(z.string()),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });

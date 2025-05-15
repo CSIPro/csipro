@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { EventCardTemp } from "@/components/even-card-temp/event-card-temp";
 import EventsSection from "@/components/events-section/events-section";
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import { Section } from "@/components/section/section";
@@ -12,6 +11,7 @@ import {
   LinkedIn,
   Twitter,
 } from "@/components/socials/socials";
+import MembersSection from "@/components/members-section/members-section";
 
 export default function Page({
   searchParams,
@@ -140,65 +140,11 @@ export default function Page({
 
       <Section classNameDiv="pb-16">
         <SectionTitle>NUESTRO EQUIPO</SectionTitle>
-        <div className="block md:hidden">
-          <EventCardTemp
-            title="GitHub talk"
-            image="/assets/github-event.jpg"
-            imageAlt="Taller de React"
-            dates={[
-              {
-                fecha_hora: "2025-06-10T10:00:00",
-                id: "",
-              },
-              {
-                fecha_hora: "2025-06-11T10:00:00",
-                id: "",
-              },
-            ]}
-            location="Auditorio Gustavo Figueroa"
-            spots={20}
-          />
-          <EventCardTemp
-            title="GitHub talk"
-            image="/assets/github-event.jpg"
-            imageAlt="Taller de React"
-            dates={[
-              {
-                fecha_hora: "2025-06-10T10:00:00",
-                id: "",
-              },
-              {
-                fecha_hora: "2025-06-11T10:00:00",
-                id: "",
-              },
-            ]}
-            location="Auditorio Gustavo Figueroa"
-            spots={20}
-          />
-          <EventCardTemp
-            title="GitHub talk"
-            image="/assets/github-event.jpg"
-            imageAlt="Taller de React"
-            dates={[
-              {
-                fecha_hora: "2025-06-10T10:00:00",
-                id: "",
-              },
-              {
-                fecha_hora: "2025-06-11T10:00:00",
-                id: "",
-              },
-            ]}
-            location="Auditorio Gustavo Figueroa"
-            spots={20}
-          />
-        </div>
-
         <div className="hidden md:block">
-          <EventsSection
+          <MembersSection
             limit={limit}
             currentPage={currentPage}
-          ></EventsSection>
+          ></MembersSection>
         </div>
       </Section>
     </>
