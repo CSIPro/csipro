@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import EventsSection from "@/components/events-section/events-section";
 import { GlowContainer, Glow } from "@/components/glow/glow";
+import MembersSection from "@/components/members-section/members-section";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import {
@@ -11,7 +11,6 @@ import {
   LinkedIn,
   Twitter,
 } from "@/components/socials/socials";
-import MembersSection from "@/components/members-section/members-section";
 
 export default function Page({
   searchParams,

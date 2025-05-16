@@ -31,12 +31,22 @@ export const MembersWrapper: FC<MembersWrapperProps> = ({
             names={member.nombres}
             lastnames={member.apellidos}
             email={member.email}
-            networks={member.redes.map((item: any) => ({
-              id: item.id,
-              nombre: item.nombre.nombre,
-              logo: item.nombre.logo,
-              logo_monocromatico: item.logo_monocromatico,
-            }))}
+            networks={
+              member.redes
+                ? member.redes.map((item: any) => ({
+                    id: item.id,
+                    link: item.link,
+                    social_media: {
+                      id: item.nombre.id || item.id,
+                      nombre: item.nombre.nombre,
+                      logo: item.nombre.logo,
+                      logo_monocromatico:
+                        item.nombre.logo_monocromatico ||
+                        item.logo_monocromatico,
+                    },
+                  }))
+                : []
+            }
             entrydate={member.fecha_entrada}
             photo={`https://admin.csipro.isi.unison.mx${member.foto.url}`}
             photoalt={member.foto.alt}
@@ -57,17 +67,28 @@ export const MembersWrapper: FC<MembersWrapperProps> = ({
       <MobileMembers>
         {members.map((member) => (
           <CarouselItem key={member.id} className="basis-5/6 sm:basis-3/4">
+            console.log(member.redes);
             <MemberCard
               key={member.id}
               names={member.nombres}
               lastnames={member.apellidos}
               email={member.email}
-              networks={member.redes.map((item: any) => ({
-                id: item.id,
-                nombre: item.nombre.nombre,
-                logo: item.nombre.logo,
-                logo_monocromatico: item.logo_monocromatico,
-              }))}
+              networks={
+                member.redes
+                  ? member.redes.map((item: any) => ({
+                      id: item.id,
+                      link: item.link,
+                      social_media: {
+                        id: item.nombre.id || item.id,
+                        nombre: item.nombre.nombre,
+                        logo: item.nombre.logo,
+                        logo_monocromatico:
+                          item.nombre.logo_monocromatico ||
+                          item.logo_monocromatico,
+                      },
+                    }))
+                  : []
+              }
               entrydate={member.fecha_entrada}
               photo={`https://admin.csipro.isi.unison.mx${member.foto.url}`}
               photoalt={member.foto.alt}
