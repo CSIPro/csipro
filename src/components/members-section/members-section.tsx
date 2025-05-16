@@ -52,7 +52,6 @@ export default async function MembersSection({
         prevPage={prevPage}
         nextPage={nextPage}
       />
-      <NeonCards />
     </>
   );
 }
