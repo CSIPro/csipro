@@ -124,7 +124,7 @@ const DesktopMembers: FC<DesktopMembersProps> = ({
 }) => {
   return (
     <>
-      <div className="hidden w-full flex-col items-center gap-3 px-4 md:grid md:grid-cols-2 md:items-center md:justify-items-center md:gap-4 lg:grid-cols-3">
+      <div className="hidden w-full flex-col items-center gap-3 px-4 md:grid md:grid-cols-2 md:items-center md:justify-items-center md:gap-10 lg:grid-cols-3">
         {children}
       </div>
       <MembersPagination {...paginationProps} />

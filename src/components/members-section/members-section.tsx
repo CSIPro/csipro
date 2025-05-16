@@ -5,6 +5,7 @@ import {
 import { Member } from "@/models/members";
 
 import { MembersWrapper } from "./members-wrapper";
+import NeonCards from "./neon-cards";
 
 const fetchMembers = async (limit: number, currentPage: number) => {
   const membersRes = await fetch(
@@ -43,12 +44,15 @@ export default async function MembersSection({
   const { docs, page, prevPage, nextPage } = membersRes;
 
   return (
-    <MembersWrapper
-      members={docs}
-      currentPage={page}
-      totalPages={totalPages}
-      prevPage={prevPage}
-      nextPage={nextPage}
-    />
+    <>
+      <MembersWrapper
+        members={docs}
+        currentPage={page}
+        totalPages={totalPages}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
+      <NeonCards />
+    </>
   );
 }
