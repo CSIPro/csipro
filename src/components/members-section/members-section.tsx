@@ -5,7 +5,9 @@ import {
 import { Member } from "@/models/members";
 
 import { MembersWrapper } from "./members-wrapper";
-import NeonCards from "./neon-cards";
+import { DefaultFilters } from "../filter-section/default-filters";
+import { Filter } from "lucide-react";
+import FilterSection from "../filter-section/filter-section";
 
 const fetchMembers = async (limit: number, currentPage: number) => {
   const membersRes = await fetch(
@@ -45,6 +47,7 @@ export default async function MembersSection({
 
   return (
     <>
+      <FilterSection />
       <MembersWrapper
         members={docs}
         currentPage={page}

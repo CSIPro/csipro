@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import MembersSection from "@/components/members-section/members-section";
+import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import {
@@ -88,6 +89,7 @@ export default function Page({
               </div>
             </div>
           </div>
+
           <div className="display inline-flex w-1/2 justify-center gap-4 px-20">
             <div className="flex flex-col items-end space-y-4">
               <div className="h-auto w-11/12 overflow-hidden rounded-xl">
@@ -136,8 +138,19 @@ export default function Page({
           </div>
         </div>
       </Section>
-
       <Section classNameDiv="pb-16">
+        <div className="w-full px-44 pt-14">
+          <h1 className="text-left text-xl font-normal text-white/45">
+            ¿Conoces a alguno de nosotros?{" "}
+            <span className="text-primary">Búscanos</span>
+          </h1>
+          <div className="w-full rounded-2xl border border-[#281D3A] p-3 shadow-inner lg:p-4">
+            <SearchBar
+              shortPlaceholder="Buscar miembros..."
+              longPlaceholder="Busca miembros con palabras clave..."
+            />
+          </div>
+        </div>
         <SectionTitle>NUESTRO EQUIPO</SectionTitle>
         <div className="hidden md:block">
           <MembersSection

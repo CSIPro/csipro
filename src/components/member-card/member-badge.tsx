@@ -29,7 +29,7 @@ export const MemberBadge = ({ entryDate, position }: MemberBadgeProps) => {
     <div
       className={`inline-flex items-center rounded-full px-3 py-1 text-lg font-normal ${
         isNewMember
-          ? "font-gochi drop-shadow-glow-purple animate-pulse text-[#C0A9F5]"
+          ? "animate-pulse font-gochi text-[#C0A9F5] drop-shadow-glow-purple"
           : "text-gray-100"
       }`}
     >
