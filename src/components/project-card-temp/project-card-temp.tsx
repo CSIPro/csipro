@@ -31,7 +31,7 @@ export default function ProjectCardTemp({
   const isActive = status === "activo";
 
   return (
-    <div className="w-full max-w-3xl rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-96">
+    <div className="w-full max-w-3xl rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-[350px]">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img

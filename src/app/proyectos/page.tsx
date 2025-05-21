@@ -92,7 +92,7 @@ export default function Page() {
             />
           </GlowGroup>
         </GlowContainer>
-        <div className=" grid w-full grid-cols-1 gap-4 px-2 md:grid-cols-3 md:px-0">
+        <div className=" grid w-full grid-cols-1 gap-4 px-2 md:grid-cols-3 md:px-4">
           <ProjectCardTemp
             title="CSI PRO REBOOT"
             subtitle="SITIO WEB DEL CSI PRO"
