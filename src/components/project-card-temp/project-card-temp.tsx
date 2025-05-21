@@ -57,7 +57,7 @@ export default function ProjectCardTemp({
       <div className="mb-4 mt-4 h-[1px] w-full rounded-full bg-[#2D1B55]/90"></div>
 
       <div className="flex flex-row gap-2 md:flex-col">
-        <div className="relative h-48 w-44 overflow-hidden rounded-2xl md:w-full md:mt-4">
+        <div className="relative h-48 w-44 overflow-hidden rounded-2xl md:mt-4 md:w-full">
           <img
             src={imageUrl}
             alt={`Imagen del proyecto ${title}`}
@@ -86,7 +86,7 @@ export default function ProjectCardTemp({
         </div>
       </div>
 
-      <div className="flex w-full items-center justify-end pt-4">
+      <div className="flex w-full items-center justify-end pt-4 md:flex-col">
         <div className="flex w-full flex-col">
           <div className="flex w-full items-center gap-2 text-gray-400">
             <img
@@ -108,8 +108,8 @@ export default function ProjectCardTemp({
             ))}
           </div>
         </div>
-        <div>
-          <button className="w-32 rounded-md bg-[#7c3AED] py-2 text-sm font-semibold text-white">
+        <div className="md:pt-4">
+          <button className="w-32 rounded-lg bg-[#7c3AED] py-2 text-sm font-semibold text-white">
             Ver más
           </button>
         </div>
