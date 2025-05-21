@@ -29,7 +29,7 @@ export default function ProjectCardTemp({
   const isActive = status === "activo";
 
   return (
-    <div className="w-full max-w-3xl rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg">
+    <div className="w-full max-w-3xl rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-96">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img
@@ -40,8 +40,8 @@ export default function ProjectCardTemp({
           <span className="text-sm text-[#9870F4]">{date}</span>
         </div>
         <div
-          className={`rounded-full px-4 py-1 border-2 ${
-            isActive ? "border-[#00C792]" : "border-[#FFA500]"
+          className={`rounded-full border-2 px-4 py-1 ${
+            isActive ? "border-[#00C792]" : "border-[#E06546]"
           }`}
         >
           <span
@@ -56,8 +56,8 @@ export default function ProjectCardTemp({
 
       <div className="mb-4 mt-4 h-[1px] w-full rounded-full bg-[#2D1B55]/90"></div>
 
-      <div className="flex flex-row gap-2">
-        <div className="relative h-44 w-36 overflow-hidden rounded-2xl">
+      <div className="flex flex-row gap-2 md:flex-col">
+        <div className="relative h-48 w-44 overflow-hidden rounded-2xl md:w-full md:mt-4">
           <img
             src={imageUrl}
             alt={`Imagen del proyecto ${title}`}
@@ -75,10 +75,10 @@ export default function ProjectCardTemp({
               />
               <h2 className="text-sm font-bold">{title}</h2>
             </div>
-            <h3 className="text-sm font-semibold text-[#A1A1AA]">
-              {subtitle}
-            </h3>
-            <p className="mt-2 text-xs text-[#C8C4D6] line-clamp-5">{description}</p>
+            <h3 className="text-sm font-semibold text-[#A1A1AA]">{subtitle}</h3>
+            <p className="mt-2 line-clamp-5 text-xs text-[#C8C4D6]">
+              {description}
+            </p>
             <p className="mt-2 text-sm font-semibold text-[#A1A1AA]">
               {appType}
             </p>
@@ -86,7 +86,7 @@ export default function ProjectCardTemp({
         </div>
       </div>
 
-      <div className="flex w-full pt-4 justify-end items-center">
+      <div className="flex w-full items-center justify-end pt-4">
         <div className="flex w-full flex-col">
           <div className="flex w-full items-center gap-2 text-gray-400">
             <img
@@ -102,14 +102,14 @@ export default function ProjectCardTemp({
                 <img
                   src={member.avatar}
                   alt={`Avatar de ${member.name}`}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
             ))}
           </div>
         </div>
         <div>
-          <button className="bg-[#7c3AED] text-white rounded-md text-sm font-semibold w-32 py-2">
+          <button className="w-32 rounded-md bg-[#7c3AED] py-2 text-sm font-semibold text-white">
             Ver más
           </button>
         </div>

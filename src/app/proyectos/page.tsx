@@ -92,7 +92,7 @@ export default function Page() {
             />
           </GlowGroup>
         </GlowContainer>
-        <div className="flex w-full flex-col gap-4 px-4">
+        <div className=" w-full grid grid-cols-1 gap-4 md:grid-cols-3">
           <ProjectCardTemp
             title="CSI PRO REBOOT"
             subtitle="SITIO WEB DEL CSI PRO"
@@ -104,6 +104,48 @@ export default function Page() {
             members={[
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+            ]}
+          />
+          <ProjectCardTemp
+            title="CSI PRO REBOOT"
+            subtitle="SITIO WEB DEL CSI PRO"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+            appType="APLICACIÓN WEB"
+            date="22/12/2025"
+            status="inactivo"
+            imageUrl="/imagenes-temp/alfa.png"
+            members={[
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+            ]}
+          />
+          <ProjectCardTemp
+            title="CSI PRO REBOOT"
+            subtitle="SITIO WEB DEL CSI PRO"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+            appType="APLICACIÓN WEB"
+            date="22/12/2025"
+            status="inactivo"
+            imageUrl="/imagenes-temp/alfa.png"
+            members={[
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+            ]}
+          />
+          <ProjectCardTemp
+            title="CSI PRO REBOOT"
+            subtitle="SITIO WEB DEL CSI PRO"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+            appType="APLICACIÓN WEB"
+            date="22/12/2025"
+            status="inactivo"
+            imageUrl="/imagenes-temp/alfa.png"
+            members={[
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
