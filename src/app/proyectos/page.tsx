@@ -61,6 +61,7 @@ export default function Page() {
             laboratorio que resuelven problemas reales usando nuevas
             tecnologías.
           </p>
+
           <div className="md:mx-auto md:px-32">
             <SearchBar
               shortPlaceholder="Buscar proyectos..."
