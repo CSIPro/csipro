@@ -96,27 +96,12 @@ export default function Page() {
           <ProjectCardTemp
             title="CSI PRO REBOOT"
             subtitle="SITIO WEB DEL CSI PRO"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             appType="APLICACIÓN WEB"
-            date="20/03/2023"
+            date="22/12/2025"
             status="activo"
             imageUrl="/imagenes-temp/alfa.png"
-            members={[
-              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
-              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
-              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
-              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
-              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
-            ]}
-          />
-          <ProjectCardTemp
-            title="CSI PRO REBOOT"
-            subtitle="SITIO WEB DEL CSI PRO"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-            appType="APLICACIÓN WEB"
-            date="22/12/2025"
-            status="inactivo"
-            imageUrl="/imagenes-temp/alfa.png"
+            logoUrl="/csipro.svg"
             members={[
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
@@ -124,13 +109,14 @@ export default function Page() {
             ]}
           />
           <ProjectCardTemp
-            title="CSI PRO REBOOT"
+            title="Movilidad Urbana"
             subtitle="SITIO WEB DEL CSI PRO"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+            description="Página realizada por los mas guapos y guapas de sistemas, con el fin de ayudar a la movilidad urbana de Hermosillo."
             appType="APLICACIÓN WEB"
             date="22/12/2025"
             status="inactivo"
-            imageUrl="/imagenes-temp/alfa.png"
+            imageUrl="/imagenes-temp/movilidad-cover.webp"
+            logoUrl="/imagenes-temp/movilidad-logo.svg"
             members={[
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
@@ -140,11 +126,12 @@ export default function Page() {
           <ProjectCardTemp
             title="CSI PRO REBOOT"
             subtitle="SITIO WEB DEL CSI PRO"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             appType="APLICACIÓN WEB"
             date="22/12/2025"
-            status="inactivo"
+            status="activo"
             imageUrl="/imagenes-temp/alfa.png"
+            logoUrl="/csipro.svg"
             members={[
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
@@ -154,11 +141,27 @@ export default function Page() {
           <ProjectCardTemp
             title="CSI PRO REBOOT"
             subtitle="SITIO WEB DEL CSI PRO"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            appType="APLICACIÓN WEB"
+            date="22/12/2025"
+            status="activo"
+            imageUrl="/imagenes-temp/alfa.png"
+            logoUrl="/csipro.svg"
+            members={[
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+            ]}
+          />
+          <ProjectCardTemp
+            title="CSI PRO REBOOT"
+            subtitle="SITIO WEB DEL CSI PRO"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             appType="APLICACIÓN WEB"
             date="22/12/2025"
             status="inactivo"
             imageUrl="/imagenes-temp/alfa.png"
+            logoUrl="/csipro.svg"
             members={[
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },

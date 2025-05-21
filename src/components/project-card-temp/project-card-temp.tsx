@@ -14,6 +14,7 @@ interface ProjectCardProps {
   date: string;
   status: "activo" | "inactivo";
   imageUrl: string;
+  logoUrl: string;
 }
 
 export default function ProjectCardTemp({
@@ -25,6 +26,7 @@ export default function ProjectCardTemp({
   date,
   status,
   imageUrl,
+  logoUrl,
 }: ProjectCardProps) {
   const isActive = status === "activo";
 
@@ -40,14 +42,10 @@ export default function ProjectCardTemp({
           <span className="text-sm text-[#9870F4]">{date}</span>
         </div>
         <div
-          className={`rounded-full border-2 px-4 py-1 ${
-            isActive ? "border-[#00C792]" : "border-[#E06546]"
-          }`}
+          className={`rounded-full border-2 px-4 py-1 ${isActive ? "border-[#00C792]" : "border-[#E06546]"}`}
         >
           <span
-            className={`text-sm font-medium ${
-              isActive ? "text-[#00C792]" : "text-[#FFA500]"
-            }`}
+            className={`text-sm font-medium ${isActive ? "text-[#00C792]" : "text-[#FFA500]"}`}
           >
             {status.toUpperCase()}
           </span>
@@ -68,11 +66,7 @@ export default function ProjectCardTemp({
         <div className="flex flex-1 flex-col justify-between gap-2">
           <div>
             <div className="flex items-center gap-2">
-              <img
-                src="/icons/csipro-icon.svg"
-                alt="csipro logo"
-                className="size-8"
-              />
+              <img src={logoUrl} alt="logo del proyecto" className="size-8" />
               <h2 className="text-sm font-bold">{title}</h2>
             </div>
             <h3 className="text-sm font-semibold text-[#A1A1AA]">{subtitle}</h3>
