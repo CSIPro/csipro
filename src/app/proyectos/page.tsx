@@ -61,11 +61,12 @@ export default function Page() {
             laboratorio que resuelven problemas reales usando nuevas
             tecnologías.
           </p>
-
-          <SearchBar
-            shortPlaceholder="Buscar proyectos..."
-            longPlaceholder="Búsca proyectos por tecnología, miembros, tipo..."
-          />
+          <div className="md:mx-auto md:px-32">
+            <SearchBar
+              shortPlaceholder="Buscar proyectos..."
+              longPlaceholder="Búsca proyectos por tecnología, miembros, tipo..."
+            />
+          </div>
         </div>
       </Section>
       <Section classNameDiv="pb-16">
@@ -103,6 +104,9 @@ export default function Page() {
             imageUrl="/imagenes-temp/alfa.png"
             logoUrl="/csipro.svg"
             members={[
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
+              { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
               { name: "karla", avatar: "/miembros/miembro-del-mes.png" },
