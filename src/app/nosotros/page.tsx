@@ -20,7 +20,7 @@ export default function Page({
     page?: string;
   };
 }>) {
-  const limit = 6;
+  const limit = 9;
   const currentPage = Number(searchParams?.page) || 1;
   return (
     <>
@@ -73,12 +73,12 @@ export default function Page({
               <p className="sm:text-md text-left text-base opacity-70">
                 Somos alumnos amantes de la tecnología trabajando diariamente
                 nuestro futuro en este espacio de desarrollo, innovación e
-                investigación llamado el CSI Pro.
+                investigación llamado el CSI PRO.
               </p>
             </div>
             <div className="space-y-[26px]">
               <p className="sm:text-mds text-left text-base opacity-70">
-                Redes sociales de CSI Pro
+                Redes sociales de CSI PRO
               </p>
               <div className="flex gap-2">
                 <Twitter className="h-4 w-4" />
