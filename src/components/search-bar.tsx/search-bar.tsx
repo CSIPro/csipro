@@ -2,6 +2,7 @@
 
 import { Search } from "lucide-react";
 import { FC, useEffect, useState } from "react";
+
 import { Button } from "../ui/button";
 
 interface SearchBarProps {

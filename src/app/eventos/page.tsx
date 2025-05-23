@@ -1,4 +1,5 @@
 import { EventCardTemp } from "@/components/even-card-temp/event-card-temp";
+import { EventsList } from "@/components/events-list/events-list";
 import EventsSection from "@/components/events-section/events-section";
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
@@ -11,8 +12,44 @@ import {
   LinkedIn,
   Twitter,
 } from "@/components/socials/socials";
+import {
+  generateEmptyResponse,
+  createResponseSchema,
+} from "@/models/cms-response";
+import { Event } from "@/models/events";
 
-export default function Page({
+const fetchEvents = async (limit: number, currentPage: number) => {
+  const eventsRes = await fetch(
+    `https://admin.csipro.isi.unison.mx/api/eventos/?limit=${limit}&page=${currentPage}`,
+    { cache: "no-store" },
+  );
+
+  if (!eventsRes.ok) {
+    return generateEmptyResponse();
+  }
+
+  const EventsResponse = createResponseSchema(Event);
+
+  const eventsData = await eventsRes.json();
+
+  const events = EventsResponse.safeParse(eventsData);
+
+  if (!events.success) {
+    console.log(events.error);
+    return generateEmptyResponse();
+  }
+
+  events.data.docs.sort((a, b) => {
+    return (
+      new Date(b.fechas_horas[b.fechas_horas.length - 1].fecha_hora).getTime() -
+      new Date(a.fechas_horas[a.fechas_horas.length - 1].fecha_hora).getTime()
+    );
+  });
+
+  return events.data;
+};
+
+export default async function Page({
   searchParams,
 }: Readonly<{
   searchParams?: {
@@ -21,6 +58,9 @@ export default function Page({
 }>) {
   const limit = 6;
   const currentPage = Number(searchParams?.page) || 1;
+  const eventsRes = await fetchEvents(limit, currentPage);
+  const totalPages = Math.min(Math.ceil(eventsRes.totalDocs / limit), 5);
+  const { docs, page, prevPage, nextPage } = eventsRes;
   return (
     <>
       <Section>
@@ -96,7 +136,7 @@ export default function Page({
       </Section>
 
       <Section classNameDiv="pb-16">
-        <SectionTitle>EVENTOS</SectionTitle>
+        <SectionTitle id="eventos">EVENTOS</SectionTitle>
         <GlowContainer>
           <GlowGroup className="origin-[12%_50%] 2xl:origin-[25%_50%]">
             <Glow
@@ -120,61 +160,9 @@ export default function Page({
           </GlowGroup>
         </GlowContainer>
 
-        <div className="block md:hidden">
-          <EventCardTemp
-            title="GitHub talk"
-            image="/assets/github-event.jpg"
-            imageAlt="Taller de React"
-            dates={[
-              {
-                fecha_hora: "2025-06-10T10:00:00",
-                id: "",
-              },
-              {
-                fecha_hora: "2025-06-11T10:00:00",
-                id: "",
-              },
-            ]}
-            location="Auditorio Gustavo Figueroa"
-            spots={20}
-          />
-          <EventCardTemp
-            title="GitHub talk"
-            image="/assets/github-event.jpg"
-            imageAlt="Taller de React"
-            dates={[
-              {
-                fecha_hora: "2025-06-10T10:00:00",
-                id: "",
-              },
-              {
-                fecha_hora: "2025-06-11T10:00:00",
-                id: "",
-              },
-            ]}
-            location="Auditorio Gustavo Figueroa"
-            spots={20}
-          />
-          <EventCardTemp
-            title="GitHub talk"
-            image="/assets/github-event.jpg"
-            imageAlt="Taller de React"
-            dates={[
-              {
-                fecha_hora: "2025-06-10T10:00:00",
-                id: "",
-              },
-              {
-                fecha_hora: "2025-06-11T10:00:00",
-                id: "",
-              },
-            ]}
-            location="Auditorio Gustavo Figueroa"
-            spots={20}
-          />
-        </div>
+        <EventsList currentPage={currentPage} limit={limit}></EventsList>
 
-        <div className="hidden md:block">
+        <div className="hidden flex-col items-center gap-8 md:flex">
           <EventsSection
             limit={limit}
             currentPage={currentPage}
