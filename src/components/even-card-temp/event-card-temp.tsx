@@ -91,10 +91,7 @@ export const EventCardTemp: React.FC<EventCardTempProps> = ({
             </div>
 
             <div className="flex justify-end pt-2">
-              <Button
-                variant="default"
-                className="rounded-s px-4 py-1 text-xs hover:bg-violet-700"
-              >
+              <Button variant="default" className="rounded-s px-4 py-1 text-xs">
                 {isScheduled ? "Registrarse aquí" : "Más info"}
               </Button>
             </div>
