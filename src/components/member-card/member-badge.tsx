@@ -34,13 +34,13 @@ export const MemberBadge = ({ entryDate, position }: MemberBadgeProps) => {
       }`}
     >
       {isNewMember && (
-        <div className="mr-3">
+        <div className="mr-3 max-md:flex">
           <span className="text-2xl text-orange-500">-</span>
           <span className="text-2xl text-blue-400">`</span>
           <span className="text-2xl text-green-600">,</span>
         </div>
       )}
-      <span>{displayText}</span>
+      <span className="whitespace-nowrap max-md:text-base">{displayText}</span>
       {isNewMember && (
         <div className="ml-3">
           <span className="text-2xl text-green-600">ˎ</span>

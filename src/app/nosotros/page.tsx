@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { GlowContainer, Glow } from "@/components/glow/glow";
+import GradientBackground from "@/components/gradient-background/gradient-background";
 import MembersSection from "@/components/members-section/members-section";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
@@ -25,62 +26,28 @@ export default function Page({
   return (
     <>
       <Section>
-        <div className="absolute left-1/2 z-0 h-full w-full max-w-6xl -translate-x-1/2 overflow-hidden ">
-          <svg
-            className="absolute inset-0 h-full w-full"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern
-                id="grid"
-                width="35"
-                height="35"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 35 0 L 0 0 0 35"
-                  fill="none"
-                  stroke="#3b2f58"
-                  strokeWidth="0.5"
-                />
-              </pattern>
-              <radialGradient id="fade" cx="50%" cy="50%" r="50%">
-                <stop offset="30%" stopColor="white" stop-opacity="1" />
-                <stop offset="100%" stopColor="white" stop-opacity="0" />
-              </radialGradient>
-              <mask id="fade-mask">
-                <rect width="100%" height="100%" fill="url(#fade)" />
-              </mask>
-            </defs>
-            <rect
-              width="100%"
-              height="100%"
-              fill="url(#grid)"
-              mask="url(#fade-mask)"
-            />
-          </svg>
-        </div>
+        <GradientBackground />
         <GlowContainer className="">
           <Glow className="left-[65%] bg-[radial-gradient(circle,rgba(170,13,255,0.1)_35%,rgba(255,58,235,0)_30%)]" />
         </GlowContainer>
-        <div className="z-10 flex h-full w-full items-center justify-center lg:pt-20">
-          <div className="flex h-full w-1/2 flex-col justify-center space-y-[48px] pl-4">
+        <div className="z-10 h-full w-full items-center justify-center pt-20 lg:flex">
+          <div className="flex h-full w-1/2 flex-col justify-center space-y-[48px] max-lg:w-full max-lg:p-1 lg:pl-4">
             <div className="space-y-[26px] text-left">
-              <h1 className="text-3xl font-bold sm:text-5xl">
+              <h1 className="text-5xl font-bold max-lg:text-center">
                 Conoce sobre <span className="text-primary">nosotros</span> y
                 nuestra <span className="text-primary">historia</span>
               </h1>
-              <p className="sm:text-md text-left text-base opacity-70">
+              <p className="text-base opacity-70 max-lg:text-center">
                 Somos alumnos amantes de la tecnología trabajando diariamente
                 nuestro futuro en este espacio de desarrollo, innovación e
                 investigación llamado el CSI PRO.
               </p>
             </div>
-            <div className="space-y-[26px]">
-              <p className="sm:text-mds text-left text-base opacity-70">
+            <div className="lg:space-y-[26px]">
+              <p className="text-left text-base opacity-70 max-lg:text-center">
                 Redes sociales de CSI PRO
               </p>
-              <div className="flex gap-2">
+              <div className="flex gap-2 max-lg:justify-center">
                 <Twitter className="h-4 w-4" />
                 <Facebook className="h-4 w-4" />
                 <Instagram className="h-4 w-4" />
@@ -90,9 +57,9 @@ export default function Page({
             </div>
           </div>
 
-          <div className="display inline-flex w-1/2 justify-center gap-4 px-20">
-            <div className="flex flex-col items-end space-y-4">
-              <div className="h-auto w-11/12 overflow-hidden rounded-xl">
+          <div className="display inline-flex w-1/2 justify-center max-lg:w-full max-lg:gap-3 lg:gap-4 lg:px-20">
+            <div className="flex items-end max-lg:gap-3 lg:flex-col lg:space-y-4">
+              <div className="h-auto overflow-hidden rounded-xl lg:w-11/12">
                 <Image
                   src="nosotros1.png"
                   alt="foto de portada"
@@ -113,8 +80,8 @@ export default function Page({
                 />
               </div>
             </div>
-            <div className="space-y-4">
-              <div className="mt-10 h-auto w-auto overflow-hidden rounded-xl">
+            <div className="max-lg:flex max-lg:gap-3 lg:space-y-4">
+              <div className="h-auto w-auto overflow-hidden rounded-xl lg:mt-10">
                 <Image
                   src="nosotros2.png"
                   alt="foto de portada"
@@ -124,7 +91,7 @@ export default function Page({
                   unoptimized
                 />
               </div>
-              <div className="h-auto w-10/12 overflow-hidden rounded-xl">
+              <div className="overflow-hidden rounded-xl lg:h-auto lg:w-10/12">
                 <Image
                   src="nosotros4.png"
                   alt="foto de portada"
@@ -138,21 +105,23 @@ export default function Page({
           </div>
         </div>
       </Section>
-      <Section classNameDiv="pb-16">
-        <div className="w-full px-44 pt-14">
-          <h1 className="text-left text-xl font-normal text-white/45">
-            ¿Conoces a alguno de nosotros?{" "}
-            <span className="text-primary">Búscanos</span>
-          </h1>
-          <div className="w-full rounded-2xl border border-[#281D3A] p-3 shadow-inner lg:p-4">
+      <Section classNameDiv="pb-16 pt-16">
+        <div className="flex w-full items-center justify-center">
+          <SectionTitle>NUESTRO EQUIPO</SectionTitle>
+          <div className="w-full p-4 max-sm:hidden">
             <SearchBar
               shortPlaceholder="Buscar miembros..."
-              longPlaceholder="Busca miembros con palabras clave..."
+              longPlaceholder="Busca miembros, por nombre, apellido, puesto..."
             />
           </div>
         </div>
-        <SectionTitle>NUESTRO EQUIPO</SectionTitle>
-        <div className="hidden md:block">
+        <div className="w-full p-1 hidden max-sm:block">
+            <SearchBar
+              shortPlaceholder="Buscar miembros..."
+              longPlaceholder="Busca miembros, por nombre, apellido, puesto..."
+            />
+          </div>
+        <div className="max-md:w-full">
           <MembersSection
             limit={limit}
             currentPage={currentPage}

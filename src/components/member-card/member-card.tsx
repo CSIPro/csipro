@@ -54,36 +54,108 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
     entryDateObj.getFullYear();
 
   return (
-    <div className="group relative h-full w-[280px] bg-[#16131F] p-2 px-[15px]">
-      <div
-        className="absolute inset-[-2px] z-[-1] bg-gradient-to-br opacity-80"
-        style={{
-          background: `linear-gradient(235deg, ${color1}, #16131F, ${color2}`,
-        }}
-      ></div>
-      <div
-        className="absolute inset-[-3px] z-[-2] bg-gradient-to-br  blur-[50px] transition-opacity group-hover:opacity-50"
-        style={{
-          background: `linear-gradient(235deg, ${color1}, #16131F, ${color2}`,
-        }}
-      ></div>
-      <div className="relative h-52 w-full overflow-hidden rounded">
-        <Image
-          fill
-          src={props.photo}
-          alt={props.photoalt}
-          className="object-cover"
-        />
-      </div>
+    <div className="max-md:w-[185px] max-md:items-center max-md:justify-center max-sm:w-[150px]">
+      <div className="group relative h-full bg-[#16131F] max-md:flex max-md:h-[185px] max-md:w-[185px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[150px] max-sm:w-[150px] md:w-[280px] md:p-2 md:px-[15px]">
+        <div
+          className="absolute inset-[-2px] z-[-1] bg-gradient-to-br opacity-80 max-md:rounded-full"
+          style={{
+            background: `linear-gradient(235deg, ${color1}, #16131F, ${color2}`,
+          }}
+        ></div>
+        <div
+          className="absolute inset-[-3px] z-[-2] bg-gradient-to-br  blur-[50px] transition-opacity group-hover:opacity-50"
+          style={{
+            background: `linear-gradient(235deg, ${color1}, #16131F, ${color2}`,
+          }}
+        ></div>
+        <div className="relative h-52 overflow-hidden rounded max-md:flex max-md:h-[175px] max-md:w-[175px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[135px] max-sm:w-[135px] md:w-full">
+          <Image
+            fill
+            src={props.photo}
+            alt={props.photoalt}
+            className="object-cover"
+          />
+        </div>
 
-      <div className="flex flex-col items-center justify-center gap-3 py-2">
-        <div className="flex flex-col items-center justify-center gap-1">
+        <div className="flex flex-col items-center justify-center gap-3 py-2 max-md:hidden">
+          <div className="flex flex-col items-center justify-center gap-1">
+            <div className="flex w-full items-center justify-center">
+              <h1 className="text-center text-xl font-bold text-white">
+                <NameDisplay names={props.names} lastnames={props.lastnames} />
+              </h1>
+            </div>
+
+            <div className="flex w-full items-center justify-center">
+              <h1 className="text-center text-sm font-normal text-white">
+                <MemberBadge
+                  entryDate={props.entrydate}
+                  position={props.position}
+                />
+              </h1>
+            </div>
+
+            <div className="flex w-full items-center justify-center gap-6">
+              {props.networks.map((net) => {
+                const logoMonoUrl =
+                  typeof net.social_media.logo_monocromatico === "string"
+                    ? net.social_media.logo_monocromatico
+                    : net.social_media.logo_monocromatico?.url;
+                return (
+                  <Link
+                    key={net.id}
+                    href={net.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-opacity hover:opacity-75"
+                  >
+                    <Image
+                      key={net.id}
+                      src={`https://admin.csipro.isi.unison.mx${logoMonoUrl}`}
+                      alt={net.social_media.nombre}
+                      className="size-5"
+                      width={32}
+                      height={32}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src =
+                          "/default-social-icon.png";
+                      }}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <hr className="w-full border border-[#2D1B55]" />
+
+          <div className="flex items-center">
+            <h1 className="text-sm font-light text-white/80">
+              Miembro desde {formattedDate}
+            </h1>
+          </div>
+
+          <div className="flex items-center gap-4 text-white">
+            <DiTerminal size={30} />
+            <h1 className="text-lg font-bold">5 Proyectos</h1>
+          </div>
+
+          <div className="flex justify-center">
+            <Button
+              variant="outline"
+              className="rounded-xl text-white transition-colors hover:bg-[#491288]"
+            >
+              Ver Portafolio
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className="hidden max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:space-y-3 max-md:p-5">
+        <div className="flex w-full flex-col items-center justify-center space-y-2">
           <div className="flex w-full items-center justify-center">
             <h1 className="text-center text-xl font-bold text-white">
               <NameDisplay names={props.names} lastnames={props.lastnames} />
             </h1>
           </div>
-
           <div className="flex w-full items-center justify-center">
             <h1 className="text-center text-sm font-normal text-white">
               <MemberBadge
@@ -92,7 +164,6 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
               />
             </h1>
           </div>
-
           <div className="flex w-full items-center justify-center gap-6">
             {props.networks.map((net) => {
               const logoMonoUrl =
@@ -124,21 +195,7 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
             })}
           </div>
         </div>
-
-        <hr className="w-full border border-[#2D1B55]" />
-
-        <div className="flex items-center">
-          <h1 className="text-sm font-light text-white/80">
-            Miembro desde {formattedDate}
-          </h1>
-        </div>
-
-        <div className="flex items-center gap-4 text-white">
-          <DiTerminal size={30} />
-          <h1 className="text-lg font-bold">5 Proyectos</h1>
-        </div>
-
-        <div className="flex justify-center">
+        <div className="flex w-full justify-center">
           <Button
             variant="outline"
             className="rounded-xl text-white transition-colors hover:bg-[#491288]"

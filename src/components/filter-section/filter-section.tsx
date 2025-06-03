@@ -13,7 +13,7 @@ const filters = [
     href: "#",
   },
   {
-    name: "Miembros actuales",
+    name: "Actuales",
     type: "button",
     href: "#",
   },
@@ -26,11 +26,11 @@ const filters = [
 
 export default async function FilterSection() {
   return (
-    <div className="flex w-full items-center justify-center gap-4 pb-6">
-      <div className="flex h-full w-full justify-start whitespace-nowrap">
+    <div className="flex w-full items-center justify-center gap-4 pb-6 max-md:px-3">
+      <div className="max-sm:gap h-full w-full justify-start whitespace-nowrap">
         <DefaultFilters filters={filters} />
       </div>
-      <div className="flex gap-2 text-sm font-bold">
+      <div className="flex items-center justify-center gap-2 text-sm font-bold">
         <SortFilter />
         <AdvancedFilter />
       </div>

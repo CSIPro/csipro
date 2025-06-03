@@ -6,14 +6,19 @@ export const NameDisplay: React.FC<{ names: string; lastnames: string }> = ({
 }) => {
   const [displayName, setDisplayName] = useState(`${names} ${lastnames}`);
   const textRef = useRef<HTMLHeadingElement>(null);
+
+  // Helper to get maxWidth depending on screen size
+  const getMaxWidth = () => (window.innerWidth <= 640 ? 150 : 250);
+
   useEffect(() => {
     if (!textRef.current) return;
 
     const checkFit = () => {
-      const maxWidth = 250;
+      const maxWidth = getMaxWidth();
       const element = textRef.current;
 
       if (element && element.scrollWidth <= maxWidth) {
+        setDisplayName(`${names} ${lastnames}`);
         return;
       }
 
@@ -45,6 +50,10 @@ export const NameDisplay: React.FC<{ names: string; lastnames: string }> = ({
     };
 
     checkFit();
+
+    // Listen for resize to update maxWidth responsively
+    window.addEventListener("resize", checkFit);
+    return () => window.removeEventListener("resize", checkFit);
   }, [names, lastnames]);
 
   return (
