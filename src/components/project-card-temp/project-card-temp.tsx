@@ -31,7 +31,7 @@ export default function ProjectCardTemp({
   const isActive = status === "activo";
 
   return (
-    <div className="w-full max-w-3xl rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-[350px]">
+    <div className="w-full rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-80 lg:w-full">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img
@@ -42,10 +42,12 @@ export default function ProjectCardTemp({
           <span className="text-sm text-[#9870F4]">{date}</span>
         </div>
         <div
-          className={`rounded-full border-2 px-4 py-1 ${isActive ? "border-[#00C792]" : "border-[#E06546]"}`}
+          className={`rounded-full border-2 px-4 py-1 ${isActive ? "border-[#00C792]" : "border-[#E06546]"
+            }`}
         >
           <span
-            className={`text-sm font-medium ${isActive ? "text-[#00C792]" : "text-[#FFA500]"}`}
+            className={`text-sm font-medium ${isActive ? "text-[#00C792]" : "text-[#FFA500]"
+              }`}
           >
             {status.toUpperCase()}
           </span>
@@ -66,11 +68,11 @@ export default function ProjectCardTemp({
         <div className="flex flex-1 flex-col justify-between gap-2">
           <div>
             <div className="flex items-center gap-2">
-              <img src={logoUrl} alt="logo del proyecto" className="size-8" />
+              <img src={logoUrl} alt="logo del proyecto" className="size-7" />
               <h2 className="text-sm font-bold">{title}</h2>
             </div>
             <h3 className="text-sm font-semibold text-[#A1A1AA]">{subtitle}</h3>
-            <p className="mt-2 line-clamp-5 text-xs text-[#C8C4D6]">
+            <p className="mt-2 line-clamp-5 text-xs text-[#C8C4D6]  md:line-clamp-3">
               {description}
             </p>
             <p className="mt-2 text-sm font-semibold text-[#A1A1AA]">
@@ -86,13 +88,13 @@ export default function ProjectCardTemp({
             <img
               src="/icons/miembros-icon.svg"
               alt="icono de miembros"
-              className="size-5"
+              className="size-7"
             />
             <span>{members.length} miembros</span>
           </div>
           <div className="flex gap-2 pt-4">
-            {members.map((member, idx) => (
-              <div key={idx} className="size-5 overflow-hidden rounded-full">
+            {members.slice(0, 4).map((member, idx) => (
+              <div key={idx} className="size-7 overflow-hidden rounded-full">
                 <img
                   src={member.avatar}
                   alt={`Avatar de ${member.name}`}
@@ -100,6 +102,11 @@ export default function ProjectCardTemp({
                 />
               </div>
             ))}
+            {members.length > 4 && (
+              <div className="size-7 flex items-center justify-center rounded-full bg-purple-700/50 text-xs text-white relative">
+                +{members.length - 4}
+              </div>
+            )}
           </div>
         </div>
         <div className="md:pt-4">
