@@ -21,7 +21,7 @@ export default function Page({
     page?: string;
   };
 }>) {
-  const limit = 9;
+  const limit = 6;
   const currentPage = Number(searchParams?.page) || 1;
   return (
     <>
@@ -125,7 +125,7 @@ export default function Page({
           <MembersSection
             limit={limit}
             currentPage={currentPage}
-          ></MembersSection>
+          />
         </div>
       </Section>
     </>
