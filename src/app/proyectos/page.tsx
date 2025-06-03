@@ -7,7 +7,19 @@ import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import ProjectCardTemp from "@/components/project-card-temp/project-card-temp";
 
-const allProjects = Array.from({ length: 100 }, (_, i) => ({
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  appType: string;
+  date: string;
+  status: "activo" | "inactivo";
+  imageUrl: string;
+  logoUrl: string;
+  members: { name: string; avatar: string }[];
+}
+
+const allProjects: Project[] = Array.from({ length: 100 }, (_, i) => ({
   title: `Proyecto ${i + 1}`,
   subtitle: `Subtitulo del proyecto ${i + 1}`,
   description: `Descripción del proyecto ${i + 1}`,
@@ -16,14 +28,14 @@ const allProjects = Array.from({ length: 100 }, (_, i) => ({
   status: "activo",
   imageUrl: "/imagenes-temp/alfa.png",
   logoUrl: "/csipro.svg",
-  members: Array.from({ length: 3 }, () => ({
+  members: Array.from({ length: 10 }, () => ({
     name: "karla",
     avatar: "/miembros/miembro-del-mes.png",
   })),
 }));
 
 export default function Page() {
-  const [projectsToShow, setProjectsToShow] = useState([]);
+  const [projectsToShow, setProjectsToShow] = useState<Project[]>([]);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +75,7 @@ export default function Page() {
       },
       {
         rootMargin: "100px",
-      }
+      },
     );
 
     const currentElement = loadMoreRef.current;
@@ -82,10 +94,23 @@ export default function Page() {
     <>
       <Section>
         <div className="absolute left-1/2 top-0 z-0 h-[50%] w-full max-w-6xl -translate-x-1/2 overflow-hidden ">
-          <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="absolute inset-0 h-full w-full"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <defs>
-              <pattern id="grid" width="35" height="35" patternUnits="userSpaceOnUse">
-                <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#3b2f58" strokeWidth="0.5" />
+              <pattern
+                id="grid"
+                width="35"
+                height="35"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 35 0 L 0 0 0 35"
+                  fill="none"
+                  stroke="#3b2f58"
+                  strokeWidth="0.5"
+                />
               </pattern>
               <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="40%" stopColor="white" />
@@ -95,7 +120,12 @@ export default function Page() {
                 <rect width="100%" height="100%" fill="url(#fade)" />
               </mask>
             </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" mask="url(#fade-mask)" />
+            <rect
+              width="100%"
+              height="100%"
+              fill="url(#grid)"
+              mask="url(#fade-mask)"
+            />
           </svg>
 
           <GlowContainer className="relative z-10 h-[8rem] sm:h-[12rem] lg:h-[100rem]">
@@ -163,8 +193,8 @@ export default function Page() {
         <div ref={loadMoreRef} />
 
         {isLoading && (
-          <div className="flex justify-center items-center col-span-full py-8">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-t-transparent border-primary"></div>
+          <div className="col-span-full flex items-center justify-center py-8">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
           </div>
         )}
       </Section>

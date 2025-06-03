@@ -42,12 +42,14 @@ export default function ProjectCardTemp({
           <span className="text-sm text-[#9870F4]">{date}</span>
         </div>
         <div
-          className={`rounded-full border-2 px-4 py-1 ${isActive ? "border-[#00C792]" : "border-[#E06546]"
-            }`}
+          className={`rounded-full border-2 px-4 py-1 ${
+            isActive ? "border-[#00C792]" : "border-[#E06546]"
+          }`}
         >
           <span
-            className={`text-sm font-medium ${isActive ? "text-[#00C792]" : "text-[#FFA500]"
-              }`}
+            className={`text-sm font-medium ${
+              isActive ? "text-[#00C792]" : "text-[#FFA500]"
+            }`}
           >
             {status.toUpperCase()}
           </span>
@@ -103,7 +105,7 @@ export default function ProjectCardTemp({
               </div>
             ))}
             {members.length > 4 && (
-              <div className="size-7 flex items-center justify-center rounded-full bg-purple-700/50 text-xs text-white relative">
+              <div className="relative flex size-7 items-center justify-center rounded-full bg-purple-700/50 text-xs text-white">
                 +{members.length - 4}
               </div>
             )}
