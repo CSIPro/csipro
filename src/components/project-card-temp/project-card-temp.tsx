@@ -39,6 +39,8 @@ export default function ProjectCardTemp({
             src="/icons/calander.svg"
             alt="icono de calendario"
             className="size-5"
+            width={20}
+            height={20}
           />
           <span className="text-sm text-[#9870F4]">{date}</span>
         </div>
@@ -65,13 +67,21 @@ export default function ProjectCardTemp({
             src={imageUrl}
             alt={`Imagen del proyecto ${title}`}
             className="h-full w-full object-cover"
+            width={176}
+            height={192}
           />
         </div>
 
         <div className="flex flex-1 flex-col justify-between gap-2">
           <div>
             <div className="flex items-center gap-2">
-              <Image src={logoUrl} alt="logo del proyecto" className="size-7" />
+              <Image
+                src={logoUrl}
+                alt="logo del proyecto"
+                className="size-7"
+                width={28}
+                height={28}
+              />
               <h2 className="text-sm font-bold">{title}</h2>
             </div>
             <h3 className="text-sm font-semibold text-[#A1A1AA]">{subtitle}</h3>
@@ -92,6 +102,8 @@ export default function ProjectCardTemp({
               src="/icons/miembros-icon.svg"
               alt="icono de miembros"
               className="size-7"
+              width={28}
+              height={28}
             />
             <span>{members.length} miembros</span>
           </div>
@@ -102,6 +114,8 @@ export default function ProjectCardTemp({
                   src={member.avatar}
                   alt={`Avatar de ${member.name}`}
                   className="h-full w-full object-cover"
+                  width={28}
+                  height={28}
                 />
               </div>
             ))}
