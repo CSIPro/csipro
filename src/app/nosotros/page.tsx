@@ -57,47 +57,47 @@ export default function Page({
             </div>
           </div>
 
-          <div className="display inline-flex w-1/2 justify-center max-lg:w-full max-lg:gap-3 lg:gap-4 lg:px-20">
+          <div className="display inline-flex w-1/2 justify-center max-lg:w-full max-lg:gap-3 max-lg:py-6 lg:gap-4 lg:px-20">
             <div className="flex items-end max-lg:gap-3 lg:flex-col lg:space-y-4">
-              <div className="h-auto overflow-hidden rounded-xl lg:w-11/12">
+              <div className="h-auto w-full overflow-hidden rounded-xl lg:w-11/12">
                 <Image
                   src="nosotros1.png"
                   alt="foto de portada"
                   width={1920}
                   height={1080}
-                  className="h-auto w-auto object-cover"
+                  className="w-auto object-cover max-lg:h-full"
                   unoptimized
                 />
               </div>
-              <div className="h-auto w-auto overflow-hidden rounded-xl">
+              <div className="h-auto w-full overflow-hidden rounded-xl">
                 <Image
                   src="nosotros3.png"
                   alt="foto de portada"
                   width={1920}
                   height={1080}
-                  className="h-auto w-auto object-cover"
+                  className="w-auto object-cover max-lg:h-full"
                   unoptimized
                 />
               </div>
             </div>
             <div className="max-lg:flex max-lg:gap-3 lg:space-y-4">
-              <div className="h-auto w-auto overflow-hidden rounded-xl lg:mt-10">
+              <div className="h-auto w-full overflow-hidden rounded-xl lg:mt-10">
                 <Image
                   src="nosotros2.png"
                   alt="foto de portada"
                   width={1920}
                   height={1080}
-                  className="h-auto w-auto object-cover"
+                  className="w-auto object-cover max-lg:h-full"
                   unoptimized
                 />
               </div>
-              <div className="overflow-hidden rounded-xl lg:h-auto lg:w-10/12">
+              <div className="h-auto w-full overflow-hidden rounded-xl lg:h-auto lg:w-10/12">
                 <Image
                   src="nosotros4.png"
                   alt="foto de portada"
                   width={1920}
                   height={1080}
-                  className="h-auto w-auto object-cover"
+                  className="w-auto object-cover max-lg:h-full"
                   unoptimized
                 />
               </div>
