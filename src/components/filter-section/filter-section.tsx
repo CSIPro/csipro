@@ -1,10 +1,6 @@
-import { Search } from "lucide-react";
-import { BiSolidFilterAlt } from "react-icons/bi";
-
 import AdvancedFilter from "./advanced-filter";
 import { DefaultFilters } from "./default-filters";
 import SortFilter from "./sort-filter";
-import { SearchBar } from "../search-bar.tsx/search-bar";
 
 const filters = [
   {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,6 +47,7 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
     const shuffled = [...colors].sort(() => 0.5 - Math.random());
     return { color1: shuffled[0], color2: shuffled[1] };
   };
+  // eslint-disable-next-line import/no-named-as-default-member
   const { color1, color2 } = React.useMemo(() => getRandomColors(), []);
   const entryDateObj = new Date(props.entrydate);
   const formattedDate =

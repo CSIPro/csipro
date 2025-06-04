@@ -27,7 +27,7 @@ export const MemberBadge = ({ entryDate, position }: MemberBadgeProps) => {
 
   return (
     <div
-      className={`inline-flex items-center rounded-full md:px-3 py-1 text-lg font-normal ${
+      className={`inline-flex items-center rounded-full py-1 text-lg font-normal md:px-3 ${
         isNewMember
           ? "animate-pulse font-gochi text-[#C0A9F5] drop-shadow-glow-purple"
           : "text-gray-100"

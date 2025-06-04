@@ -1,4 +1,4 @@
-import { format, isFuture, isPast } from "date-fns";
+import { format, isFuture } from "date-fns";
 import { es } from "date-fns/locale";
 import Image from "next/image";
 import React from "react";
@@ -32,15 +32,12 @@ export const EventCardTemp: React.FC<EventCardTempProps> = ({
   dates,
   location,
   spots,
-  type,
 }) => {
   const parsedDates = dates
     .map((date) => new Date(date.fecha_hora))
     .sort((a, b) => a.getTime() - b.getTime());
 
-  const isCompleted = parsedDates.every((d) => isPast(d));
   const isScheduled = parsedDates.every((d) => isFuture(d));
-  const isOngoing = !isCompleted && !isScheduled;
   const nextDate = parsedDates.find((d) => isFuture(d)) ?? parsedDates[0];
 
   return (
