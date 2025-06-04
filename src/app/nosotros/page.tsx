@@ -115,17 +115,14 @@ export default function Page({
             />
           </div>
         </div>
-        <div className="w-full p-1 hidden max-sm:block">
-            <SearchBar
-              shortPlaceholder="Buscar miembros..."
-              longPlaceholder="Busca miembros, por nombre, apellido, puesto..."
-            />
-          </div>
-        <div className="max-md:w-full">
-          <MembersSection
-            limit={limit}
-            currentPage={currentPage}
+        <div className="hidden w-full px-3 max-sm:block">
+          <SearchBar
+            shortPlaceholder="Buscar miembros..."
+            longPlaceholder="Busca miembros, por nombre, apellido, puesto..."
           />
+        </div>
+        <div className="max-md:w-full">
+          <MembersSection limit={limit} currentPage={currentPage} />
         </div>
       </Section>
     </>
