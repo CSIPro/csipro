@@ -61,10 +61,10 @@ const EventCard: React.FC<EventCardProps> = (props) => {
   const chipVariant = isCompleted
     ? chipVariants["completed"]
     : isOngoing
-    ? chipVariants["ongoing"]
-    : isMultiDay
-    ? chipVariants["multiDay"]
-    : chipVariants["singleDay"];
+      ? chipVariants["ongoing"]
+      : isMultiDay
+        ? chipVariants["multiDay"]
+        : chipVariants["singleDay"];
 
   const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
 

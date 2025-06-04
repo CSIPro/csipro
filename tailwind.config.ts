@@ -25,6 +25,12 @@ const config = {
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
         poppins: ["var(--font-poppins)"],
+        gochi: ['"Gochi Hand"', "cursive"],
+        inter: ['"Inter"', "sans-serif"],
+        maven: ['"Maven Pro"', "sans-serif"],
+      },
+      dropShadow: {
+        "glow-purple": ["0 0 1px #9870F4", "0 0 15px #9870F4"],
       },
       colors: {
         border: "hsl(var(--border))",
