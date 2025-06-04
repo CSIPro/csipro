@@ -11,6 +11,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.0.2
         version: 1.0.2(@types/react@18.2.51)(react@18.2.0)
+      '@react-hook/media-query':
+        specifier: ^1.1.1
+        version: 1.1.1(react@18.2.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -289,6 +292,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  '@react-hook/media-query@1.1.1':
+    resolution: {integrity: sha512-VM14wDOX5CW5Dn6b2lTiMd79BFMTut9AZj2+vIRT3LCKgMCYmdqruTtzDPSnIVDQdtxdPgtOzvU9oK20LopuOw==}
+    peerDependencies:
+      react: '>=16.8'
 
   '@rushstack/eslint-patch@1.7.2':
     resolution: {integrity: sha512-RbhOOTCNoCrbfkRyoXODZp75MlpiHMgbE5MEBZAnnnLyQNgrigEj4p0lzsMDyc1zVsJDLrivB58tgg3emX0eEA==}
@@ -1940,6 +1948,10 @@ snapshots:
       react: 18.2.0
     optionalDependencies:
       '@types/react': 18.2.51
+
+  '@react-hook/media-query@1.1.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
 
   '@rushstack/eslint-patch@1.7.2': {}
 
