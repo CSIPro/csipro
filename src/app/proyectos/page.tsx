@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
+import ProjectCardTemp from "@/components/project-card-temp/project-card-temp";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
-import ProjectCardTemp from "@/components/project-card-temp/project-card-temp";
 
 interface Project {
   title: string;

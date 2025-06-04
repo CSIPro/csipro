@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface Member {
@@ -34,7 +35,7 @@ export default function ProjectCardTemp({
     <div className="w-full rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-80 lg:w-full">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img
+          <Image
             src="/icons/calander.svg"
             alt="icono de calendario"
             className="size-5"
@@ -60,7 +61,7 @@ export default function ProjectCardTemp({
 
       <div className="flex flex-row gap-2 md:flex-col">
         <div className="relative h-48 w-44 overflow-hidden rounded-2xl md:mt-4 md:w-full">
-          <img
+          <Image
             src={imageUrl}
             alt={`Imagen del proyecto ${title}`}
             className="h-full w-full object-cover"
@@ -70,7 +71,7 @@ export default function ProjectCardTemp({
         <div className="flex flex-1 flex-col justify-between gap-2">
           <div>
             <div className="flex items-center gap-2">
-              <img src={logoUrl} alt="logo del proyecto" className="size-7" />
+              <Image src={logoUrl} alt="logo del proyecto" className="size-7" />
               <h2 className="text-sm font-bold">{title}</h2>
             </div>
             <h3 className="text-sm font-semibold text-[#A1A1AA]">{subtitle}</h3>
@@ -87,7 +88,7 @@ export default function ProjectCardTemp({
       <div className="flex w-full items-center justify-end pt-4 md:flex-col">
         <div className="flex w-full flex-col">
           <div className="flex w-full items-center gap-2 text-gray-400">
-            <img
+            <Image
               src="/icons/miembros-icon.svg"
               alt="icono de miembros"
               className="size-7"
@@ -97,7 +98,7 @@ export default function ProjectCardTemp({
           <div className="flex gap-2 pt-4">
             {members.slice(0, 4).map((member, idx) => (
               <div key={idx} className="size-7 overflow-hidden rounded-full">
-                <img
+                <Image
                   src={member.avatar}
                   alt={`Avatar de ${member.name}`}
                   className="h-full w-full object-cover"
