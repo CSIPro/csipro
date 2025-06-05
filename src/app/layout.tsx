@@ -4,8 +4,6 @@ import { GeistSans } from "geist/font/sans";
 import { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
-import { Footer } from "@/components/footer/footer";
-import { Navbar } from "@/components/navbar/navbar";
 import { AppProviders } from "@/context/providers";
 
 const poppins = Poppins({
@@ -30,13 +28,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${fonts} bg-white dark:bg-muted`}>
-        <Navbar />
         <AppProviders>
           <main className="mx-auto flex min-h-screen w-full flex-col items-center justify-center">
             {children}
           </main>
         </AppProviders>
-        <Footer />
       </body>
     </html>
   );

@@ -5,9 +5,11 @@ import { TbSeeding } from "react-icons/tb";
 
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
+import { Footer } from "@/components/footer/footer";
 import { Glow, GlowContainer, GlowGroup } from "@/components/glow/glow";
 import { HeroCard } from "@/components/hero-carousel/hero-card";
 import { HeroCarousel } from "@/components/hero-carousel/hero-carousel";
+import { Navbar } from "@/components/navbar/navbar";
 import ProjectsSection from "@/components/projects-section/projects-section";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
@@ -30,6 +32,7 @@ export default async function Home({
 
   return (
     <>
+      <Navbar title="BIENVENIDOS" />
       <Section>
         <div className="absolute inset-0 -z-10 size-full overflow-hidden">
           <div className="absolute left-1/2 top-1/2 size-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-stone-400 border-opacity-10 bg-transparent sm:size-80 "></div>
@@ -176,6 +179,7 @@ export default async function Home({
         <SectionTitle>Nuestros proyectos</SectionTitle>
         <ProjectsSection />
       </Section>
+      <Footer />
     </>
   );
 }

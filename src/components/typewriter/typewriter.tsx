@@ -13,7 +13,7 @@ interface TypewriterProps {
 
 export const Typewriter: React.FC<TypewriterProps> = ({ text, className }) => {
   return (
-    <BrandingHeaderHighlight className={cn("font-medium", className)}>
+    <BrandingHeaderHighlight className={cn("font-medium uppercase", className)}>
       <TypewriterEffect
         onInit={(typewriter) => {
           typewriter.typeString(text).start();

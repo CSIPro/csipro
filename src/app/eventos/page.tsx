@@ -1,7 +1,8 @@
-import { EventCardTemp } from "@/components/even-card-temp/event-card-temp";
 import { EventsList } from "@/components/events-list/events-list";
 import EventsSection from "@/components/events-section/events-section";
+import { Footer } from "@/components/footer/footer";
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
+import { Navbar } from "@/components/navbar/navbar";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
@@ -63,6 +64,7 @@ export default async function Page({
   const { docs, page, prevPage, nextPage } = eventsRes;
   return (
     <>
+      <Navbar title="EVENTOS" />
       <Section>
         <div className="absolute left-1/2 top-0 z-0 h-[50%] w-full max-w-6xl -translate-x-1/2 overflow-hidden ">
           <svg
@@ -169,6 +171,7 @@ export default async function Page({
           ></EventsSection>
         </div>
       </Section>
+      <Footer />
     </>
   );
 }
