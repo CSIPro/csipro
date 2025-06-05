@@ -4,7 +4,11 @@ import { es } from "date-fns/locale";
 import Image from "next/image";
 import React from "react";
 import { FaRegCalendar } from "react-icons/fa6";
-import { IoLocation } from "react-icons/io5";
+import {
+  IoLocation,
+  IoLocationSharp,
+  IoStopwatchOutline,
+} from "react-icons/io5";
 
 import { Button } from "@/components/ui/button";
 import { EventDate } from "@/models/events";
@@ -36,6 +40,7 @@ const chipVariants = {
 } as const;
 
 interface EventCardProps {
+  variant?: "default" | "compact";
   type: string;
   dates: Array<EventDate>;
   image: string;
@@ -46,7 +51,10 @@ interface EventCardProps {
   location: string;
 }
 
-const EventCard: React.FC<EventCardProps> = (props) => {
+export const EventCard: React.FC<EventCardProps> = ({
+  variant = "default",
+  ...props
+}) => {
   const dates = props.dates
     .map((date) => new Date(date.fecha_hora))
     .sort((a, b) => a.getTime() - b.getTime());
@@ -67,6 +75,74 @@ const EventCard: React.FC<EventCardProps> = (props) => {
         : chipVariants["singleDay"];
 
   const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
+
+  if (variant === "compact") {
+    return (
+      <div className="w-full px-2">
+        <div className="w-full max-w-sm rounded-xl border border-primary bg-[#160D2A] p-4 shadow-[0_0_12px_rgba(137,84,255,0.2)]">
+          <div className="flex select-none items-center justify-between pb-2">
+            <BrandingHeader>
+              <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
+              <BrandingHeaderHighlight>TALKS</BrandingHeaderHighlight>
+            </BrandingHeader>
+
+            <Chip variant={chipVariant.variant}>
+              <ChipLabel uppercase>{chipVariant.label}</ChipLabel>
+            </Chip>
+          </div>
+
+          <hr className="border-1 border-[#2D1B55] pb-3" />
+
+          <div className="flex gap-4">
+            <div className="relative h-36 w-36 flex-shrink-0 overflow-hidden rounded">
+              <Image
+                src={props.image}
+                alt={props.imageAlt}
+                fill
+                className="object-cover"
+              />
+              {isScheduled && (
+                <div className="absolute bottom-0 left-0 right-0 bg-primary px-2 text-center text-[10px] font-semibold text-white">
+                  {props.spots === 1
+                    ? "1 cupo disponilbe"
+                    : `${props.spots} cupos disponibles`}
+                </div>
+              )}
+            </div>
+
+            <div className="flex w-full flex-col justify-between text-white">
+              <div className="space-y-1">
+                <h2 className="text-base font-semibold">{props.title}</h2>
+                <div className="flex items-center gap-2 text-xs">
+                  <IoLocationSharp />
+                  <span>{props.location}</span>
+                </div>
+
+                <div className="flex items-center gap-2 text-xs">
+                  <FaRegCalendar />
+                  <span>{format(nextDate, "PPP", { locale: es })}</span>
+                </div>
+
+                <div className="flex items-center gap-2 text-xs">
+                  <IoStopwatchOutline />
+                  <span>{format(nextDate, "hh:mm aaaa", { locale: es })}</span>
+                </div>
+              </div>
+
+              <div className="flex justify-end pt-2">
+                <Button
+                  variant="default"
+                  className="rounded-s px-4 py-1 text-xs"
+                >
+                  {isScheduled ? "Registrarse aquí" : "Más información"}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 md:w-full xl:w-[22rem]">
@@ -133,5 +209,3 @@ const EventCard: React.FC<EventCardProps> = (props) => {
     </div>
   );
 };
-
-export default EventCard;
