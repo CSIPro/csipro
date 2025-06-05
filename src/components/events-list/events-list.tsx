@@ -3,7 +3,7 @@
 import { FC, ReactNode, useEffect, useRef } from "react";
 
 import { EventCardTemp } from "../even-card-temp/event-card-temp";
-import { EventsPagination } from "../events-section/events-pagination";
+import { SectionPagination } from "../events-section/events-pagination";
 
 interface Props {
   currentPage: number;
@@ -73,10 +73,10 @@ export const EventsList: FC<Props> = ({ currentPage, limit }) => {
         spots={20}
       />
 
-      <EventsPagination
+      <SectionPagination
         currentPage={currentPage}
         totalPages={5}
-      ></EventsPagination>
+      ></SectionPagination>
     </div>
   );
 };
