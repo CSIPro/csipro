@@ -1,8 +1,10 @@
 import Image from "next/image";
 
+import { Footer } from "@/components/footer/footer";
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import GradientBackground from "@/components/gradient-background/gradient-background";
 import MembersSection from "@/components/members-section/members-section";
+import { Navbar } from "@/components/navbar/navbar";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
@@ -25,6 +27,7 @@ export default function Page({
   const currentPage = Number(searchParams?.page) || 1;
   return (
     <>
+      <Navbar title="Miembros" />
       <Section>
         <GradientBackground />
         <GlowContainer className="">
@@ -125,6 +128,7 @@ export default function Page({
           <MembersSection limit={limit} currentPage={currentPage} />
         </div>
       </Section>
+      <Footer />
     </>
   );
 }
