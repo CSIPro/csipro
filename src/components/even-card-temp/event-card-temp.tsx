@@ -15,6 +15,25 @@ import {
 } from "../branding-header/branding-header";
 import { Chip, ChipLabel } from "../chip/chip";
 
+const chipVariants = {
+  completed: {
+    variant: "gray",
+    label: "Completed",
+  },
+  ongoing: {
+    variant: "blue",
+    label: "Ongoing",
+  },
+  singleDay: {
+    variant: "yellow",
+    label: "Single-day",
+  },
+  multiDay: {
+    variant: "orange",
+    label: "Multi-day",
+  },
+} as const;
+
 interface EventCardTempProps {
   title: string;
   image: string;
@@ -41,10 +60,21 @@ export const EventCardTemp: React.FC<EventCardTempProps> = ({
   const isCompleted = parsedDates.every((d) => isPast(d));
   const isScheduled = parsedDates.every((d) => isFuture(d));
   const isOngoing = !isCompleted && !isScheduled;
+
+  const isMultiDay = dates.length > 1;
+
+  const chipVariant = isCompleted
+    ? chipVariants["completed"]
+    : isOngoing
+      ? chipVariants["ongoing"]
+      : isMultiDay
+        ? chipVariants["multiDay"]
+        : chipVariants["singleDay"];
+
   const nextDate = parsedDates.find((d) => isFuture(d)) ?? parsedDates[0];
 
   return (
-    <div className="p-2">
+    <div className="w-full px-2">
       <div className="w-full max-w-sm rounded-xl border border-primary bg-[#160D2A] p-4 shadow-[0_0_12px_rgba(137,84,255,0.2)]">
         <div className="flex select-none items-center justify-between pb-2">
           <BrandingHeader>
@@ -52,8 +82,8 @@ export const EventCardTemp: React.FC<EventCardTempProps> = ({
             <BrandingHeaderHighlight>TALKS</BrandingHeaderHighlight>
           </BrandingHeader>
 
-          <Chip variant="orange">
-            <ChipLabel uppercase>Multi-day</ChipLabel>
+          <Chip variant={chipVariant.variant}>
+            <ChipLabel uppercase>{chipVariant.label}</ChipLabel>
           </Chip>
         </div>
 
@@ -92,7 +122,7 @@ export const EventCardTemp: React.FC<EventCardTempProps> = ({
 
             <div className="flex justify-end pt-2">
               <Button variant="default" className="rounded-s px-4 py-1 text-xs">
-                {isScheduled ? "Registrarse aquí" : "Más info"}
+                {isScheduled ? "Registrarse aquí" : "Más información"}
               </Button>
             </div>
           </div>

@@ -1,8 +1,4 @@
-import {
-  createResponseSchema,
-  generateEmptyResponse,
-} from "@/models/cms-response";
-import { Event } from "@/models/events";
+import { fetchEvents } from "@/services/events";
 
 import { EventsWrapper } from "./events-wrapper";
 import { Glow, GlowContainer, GlowGroup } from "../glow/glow";
@@ -10,45 +6,16 @@ import { Section } from "../section/section";
 import { SectionPagination } from "../section-pagination/section-pagination";
 import { SectionTitle } from "../section-title/section-title";
 
-const fetchEvents = async (limit: number, currentPage: number) => {
-  const eventsRes = await fetch(
-    `https://admin.csipro.isi.unison.mx/api/eventos/?limit=${limit}&page=${currentPage}`,
-    { cache: "no-store" },
-  );
-
-  if (!eventsRes.ok) {
-    return generateEmptyResponse();
-  }
-
-  const EventsResponse = createResponseSchema(Event);
-
-  const eventsData = await eventsRes.json();
-
-  const events = EventsResponse.safeParse(eventsData);
-
-  if (!events.success) {
-    console.log(events.error);
-    return generateEmptyResponse();
-  }
-
-  events.data.docs.sort((a, b) => {
-    return (
-      new Date(b.fechas_horas[b.fechas_horas.length - 1].fecha_hora).getTime() -
-      new Date(a.fechas_horas[a.fechas_horas.length - 1].fecha_hora).getTime()
-    );
-  });
-
-  return events.data;
-};
-
 export default async function EventsSection({
   limit,
   currentPage,
   pageLimit = 5,
+  title = "Nuevos eventos",
 }: {
   limit: number;
   currentPage: number;
   pageLimit?: number;
+  title?: string;
 }) {
   const eventsRes = await fetchEvents(limit, currentPage);
 
@@ -84,7 +51,7 @@ export default async function EventsSection({
           />
         </GlowGroup>
       </GlowContainer>
-      <SectionTitle id={titleId}>Nuevos eventos</SectionTitle>
+      <SectionTitle id={titleId}>{title}</SectionTitle>
       <EventsWrapper events={docs} />
       <SectionPagination
         scrollId={titleId}

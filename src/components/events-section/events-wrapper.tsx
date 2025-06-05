@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 
 import { Event } from "@/models/events";
 
-import EventCard from "../event-card/event-card";
+import { EventCard } from "../event-card/event-card";
 import {
   Carousel,
   CarouselContent,
