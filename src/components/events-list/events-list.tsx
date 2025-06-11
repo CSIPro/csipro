@@ -19,7 +19,7 @@ export async function EventsList({ currentPage, limit }: Props) {
   const titleId = "events-page-title";
 
   return (
-    <Section className="block md:hidden">
+    <Section className="hidden max-[540px]:flex">
       <SectionTitle id={titleId}>EVENTOS</SectionTitle>
       <GlowContainer>
         <GlowGroup className="origin-[12%_50%] 2xl:origin-[25%_50%]">

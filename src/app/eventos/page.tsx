@@ -100,7 +100,7 @@ export default async function Page({
 
       <EventsList currentPage={currentPage} limit={limit} />
 
-      <div className="hidden w-full flex-col items-center gap-8 md:flex">
+      <div className="hidden w-full flex-col items-center gap-8 min-[540px]:flex">
         <EventsSection
           title="Eventos"
           limit={limit}

@@ -78,7 +78,7 @@ export const EventCard: React.FC<EventCardProps> = ({
 
   if (variant === "compact") {
     return (
-      <div className="w-full px-2">
+      <div className="w-full px-2 flex items-center justify-center">
         <div className="w-full max-w-sm rounded-xl border border-primary bg-[#160D2A] p-4 shadow-[0_0_12px_rgba(137,84,255,0.2)]">
           <div className="flex select-none items-center justify-between pb-2">
             <BrandingHeader>
