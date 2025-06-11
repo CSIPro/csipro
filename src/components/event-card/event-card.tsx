@@ -83,7 +83,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           <div className="flex select-none items-center justify-between pb-2">
             <BrandingHeader>
               <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
-              <BrandingHeaderHighlight>TALKS</BrandingHeaderHighlight>
+              <BrandingHeaderHighlight>{props.type}</BrandingHeaderHighlight>
             </BrandingHeader>
 
             <Chip variant={chipVariant.variant}>
@@ -99,7 +99,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                 src={props.image}
                 alt={props.imageAlt}
                 fill
-                className="object-cover"
+                className="object-scale-down"
               />
               {isScheduled && (
                 <div className="absolute bottom-0 left-0 right-0 bg-primary px-2 text-center text-[10px] font-semibold text-white">
@@ -112,18 +112,20 @@ export const EventCard: React.FC<EventCardProps> = ({
 
             <div className="flex w-full flex-col justify-between text-white">
               <div className="space-y-1">
-                <h2 className="text-base font-semibold">{props.title}</h2>
-                <div className="flex items-center gap-2 text-xs">
+                <h2 className="line-clamp-2 text-sm font-semibold">
+                  {props.title}
+                </h2>
+                <div className="flex items-center gap-2 text-[10px]">
                   <IoLocationSharp />
                   <span>{props.location}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-[10px]">
                   <FaRegCalendar />
                   <span>{format(nextDate, "PPP", { locale: es })}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-[10px]">
                   <IoStopwatchOutline />
                   <span>{format(nextDate, "hh:mm aaaa", { locale: es })}</span>
                 </div>
