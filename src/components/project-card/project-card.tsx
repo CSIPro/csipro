@@ -57,7 +57,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           </div>
         </div>
         <div className="flex justify-center pt-4">
-          <Button variant="outline">Ver más</Button>
+          <Button>Ver más</Button>
         </div>
       </div>
     </div>
