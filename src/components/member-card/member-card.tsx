@@ -142,10 +142,7 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
           </div>
 
           <div className="flex justify-center">
-            <Button
-              variant="outline"
-              className="rounded-xl text-white transition-colors hover:bg-[#491288]"
-            >
+            <Button className="rounded-xl text-white transition-colors hover:bg-[#491288]">
               Ver Portafolio
             </Button>
           </div>
@@ -198,10 +195,7 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
           </div>
         </div>
         <div className="flex w-full justify-center">
-          <Button
-            variant="outline"
-            className="rounded-xl text-white transition-colors hover:bg-[#491288]"
-          >
+          <Button className="rounded-xl text-white transition-colors hover:bg-[#491288]">
             Ver Portafolio
           </Button>
         </div>

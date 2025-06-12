@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { LuSquareCode } from "react-icons/lu";
 import { TbSeeding } from "react-icons/tb";
@@ -32,7 +33,7 @@ export default async function Home({
 
   return (
     <>
-      <Navbar title="BIENVENIDOS" />
+      <Navbar titles={["BIENVENIDOS", "REBOOT", "HOME"]} />
       <Section>
         <div className="absolute inset-0 -z-10 size-full overflow-hidden">
           <div className="absolute left-1/2 top-1/2 size-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-stone-400 border-opacity-10 bg-transparent sm:size-80 "></div>
@@ -55,8 +56,8 @@ export default async function Home({
           </GlowGroup>*/}
         </GlowContainer>
 
-        <div className="px-4 pt-10  sm:pb-6 sm:pt-20">
-          <h1 className="text-center text-4xl font-bold  sm:text-6xl ">
+        <div className="px-4 pt-10 sm:pb-4 sm:pt-12">
+          <h1 className="text-center text-4xl font-bold md:text-5xl lg:text-6xl">
             Un espacio de <span className="text-primary">desarrollo</span>,
             <br />
             <span className="text-primary"> innovación</span> &
@@ -67,13 +68,10 @@ export default async function Home({
             </span>
           </h1>
         </div>
-        <Button
-          variant="outline"
-          className="px-4 py-4 text-[14px] font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl "
-        >
+        <Button className="px-4 py-4 font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl ">
           Get Started
         </Button>
-        <div className="sm:py-5"></div>
+        <div className="sm:py-1"></div>
 
         <HeroCarousel images={dummyImages}>
           {dummyImages.map((img) => (
@@ -88,7 +86,7 @@ export default async function Home({
             </HeroCard>
           ))}
         </HeroCarousel>
-        <div className="py-7 sm:py-24"></div>
+        <div className="py-7 sm:py-12"></div>
       </Section>
 
       <Section>
@@ -142,8 +140,10 @@ export default async function Home({
               como software desarrollado por nosotros
             </p>
 
-            <Button variant="outline" className="text-base">
-              Más de nosotros
+            <Button className="text-base" asChild>
+              <Link href="/nosotros" prefetch>
+                Más de nosotros
+              </Link>
             </Button>
           </div>
         </div>
@@ -151,8 +151,20 @@ export default async function Home({
 
       <EventsSection limit={limit} currentPage={currentPage} pageLimit={2} />
       <Section classNameDiv="pb-16">
-        <SectionTitle>Nuestros proyectos</SectionTitle>
+        <div className="flex w-full items-center justify-between pr-4">
+          <SectionTitle>Nuestros proyectos</SectionTitle>
+          <Button className="hidden uppercase sm:inline-flex">
+            <Link href="/proyectos" prefetch>
+              Ver todos
+            </Link>
+          </Button>
+        </div>
         <ProjectsSection />
+        <Button className="uppercase sm:hidden">
+          <Link href="/proyectos" prefetch>
+            Ver todos
+          </Link>
+        </Button>
       </Section>
       <Footer />
     </>

@@ -27,7 +27,7 @@ export default function Page({
   const currentPage = Number(searchParams?.page) || 1;
   return (
     <>
-      <Navbar title="Miembros" />
+      <Navbar titles={["TEAM", "HISTORIA", "MIEMBROS", "NOSOTROS"]} />
       <Section>
         <GradientBackground />
         <GlowContainer className="">

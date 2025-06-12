@@ -11,11 +11,12 @@ import { CsiproLogo } from "../socials/logos/csipro-logo";
 import { Typewriter } from "../typewriter/typewriter";
 
 interface Props {
-  title: string;
+  titles: string[];
+  loopTitles?: boolean;
   className?: HTMLAttributes<HTMLDivElement>["className"];
 }
 
-export const Navbar: FC<Props> = ({ title, className }) => {
+export const Navbar: FC<Props> = ({ titles, loopTitles, className }) => {
   return (
     <nav
       className={cn(
@@ -23,7 +24,7 @@ export const Navbar: FC<Props> = ({ title, className }) => {
         className,
       )}
     >
-      <div className="mx-auto flex h-full max-w-8xl items-center justify-between p-4">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between p-4">
         <Link href="/" className="font-poppins text-xl">
           <div className="flex items-center justify-center gap-4">
             <div className="flex aspect-square w-10 items-center justify-center rounded-sm p-1.5">
@@ -31,7 +32,7 @@ export const Navbar: FC<Props> = ({ title, className }) => {
             </div>
             <BrandingHeader className="text-xl font-normal">
               <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
-              <Typewriter text={title} />
+              <Typewriter messages={titles} loop={loopTitles} />
             </BrandingHeader>
           </div>
         </Link>

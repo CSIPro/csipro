@@ -204,7 +204,7 @@ export const EventCard: React.FC<EventCardProps> = ({
         </div>
       </div>
       <div className="mt-4 flex justify-center">
-        <Button variant="outline" className="rounded-xl">
+        <Button className="rounded-xl">
           {isScheduled ? "Registrate aquí" : "Más información"}
         </Button>
       </div>
