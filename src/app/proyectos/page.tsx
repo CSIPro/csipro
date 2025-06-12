@@ -97,7 +97,7 @@ export default function Page() {
     <>
       <Navbar titles={["Dev", "Tech", "Projects"]} />
       <Section>
-        <div className="absolute left-1/2 top-0 z-0 h-[50%] w-full max-w-6xl -translate-x-1/2 overflow-hidden ">
+        <div className="absolute left-1/2 top-0 z-0 h-[50%] w-full max-w-7xl -translate-x-1/2 overflow-hidden ">
           <svg
             className="absolute inset-0 h-full w-full"
             xmlns="http://www.w3.org/2000/svg"
