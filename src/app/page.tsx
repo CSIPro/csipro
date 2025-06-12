@@ -80,7 +80,7 @@ export default async function Home({
             <HeroCard key={`heroCard ${img.id}`} imageId={img.id}>
               <Image
                 src={img.url}
-                width={800}
+                width={1200}
                 height={400}
                 alt="foto de portada"
                 className=" object-cover"

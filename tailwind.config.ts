@@ -19,6 +19,10 @@ const config = {
       },
     },
     extend: {
+      maxWidth: {
+        "8xl": "92rem",
+        "9xl": "100rem",
+      },
       backgroundImage: {
         "circuit-board": "url('/assets/patterns/circuit-board.svg')",
       },

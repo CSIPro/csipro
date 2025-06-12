@@ -147,7 +147,7 @@ export const EventCard: React.FC<EventCardProps> = ({
   }
 
   return (
-    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 md:w-full xl:w-[22rem]">
+    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 md:w-full xl:max-w-[26rem] 2xl:max-w-full">
       <div className="flex select-none items-center justify-between">
         <BrandingHeader>
           <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
