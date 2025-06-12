@@ -4,6 +4,7 @@ import { Navbar } from "@/components/navbar/navbar";
 import ProjectCardTemp from "@/components/project-card-temp/project-card-temp";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
+import { SectionPagination } from "@/components/section-pagination/section-pagination";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { fetchProjects } from "@/services/projects";
 
@@ -18,6 +19,9 @@ export default async function Page({ searchParams }: Props) {
   const currentPage = parseInt(searchParams?.page ?? "1");
 
   const projects = await fetchProjects(limit, currentPage);
+  const totalPages = Math.ceil(projects.totalDocs / limit);
+
+  const titleId = "projects-title";
 
   return (
     <>
@@ -88,7 +92,7 @@ export default async function Page({ searchParams }: Props) {
       </Section>
 
       <Section classNameDiv="pb-16">
-        <SectionTitle>PROYECTOS</SectionTitle>
+        <SectionTitle id={titleId}>PROYECTOS</SectionTitle>
 
         <GlowContainer>
           <GlowGroup className="origin-[12%_50%] 2xl:origin-[25%_50%]">
@@ -119,6 +123,13 @@ export default async function Page({ searchParams }: Props) {
             <ProjectCardTemp key={project.id} project={project} />
           ))}
         </div>
+        <SectionPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          nextPage={projects.nextPage}
+          prevPage={projects.prevPage}
+          scrollId={titleId}
+        />
       </Section>
       <Footer />
     </>
