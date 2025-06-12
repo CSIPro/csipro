@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { LuSquareCode } from "react-icons/lu";
 import { TbSeeding } from "react-icons/tb";
@@ -142,8 +143,10 @@ export default async function Home({
               como software desarrollado por nosotros
             </p>
 
-            <Button variant="outline" className="text-base">
-              Más de nosotros
+            <Button className="text-base" asChild>
+              <Link href="/nosotros" prefetch>
+                Más de nosotros
+              </Link>
             </Button>
           </div>
         </div>
@@ -151,8 +154,20 @@ export default async function Home({
 
       <EventsSection limit={limit} currentPage={currentPage} pageLimit={2} />
       <Section classNameDiv="pb-16">
-        <SectionTitle>Nuestros proyectos</SectionTitle>
+        <div className="flex w-full items-center justify-between pr-4">
+          <SectionTitle>Nuestros proyectos</SectionTitle>
+          <Button className="hidden uppercase sm:inline-flex">
+            <Link href="/proyectos" prefetch>
+              Ver todos
+            </Link>
+          </Button>
+        </div>
         <ProjectsSection />
+        <Button className="uppercase sm:hidden">
+          <Link href="/proyectos" prefetch>
+            Ver todos
+          </Link>
+        </Button>
       </Section>
       <Footer />
     </>

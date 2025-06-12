@@ -105,6 +105,7 @@ export default async function Page({
           title="Eventos"
           limit={limit}
           currentPage={currentPage}
+          hideLink
         />
       </div>
 

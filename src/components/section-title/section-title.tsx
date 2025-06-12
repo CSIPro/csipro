@@ -5,12 +5,18 @@ import { cn } from "@/lib/utils";
 interface Props {
   children: ReactNode;
   className?: HTMLAttributes<HTMLHeadingElement>["className"];
+  wrapperClassName?: string;
   id?: string;
 }
 
-export const SectionTitle: FC<Props> = ({ children, className, id }) => {
+export const SectionTitle: FC<Props> = ({
+  children,
+  className,
+  id,
+  wrapperClassName,
+}) => {
   return (
-    <div className="flex w-full py-4">
+    <div className={cn("flex w-full py-4", wrapperClassName)}>
       <h2
         id={id}
         className={cn(

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { fetchEvents } from "@/services/events";
 
 import { EventsWrapper } from "./events-wrapper";
@@ -5,18 +7,23 @@ import { Glow, GlowContainer, GlowGroup } from "../glow/glow";
 import { Section } from "../section/section";
 import { SectionPagination } from "../section-pagination/section-pagination";
 import { SectionTitle } from "../section-title/section-title";
+import { Button } from "../ui/button";
+
+interface Props {
+  limit: number;
+  currentPage: number;
+  pageLimit?: number;
+  title?: string;
+  hideLink?: boolean;
+}
 
 export default async function EventsSection({
   limit,
   currentPage,
   pageLimit = 5,
   title = "Nuevos eventos",
-}: {
-  limit: number;
-  currentPage: number;
-  pageLimit?: number;
-  title?: string;
-}) {
+  hideLink = false,
+}: Props) {
   const eventsRes = await fetchEvents(limit, currentPage);
 
   const totalPages = Math.min(
@@ -51,7 +58,16 @@ export default async function EventsSection({
           />
         </GlowGroup>
       </GlowContainer>
-      <SectionTitle id={titleId}>{title}</SectionTitle>
+      <div className="flex w-full items-center justify-between pr-4">
+        <SectionTitle id={titleId}>{title}</SectionTitle>
+        {!hideLink && (
+          <Button className="hidden uppercase sm:inline-flex" asChild>
+            <Link href="/eventos" prefetch>
+              Ver todos
+            </Link>
+          </Button>
+        )}
+      </div>
       <EventsWrapper events={docs} />
       <SectionPagination
         scrollId={titleId}
@@ -61,6 +77,13 @@ export default async function EventsSection({
         nextPage={nextPage}
         className="hidden md:flex"
       />
+      {!hideLink && (
+        <Button className="uppercase sm:hidden" asChild>
+          <Link href="/eventos" prefetch>
+            Ver todos
+          </Link>
+        </Button>
+      )}
     </Section>
   );
 }
