@@ -1,35 +1,18 @@
+import { format } from "date-fns";
 import Image from "next/image";
-import React from "react";
 
-interface Member {
-  name: string;
-  avatar: string;
-}
+import { Project } from "@/models/projects";
+
+import { CsiproLogo } from "../socials/logos/csipro-logo";
 
 interface ProjectCardProps {
-  title: string;
-  subtitle: string;
-  description: string;
-  appType: string;
-  members: Member[];
-  date: string;
-  status: "activo" | "inactivo";
-  imageUrl: string;
-  logoUrl: string;
+  project: Project;
 }
 
-export default function ProjectCardTemp({
-  title,
-  subtitle,
-  description,
-  appType,
-  members,
-  date,
-  status,
-  imageUrl,
-  logoUrl,
-}: ProjectCardProps) {
-  const isActive = status === "activo";
+export default function ProjectCardTemp({ project }: ProjectCardProps) {
+  const isActive = project.estado === "Activo";
+  const initialDate = format(new Date(project.fecha_inicio), "dd/MM/yyyy");
+  const members = project.participantes ?? [];
 
   return (
     <div className="w-full rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-80 lg:w-full">
@@ -42,7 +25,7 @@ export default function ProjectCardTemp({
             width={20}
             height={20}
           />
-          <span className="text-sm text-[#9870F4]">{date}</span>
+          <span className="text-sm text-[#9870F4]">{initialDate}</span>
         </div>
         <div
           className={`rounded-full border-2 px-4 py-1 ${
@@ -54,7 +37,7 @@ export default function ProjectCardTemp({
               isActive ? "text-[#00C792]" : "text-[#FFA500]"
             }`}
           >
-            {status.toUpperCase()}
+            {project.estado.toUpperCase()}
           </span>
         </div>
       </div>
@@ -64,8 +47,8 @@ export default function ProjectCardTemp({
       <div className="flex flex-row gap-2 md:flex-col">
         <div className="relative h-48 w-44 overflow-hidden rounded-2xl md:mt-4 md:w-full">
           <Image
-            src={imageUrl}
-            alt={`Imagen del proyecto ${title}`}
+            src={`https://admin.csipro.isi.unison.mx${project.imagen_principal.url}`}
+            alt={project.imagen_principal.alt}
             className="h-full w-full object-cover"
             width={176}
             height={192}
@@ -75,21 +58,25 @@ export default function ProjectCardTemp({
         <div className="flex flex-1 flex-col justify-between gap-2">
           <div>
             <div className="flex items-center gap-2">
-              <Image
-                src={logoUrl}
-                alt="logo del proyecto"
-                className="size-7"
-                width={28}
-                height={28}
-              />
-              <h2 className="text-sm font-bold">{title}</h2>
+              <div className="w-8">
+                <CsiproLogo className="fill-white" />
+              </div>
+              <h2 className="text-sm font-bold">{project.nombre}</h2>
             </div>
-            <h3 className="text-sm font-semibold text-[#A1A1AA]">{subtitle}</h3>
+            <h3 className="text-sm font-semibold text-[#A1A1AA]">
+              {project.subtitulo}
+            </h3>
             <p className="mt-2 line-clamp-5 text-xs text-[#C8C4D6]  md:line-clamp-3">
-              {description}
+              lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <p className="mt-2 text-sm font-semibold text-[#A1A1AA]">
-              {appType}
+              {project.tipo_sistema}
             </p>
           </div>
         </div>
@@ -111,8 +98,8 @@ export default function ProjectCardTemp({
             {members.slice(0, 4).map((member, idx) => (
               <div key={idx} className="size-7 overflow-hidden rounded-full">
                 <Image
-                  src={member.avatar}
-                  alt={`Avatar de ${member.name}`}
+                  src={`https://admin.csipro.isi.unison.mx${member.foto.url}`}
+                  alt={member.foto.alt}
                   className="h-full w-full object-cover"
                   width={28}
                   height={28}

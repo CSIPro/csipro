@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState, useRef } from "react";
-
 import { Footer } from "@/components/footer/footer";
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
 import { Navbar } from "@/components/navbar/navbar";
@@ -9,89 +5,19 @@ import ProjectCardTemp from "@/components/project-card-temp/project-card-temp";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
+import { fetchProjects } from "@/services/projects";
 
-interface Project {
-  title: string;
-  subtitle: string;
-  description: string;
-  appType: string;
-  date: string;
-  status: "activo" | "inactivo";
-  imageUrl: string;
-  logoUrl: string;
-  members: { name: string; avatar: string }[];
+interface Props {
+  searchParams?: {
+    page?: string;
+  };
 }
 
-const allProjects: Project[] = Array.from({ length: 100 }, (_, i) => ({
-  title: `Proyecto ${i + 1}`,
-  subtitle: `Subtitulo del proyecto ${i + 1}`,
-  description: `Descripción del proyecto ${i + 1}`,
-  appType: "APLICACIÓN WEB",
-  date: "22/12/2025",
-  status: "activo",
-  imageUrl: "/imagenes-temp/alfa.png",
-  logoUrl: "/csipro.svg",
-  members: Array.from({ length: 10 }, () => ({
-    name: "karla",
-    avatar: "/miembros/miembro-del-mes.png",
-  })),
-}));
+export default async function Page({ searchParams }: Props) {
+  const limit = 6;
+  const currentPage = parseInt(searchParams?.page ?? "1");
 
-export default function Page() {
-  const [projectsToShow, setProjectsToShow] = useState<Project[]>([]);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const loadMoreRef = useRef(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const isDesktop = window.innerWidth >= 768;
-      setItemsPerPage(isDesktop ? 24 : 10);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    setProjectsToShow(allProjects.slice(0, itemsPerPage * page));
-  }, [page, itemsPerPage]);
-
-  useEffect(() => {
-    if (isLoading) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const first = entries[0];
-        if (
-          first.isIntersecting &&
-          projectsToShow.length < allProjects.length
-        ) {
-          setIsLoading(true);
-
-          setTimeout(() => {
-            setPage((prev) => prev + 1);
-            setIsLoading(false);
-          }, 1000);
-        }
-      },
-      {
-        rootMargin: "100px",
-      },
-    );
-
-    const currentElement = loadMoreRef.current;
-    if (currentElement) {
-      observer.observe(currentElement);
-    }
-
-    return () => {
-      if (currentElement) {
-        observer.unobserve(currentElement);
-      }
-    };
-  }, [projectsToShow, isLoading]);
+  const projects = await fetchProjects(limit, currentPage);
 
   return (
     <>
@@ -189,18 +115,10 @@ export default function Page() {
         </GlowContainer>
 
         <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 md:px-4 lg:grid-cols-3">
-          {projectsToShow.map((project, index) => (
-            <ProjectCardTemp key={index} {...project} />
+          {projects.docs.map((project) => (
+            <ProjectCardTemp key={project.id} project={project} />
           ))}
         </div>
-
-        <div ref={loadMoreRef} />
-
-        {isLoading && (
-          <div className="col-span-full flex items-center justify-center py-8">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-          </div>
-        )}
       </Section>
       <Footer />
     </>
