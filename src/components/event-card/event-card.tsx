@@ -102,7 +102,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                 className="object-scale-down"
               />
               {isScheduled && (
-                <div className="absolute bottom-0 left-0 right-0 bg-primary px-2 text-center text-[10px] font-semibold text-white">
+                <div className="absolute bottom-0 left-0 right-0 bg-primary px-2 text-center text-sm font-semibold text-white">
                   {props.spots === 1
                     ? "1 cupo disponilbe"
                     : `${props.spots} cupos disponibles`}
@@ -115,17 +115,17 @@ export const EventCard: React.FC<EventCardProps> = ({
                 <h2 className="line-clamp-2 text-sm font-semibold">
                   {props.title}
                 </h2>
-                <div className="flex items-center gap-2 text-[10px]">
+                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
                   <IoLocationSharp />
                   <span>{props.location}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-[10px]">
+                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
                   <FaRegCalendar />
                   <span>{format(nextDate, "PPP", { locale: es })}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-[10px]">
+                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
                   <IoStopwatchOutline />
                   <span>{format(nextDate, "hh:mm aaaa", { locale: es })}</span>
                 </div>
