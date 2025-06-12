@@ -24,7 +24,7 @@ export const Footer: FC<FooterProps> = (props) => {
         props.className,
       )}
     >
-      <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 p-4">
+      <div className="mx-auto flex max-w-8xl flex-col items-start gap-4 p-4">
         <div className="flex items-center justify-center gap-4">
           <div className="flex aspect-square w-10 items-center justify-center rounded-sm bg-primary p-1.5">
             <Image

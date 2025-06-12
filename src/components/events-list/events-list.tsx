@@ -1,34 +1,26 @@
 import { fetchEvents } from "@/services/events";
 
-import { EventsWrapper } from "./events-wrapper";
+import { EventCard } from "../event-card/event-card";
 import { Glow, GlowContainer, GlowGroup } from "../glow/glow";
 import { Section } from "../section/section";
 import { SectionPagination } from "../section-pagination/section-pagination";
 import { SectionTitle } from "../section-title/section-title";
 
-export default async function EventsSection({
-  limit,
-  currentPage,
-  pageLimit = 5,
-  title = "Nuevos eventos",
-}: {
-  limit: number;
+interface Props {
   currentPage: number;
-  pageLimit?: number;
-  title?: string;
-}) {
-  const eventsRes = await fetchEvents(limit, currentPage);
+  limit: number;
+}
 
-  const totalPages = Math.min(
-    Math.ceil(eventsRes.totalDocs / limit),
-    pageLimit,
-  );
+export async function EventsList({ currentPage, limit }: Props) {
+  const eventsRes = await fetchEvents(limit, currentPage);
+  const totalPages = Math.min(Math.ceil(eventsRes.totalDocs / limit), 5);
   const { docs, page, prevPage, nextPage } = eventsRes;
 
-  const titleId = "events-section-title";
+  const titleId = "events-page-title";
 
   return (
-    <Section>
+    <Section className="hidden max-[540px]:flex">
+      <SectionTitle id={titleId}>EVENTOS</SectionTitle>
       <GlowContainer>
         <GlowGroup className="origin-[12%_50%] 2xl:origin-[25%_50%]">
           <Glow
@@ -51,15 +43,28 @@ export default async function EventsSection({
           />
         </GlowGroup>
       </GlowContainer>
-      <SectionTitle id={titleId}>{title}</SectionTitle>
-      <EventsWrapper events={docs} />
+
+      {docs.map((event) => (
+        <EventCard
+          key={`event-${event.id}`}
+          variant="compact"
+          type={event.tipo}
+          duration={event.duracion}
+          title={event.titulo}
+          image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
+          imageAlt={event.imagen_principal.alt}
+          dates={event.fechas_horas}
+          location={event.lugar}
+          spots={Math.max(event.cupos - event.asistentes.length, 0)}
+        />
+      ))}
+
       <SectionPagination
-        scrollId={titleId}
         currentPage={page}
         totalPages={totalPages}
         prevPage={prevPage}
         nextPage={nextPage}
-        className="hidden md:flex"
+        scrollId={titleId}
       />
     </Section>
   );

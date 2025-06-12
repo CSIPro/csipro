@@ -2,8 +2,7 @@ import { FC, ReactNode } from "react";
 
 import { Event } from "@/models/events";
 
-import { EventsPagination, EventsPaginationProps } from "./events-pagination";
-import EventCard from "../event-card/event-card";
+import { EventCard } from "../event-card/event-card";
 import {
   Carousel,
   CarouselContent,
@@ -11,17 +10,14 @@ import {
   CarouselNavigation,
 } from "../ui/carousel";
 
-interface EventsWrapperProps extends EventsPaginationProps {
+interface EventsWrapperProps {
   events: Array<Event>;
 }
 
-export const EventsWrapper: FC<EventsWrapperProps> = ({
-  events,
-  ...paginationProps
-}) => {
+export const EventsWrapper: FC<EventsWrapperProps> = ({ events }) => {
   return (
     <>
-      <DesktopEvents {...paginationProps}>
+      <DesktopEvents>
         {events.map((event) => (
           <EventCard
             key={event.id}
@@ -56,21 +52,15 @@ export const EventsWrapper: FC<EventsWrapperProps> = ({
   );
 };
 
-interface DesktopEventsProps extends EventsPaginationProps {
+interface DesktopEventsProps {
   children: ReactNode;
 }
 
-const DesktopEvents: FC<DesktopEventsProps> = ({
-  children,
-  ...paginationProps
-}) => {
+const DesktopEvents: FC<DesktopEventsProps> = ({ children }) => {
   return (
-    <>
-      <div className="hidden w-full flex-col items-center gap-3 px-4 md:grid md:grid-cols-2 md:items-center md:justify-items-center md:gap-4 lg:grid-cols-3">
-        {children}
-      </div>
-      <EventsPagination {...paginationProps} />
-    </>
+    <div className="hidden w-full flex-col items-center gap-3 px-4 md:grid md:grid-cols-2 md:items-center md:justify-items-center md:gap-4 lg:grid-cols-3">
+      {children}
+    </div>
   );
 };
 

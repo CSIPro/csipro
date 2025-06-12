@@ -3,6 +3,8 @@
 import { Search } from "lucide-react";
 import { FC, useEffect, useState } from "react";
 
+import { Button } from "../ui/button";
+
 interface SearchBarProps {
   shortPlaceholder?: string;
   longPlaceholder?: string;
@@ -39,12 +41,9 @@ export const SearchBar: FC<SearchBarProps> = ({
             placeholder={placeholder}
             className="w-full bg-transparent px-2 py-2 text-sm text-white placeholder-white/60 focus:outline-none"
           />
-          <button
-            type="button"
-            className=" bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-violet-700"
-          >
+          <Button className="rounded-l-none bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors">
             Buscar
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -2,7 +2,9 @@
 
 import { useEffect, useState, useRef } from "react";
 
+import { Footer } from "@/components/footer/footer";
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
+import { Navbar } from "@/components/navbar/navbar";
 import ProjectCardTemp from "@/components/project-card-temp/project-card-temp";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
@@ -93,6 +95,7 @@ export default function Page() {
 
   return (
     <>
+      <Navbar title="Proyectos" />
       <Section>
         <div className="absolute left-1/2 top-0 z-0 h-[50%] w-full max-w-6xl -translate-x-1/2 overflow-hidden ">
           <svg
@@ -199,6 +202,7 @@ export default function Page() {
           </div>
         )}
       </Section>
+      <Footer />
     </>
   );
 }
