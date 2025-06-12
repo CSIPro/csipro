@@ -56,8 +56,8 @@ export default async function Home({
           </GlowGroup>*/}
         </GlowContainer>
 
-        <div className="px-4 pt-10  sm:pb-6 sm:pt-20">
-          <h1 className="text-center text-4xl font-bold  sm:text-6xl ">
+        <div className="px-4 pt-10 sm:pb-4 sm:pt-12">
+          <h1 className="text-center text-4xl font-bold md:text-5xl lg:text-6xl">
             Un espacio de <span className="text-primary">desarrollo</span>,
             <br />
             <span className="text-primary"> innovación</span> &
@@ -68,13 +68,10 @@ export default async function Home({
             </span>
           </h1>
         </div>
-        <Button
-          variant="outline"
-          className="px-4 py-4 text-[14px] font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl "
-        >
+        <Button className="px-4 py-4 font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl ">
           Get Started
         </Button>
-        <div className="sm:py-5"></div>
+        <div className="sm:py-1"></div>
 
         <HeroCarousel images={dummyImages}>
           {dummyImages.map((img) => (
@@ -89,7 +86,7 @@ export default async function Home({
             </HeroCard>
           ))}
         </HeroCarousel>
-        <div className="py-7 sm:py-24"></div>
+        <div className="py-7 sm:py-12"></div>
       </Section>
 
       <Section>
