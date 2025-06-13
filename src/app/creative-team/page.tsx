@@ -1,3 +1,4 @@
+import { CreativeTeamCard } from "@/components/creative-team-card/creative-team-card";
 import { Glow, GlowContainer } from "@/components/glow/glow";
 import { MisionCard } from "@/components/mision-card/mision-card";
 import { Navbar } from "@/components/navbar/navbar";
@@ -37,8 +38,17 @@ export default async function Page() {
 
       <Section>
         <SectionTitle> MISIÓN </SectionTitle>
-        <div className="px-32">
+        <div className="px-32 pb-12">
           <MisionCard></MisionCard>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionTitle> EQUIPO CREATIVO </SectionTitle>
+        <div className="flex flex-col items-center justify-center gap-8 px-32 pb-12 lg:flex-row">
+          <CreativeTeamCard />
+          <CreativeTeamCard />
+          <CreativeTeamCard />
         </div>
       </Section>
     </>
