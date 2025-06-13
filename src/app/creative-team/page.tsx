@@ -1,7 +1,8 @@
 import { Glow, GlowContainer } from "@/components/glow/glow";
+import { MisionCard } from "@/components/mision-card/mision-card";
 import { Navbar } from "@/components/navbar/navbar";
-import { SectionTitle } from "@/components/section-title/section-title";
 import { Section } from "@/components/section/section";
+import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
 
 export default async function Page() {
@@ -36,6 +37,9 @@ export default async function Page() {
 
       <Section>
         <SectionTitle> MISIÓN </SectionTitle>
+        <div className="p-6">
+          <MisionCard></MisionCard>
+        </div>
       </Section>
     </>
   );
