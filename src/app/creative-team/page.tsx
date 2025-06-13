@@ -37,7 +37,7 @@ export default async function Page() {
 
       <Section>
         <SectionTitle> MISIÓN </SectionTitle>
-        <div className="p-6">
+        <div className="px-32">
           <MisionCard></MisionCard>
         </div>
       </Section>

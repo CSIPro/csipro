@@ -15,7 +15,7 @@ export function MisionCard() {
         </p>
       </div>
 
-      <div className="w-full p-6 lg:w-1/3">
+      <div className="w-full lg:w-1/3">
         <Image
           width={400}
           height={600}
