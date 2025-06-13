@@ -11,6 +11,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "admin.csipro.isi.unison.mx",
         port: "",
+        pathname: "/api/media/**",
+      },
+      {
+        protocol: "https",
+        hostname: "admin.csipro.isi.unison.mx",
+        port: "",
         pathname: "/media/**",
       },
     ],

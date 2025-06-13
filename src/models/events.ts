@@ -37,7 +37,7 @@ export const Event = z.object({
   tipo: z.string(),
   titulo: z.string(),
   fechas_horas: z.array(EventDate),
-  descripcion: z.array(z.object({})).optional(),
+  descripcion: z.object({}).optional(),
   asistentes: z.array(Attendant),
   requisitos: z.array(EventRequirement),
   publicaciones: z.array(EventPost),
