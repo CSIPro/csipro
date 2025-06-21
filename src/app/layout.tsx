@@ -2,7 +2,12 @@ import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import {
+  Just_Me_Again_Down_Here,
+  Poppins,
+  Klee_One,
+  Gochi_Hand,
+} from "next/font/google";
 
 import { AppProviders } from "@/context/providers";
 
@@ -12,7 +17,25 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const fonts = `${GeistSans.variable} ${poppins.variable} font-sans`;
+const justMeAgainDownHere = Just_Me_Again_Down_Here({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-just-me-again-down-here",
+});
+
+const kleeOne = Klee_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-klee-one",
+});
+
+const gochiHand = Gochi_Hand({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-gochi-hand",
+});
+
+const fonts = `${GeistSans.variable} ${poppins.variable} ${justMeAgainDownHere.variable} font-sans ${kleeOne.variable} ${gochiHand.variable}`;
 
 export const metadata: Metadata = {
   title: "CSI PRO",

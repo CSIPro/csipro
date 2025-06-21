@@ -78,11 +78,12 @@ export default async function Page({
           <p className="justify-center p-2 text-center text-base sm:text-xl">
             Inscribete para ampliar tus conocimientos
           </p>
-
-          <SearchBar
-            shortPlaceholder="Buscar eventos..."
-            longPlaceholder="Busca eventos, por categoría, organizador, orador..."
-          />
+          <div className="rounded-2xl border border-[#281D3A] p-3 shadow-inner lg:p-4">
+            <SearchBar
+              shortPlaceholder="Buscar eventos..."
+              longPlaceholder="Busca eventos, por categoría, organizador, orador..."
+            />
+          </div>
 
           <p className="justify-center p-2 text-center text-base sm:text-xl">
             Enterate al instante en nuestras redes sociales
