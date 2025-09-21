@@ -6,7 +6,7 @@ import { FC } from "react";
 import { DiTerminal } from "react-icons/di";
 
 import { Button } from "@/components/ui/button";
-import { SocialMedia } from "@/models/social-media";
+import { PopulatedSocialMedia } from "@/models/social-media";
 
 import { Position } from "./../../models/positions";
 import { MemberBadge } from "./member-badge";
@@ -15,7 +15,7 @@ import { NameDisplay } from "./name-display";
 type MappedNetworks = {
   id: string;
   link: string;
-  social_media: SocialMedia;
+  social_media: PopulatedSocialMedia;
 };
 
 interface MemberCardProps {
