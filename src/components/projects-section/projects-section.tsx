@@ -3,7 +3,7 @@ import {
   generateEmptyResponse,
 } from "@/models/cms-response";
 
-import { Project } from "../../models/projects";
+import { PopulatedProject } from "../../models/projects";
 import { ProjectCard } from "../project-card/project-card";
 import {
   Carousel,
@@ -26,7 +26,7 @@ const fetchProjects = async () => {
     return generateEmptyResponse();
   }
 
-  const ProjectsResponse = createResponseSchema(Project);
+  const ProjectsResponse = createResponseSchema(PopulatedProject);
 
   const projectsData = await projectsRes.json();
 

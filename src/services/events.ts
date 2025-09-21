@@ -8,7 +8,8 @@ export const fetchEvents = async (limit: number, currentPage: number) => {
   const eventsRes = await fetch(
     `https://admin.csipro.isi.unison.mx/api/eventos/?limit=${limit}&page=${currentPage}`,
     {
-      next: { revalidate: 600 },
+      // next: { revalidate: 600 },
+      cache: "no-store",
     },
   );
 

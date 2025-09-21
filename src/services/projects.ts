@@ -2,7 +2,7 @@ import {
   createResponseSchema,
   generateEmptyResponse,
 } from "@/models/cms-response";
-import { Project } from "@/models/projects";
+import { PopulatedProject } from "@/models/projects";
 
 export const fetchProjects = async (limit: number, currentPage: number) => {
   const projectRes = await fetch(
@@ -16,7 +16,7 @@ export const fetchProjects = async (limit: number, currentPage: number) => {
     return generateEmptyResponse();
   }
 
-  const ProjectResponse = createResponseSchema(Project);
+  const ProjectResponse = createResponseSchema(PopulatedProject);
 
   const projectsData = await projectRes.json();
 

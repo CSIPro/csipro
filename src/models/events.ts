@@ -5,7 +5,7 @@ import { Member } from "./members";
 import { SocialMedia } from "./social-media";
 
 export const EventDate = z.object({
-  id: z.number(),
+  id: z.string(),
   fecha_hora: z.string().datetime(),
 });
 
@@ -37,7 +37,7 @@ export const Event = z.object({
   tipo: z.string(),
   titulo: z.string(),
   fechas_horas: z.array(EventDate),
-  descripcion: z.object({}).optional(),
+  descripcion: z.object({}).passthrough().nullable(),
   asistentes: z.array(Attendant),
   requisitos: z.array(EventRequirement),
   publicaciones: z.array(EventPost),
