@@ -2,7 +2,7 @@ import {
   createResponseSchema,
   generateEmptyResponse,
 } from "@/models/cms-response";
-import { Member } from "@/models/members";
+import { PopulatedMember } from "@/models/members";
 
 import { MembersWrapper } from "./members-wrapper";
 import FilterSection from "../filter-section/filter-section";
@@ -17,9 +17,10 @@ const fetchMembers = async (limit: number, currentPage: number) => {
     return generateEmptyResponse();
   }
 
-  const MembersResponse = createResponseSchema(Member);
+  const MembersResponse = createResponseSchema(PopulatedMember);
 
   const membersData = await membersRes.json();
+  console.log(membersData);
 
   const members = MembersResponse.safeParse(membersData);
 

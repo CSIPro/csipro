@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, ReactNode } from "react";
 
-import { Member } from "@/models/members";
+import { PopulatedMember } from "@/models/members";
 
 import {
   MembersPagination,
   MembersPaginationProps,
 } from "./members-pagination";
-import MemberCard from "../member-card/member-card";
+import { MemberCard } from "../member-card/member-card";
 
 interface MembersWrapperProps extends MembersPaginationProps {
-  members: Array<Member>;
+  members: Array<PopulatedMember>;
 }
 
 export const MembersWrapper: FC<MembersWrapperProps> = ({
@@ -22,34 +21,34 @@ export const MembersWrapper: FC<MembersWrapperProps> = ({
       {members.map((member) => (
         <MemberCard
           key={member.id}
-          names={member.nombres}
-          lastnames={member.apellidos}
+          name={member.nombres}
+          lastName={member.apellidos}
           email={member.email}
           networks={
             member.redes
-              ? member.redes.map((item: any) => ({
+              ? member.redes.map((item) => ({
                   id: item.id,
                   link: item.link,
                   social_media: {
-                    id: item.nombre.id || item.id,
-                    nombre: item.nombre.nombre,
-                    logo: item.nombre.logo,
-                    logo_monocromatico:
-                      item.nombre.logo_monocromatico || item.logo_monocromatico,
+                    id: item.red.id,
+                    nombre: item.red.nombre,
+                    logo: item.red.logo,
+                    logo_monocromatico: item.red.logo_monocromatico,
                   },
                 }))
               : []
           }
-          entrydate={member.fecha_entrada}
-          photo={`https://admin.csipro.isi.unison.mx${member.foto.url}`}
-          photoalt={member.foto.alt}
+          joinDate={member.fecha_entrada}
+          projectCount={member.proyectos.totalDocs}
+          profilePicture={`https://admin.csipro.isi.unison.mx${member.foto.url}`}
+          profilePictureAlt={member.foto.alt}
           position={
             member.cargo
               ? Array.isArray(member.cargo)
                 ? member.cargo
                 : [
                     typeof member.cargo === "string"
-                      ? { id: "", nombre: member.cargo }
+                      ? { id: 0, nombre: member.cargo }
                       : { id: member.cargo.id, nombre: member.cargo.nombre },
                   ]
               : []

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const Media = z.object({
-  id: z.string(),
+  id: z.number(),
   alt: z.string(),
   filename: z.string(),
   mimeType: z.string(),
