@@ -1,3 +1,4 @@
+import { API_URL } from "@/lib/utils";
 import {
   createResponseSchema,
   generateEmptyResponse,
@@ -6,7 +7,7 @@ import { PopulatedProject } from "@/models/projects";
 
 export const fetchProjects = async (limit: number, currentPage: number) => {
   const projectRes = await fetch(
-    `https://admin.csipro.isi.unison.mx/api/proyectos?limit=${limit}&page=${currentPage}`,
+    `${API_URL}/proyectos?limit=${limit}&page=${currentPage}`,
     {
       next: { revalidate: 600 },
     },

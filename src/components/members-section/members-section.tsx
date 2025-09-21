@@ -1,3 +1,4 @@
+import { API_URL } from "@/lib/utils";
 import {
   createResponseSchema,
   generateEmptyResponse,
@@ -9,7 +10,7 @@ import FilterSection from "../filter-section/filter-section";
 
 const fetchMembers = async (limit: number, currentPage: number) => {
   const membersRes = await fetch(
-    `https://admin.csipro.isi.unison.mx/api/miembros/?limit=${limit}&page=${currentPage}`,
+    `${API_URL}/miembros/?limit=${limit}&page=${currentPage}`,
     { cache: "no-store" },
   );
 
@@ -20,7 +21,6 @@ const fetchMembers = async (limit: number, currentPage: number) => {
   const MembersResponse = createResponseSchema(PopulatedMember);
 
   const membersData = await membersRes.json();
-  console.log(membersData);
 
   const members = MembersResponse.safeParse(membersData);
 

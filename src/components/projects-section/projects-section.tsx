@@ -1,3 +1,4 @@
+import { API_URL } from "@/lib/utils";
 import {
   createResponseSchema,
   generateEmptyResponse,
@@ -15,12 +16,9 @@ import {
 } from "../ui/carousel";
 
 const fetchProjects = async () => {
-  const projectsRes = await fetch(
-    "https://admin.csipro.isi.unison.mx/api/proyectos",
-    {
-      cache: "no-store",
-    },
-  );
+  const projectsRes = await fetch(`${API_URL}/proyectos`, {
+    cache: "no-store",
+  });
 
   if (!projectsRes.ok) {
     return generateEmptyResponse();

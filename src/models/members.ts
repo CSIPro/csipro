@@ -3,7 +3,7 @@ import { z } from "zod";
 import { Media } from "./media";
 import { Position } from "./positions";
 import { Project } from "./projects";
-import { SocialMedia } from "./social-media";
+import { PopulatedSocialMedia, SocialMedia } from "./social-media";
 
 export const Member = z.object({
   id: z.number(),
@@ -33,5 +33,12 @@ export const PopulatedMember = Member.extend({
     hasNextPage: z.boolean(),
     totalDocs: z.number(),
   }),
+  redes: z
+    .object({
+      id: z.string(),
+      red: PopulatedSocialMedia,
+      link: z.string().url(),
+    })
+    .array(),
 });
 export type PopulatedMember = z.infer<typeof PopulatedMember>;
