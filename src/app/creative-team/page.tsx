@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { CreativeTeamCard } from "@/components/creative-team-card/creative-team-card";
 import { Glow, GlowContainer } from "@/components/glow/glow";
 import { MisionCard } from "@/components/mision-card/mision-card";
@@ -5,6 +7,7 @@ import { Navbar } from "@/components/navbar/navbar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
+import { MarqueeItem, MarqueeWrapper } from "@/components/ui/marquee";
 
 export default async function Page() {
   return (
@@ -29,6 +32,44 @@ export default async function Page() {
               Detrás del monitor estamos nosotros: ideas, café y pasión por
               construir experiencias que inspiran.
             </p>
+            <MarqueeWrapper>
+              <MarqueeItem>
+                <Image
+                  src="/creative-team/og-team.webp"
+                  alt="Nuestro equipo"
+                  width={200}
+                  height={180}
+                  className="size-full object-cover"
+                />
+              </MarqueeItem>
+              <MarqueeItem>
+                <Image
+                  src="/creative-team/creative-team-3.webp"
+                  alt="Nuestro equipo"
+                  width={130}
+                  height={180}
+                  className="size-full object-cover"
+                />
+              </MarqueeItem>
+              <MarqueeItem>
+                <Image
+                  src="/creative-team/creative-team-1.webp"
+                  alt="Nuestro equipo"
+                  width={130}
+                  height={180}
+                  className="size-full object-cover"
+                />
+              </MarqueeItem>
+              <MarqueeItem>
+                <Image
+                  src="/creative-team/creative-team-2.webp"
+                  alt="Nuestro equipo"
+                  width={130}
+                  height={180}
+                  className="size-full object-cover"
+                />
+              </MarqueeItem>
+            </MarqueeWrapper>
             <Button className="mt-4 px-4 py-4 font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl">
               Más del proyecto
             </Button>
