@@ -1,12 +1,12 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-"use client";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { FC } from "react";
 import { DiTerminal } from "react-icons/di";
 
 import { Button } from "@/components/ui/button";
-import { SocialMedia } from "@/models/social-media";
+import { PopulatedSocialMedia } from "@/models/social-media";
 
 import { Position } from "./../../models/positions";
 import { MemberBadge } from "./member-badge";
@@ -15,21 +15,22 @@ import { NameDisplay } from "./name-display";
 type MappedNetworks = {
   id: string;
   link: string;
-  social_media: SocialMedia;
+  social_media: PopulatedSocialMedia;
 };
 
 interface MemberCardProps {
-  names: string;
-  lastnames: string;
+  name: string;
+  lastName: string;
   email: string;
   networks: Array<MappedNetworks>;
-  entrydate: string;
-  photo: string;
-  photoalt: string;
+  joinDate: string | null;
+  profilePicture: string;
+  profilePictureAlt: string;
   position: Array<Position>;
+  projectCount: number;
 }
 
-const MemberCard: React.FC<MemberCardProps> = (props) => {
+export const MemberCard: FC<MemberCardProps> = (props) => {
   const colors = [
     "#7145D6",
     "#FF9E45",
@@ -47,13 +48,8 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
     const shuffled = [...colors].sort(() => 0.5 - Math.random());
     return { color1: shuffled[0], color2: shuffled[1] };
   };
-  // eslint-disable-next-line import/no-named-as-default-member
-  const { color1, color2 } = React.useMemo(() => getRandomColors(), []);
-  const entryDateObj = new Date(props.entrydate);
-  const formattedDate =
-    entryDateObj.toLocaleString("default", { month: "short" }) +
-    " " +
-    entryDateObj.getFullYear();
+
+  const { color1, color2 } = getRandomColors();
 
   return (
     <div className="max-md:w-[185px] max-md:items-center max-md:justify-center max-sm:w-[150px]">
@@ -73,8 +69,8 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
         <div className="relative h-52 overflow-hidden rounded max-md:flex max-md:h-[175px] max-md:w-[175px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[135px] max-sm:w-[135px] md:w-full">
           <Image
             fill
-            src={props.photo}
-            alt={props.photoalt}
+            src={props.profilePicture}
+            alt={props.profilePictureAlt}
             className="object-cover"
           />
         </div>
@@ -82,15 +78,13 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
         <div className="flex flex-col items-center justify-center gap-3 py-2 max-md:hidden">
           <div className="flex flex-col items-center justify-center gap-1">
             <div className="flex w-full items-center justify-center">
-              <h1 className="text-center text-xl font-bold text-white">
-                <NameDisplay names={props.names} lastnames={props.lastnames} />
-              </h1>
+              <NameDisplay names={props.name} lastnames={props.lastName} />
             </div>
 
             <div className="flex w-full items-center justify-center">
               <h1 className="text-center text-sm font-normal text-white">
                 <MemberBadge
-                  entryDate={props.entrydate}
+                  entryDate={props.joinDate}
                   position={props.position}
                 />
               </h1>
@@ -117,10 +111,6 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
                       className="size-5"
                       width={32}
                       height={32}
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src =
-                          "/default-social-icon.png";
-                      }}
                     />
                   </Link>
                 );
@@ -131,14 +121,16 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
           <hr className="w-full border border-[#2D1B55]" />
 
           <div className="flex items-center">
-            <h1 className="text-sm font-light text-white/80">
-              Miembro desde {formattedDate}
-            </h1>
+            {props.joinDate ? (
+              <h1 className="text-sm font-light text-white/80">
+                {`Miembro desde ${format(new Date(props.joinDate), "LLL yyyy", { locale: es })}`}
+              </h1>
+            ) : null}
           </div>
 
           <div className="flex items-center gap-4 text-white">
             <DiTerminal size={30} />
-            <h1 className="text-lg font-bold">5 Proyectos</h1>
+            <h1 className="text-lg font-bold">{`${props.projectCount} Proyecto${props.projectCount !== 1 ? "s" : ""}`}</h1>
           </div>
 
           <div className="flex justify-center">
@@ -152,13 +144,13 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
         <div className="flex w-full flex-col items-center justify-center space-y-2">
           <div className="flex w-full items-center justify-center">
             <h1 className="text-center text-xl font-bold text-white">
-              <NameDisplay names={props.names} lastnames={props.lastnames} />
+              <NameDisplay names={props.name} lastnames={props.lastName} />
             </h1>
           </div>
           <div className="flex w-full items-center justify-center">
             <h1 className="text-center text-sm font-normal text-white">
               <MemberBadge
-                entryDate={props.entrydate}
+                entryDate={props.joinDate}
                 position={props.position}
               />
             </h1>
@@ -184,10 +176,6 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
                     className="size-5"
                     width={32}
                     height={32}
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src =
-                        "/default-social-icon.png";
-                    }}
                   />
                 </Link>
               );
@@ -203,5 +191,3 @@ const MemberCard: React.FC<MemberCardProps> = (props) => {
     </div>
   );
 };
-
-export default MemberCard;
