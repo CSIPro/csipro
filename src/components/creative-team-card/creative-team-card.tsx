@@ -1,7 +1,11 @@
+"use client";
+
 import { cva, VariantProps } from "class-variance-authority";
 import Image from "next/image";
+import Link from "next/link";
 import { FC, ReactNode } from "react";
 
+import { useMemberByName } from "@/hooks/use-members";
 import { cn } from "@/lib/utils";
 
 import { Button, ButtonProps } from "../ui/button";
@@ -138,6 +142,37 @@ export const CreativeTeamCardRole: FC<CreativeTeamCardContentProps> = ({
   );
 };
 
-export const CreativeTeamCardButton: FC<ButtonProps> = (props) => {
-  return <Button {...props} />;
+interface CreativeTeamCardButtonProps extends ButtonProps {
+  memberName: string;
+  memberLastName: string;
+}
+
+export const CreativeTeamCardButton: FC<CreativeTeamCardButtonProps> = ({
+  memberName,
+  memberLastName,
+  ...props
+}) => {
+  const memberQuery = useMemberByName(memberName, memberLastName);
+
+  if (memberQuery.isLoading) {
+    return (
+      <Button disabled {...props}>
+        Cargando...
+      </Button>
+    );
+  }
+
+  if (memberQuery.isError || !memberQuery.data) {
+    return (
+      <Button disabled {...props}>
+        Portafolio no disponible
+      </Button>
+    );
+  }
+
+  return (
+    <Button {...props} asChild>
+      <Link href={`/miembros/${memberQuery.data.slug}`}>Ver portafolio</Link>
+    </Button>
+  );
 };

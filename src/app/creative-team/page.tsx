@@ -9,6 +9,7 @@ import {
   CreativeTeamCardSubtitle,
   CreativeTeamCardTitle,
 } from "@/components/creative-team-card/creative-team-card";
+import { Footer } from "@/components/footer/footer";
 import { Glow, GlowContainer } from "@/components/glow/glow";
 import { MissionCard } from "@/components/mission-card/mission-card";
 import { Navbar } from "@/components/navbar/navbar";
@@ -45,7 +46,7 @@ export default async function Page() {
                 <Image
                   src="/creative-team/og-team.webp"
                   alt="Equipo original del proyecto CSI PRO Website."
-                  width={254}
+                  width={300}
                   height={192}
                   className="size-full object-cover lg:hidden"
                 />
@@ -54,7 +55,7 @@ export default async function Page() {
                 <Image
                   src="/creative-team/creative-team-2.webp"
                   alt="Luis Hernández y Karla Lerma, miembros de CSI PRO."
-                  width={144}
+                  width={180}
                   height={192}
                   className="size-full object-cover lg:hidden"
                 />
@@ -63,7 +64,7 @@ export default async function Page() {
                 <Image
                   src="/creative-team/creative-team-verito.webp"
                   alt="Verónica Rodríguez, líder de CSI PRO (2025)."
-                  width={254}
+                  width={300}
                   height={192}
                   className="size-full object-cover lg:hidden"
                 />
@@ -72,7 +73,7 @@ export default async function Page() {
                 <Image
                   src="/creative-team/creative-team-1.webp"
                   alt="Saúl Ramos y Kevin Ochoa, exlíderes de CSI PRO (2022-2025)."
-                  width={254}
+                  width={300}
                   height={192}
                   className="size-full object-cover lg:hidden"
                 />
@@ -92,8 +93,8 @@ export default async function Page() {
                 <Image
                   src="/creative-team/og-team.webp"
                   alt="Equipo original del proyecto CSI PRO Website."
-                  width={200}
-                  height={240}
+                  width={420}
+                  height={420}
                   className="hidden size-full object-cover lg:block"
                 />
               </MarqueeItem>
@@ -101,8 +102,8 @@ export default async function Page() {
                 <Image
                   src="/creative-team/creative-team-2.webp"
                   alt="Luis Hernández y Karla Lerma, miembros de CSI PRO."
-                  width={200}
-                  height={240}
+                  width={420}
+                  height={420}
                   className="hidden size-full scale-125 object-cover object-[50%_65%] lg:block"
                 />
               </MarqueeItem>
@@ -110,8 +111,8 @@ export default async function Page() {
                 <Image
                   src="/creative-team/creative-team-verito.webp"
                   alt="Verónica Rodríguez, líder de CSI PRO (2025)."
-                  width={200}
-                  height={240}
+                  width={420}
+                  height={420}
                   className="hidden size-full scale-125 object-cover object-[75%_50%] lg:block"
                 />
               </MarqueeItem>
@@ -119,8 +120,8 @@ export default async function Page() {
                 <Image
                   src="/creative-team/creative-team-1.webp"
                   alt="Saúl Ramos y Kevin Ochoa, exlíderes de CSI PRO (2022-2025)."
-                  width={200}
-                  height={240}
+                  width={420}
+                  height={420}
                   className="hidden size-full object-cover object-[55%_50%] lg:block"
                 />
               </MarqueeItem>
@@ -128,8 +129,8 @@ export default async function Page() {
                 <Image
                   src="/creative-team/creative-team-karo.webp"
                   alt="Karolina Badilla, miembro de CSI PRO."
-                  width={200}
-                  height={240}
+                  width={420}
+                  height={420}
                   className="hidden size-full object-cover lg:block"
                 />
               </MarqueeItem>
@@ -165,7 +166,12 @@ export default async function Page() {
                 Líder del equipo + Full Stack Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+            <CreativeTeamCardButton
+              memberName="Saúl Alberto"
+              memberLastName="Ramos Laborín"
+            >
+              Ver Portafolio
+            </CreativeTeamCardButton>
           </CreativeTeamCard>
           <CreativeTeamCard>
             <CreativeTeamCardImage
@@ -183,7 +189,12 @@ export default async function Page() {
                 Diseñadora UX/UI + Full Stack Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+            <CreativeTeamCardButton
+              memberName="Karla Arleth"
+              memberLastName="Lerma Molina"
+            >
+              Ver Portafolio
+            </CreativeTeamCardButton>
           </CreativeTeamCard>
           <CreativeTeamCard>
             <CreativeTeamCardImage
@@ -203,7 +214,12 @@ export default async function Page() {
                 Diseñadora UX/UI + Full Stack Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+            <CreativeTeamCardButton
+              memberName="Karolina Abigail"
+              memberLastName="Badilla Ramírez"
+            >
+              Ver Portafolio
+            </CreativeTeamCardButton>
           </CreativeTeamCard>
           <CreativeTeamCard>
             <CreativeTeamCardImage
@@ -223,7 +239,12 @@ export default async function Page() {
                 Diseñador UX/UI + Front End Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+            <CreativeTeamCardButton
+              memberName="Andrés"
+              memberLastName="Antelo Figueroa"
+            >
+              Ver Portafolio
+            </CreativeTeamCardButton>
           </CreativeTeamCard>
           <CreativeTeamCard>
             <CreativeTeamCardImage
@@ -241,7 +262,12 @@ export default async function Page() {
               </CreativeTeamCardSubtitle>
               <CreativeTeamCardRole>Full Stack Developer</CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+            <CreativeTeamCardButton
+              memberName="Luis Ernesto"
+              memberLastName="Hernández López"
+            >
+              Ver Portafolio
+            </CreativeTeamCardButton>
           </CreativeTeamCard>
           <CreativeTeamCard>
             <CreativeTeamCardImage
@@ -259,7 +285,12 @@ export default async function Page() {
               </CreativeTeamCardSubtitle>
               <CreativeTeamCardRole>Diseñadora UX/UI</CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+            <CreativeTeamCardButton
+              memberName="Verónica"
+              memberLastName="Rodríguez Navarro"
+            >
+              Ver Portafolio
+            </CreativeTeamCardButton>
           </CreativeTeamCard>
           <CreativeTeamCard className="col-span-2">
             <CreativeTeamCardImage
@@ -279,10 +310,16 @@ export default async function Page() {
                 Diseñador UX/UI + Front End Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+            <CreativeTeamCardButton
+              memberName="Kevin"
+              memberLastName="Ochoa Guerrero"
+            >
+              Ver Portafolio
+            </CreativeTeamCardButton>
           </CreativeTeamCard>
         </div>
       </Section>
+      <Footer />
     </>
   );
 }
