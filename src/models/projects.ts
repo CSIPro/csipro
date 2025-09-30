@@ -15,7 +15,14 @@ export const ProjectStatus = z.enum(["Activo", "Inactivo", "Finalizado"]);
 export const Project = z.object({
   id: z.number(),
   nombre: z.string(),
-  participantes: z.number().array(),
+  participantes: z
+    .object({
+      id: z.string(),
+      miembro: z.number(),
+      rol: z.string(),
+      descripcion: z.string(),
+    })
+    .array(),
   tipo_sistema: ProjectType,
   subtitulo: z.string(),
   descripcion: z.object({}).passthrough().nullable(),
