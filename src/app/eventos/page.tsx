@@ -97,7 +97,6 @@ export default async function Page({
           </div>
         </div>
       </Section>
-
       <EventsList currentPage={currentPage} limit={limit} />
 
       <div className="hidden w-full flex-col items-center gap-8 min-[540px]:flex">
@@ -108,8 +107,6 @@ export default async function Page({
           hideLink
         />
       </div>
-
-      <div className="py-8" />
       <Footer />
     </>
   );

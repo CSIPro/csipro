@@ -84,6 +84,7 @@ export default async function EventsSection({
           </Link>
         </Button>
       )}
+      <div className="py-8" />
     </Section>
   );
 }

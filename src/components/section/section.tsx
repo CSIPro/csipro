@@ -18,7 +18,7 @@ export const Section: FC<Props> = (props) => {
     >
       <div
         className={cn(
-          "flex w-full max-w-7xl flex-col items-center justify-center gap-4 lg:border-x lg:border-white lg:border-opacity-10",
+          "flex w-full max-w-8xl flex-col items-center justify-center gap-4 lg:border-x lg:border-white lg:border-opacity-10",
           props.classNameDiv,
         )}
       >

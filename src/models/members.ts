@@ -17,6 +17,8 @@ export const Member = z.object({
       link: z.string().url(),
     }),
   ),
+  portfolio: z.string().url().nullable(),
+  slug: z.string(),
   fecha_entrada: z.string().datetime().nullable(),
   fecha_salida: z.string().datetime().nullable(),
   foto: Media,
