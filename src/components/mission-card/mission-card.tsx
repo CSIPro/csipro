@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-export function MisionCard() {
+export function MissionCard() {
   return (
-    <div className="flex flex-col items-center justify-between gap-6 rounded-xl border border-primary bg-[#160D2A] p-6 shadow-[0_0_12px_rgba(137,84,255,0.2)] lg:flex-row">
+    <div className="flex w-full flex-col items-center justify-between gap-6 rounded-xl border border-primary bg-[#160D2A] p-6 shadow-[0_0_12px_rgba(137,84,255,0.2)] lg:flex-row">
       <div className="w-full lg:w-2/3">
         <h1 className="text-3xl font-semibold text-white">NUESTRA MISIÓN</h1>
         <p className="mt-2 text-lg text-white/70">
@@ -21,7 +21,7 @@ export function MisionCard() {
           height={600}
           src="/miembros/equipo.JPG"
           alt="Creative team"
-          className=" rounded-lg object-cover"
+          className="w-full rounded-lg object-cover"
         />
       </div>
     </div>
