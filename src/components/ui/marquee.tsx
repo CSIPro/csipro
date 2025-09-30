@@ -35,10 +35,10 @@ export const MarqueeItem: FC<MarqueeItemProps> = ({
   innerClassName,
 }) => {
   return (
-    <div className={cn("relative px-2 py-6", className)}>
+    <div className={cn("relative w-full px-2 py-6", className)}>
       <div
         className={cn(
-          "size-full h-48 overflow-hidden rounded-3xl border border-primary shadow-[1px_1px_10px_5px_rgba(95,54,190,0.5)]",
+          "size-full h-48 overflow-hidden rounded-3xl border border-primary shadow-[1px_1px_10px_5px_rgba(95,54,190,0.5)] lg:h-52 xl:h-64",
           innerClassName,
         )}
       >
