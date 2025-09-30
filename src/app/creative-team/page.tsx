@@ -1,6 +1,14 @@
 import Image from "next/image";
 
-import { CreativeTeamCard } from "@/components/creative-team-card/creative-team-card";
+import {
+  CreativeTeamCard,
+  CreativeTeamCardButton,
+  CreativeTeamCardContent,
+  CreativeTeamCardImage,
+  CreativeTeamCardRole,
+  CreativeTeamCardSubtitle,
+  CreativeTeamCardTitle,
+} from "@/components/creative-team-card/creative-team-card";
 import { Glow, GlowContainer } from "@/components/glow/glow";
 import { MissionCard } from "@/components/mission-card/mission-card";
 import { Navbar } from "@/components/navbar/navbar";
@@ -53,7 +61,7 @@ export default async function Page() {
               </MarqueeItem>
               <MarqueeItem>
                 <Image
-                  src="/creative-team/verito.webp"
+                  src="/creative-team/creative-team-verito.webp"
                   alt="Verónica Rodríguez, líder de CSI PRO (2025)."
                   width={254}
                   height={192}
@@ -71,7 +79,7 @@ export default async function Page() {
               </MarqueeItem>
               <MarqueeItem>
                 <Image
-                  src="/creative-team/karo.webp"
+                  src="/creative-team/creative-team-karo.webp"
                   alt="Karolina Badilla, miembro de CSI PRO."
                   width={144}
                   height={192}
@@ -100,7 +108,7 @@ export default async function Page() {
               </MarqueeItem>
               <MarqueeItem>
                 <Image
-                  src="/creative-team/verito.webp"
+                  src="/creative-team/creative-team-verito.webp"
                   alt="Verónica Rodríguez, líder de CSI PRO (2025)."
                   width={200}
                   height={240}
@@ -118,7 +126,7 @@ export default async function Page() {
               </MarqueeItem>
               <MarqueeItem className="translate-y-16 rotate-12 transform">
                 <Image
-                  src="/creative-team/karo.webp"
+                  src="/creative-team/creative-team-karo.webp"
                   alt="Karolina Badilla, miembro de CSI PRO."
                   width={200}
                   height={240}
@@ -142,10 +150,137 @@ export default async function Page() {
 
       <Section>
         <SectionTitle> EQUIPO CREATIVO </SectionTitle>
-        <div className="flex flex-col items-center justify-center gap-8 px-32 pb-12 lg:flex-row">
-          <CreativeTeamCard />
-          <CreativeTeamCard />
-          <CreativeTeamCard />
+        <div className="grid w-full grid-cols-2 items-center justify-center gap-4 px-4 pb-12 lg:flex lg:flex-row lg:flex-wrap lg:px-32">
+          <CreativeTeamCard>
+            <CreativeTeamCardImage
+              src="/creative-team/saul-ramos.png"
+              alt="Saúl Ramos Laborín, presidente de CSI PRO (2023-2025)."
+            />
+            <CreativeTeamCardContent>
+              <CreativeTeamCardTitle>Saúl Ramos Laborín</CreativeTeamCardTitle>
+              <CreativeTeamCardSubtitle>
+                Presidente 2023-2025
+              </CreativeTeamCardSubtitle>
+              <CreativeTeamCardRole>
+                Líder del equipo + Full Stack Developer
+              </CreativeTeamCardRole>
+            </CreativeTeamCardContent>
+            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+          </CreativeTeamCard>
+          <CreativeTeamCard>
+            <CreativeTeamCardImage
+              variant="orange"
+              src="/creative-team/karla-lerma.png"
+              alt="Karla Lerma, presidenta de CSI PRO (2023-2025)."
+              imageClassName="scale-125 object-[50%_25%] translate-x-2"
+            />
+            <CreativeTeamCardContent>
+              <CreativeTeamCardTitle>Karla Lerma Molina</CreativeTeamCardTitle>
+              <CreativeTeamCardSubtitle>
+                Presidenta 2023-2025
+              </CreativeTeamCardSubtitle>
+              <CreativeTeamCardRole>
+                Diseñadora UX/UI + Full Stack Developer
+              </CreativeTeamCardRole>
+            </CreativeTeamCardContent>
+            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+          </CreativeTeamCard>
+          <CreativeTeamCard>
+            <CreativeTeamCardImage
+              variant="pink"
+              src="/creative-team/karolina-badilla.png"
+              alt="Karolina Badilla, miembro de CSI PRO."
+              imageClassName="scale-125 object-[50%_35%]"
+            />
+            <CreativeTeamCardContent>
+              <CreativeTeamCardTitle>
+                Karolina Badilla Ramírez
+              </CreativeTeamCardTitle>
+              <CreativeTeamCardSubtitle>
+                Miembro 2022-2025
+              </CreativeTeamCardSubtitle>
+              <CreativeTeamCardRole>
+                Diseñadora UX/UI + Full Stack Developer
+              </CreativeTeamCardRole>
+            </CreativeTeamCardContent>
+            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+          </CreativeTeamCard>
+          <CreativeTeamCard>
+            <CreativeTeamCardImage
+              variant="cyan"
+              src="/creative-team/andres-antelo.png"
+              alt="Andrés Antelo, miembro de CSI PRO."
+              imageClassName="scale-[150%] object-[60%_50%] -translate-y-2"
+            />
+            <CreativeTeamCardContent>
+              <CreativeTeamCardTitle>
+                Andrés Antelo Figueroa
+              </CreativeTeamCardTitle>
+              <CreativeTeamCardSubtitle>
+                Miembro 2023-2025
+              </CreativeTeamCardSubtitle>
+              <CreativeTeamCardRole>
+                Diseñador UX/UI + Front End Developer
+              </CreativeTeamCardRole>
+            </CreativeTeamCardContent>
+            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+          </CreativeTeamCard>
+          <CreativeTeamCard>
+            <CreativeTeamCardImage
+              variant="lightPurple"
+              src="/creative-team/luis-hernandez.png"
+              alt="Luis Hernández, miembro de CSI PRO."
+              imageClassName="scale-125 object-[50%_30%] -translate-x-2"
+            />
+            <CreativeTeamCardContent>
+              <CreativeTeamCardTitle>
+                Luis Ernesto Hernández López
+              </CreativeTeamCardTitle>
+              <CreativeTeamCardSubtitle>
+                Miembro 2023-2025
+              </CreativeTeamCardSubtitle>
+              <CreativeTeamCardRole>Full Stack Developer</CreativeTeamCardRole>
+            </CreativeTeamCardContent>
+            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+          </CreativeTeamCard>
+          <CreativeTeamCard>
+            <CreativeTeamCardImage
+              variant="red"
+              src="/creative-team/veronica-rodriguez.png"
+              alt="Verónica Rodríguez, presidenta de CSI PRO (2025-actualidad)."
+              imageClassName="scale-125 object-[60%_50%]"
+            />
+            <CreativeTeamCardContent>
+              <CreativeTeamCardTitle>
+                Verónica Rodríguez Navarro
+              </CreativeTeamCardTitle>
+              <CreativeTeamCardSubtitle>
+                Presidenta 2025
+              </CreativeTeamCardSubtitle>
+              <CreativeTeamCardRole>Diseñadora UX/UI</CreativeTeamCardRole>
+            </CreativeTeamCardContent>
+            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+          </CreativeTeamCard>
+          <CreativeTeamCard className="col-span-2">
+            <CreativeTeamCardImage
+              variant="green"
+              src="/creative-team/kevin-ochoa.png"
+              alt="Kevin Ochoa, presidente de CSI PRO (2022-2023)."
+              imageClassName="scale-[130%] object-[40%_50%] -translate-y-4"
+            />
+            <CreativeTeamCardContent>
+              <CreativeTeamCardTitle>
+                Kevin Ochoa Guerrero
+              </CreativeTeamCardTitle>
+              <CreativeTeamCardSubtitle>
+                Presidente 2022-2023
+              </CreativeTeamCardSubtitle>
+              <CreativeTeamCardRole>
+                Diseñador UX/UI + Front End Developer
+              </CreativeTeamCardRole>
+            </CreativeTeamCardContent>
+            <CreativeTeamCardButton>Ver Portafolio</CreativeTeamCardButton>
+          </CreativeTeamCard>
         </div>
       </Section>
     </>
