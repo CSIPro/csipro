@@ -1,13 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaLink } from "react-icons/fa6";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
 import { MdOutlineFileDownload } from "react-icons/md";
 
+import EventsSection from "@/components/events-section/events-section";
 import { Footer } from "@/components/footer/footer";
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import GradientBackground from "@/components/gradient-background/gradient-background";
 import { Navbar } from "@/components/navbar/navbar";
+import ProjectsSection from "@/components/projects-section/projects-section";
 import { Section } from "@/components/section/section";
+import { SectionTitle } from "@/components/section-title/section-title";
 import {
   Facebook,
   GitHub,
@@ -15,6 +19,7 @@ import {
   LinkedIn,
   Twitter,
 } from "@/components/socials/socials";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -24,7 +29,13 @@ import {
 } from "@/components/ui/carousel";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams?: {
+    page?: string;
+  };
+}) {
   const invoices = [
     {
       invoice: "Carrera",
@@ -51,6 +62,13 @@ export default function Page() {
       value: "Tailwind CSS, Next.js, React.js",
     },
   ];
+  const images = [
+    { index: 1, src: "taylor_carrusel.jpg", alt: "teilor-1" },
+    { index: 2, src: "taylor_carrusel_2.jpg", alt: "teilor-2" },
+    { index: 3, src: "taylor_carrusel_3.jpg", alt: "teilor-3" },
+  ];
+  const limit = 3;
+  const currentPage = Number(searchParams?.page) || 1;
   return (
     <>
       <Navbar titles={["TEAM", "HISTORIA", "MIEMBROS", "NOSOTROS"]} />
@@ -75,27 +93,27 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="display inline-flex w-1/2 justify-center max-lg:w-full max-lg:gap-3 lg:gap-4 lg:px-20">
-            <div className="group relative h-full bg-[#16131F] max-md:flex max-md:h-[185px] max-md:w-[185px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[150px] max-sm:w-[150px] md:w-[280px] md:p-2 md:px-[15px]">
-              <div className="flex items-end max-lg:gap-3 lg:flex-col lg:space-y-4">
+          <div className="inline-flex justify-center gap-3 px-20">
+            <div className="group relative flex items-center justify-center rounded-full bg-[#16131F] sm:h-[150px] sm:w-[150px]">
+              <div className="flex items-end gap-3">
                 <div
-                  className="absolute inset-[-2px] z-[-1] bg-gradient-to-br opacity-80 max-md:rounded-full"
+                  className="absolute inset-[-2px] z-[-1] rounded-full opacity-80"
                   style={{
                     background: `linear-gradient(145deg, #1E7C63, #16131F, #9E33B9`,
                   }}
                 ></div>
                 <div
-                  className="absolute inset-[-3px] z-[-2] bg-gradient-to-br  blur-[50px] transition-opacity group-hover:opacity-50"
+                  className="absolute inset-[-3px] z-[-2] rounded-full blur-[50px] transition-opacity group-hover:opacity-50"
                   style={{
                     background: `linear-gradient(145deg, #1E7C63, #16131F, #9E33B9`,
                   }}
                 ></div>
-                <div className="relative h-52 overflow-hidden rounded max-md:flex max-md:h-[175px] max-md:w-[175px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[135px] max-sm:w-[135px] md:w-full">
+                <div className="relative flex h-[175px] w-[175px] items-center justify-center rounded-full sm:h-[135px] sm:w-[135px]">
                   <Image
                     fill
                     src="taylor_graduada.jpg"
                     alt="teilor"
-                    className="object-cover"
+                    className="rounded-full object-cover"
                     unoptimized
                   />
                 </div>
@@ -105,43 +123,23 @@ export default function Page() {
         </div>
       </Section>
       <Section>
-        <div className="mt-28 inline-flex w-full items-center justify-center px-20">
+        <div className="mt-28 inline-flex w-full items-center justify-center px-20 pb-16">
           <div className="w-full">
             <Carousel className="mx-auto w-full max-w-[600px]">
               <CarouselContent>
-                <CarouselItem>
-                  <div className="relative aspect-square">
-                    <Image
-                      src="taylor_carrusel.jpg"
-                      alt="teilor"
-                      className="h-full w-full rounded-md object-cover"
-                      fill
-                      unoptimized
-                    />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="relative aspect-square">
-                    <Image
-                      src="taylor_carrusel_2.jpg"
-                      alt="teilor"
-                      className="h-full w-full rounded-md object-cover"
-                      fill
-                      unoptimized
-                    />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="relative aspect-square">
-                    <Image
-                      src="taylor_carrusel_3.jpg"
-                      alt="teilor"
-                      className="h-full w-full rounded-md object-cover"
-                      fill
-                      unoptimized
-                    />
-                  </div>
-                </CarouselItem>
+                {images.map((image) => (
+                  <CarouselItem key={image.index}>
+                    <div className="relative aspect-square">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        className="h-full w-full rounded-md object-cover"
+                        fill
+                        unoptimized
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
               </CarouselContent>
               <CarouselPrevious />
               <CarouselNext />
@@ -187,8 +185,8 @@ export default function Page() {
           </div>
         </div>
       </Section>
-      <Section className="pb-16 pt-16">
-        <div className="inline-flex w-full items-center justify-center gap-10 px-20">
+      <Section>
+        <div className="inline-flex w-full items-center justify-center gap-10 px-20 pb-16">
           <div>
             <h1 className="text-center font-justme text-6xl font-normal text-[#9870F4]">
               Información
@@ -223,6 +221,42 @@ export default function Page() {
             </div>
           </div>
         </div>
+      </Section>
+      <Section>
+        <div className="inline-flex w-full items-center justify-center px-20 pb-16">
+          <div className="w-full space-y-9">
+            <h1 className="text-center font-justme text-6xl font-normal text-[#FF9E45]">
+              Intereses profesionales
+            </h1>
+            <p className="text-lg text-stone-300">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doS
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur.
+            </p>
+          </div>
+        </div>
+      </Section>
+      <Section className="pb-16">
+        <EventsSection limit={limit} currentPage={currentPage} pageLimit={2} />
+      </Section>
+      <Section classNameDiv="pb-16">
+        <div className="flex w-full items-center justify-between pr-4">
+          <SectionTitle>Mis proyectos</SectionTitle>
+          <Button className="hidden uppercase sm:inline-flex">
+            <Link href="/proyectos" prefetch>
+              Ver todos
+            </Link>
+          </Button>
+        </div>
+        <ProjectsSection />
+        <Button className="uppercase sm:hidden">
+          <Link href="/proyectos" prefetch>
+            Ver todos
+          </Link>
+        </Button>
       </Section>
       <Footer />
     </>
