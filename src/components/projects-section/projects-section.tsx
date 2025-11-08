@@ -1,9 +1,10 @@
+import { API_URL } from "@/lib/utils";
 import {
   createResponseSchema,
   generateEmptyResponse,
 } from "@/models/cms-response";
 
-import { Project } from "../../models/projects";
+import { PopulatedProject } from "../../models/projects";
 import { ProjectCard } from "../project-card/project-card";
 import {
   Carousel,
@@ -15,18 +16,15 @@ import {
 } from "../ui/carousel";
 
 const fetchProjects = async () => {
-  const projectsRes = await fetch(
-    "https://admin.csipro.isi.unison.mx/api/proyectos",
-    {
-      cache: "no-store",
-    },
-  );
+  const projectsRes = await fetch(`${API_URL}/proyectos`, {
+    cache: "no-store",
+  });
 
   if (!projectsRes.ok) {
     return generateEmptyResponse();
   }
 
-  const ProjectsResponse = createResponseSchema(Project);
+  const ProjectsResponse = createResponseSchema(PopulatedProject);
 
   const projectsData = await projectsRes.json();
 

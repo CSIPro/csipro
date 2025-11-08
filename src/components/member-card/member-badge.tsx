@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 interface MemberBadgeProps {
-  entryDate: string | Date;
+  entryDate: string | Date | null;
   position: { nombre: string }[];
 }
 

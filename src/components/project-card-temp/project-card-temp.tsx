@@ -1,12 +1,12 @@
 import { format } from "date-fns";
 import Image from "next/image";
 
-import { Project } from "@/models/projects";
+import { PopulatedProject } from "@/models/projects";
 
 import { CsiproLogo } from "../socials/logos/csipro-logo";
 
 interface ProjectCardProps {
-  project: Project;
+  project: PopulatedProject;
 }
 
 export default function ProjectCardTemp({ project }: ProjectCardProps) {

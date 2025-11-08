@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 
 export const NameDisplay: React.FC<{ names: string; lastnames: string }> = ({

@@ -153,14 +153,14 @@ export default async function Home({
       <Section classNameDiv="pb-16">
         <div className="flex w-full items-center justify-between pr-4">
           <SectionTitle>Nuestros proyectos</SectionTitle>
-          <Button className="hidden uppercase sm:inline-flex">
+          <Button asChild className="hidden uppercase sm:inline-flex">
             <Link href="/proyectos" prefetch>
               Ver todos
             </Link>
           </Button>
         </div>
         <ProjectsSection />
-        <Button className="uppercase sm:hidden">
+        <Button asChild className="uppercase sm:hidden">
           <Link href="/proyectos" prefetch>
             Ver todos
           </Link>

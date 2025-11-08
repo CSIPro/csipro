@@ -14,10 +14,15 @@ jobs:
       BRIDGE_HOSTNAME: ${{ secrets.BRIDGE_HOSTNAME }}
       PRODUCTION_HOSTNAME: ${{ secrets.PRODUCTION_HOSTNAME }}
       DEPLOY_USERNAME: ${{ secrets.DEPLOY_USERNAME }}
+      ENV_VARS: ${{ secrets.ENV_VARS }}
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Generate .env file
+        run: |
+          echo "$ENV_VARS" > .env.local
 
       - name: Set up SSH
         run: |

@@ -1,12 +1,13 @@
+import { API_URL } from "@/lib/utils";
 import {
   createResponseSchema,
   generateEmptyResponse,
 } from "@/models/cms-response";
-import { Project } from "@/models/projects";
+import { PopulatedProject } from "@/models/projects";
 
 export const fetchProjects = async (limit: number, currentPage: number) => {
   const projectRes = await fetch(
-    `https://admin.csipro.isi.unison.mx/api/proyectos?limit=${limit}&page=${currentPage}`,
+    `${API_URL}/proyectos?limit=${limit}&page=${currentPage}`,
     {
       next: { revalidate: 600 },
     },
@@ -16,7 +17,7 @@ export const fetchProjects = async (limit: number, currentPage: number) => {
     return generateEmptyResponse();
   }
 
-  const ProjectResponse = createResponseSchema(Project);
+  const ProjectResponse = createResponseSchema(PopulatedProject);
 
   const projectsData = await projectRes.json();
 
