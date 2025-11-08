@@ -6,7 +6,7 @@ import { PersonalInterest } from "./personal-interest";
 import { Position } from "./positions";
 import { Project } from "./projects";
 import { PopulatedSocialMedia, SocialMedia } from "./social-media";
-import { Technology } from "./technology";
+import { PopulatedTechnology, Technology } from "./technology";
 
 export const Member = z.object({
   id: z.number(),
@@ -29,9 +29,9 @@ export const Member = z.object({
   fecha_salida: z.string().datetime().nullable(),
   foto: Media,
   "fotos-secundarias": Media.array(),
-  carrera: Degree,
+  carrera: Degree.nullable(),
   tecnologias: Technology.array(),
-  cargo: Position.or(z.string()),
+  cargo: Position.or(z.string()).nullable(),
   intereses: PersonalInterest.array(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
@@ -52,5 +52,6 @@ export const PopulatedMember = Member.extend({
       link: z.string().url(),
     })
     .array(),
+  tecnologias: PopulatedTechnology.array(),
 });
 export type PopulatedMember = z.infer<typeof PopulatedMember>;

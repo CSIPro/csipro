@@ -24,7 +24,7 @@ export const fetchProjects = async (limit: number, currentPage: number) => {
   const projects = ProjectResponse.safeParse(projectsData);
 
   if (!projects.success) {
-    console.log(projects.error);
+    console.log(projects.error.format());
     return generateEmptyResponse();
   }
 

@@ -3,11 +3,11 @@ import React from "react";
 
 import { Button } from "@/components/ui/button";
 import { Media } from "@/models/media";
-import { Technology } from "@/models/technology";
+import { PopulatedTechnology } from "@/models/technology";
 
 type MappedTechnology = {
   id: string;
-  tecnologia: Technology;
+  tecnologia: PopulatedTechnology;
 };
 
 interface ProjectCardProps {

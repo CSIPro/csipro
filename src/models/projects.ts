@@ -2,7 +2,8 @@ import { z } from "zod";
 
 import { Media } from "./media";
 import { Member } from "./members";
-import { Technology } from "./technology";
+import { PopulatedTechnology } from "./technology";
+import { Role } from "./role";
 
 export const ProjectType = z.enum([
   "Aplicación Web",
@@ -40,10 +41,29 @@ export const Project = z.object({
 export type Project = z.infer<typeof Project>;
 
 export const PopulatedProject = Project.extend({
-  participantes: z.array(z.lazy(() => Member)),
+  participantes: z
+    .object({
+      id: z.string(),
+      miembro: z.lazy(() => Member),
+      descripcion: z.string(),
+      roles: z
+        .object({
+          id: z.string(),
+          rol: Role,
+        })
+        .array(),
+    })
+    .array(),
   imagen_principal: Media,
-  imagenes_secundarias: z.array(Media).optional(),
-  tecnologias: z.array(z.object({ id: z.string(), tecnologia: Technology })),
+  imagenes_secundarias: z
+    .object({
+      id: z.string(),
+      imagen: Media,
+    }).array()
+    .optional(),
+  tecnologias: z.array(
+    z.object({ id: z.string(), tecnologia: PopulatedTechnology }),
+  ),
 });
 
 export type PopulatedProject = z.infer<typeof PopulatedProject>;
