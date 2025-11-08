@@ -2,8 +2,8 @@ import { z } from "zod";
 
 import { Media } from "./media";
 import { Member } from "./members";
-import { PopulatedTechnology } from "./technology";
 import { Role } from "./role";
+import { PopulatedTechnology } from "./technology";
 
 export const ProjectType = z.enum([
   "Aplicación Web",
