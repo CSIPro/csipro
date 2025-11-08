@@ -59,7 +59,8 @@ export const PopulatedProject = Project.extend({
     .object({
       id: z.string(),
       imagen: Media,
-    }).array()
+    })
+    .array()
     .optional(),
   tecnologias: z.array(
     z.object({ id: z.string(), tecnologia: PopulatedTechnology }),
