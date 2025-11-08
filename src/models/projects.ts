@@ -20,7 +20,7 @@ export const Project = z.object({
     .object({
       id: z.string(),
       miembro: z.number(),
-      rol: z.string(),
+      roles: z.string().array(),
       descripcion: z.string(),
     })
     .array(),
@@ -28,7 +28,9 @@ export const Project = z.object({
   subtitulo: z.string(),
   descripcion: z.object({}).passthrough().nullable(),
   imagen_principal: z.number(),
-  imagenes_secundarias: z.number().array(),
+  imagenes_secundarias: z
+    .object({ id: z.string(), imagen: z.number() })
+    .array(),
   tecnologias: z.object({ id: z.string(), tecnologia: z.number() }).array(),
   fecha_inicio: z.string().datetime(),
   fecha_termino: z.string().datetime().nullable(),
