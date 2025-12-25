@@ -1,9 +1,8 @@
+import { Cake, Download, LinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaLink } from "react-icons/fa6";
-import { LiaBirthdayCakeSolid } from "react-icons/lia";
-import { MdOutlineFileDownload } from "react-icons/md";
 
+import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
 import { Footer } from "@/components/footer/footer";
 import { GlowContainer, Glow } from "@/components/glow/glow";
@@ -24,10 +23,17 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNavigation,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function Page({
   searchParams,
@@ -36,39 +42,15 @@ export default function Page({
     page?: string;
   };
 }) {
-  const invoices = [
-    {
-      invoice: "Carrera",
-      value: "Ingeriería en Sistemas de Información",
-    },
-    {
-      invoice: "Estado",
-      value: "Egresado",
-    },
-    {
-      invoice: "Correo institucional",
-      value: "a220210687@unison.mx",
-    },
-    {
-      invoice: "Ingreso al CSI Pro",
-      value: "22 de diciembre del 2022",
-    },
-    {
-      invoice: "Puesto en CSI Pro",
-      value: "Miembro",
-    },
-    {
-      invoice: "Tecnologías preferidas",
-      value: "Tailwind CSS, Next.js, React.js",
-    },
-  ];
   const images = [
     { index: 1, src: "taylor_carrusel.jpg", alt: "teilor-1" },
     { index: 2, src: "taylor_carrusel_2.jpg", alt: "teilor-2" },
     { index: 3, src: "taylor_carrusel_3.jpg", alt: "teilor-3" },
   ];
+
   const limit = 3;
   const currentPage = Number(searchParams?.page) || 1;
+
   return (
     <>
       <Navbar titles={["TEAM", "HISTORIA", "MIEMBROS", "NOSOTROS"]} />
@@ -77,25 +59,25 @@ export default function Page({
         <GlowContainer className="">
           <Glow className="left-[65%] bg-[radial-gradient(circle,rgba(170,13,255,0.1)_35%,rgba(255,58,235,0)_30%)]" />
         </GlowContainer>
-        <div className="z-10 h-full w-full items-center justify-center pt-20 lg:flex">
+        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-3 pt-10">
           <div className="flex h-full w-1/2 flex-col justify-center space-y-[48px] max-lg:w-full max-lg:p-1 lg:pl-4">
             <div className="space-y-[26px] text-left">
               <div className="space-y-3 text-center">
-                <h1 className="font-justme text-6xl font-normal max-lg:text-center">
+                <span className="select-none font-justme text-4xl font-normal max-lg:text-center">
                   Hello, I am
-                </h1>
-                <h1 className="font-poppins text-4xl font-bold max-lg:text-center">
+                </span>
+                <h1 className="font-poppins text-2xl font-bold max-lg:text-center">
                   Karolina Badilla Ramirez
                 </h1>
-                <h1 className="font-klee text-2xl font-light max-lg:text-center">
+                <p className="font-klee text-base font-light max-lg:text-center">
                   Frontend developer, UX/UI Designer
-                </h1>
+                </p>
               </div>
             </div>
           </div>
-          <div className="inline-flex justify-center gap-3 px-20">
-            <div className="group relative flex items-center justify-center rounded-full bg-[#16131F] sm:h-[150px] sm:w-[150px]">
-              <div className="flex items-end gap-3">
+          <div className="inline-flex w-full justify-center gap-3 px-20">
+            <div className="group relative flex w-full items-center justify-center rounded-full bg-[#16131F] sm:h-[150px] sm:w-[150px]">
+              <div className="flex w-full items-end gap-3">
                 <div
                   className="absolute inset-[-2px] z-[-1] rounded-full opacity-80"
                   style={{
@@ -108,12 +90,12 @@ export default function Page({
                     background: `linear-gradient(145deg, #1E7C63, #16131F, #9E33B9`,
                   }}
                 ></div>
-                <div className="relative flex h-[175px] w-[175px] items-center justify-center rounded-full sm:h-[135px] sm:w-[135px]">
+                <div className="relative aspect-square w-full rounded-full">
                   <Image
                     fill
                     src="taylor_graduada.jpg"
                     alt="teilor"
-                    className="rounded-full object-cover"
+                    className="size-full rounded-full object-cover"
                     unoptimized
                   />
                 </div>
@@ -123,17 +105,17 @@ export default function Page({
         </div>
       </Section>
       <Section>
-        <div className="mt-28 inline-flex w-full items-center justify-center px-20 pb-16">
+        <div className="flex w-full flex-col-reverse gap-6 pt-10">
           <div className="w-full">
-            <Carousel className="mx-auto w-full max-w-[600px]">
-              <CarouselContent>
+            <Carousel>
+              <CarouselContent className="-ml-4 h-96 w-full">
                 {images.map((image) => (
-                  <CarouselItem key={image.index}>
-                    <div className="relative aspect-square">
+                  <CarouselItem key={image.index} className="basis-5/6 pl-4">
+                    <div className="relative size-full overflow-hidden rounded-md">
                       <Image
                         src={image.src}
                         alt={image.alt}
-                        className="h-full w-full rounded-md object-cover"
+                        className="h-full w-full object-cover"
                         fill
                         unoptimized
                       />
@@ -141,16 +123,17 @@ export default function Page({
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious className="max-lg:hidden" />
+              <CarouselNext className="max-lg:hidden" />
+              <CarouselNavigation name={`Galería de Karolina Badilla`} />
             </Carousel>
           </div>
-          <div className="space-y-5 px-8 pl-16">
+          <div className="space-y-5 px-4">
             <div className="w-full space-y-4">
-              <h1 className="font-justme text-6xl font-normal text-white">
+              <h2 className="font-justme text-5xl font-normal text-white">
                 About me
-              </h1>
-              <p className="text-lg text-stone-300">
+              </h2>
+              <p className="text-base text-stone-300">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -159,75 +142,119 @@ export default function Page({
                 nulla pariatur. Novia de Andrés
               </p>
             </div>
-            <div className="inline-flex w-full items-center justify-end space-x-2">
-              <LiaBirthdayCakeSolid />
-              <h1>22 de diciembre</h1>
+            <div className="inline-flex w-full items-center justify-start gap-2">
+              <Cake size={20} />
+              <span aria-label="Fecha de nacimiento">22 de diciembre</span>
             </div>
-            <div className="flex w-full items-center justify-between">
-              <div className="gap flex gap-5">
-                <button className="gap flex items-center gap-2 rounded-lg bg-gradient-to-br from-[#582AC2] to-[#9870F4] px-6 py-3 text-white transition-all">
-                  <MdOutlineFileDownload />
+            <div className="flex w-full flex-wrap items-center justify-between gap-2">
+              <div className="flex w-full gap-2">
+                <Button className="w-full gap-2 bg-gradient-to-br from-[#582AC2] to-[#9870F4] text-white transition-all">
+                  <Download size={16} />
                   Descargar CV
-                </button>
-                <button className="flex items-center gap-2 rounded-lg bg-gradient-to-br from-[#07B98A] to-[#1BBD92] px-6 py-3 text-white transition-all">
-                  <FaLink />
+                </Button>
+                <Button className="w-full gap-2 bg-gradient-to-br from-[#07B98A] to-[#1BBD92] text-white transition-all">
+                  <LinkIcon size={16} />
                   Link
-                </button>
+                </Button>
               </div>
-              <div className="flex gap-2 max-lg:justify-center">
-                <Twitter className="h-4 w-4" />
-                <Facebook className="h-4 w-4" />
-                <Instagram className="h-4 w-4" />
-                <LinkedIn className="h-4 w-4" />
-                <GitHub className="h-4 w-4" />
+              <div className="flex w-full justify-evenly">
+                <Twitter className="size-6" />
+                <Facebook className="size-6" />
+                <Instagram className="size-6" />
+                <LinkedIn className="size-6" />
+                <GitHub className="size-6" />
               </div>
             </div>
           </div>
         </div>
       </Section>
       <Section>
-        <div className="inline-flex w-full items-center justify-center gap-10 px-20 pb-16">
+        <div className="flex w-full flex-col items-center justify-center gap-10 pb-8 pt-10">
           <div>
-            <h1 className="text-center font-justme text-6xl font-normal text-[#9870F4]">
+            <h2 className="text-center font-justme text-5xl font-normal text-[#9870F4]">
               Información
-            </h1>
+            </h2>
             <Table>
-              <TableBody>
-                {invoices.map((invoice) => (
-                  <TableRow key={invoice.invoice}>
-                    <TableCell className="font-black">
-                      {invoice.invoice}
-                    </TableCell>
-                    <TableCell>{invoice.value}</TableCell>
-                  </TableRow>
-                ))}
+              <TableBody className="text-sm">
+                <TableRow>
+                  <TableHead className="font-bold">Carrera</TableHead>
+                  <TableCell>Ingeniería en Sistemas de Información</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHead className="font-bold">Estado</TableHead>
+                  <TableCell>Egresado</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHead className="font-bold">
+                    Correo institucional
+                  </TableHead>
+                  <TableCell>a220210687@unison.mx</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHead className="font-bold">
+                    Ingreso al CSI PRO
+                  </TableHead>
+                  <TableCell>08 de agosto de 2022</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHead className="font-bold">Puesto en CSI PRO</TableHead>
+                  <TableCell>Miembro</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHead className="font-bold">
+                    Tecnologías preferidas
+                  </TableHead>
+                  <TableCell>
+                    <div className="flex flex-wrap gap-2">
+                      <Chip>
+                        <ChipIcon></ChipIcon>
+                        <ChipLabel>Tailwind CSS</ChipLabel>
+                      </Chip>
+                      <Chip>
+                        <ChipIcon></ChipIcon>
+                        <ChipLabel>Next.js</ChipLabel>
+                      </Chip>
+                      <Chip>
+                        <ChipIcon></ChipIcon>
+                        <ChipLabel>React</ChipLabel>
+                      </Chip>
+                    </div>
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </div>
-          <div className="">
-            <div className="space-y-2 bg-[#9870F4] p-3 text-center">
-              <p className="text-center text-xl font-normal">
-                Participacion en
-              </p>
-              <h1 className="text-6xl font-black">3</h1>
-              <p className="text-2xl font-bold">PROYECTOS</p>
+        </div>
+      </Section>
+      <Section>
+        <div className="flex w-full flex-col gap-8 px-4 py-8">
+          <h2 className="font-justme text-5xl text-[#9870F4]">
+            He participado en
+          </h2>
+
+          <div className="flex flex-col gap-2 rounded-3xl bg-gradient-to-b from-primary/10 from-25% via-transparent via-50% to-[#D48842]/10 to-75%">
+            <div className="flex items-center justify-center rounded-3xl rounded-b-xl border-2 border-b-0 border-primary py-4">
+              <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#9870F4]">
+                3 proyectos
+              </span>
             </div>
-            <div className="space-y-2 bg-[#D48842] p-3 text-center">
-              <p className="text-center text-xl font-normal">
-                Participacion en
-              </p>
-              <h1 className="text-6xl font-black">10</h1>
-              <p className="text-2xl font-bold">EVENTOS</p>
+            <span className="text-center font-justme text-2xl leading-none">
+              y
+            </span>
+            <div className="flex items-center justify-center rounded-3xl rounded-t-xl border-2 border-t-0 border-[#FF9E45] py-4">
+              <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#FF9E45]">
+                10 eventos
+              </span>
             </div>
           </div>
         </div>
       </Section>
       <Section>
-        <div className="inline-flex w-full items-center justify-center px-20 pb-16">
+        <div className="inline-flex w-full items-center justify-center px-4 pb-16 pt-8">
           <div className="w-full space-y-9">
-            <h1 className="text-center font-justme text-6xl font-normal text-[#FF9E45]">
+            <h2 className="font-justme text-5xl font-normal text-[#FF9E45]">
               Intereses profesionales
-            </h1>
+            </h2>
             <p className="text-lg text-stone-300">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doS
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
