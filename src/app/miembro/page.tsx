@@ -59,24 +59,24 @@ export default function Page({
         <GlowContainer className="">
           <Glow className="left-[65%] bg-[radial-gradient(circle,rgba(170,13,255,0.1)_35%,rgba(255,58,235,0)_30%)]" />
         </GlowContainer>
-        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-3 pt-10">
-          <div className="flex h-full w-1/2 flex-col justify-center space-y-[48px] max-lg:w-full max-lg:p-1 lg:pl-4">
+        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-3 pt-10 lg:flex-row">
+          <div className="flex h-full flex-col justify-center space-y-[48px] max-lg:w-full max-lg:p-1 lg:pl-4">
             <div className="space-y-[26px] text-left">
               <div className="space-y-3 text-center">
-                <span className="select-none font-justme text-4xl font-normal max-lg:text-center">
+                <span className="select-none font-justme text-4xl font-normal max-lg:text-center lg:text-5xl">
                   Hello, I am
                 </span>
-                <h1 className="font-poppins text-2xl font-bold max-lg:text-center">
+                <h1 className="font-poppins text-2xl font-bold lg:text-5xl">
                   Karolina Badilla Ramirez
                 </h1>
-                <p className="font-klee text-base font-light max-lg:text-center">
+                <p className="font-klee text-base font-light lg:text-2xl">
                   Frontend developer, UX/UI Designer
                 </p>
               </div>
             </div>
           </div>
-          <div className="inline-flex w-full justify-center gap-3 px-20">
-            <div className="group relative flex w-full items-center justify-center rounded-full bg-[#16131F] sm:h-[150px] sm:w-[150px]">
+          <div className="inline-flex w-full justify-center gap-3 px-20 lg:w-auto">
+            <div className="group relative flex w-full items-center justify-center rounded-full bg-[#16131F] sm:h-[150px] sm:w-[150px] lg:size-[20rem]">
               <div className="flex w-full items-end gap-3">
                 <div
                   className="absolute inset-[-2px] z-[-1] rounded-full opacity-80"
@@ -105,29 +105,7 @@ export default function Page({
         </div>
       </Section>
       <Section>
-        <div className="flex w-full flex-col-reverse gap-6 pt-10">
-          <div className="w-full">
-            <Carousel>
-              <CarouselContent className="-ml-4 h-96 w-full">
-                {images.map((image) => (
-                  <CarouselItem key={image.index} className="basis-5/6 pl-4">
-                    <div className="relative size-full overflow-hidden rounded-md">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        className="h-full w-full object-cover"
-                        fill
-                        unoptimized
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="max-lg:hidden" />
-              <CarouselNext className="max-lg:hidden" />
-              <CarouselNavigation name={`Galería de Karolina Badilla`} />
-            </Carousel>
-          </div>
+        <div className="flex w-full flex-col gap-6 pt-10 lg:flex-row-reverse lg:gap-12">
           <div className="space-y-5 px-4">
             <div className="w-full space-y-4">
               <h2 className="font-justme text-5xl font-normal text-white">
@@ -147,17 +125,17 @@ export default function Page({
               <span aria-label="Fecha de nacimiento">22 de diciembre</span>
             </div>
             <div className="flex w-full flex-wrap items-center justify-between gap-2">
-              <div className="flex w-full gap-2">
-                <Button className="w-full gap-2 bg-gradient-to-br from-[#582AC2] to-[#9870F4] text-white transition-all">
+              <div className="flex w-full gap-2 lg:w-auto">
+                <Button className="w-full gap-2 bg-gradient-to-br from-[#582AC2] to-[#9870F4] text-white transition-all lg:w-auto">
                   <Download size={16} />
                   Descargar CV
                 </Button>
-                <Button className="w-full gap-2 bg-gradient-to-br from-[#07B98A] to-[#1BBD92] text-white transition-all">
+                <Button className="w-full gap-2 bg-gradient-to-br from-[#07B98A] to-[#1BBD92] text-white transition-all lg:w-auto">
                   <LinkIcon size={16} />
                   Link
                 </Button>
               </div>
-              <div className="flex w-full justify-evenly">
+              <div className="flex w-full justify-evenly lg:w-auto lg:gap-4">
                 <Twitter className="size-6" />
                 <Facebook className="size-6" />
                 <Instagram className="size-6" />
@@ -166,85 +144,112 @@ export default function Page({
               </div>
             </div>
           </div>
-        </div>
-      </Section>
-      <Section>
-        <div className="flex w-full flex-col items-center justify-center gap-10 pb-8 pt-10">
-          <div>
-            <h2 className="text-center font-justme text-5xl font-normal text-[#9870F4]">
-              Información
-            </h2>
-            <Table>
-              <TableBody className="text-sm">
-                <TableRow>
-                  <TableHead className="font-bold">Carrera</TableHead>
-                  <TableCell>Ingeniería en Sistemas de Información</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHead className="font-bold">Estado</TableHead>
-                  <TableCell>Egresado</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHead className="font-bold">
-                    Correo institucional
-                  </TableHead>
-                  <TableCell>a220210687@unison.mx</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHead className="font-bold">
-                    Ingreso al CSI PRO
-                  </TableHead>
-                  <TableCell>08 de agosto de 2022</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHead className="font-bold">Puesto en CSI PRO</TableHead>
-                  <TableCell>Miembro</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHead className="font-bold">
-                    Tecnologías preferidas
-                  </TableHead>
-                  <TableCell>
-                    <div className="flex flex-wrap gap-2">
-                      <Chip>
-                        <ChipIcon></ChipIcon>
-                        <ChipLabel>Tailwind CSS</ChipLabel>
-                      </Chip>
-                      <Chip>
-                        <ChipIcon></ChipIcon>
-                        <ChipLabel>Next.js</ChipLabel>
-                      </Chip>
-                      <Chip>
-                        <ChipIcon></ChipIcon>
-                        <ChipLabel>React</ChipLabel>
-                      </Chip>
+          <div className="w-full">
+            <Carousel>
+              <CarouselContent className="-ml-4 h-96 w-full lg:aspect-[7/8] lg:h-auto">
+                {images.map((image) => (
+                  <CarouselItem
+                    key={image.index}
+                    className="basis-5/6 pl-4 lg:basis-full"
+                  >
+                    <div className="relative size-full overflow-hidden rounded-md">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        className="h-full w-full object-cover"
+                        fill
+                        unoptimized
+                      />
                     </div>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="max-lg:hidden" />
+              <CarouselNext className="max-lg:hidden" />
+              <CarouselNavigation name={`Galería de Karolina Badilla`} />
+            </Carousel>
           </div>
         </div>
       </Section>
       <Section>
-        <div className="flex w-full flex-col gap-8 px-4 py-8">
-          <h2 className="font-justme text-5xl text-[#9870F4]">
-            He participado en
-          </h2>
-
-          <div className="flex flex-col gap-2 rounded-3xl bg-gradient-to-b from-primary/10 from-25% via-transparent via-50% to-[#D48842]/10 to-75%">
-            <div className="flex items-center justify-center rounded-3xl rounded-b-xl border-2 border-b-0 border-primary py-4">
-              <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#9870F4]">
-                3 proyectos
-              </span>
+        <div className="flex w-full flex-col items-center justify-center gap-10 pb-8 pt-10 lg:flex-row lg:items-start lg:justify-between lg:gap-4">
+          <div className="flex flex-col lg:w-2/3">
+            <h2 className="px-4 font-justme text-5xl font-normal text-[#9870F4]">
+              Información
+            </h2>
+            <div className="lg:px-4">
+              <Table>
+                <TableBody className="text-sm">
+                  <TableRow>
+                    <TableHead className="font-bold">Carrera</TableHead>
+                    <TableCell>Ingeniería en Sistemas de Información</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableHead className="font-bold">Estado</TableHead>
+                    <TableCell>Egresado</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableHead className="font-bold">
+                      Correo institucional
+                    </TableHead>
+                    <TableCell>a220210687@unison.mx</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableHead className="font-bold">
+                      Ingreso al CSI PRO
+                    </TableHead>
+                    <TableCell>08 de agosto de 2022</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableHead className="font-bold">
+                      Puesto en CSI PRO
+                    </TableHead>
+                    <TableCell>Miembro</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableHead className="font-bold">
+                      Tecnologías preferidas
+                    </TableHead>
+                    <TableCell>
+                      <div className="flex flex-wrap gap-2">
+                        <Chip>
+                          <ChipIcon></ChipIcon>
+                          <ChipLabel>Tailwind CSS</ChipLabel>
+                        </Chip>
+                        <Chip>
+                          <ChipIcon></ChipIcon>
+                          <ChipLabel>Next.js</ChipLabel>
+                        </Chip>
+                        <Chip>
+                          <ChipIcon></ChipIcon>
+                          <ChipLabel>React</ChipLabel>
+                        </Chip>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </div>
-            <span className="text-center font-justme text-2xl leading-none">
-              y
-            </span>
-            <div className="flex items-center justify-center rounded-3xl rounded-t-xl border-2 border-t-0 border-[#FF9E45] py-4">
-              <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#FF9E45]">
-                10 eventos
+          </div>
+          <div className="flex w-full flex-col gap-8 px-4 py-8 lg:w-1/2">
+            <h3 className="font-justme text-4xl text-[#9870F4]">
+              He participado en
+            </h3>
+
+            <div className="flex flex-col gap-2 rounded-3xl bg-gradient-to-b from-primary/10 from-25% via-transparent via-50% to-[#D48842]/10 to-75%">
+              <div className="flex items-center justify-center rounded-3xl rounded-b-xl border-2 border-b-0 border-primary py-4">
+                <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#9870F4]">
+                  3 proyectos
+                </span>
+              </div>
+              <span className="text-center font-justme text-2xl leading-none">
+                y
               </span>
+              <div className="flex items-center justify-center rounded-3xl rounded-t-xl border-2 border-t-0 border-[#FF9E45] py-4">
+                <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#FF9E45]">
+                  10 eventos
+                </span>
+              </div>
             </div>
           </div>
         </div>
