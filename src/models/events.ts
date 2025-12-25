@@ -44,11 +44,22 @@ export const Event = z.object({
   lugar: z.string(),
   duracion: z.number(),
   cupos: z.number(),
-  participantes: z.array(Member),
-  imagen_principal: Media,
-  imagenes_secundarias: z.array(Media),
+  participantes: z.number().array(),
+  imagen_principal: z.number(),
+  imagenes_secundarias: z.number().array(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
 
 export type Event = z.infer<typeof Event>;
+
+export const PopulatedEvent = Event.extend({
+  participantes: z.array(z.lazy(() => Member)),
+  imagen_principal: Media,
+  imagenes_secundarias: z.object({
+    id: z.string(),
+    imagen: Media,
+  }),
+});
+
+export type PopulatedEvent = z.infer<typeof PopulatedEvent>;

@@ -7,6 +7,7 @@ import { Position } from "./positions";
 import { Project } from "./projects";
 import { PopulatedSocialMedia, SocialMedia } from "./social-media";
 import { PopulatedTechnology, Technology } from "./technology";
+import { Event } from "./events";
 
 export const Member = z.object({
   id: z.number(),
@@ -23,12 +24,19 @@ export const Member = z.object({
   ),
   portfolio: z.string().url().nullable(),
   sobre_mi: z.object({}).passthrough().nullable(),
+  subtitle: z.string().nullable(),
+  short_name: z.string().nullable(),
   estado: z.enum(["activo", "egresado", "inactivo"]).default("activo"),
   slug: z.string(),
   fecha_entrada: z.string().datetime().nullable(),
   fecha_salida: z.string().datetime().nullable(),
   foto: Media,
-  "fotos-secundarias": Media.array(),
+  "fotos-secundarias": z
+    .object({
+      id: z.string(),
+      imagen: Media,
+    })
+    .array(),
   carrera: Degree.nullable(),
   tecnologias: Technology.array(),
   cargo: Position.or(z.string()).nullable(),
@@ -42,6 +50,11 @@ export type Member = z.infer<typeof Member>;
 export const PopulatedMember = Member.extend({
   proyectos: z.object({
     docs: z.array(z.lazy(() => Project)),
+    hasNextPage: z.boolean(),
+    totalDocs: z.number(),
+  }),
+  eventos: z.object({
+    docs: z.array(z.lazy(() => Event)),
     hasNextPage: z.boolean(),
     totalDocs: z.number(),
   }),

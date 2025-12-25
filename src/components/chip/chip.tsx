@@ -9,6 +9,7 @@ const variants = {
   blue: "border-[#33C3EF] text-[#33C3EF] bg-[#33C3EF]/10",
   green: "border-[#00C792] text-[#00C792] bg-[#00C792]/10",
   gray: "border-[#959595] text-[#959595] bg-[#959595]/10",
+  white: "border-white text-white bg-white/10",
 };
 
 interface Props {

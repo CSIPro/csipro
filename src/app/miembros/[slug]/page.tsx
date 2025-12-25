@@ -1,6 +1,8 @@
+import { format } from "date-fns";
 import { Cake, Download, LinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
@@ -11,13 +13,6 @@ import { Navbar } from "@/components/navbar/navbar";
 import ProjectsSection from "@/components/projects-section/projects-section";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
-import {
-  Facebook,
-  GitHub,
-  Instagram,
-  LinkedIn,
-  Twitter,
-} from "@/components/socials/socials";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -34,22 +29,34 @@ import {
   TableHead,
   TableRow,
 } from "@/components/ui/table";
+import { CMS_URL, cn } from "@/lib/utils";
+import { fetchMember } from "@/services/members";
 
-export default function Page({
+export default async function Page({
   searchParams,
+  params,
 }: {
   searchParams?: {
     page?: string;
   };
+  params: { slug: string };
 }) {
-  const images = [
-    { index: 1, src: "taylor_carrusel.jpg", alt: "teilor-1" },
-    { index: 2, src: "taylor_carrusel_2.jpg", alt: "teilor-2" },
-    { index: 3, src: "taylor_carrusel_3.jpg", alt: "teilor-3" },
-  ];
+  const member = await fetchMember(params.slug);
+
+  if (!member) {
+    return notFound();
+  }
 
   const limit = 3;
   const currentPage = Number(searchParams?.page) || 1;
+
+  const gallery = [
+    { id: "featured-picture", imagen: member.foto },
+    ...member["fotos-secundarias"],
+  ];
+
+  const hasProjects = member.proyectos.totalDocs > 0;
+  const hasEvents = member.eventos.totalDocs > 0;
 
   return (
     <>
@@ -67,10 +74,10 @@ export default function Page({
                   Hello, I am
                 </span>
                 <h1 className="font-poppins text-2xl font-bold lg:text-5xl">
-                  Karolina Badilla Ramirez
+                  {member.nombres} {member.apellidos}
                 </h1>
                 <p className="font-klee text-base font-light lg:text-2xl">
-                  Frontend developer, UX/UI Designer
+                  {member.subtitle ?? "Miembro del CSI PRO"}
                 </p>
               </div>
             </div>
@@ -92,11 +99,11 @@ export default function Page({
                 ></div>
                 <div className="relative aspect-square w-full rounded-full">
                   <Image
-                    fill
-                    src="taylor_graduada.jpg"
-                    alt="teilor"
+                    src={`${CMS_URL}${member.foto.url}`}
+                    alt={`${member.nombres} ${member.apellidos}`}
                     className="size-full rounded-full object-cover"
-                    unoptimized
+                    fill
+                    sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
               </div>
@@ -120,45 +127,75 @@ export default function Page({
                 nulla pariatur. Novia de Andrés
               </p>
             </div>
-            <div className="inline-flex w-full items-center justify-start gap-2">
-              <Cake size={20} />
-              <span aria-label="Fecha de nacimiento">22 de diciembre</span>
-            </div>
-            <div className="flex w-full flex-wrap items-center justify-between gap-2">
+            {member.fecha_nacimiento ? (
+              <div className="inline-flex w-full items-center justify-start gap-2">
+                <Cake size={20} />
+                <span aria-label="Fecha de nacimiento">
+                  {format(new Date(member.fecha_nacimiento), "dd 'de' MMMM")}
+                </span>
+              </div>
+            ) : null}
+            <div className="flex w-full flex-wrap items-center justify-between gap-2 gap-y-4">
               <div className="flex w-full gap-2 lg:w-auto">
                 <Button className="w-full gap-2 bg-gradient-to-br from-[#582AC2] to-[#9870F4] text-white transition-all lg:w-auto">
                   <Download size={16} />
                   Descargar CV
                 </Button>
-                <Button className="w-full gap-2 bg-gradient-to-br from-[#07B98A] to-[#1BBD92] text-white transition-all lg:w-auto">
-                  <LinkIcon size={16} />
-                  Link
-                </Button>
+                {member.portfolio ? (
+                  <Button
+                    asChild
+                    className="w-full gap-2 bg-gradient-to-br from-[#07B98A] to-[#1BBD92] text-white transition-all lg:w-auto"
+                  >
+                    <Link
+                      href={member.portfolio}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <LinkIcon size={16} />
+                      Portafolio
+                    </Link>
+                  </Button>
+                ) : null}
               </div>
-              <div className="flex w-full justify-evenly lg:w-auto lg:gap-4">
-                <Twitter className="size-6" />
-                <Facebook className="size-6" />
-                <Instagram className="size-6" />
-                <LinkedIn className="size-6" />
-                <GitHub className="size-6" />
+              <div className="flex w-full justify-center gap-4 lg:w-auto">
+                {member.redes.map((social) => (
+                  <Link
+                    key={social.id}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.red.nombre}
+                  >
+                    <Image
+                      src={`${CMS_URL}${social.red.logo_monocromatico.url}`}
+                      alt={social.red.nombre}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 object-contain"
+                    />
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
           <div className="w-full">
             <Carousel>
               <CarouselContent className="-ml-4 h-96 w-full lg:aspect-[7/8] lg:h-auto">
-                {images.map((image) => (
+                {gallery.map((image) => (
                   <CarouselItem
-                    key={image.index}
-                    className="basis-5/6 pl-4 lg:basis-full"
+                    key={image.id}
+                    className={cn(
+                      "basis-5/6 pl-4 lg:basis-full",
+                      gallery.length === 1 && "basis-full",
+                    )}
                   >
                     <div className="relative size-full overflow-hidden rounded-md">
                       <Image
-                        src={image.src}
-                        alt={image.alt}
+                        src={`${CMS_URL}${image.imagen.url}`}
+                        alt={image.imagen.alt}
                         className="h-full w-full object-cover"
                         fill
-                        unoptimized
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
                   </CarouselItem>
@@ -166,7 +203,9 @@ export default function Page({
               </CarouselContent>
               <CarouselPrevious className="max-lg:hidden" />
               <CarouselNext className="max-lg:hidden" />
-              <CarouselNavigation name={`Galería de Karolina Badilla`} />
+              <CarouselNavigation
+                name={`Galería de ${member.nombres} ${member.apellidos}`}
+              />
             </Carousel>
           </div>
         </div>
@@ -180,50 +219,72 @@ export default function Page({
             <div className="lg:px-4">
               <Table>
                 <TableBody className="text-sm">
-                  <TableRow>
-                    <TableHead className="font-bold">Carrera</TableHead>
-                    <TableCell>Ingeniería en Sistemas de Información</TableCell>
-                  </TableRow>
+                  {member.carrera ? (
+                    <TableRow>
+                      <TableHead className="font-bold">Carrera</TableHead>
+                      <TableCell>{member.carrera.nombre}</TableCell>
+                    </TableRow>
+                  ) : null}
                   <TableRow>
                     <TableHead className="font-bold">Estado</TableHead>
-                    <TableCell>Egresado</TableCell>
+                    <TableCell className="capitalize">
+                      {member.estado}
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableHead className="font-bold">
-                      Correo institucional
-                    </TableHead>
-                    <TableCell>a220210687@unison.mx</TableCell>
+                    <TableHead className="font-bold">Correo</TableHead>
+                    <TableCell>{member.email}</TableCell>
                   </TableRow>
-                  <TableRow>
-                    <TableHead className="font-bold">
-                      Ingreso al CSI PRO
-                    </TableHead>
-                    <TableCell>08 de agosto de 2022</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHead className="font-bold">
-                      Puesto en CSI PRO
-                    </TableHead>
-                    <TableCell>Miembro</TableCell>
-                  </TableRow>
+                  {member.fecha_entrada ? (
+                    <TableRow>
+                      <TableHead className="font-bold">
+                        Ingreso al CSI PRO
+                      </TableHead>
+                      <TableCell>
+                        {format(new Date(member.fecha_entrada), "PPP")}
+                      </TableCell>
+                    </TableRow>
+                  ) : null}
+                  {member.cargo ? (
+                    <TableRow>
+                      <TableHead className="font-bold">
+                        Puesto en CSI PRO
+                      </TableHead>
+                      <TableCell>
+                        {typeof member.cargo === "string"
+                          ? member.cargo
+                          : member.cargo.nombre}
+                      </TableCell>
+                    </TableRow>
+                  ) : null}
                   <TableRow>
                     <TableHead className="font-bold">
                       Tecnologías preferidas
                     </TableHead>
                     <TableCell>
-                      <div className="flex flex-wrap gap-2">
-                        <Chip>
-                          <ChipIcon></ChipIcon>
-                          <ChipLabel>Tailwind CSS</ChipLabel>
-                        </Chip>
-                        <Chip>
-                          <ChipIcon></ChipIcon>
-                          <ChipLabel>Next.js</ChipLabel>
-                        </Chip>
-                        <Chip>
-                          <ChipIcon></ChipIcon>
-                          <ChipLabel>React</ChipLabel>
-                        </Chip>
+                      <div className="flex max-w-96 flex-wrap gap-2">
+                        {member.tecnologias.length === 0 ? (
+                          <span className="text-stone-400">
+                            Ninguna tecnología registrada
+                          </span>
+                        ) : null}
+                        {member.tecnologias.map((tech) => (
+                          <Chip key={tech.id} variant="white">
+                            <ChipIcon>
+                              <Image
+                                src={
+                                  tech.logo_monocromatico
+                                    ? `${CMS_URL}${tech.logo_monocromatico.url}`
+                                    : `/images/technologies/default-logo.png`
+                                }
+                                alt={tech.nombre}
+                                width={20}
+                                height={20}
+                              />
+                            </ChipIcon>
+                            <ChipLabel>{tech.nombre}</ChipLabel>
+                          </Chip>
+                        ))}
                       </div>
                     </TableCell>
                   </TableRow>
@@ -236,25 +297,54 @@ export default function Page({
               He participado en
             </h3>
 
-            <div className="flex flex-col gap-2 rounded-3xl bg-gradient-to-b from-primary/10 from-25% via-transparent via-50% to-[#D48842]/10 to-75%">
-              <div className="flex items-center justify-center rounded-3xl rounded-b-xl border-2 border-b-0 border-primary py-4">
-                <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#9870F4]">
-                  3 proyectos
+            <div
+              className={cn(
+                "flex flex-col gap-2 rounded-3xl",
+                hasProjects &&
+                  hasEvents &&
+                  "bg-gradient-to-b from-primary/10 from-25% via-transparent via-50% to-[#D48842]/10 to-75%",
+                hasProjects && !hasEvents && "bg-primary/10",
+                !hasProjects && hasEvents && "bg-[#FF9E45]/10",
+              )}
+            >
+              {hasProjects && (
+                <div
+                  className={cn(
+                    "flex items-center justify-center rounded-3xl rounded-b-xl border-2 border-b-0 border-primary py-4",
+                    hasEvents ? "border-b-0" : "rounded-b-3xl border-b-2",
+                  )}
+                >
+                  <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#9870F4]">
+                    {member.proyectos.totalDocs}{" "}
+                    {member.proyectos.totalDocs === 1
+                      ? "proyecto"
+                      : "proyectos"}
+                  </span>
+                </div>
+              )}
+              {hasProjects && hasEvents && (
+                <span className="text-center font-justme text-2xl leading-none">
+                  y
                 </span>
-              </div>
-              <span className="text-center font-justme text-2xl leading-none">
-                y
-              </span>
-              <div className="flex items-center justify-center rounded-3xl rounded-t-xl border-2 border-t-0 border-[#FF9E45] py-4">
-                <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#FF9E45]">
-                  10 eventos
-                </span>
-              </div>
+              )}
+              {hasEvents && (
+                <div
+                  className={cn(
+                    "flex items-center justify-center rounded-3xl rounded-t-xl border-2 border-t-0 border-[#FF9E45] py-4",
+                    hasProjects ? "border-t-0" : "rounded-t-3xl border-t-2",
+                  )}
+                >
+                  <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#FF9E45]">
+                    {member.eventos.totalDocs}{" "}
+                    {member.eventos.totalDocs === 1 ? "evento" : "eventos"}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </Section>
-      <Section>
+      {/* <Section>
         <div className="inline-flex w-full items-center justify-center px-4 pb-16 pt-8">
           <div className="w-full space-y-9">
             <h2 className="font-justme text-5xl font-normal text-[#FF9E45]">
@@ -270,8 +360,8 @@ export default function Page({
             </p>
           </div>
         </div>
-      </Section>
-      <Section className="pb-16">
+      </Section> */}
+      {/* <Section className="pb-16">
         <EventsSection limit={limit} currentPage={currentPage} pageLimit={2} />
       </Section>
       <Section classNameDiv="pb-16">
@@ -289,7 +379,7 @@ export default function Page({
             Ver todos
           </Link>
         </Button>
-      </Section>
+      </Section> */}
       <Footer />
     </>
   );

@@ -10,6 +10,10 @@ import {
 } from "next/font/google";
 
 import { AppProviders } from "@/context/providers";
+import { setDefaultOptions } from "date-fns";
+import { es } from "date-fns/locale";
+
+setDefaultOptions({ locale: es });
 
 const poppins = Poppins({
   weight: ["400", "500", "700"],

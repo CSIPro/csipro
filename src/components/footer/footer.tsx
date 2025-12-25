@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link, { LinkProps } from "next/link";
 import { FC, HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 
+import { CsiproLogo } from "../socials/logos/csipro-logo";
 import {
   Facebook,
   GitHub,
@@ -27,12 +27,7 @@ export const Footer: FC<FooterProps> = (props) => {
       <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 p-4">
         <div className="flex items-center justify-center gap-4">
           <div className="flex aspect-square w-10 items-center justify-center rounded-sm bg-primary p-1.5">
-            <Image
-              src="csipro.svg"
-              alt="Logo de CSI PRO"
-              width={36}
-              height={36}
-            />
+            <CsiproLogo className="fill-white" />
           </div>
           <h1 className="text-2xl font-semibold">CSI PRO</h1>
         </div>
