@@ -6,11 +6,12 @@ import { notFound } from "next/navigation";
 
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
-import { Footer } from "@/components/footer/footer";
+import { Footer } from "@/components/footer/footer"; // TODO: Check events due to model changes, and rework events/projects sections
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import GradientBackground from "@/components/gradient-background/gradient-background";
 import { Navbar } from "@/components/navbar/navbar";
 import ProjectsSection from "@/components/projects-section/projects-section";
+import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
@@ -112,20 +113,14 @@ export default async function Page({
         </div>
       </Section>
       <Section>
-        <div className="flex w-full flex-col gap-6 pt-10 lg:flex-row-reverse lg:gap-12">
-          <div className="space-y-5 px-4">
+        <div className="flex w-full flex-col gap-6 pt-10 lg:flex-row-reverse lg:justify-end lg:gap-12">
+          <div className="w-full space-y-5 px-4">
             <div className="w-full space-y-4">
               <h2 className="font-justme text-5xl font-normal text-white">
                 About me
               </h2>
-              <p className="text-base text-stone-300">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Novia de Andrés
-              </p>
+              {/* @ts-expect-error I don't want to type out the Lexical output structure */}
+              {member.sobre_mi ? <RichText data={member.sobre_mi} /> : null}
             </div>
             {member.fecha_nacimiento ? (
               <div className="inline-flex w-full items-center justify-start gap-2">
@@ -178,7 +173,7 @@ export default async function Page({
               </div>
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full lg:max-w-lg">
             <Carousel>
               <CarouselContent className="-ml-4 h-96 w-full lg:aspect-[7/8] lg:h-auto">
                 {gallery.map((image) => (

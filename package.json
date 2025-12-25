@@ -10,6 +10,7 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+    "@payloadcms/richtext-lexical": "^3.69.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-hook/media-query": "^1.1.1",
     "@tanstack/react-query": "^5.90.2",
