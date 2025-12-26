@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
-import { Footer } from "@/components/footer/footer"; // TODO: Check events due to model changes, and rework events/projects sections
+import { Footer } from "@/components/footer/footer"; // TODO: Rework events/projects sections
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import GradientBackground from "@/components/gradient-background/gradient-background";
 import { Navbar } from "@/components/navbar/navbar";
@@ -132,10 +132,22 @@ export default async function Page({
             ) : null}
             <div className="flex w-full flex-wrap items-center justify-between gap-2 gap-y-4">
               <div className="flex w-full gap-2 lg:w-auto">
-                <Button className="w-full gap-2 bg-gradient-to-br from-[#582AC2] to-[#9870F4] text-white transition-all lg:w-auto">
-                  <Download size={16} />
-                  Descargar CV
-                </Button>
+                {member.resume ? (
+                  <Button
+                    asChild
+                    className="w-full gap-2 bg-gradient-to-br from-[#582AC2] to-[#9870F4] text-white transition-all lg:w-auto"
+                  >
+                    <Link
+                      download={member.resume.name}
+                      href={`/api/resume?fileUrl=${member.resume.url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Download size={16} />
+                      Descargar CV
+                    </Link>
+                  </Button>
+                ) : null}
                 {member.portfolio ? (
                   <Button
                     asChild
@@ -288,54 +300,58 @@ export default async function Page({
             </div>
           </div>
           <div className="flex w-full flex-col gap-8 px-4 py-8 lg:w-1/2">
-            <h3 className="font-justme text-4xl text-[#9870F4]">
-              He participado en
-            </h3>
+            {hasProjects || hasEvents ? (
+              <>
+                <h3 className="font-justme text-4xl text-[#9870F4]">
+                  He participado en
+                </h3>
 
-            <div
-              className={cn(
-                "flex flex-col gap-2 rounded-3xl",
-                hasProjects &&
-                  hasEvents &&
-                  "bg-gradient-to-b from-primary/10 from-25% via-transparent via-50% to-[#D48842]/10 to-75%",
-                hasProjects && !hasEvents && "bg-primary/10",
-                !hasProjects && hasEvents && "bg-[#FF9E45]/10",
-              )}
-            >
-              {hasProjects && (
                 <div
                   className={cn(
-                    "flex items-center justify-center rounded-3xl rounded-b-xl border-2 border-b-0 border-primary py-4",
-                    hasEvents ? "border-b-0" : "rounded-b-3xl border-b-2",
+                    "flex flex-col gap-2 rounded-3xl",
+                    hasProjects &&
+                      hasEvents &&
+                      "bg-gradient-to-b from-primary/10 from-25% via-transparent via-50% to-[#D48842]/10 to-75%",
+                    hasProjects && !hasEvents && "bg-primary/10",
+                    !hasProjects && hasEvents && "bg-[#FF9E45]/10",
                   )}
                 >
-                  <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#9870F4]">
-                    {member.proyectos.totalDocs}{" "}
-                    {member.proyectos.totalDocs === 1
-                      ? "proyecto"
-                      : "proyectos"}
-                  </span>
-                </div>
-              )}
-              {hasProjects && hasEvents && (
-                <span className="text-center font-justme text-2xl leading-none">
-                  y
-                </span>
-              )}
-              {hasEvents && (
-                <div
-                  className={cn(
-                    "flex items-center justify-center rounded-3xl rounded-t-xl border-2 border-t-0 border-[#FF9E45] py-4",
-                    hasProjects ? "border-t-0" : "rounded-t-3xl border-t-2",
+                  {hasProjects && (
+                    <div
+                      className={cn(
+                        "flex items-center justify-center rounded-3xl rounded-b-xl border-2 border-b-0 border-primary py-4",
+                        hasEvents ? "border-b-0" : "rounded-b-3xl border-b-2",
+                      )}
+                    >
+                      <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#9870F4]">
+                        {member.proyectos.totalDocs}{" "}
+                        {member.proyectos.totalDocs === 1
+                          ? "proyecto"
+                          : "proyectos"}
+                      </span>
+                    </div>
                   )}
-                >
-                  <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#FF9E45]">
-                    {member.eventos.totalDocs}{" "}
-                    {member.eventos.totalDocs === 1 ? "evento" : "eventos"}
-                  </span>
+                  {hasProjects && hasEvents && (
+                    <span className="text-center font-justme text-2xl leading-none">
+                      y
+                    </span>
+                  )}
+                  {hasEvents && (
+                    <div
+                      className={cn(
+                        "flex items-center justify-center rounded-3xl rounded-t-xl border-2 border-t-0 border-[#FF9E45] py-4",
+                        hasProjects ? "border-t-0" : "rounded-t-3xl border-t-2",
+                      )}
+                    >
+                      <span className="text-center text-3xl font-bold uppercase tracking-wide text-[#FF9E45]">
+                        {member.eventos.totalDocs}{" "}
+                        {member.eventos.totalDocs === 1 ? "evento" : "eventos"}
+                      </span>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </>
+            ) : null}
           </div>
         </div>
       </Section>

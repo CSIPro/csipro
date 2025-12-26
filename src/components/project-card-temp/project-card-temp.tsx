@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import Image from "next/image";
 
+import { CMS_URL } from "@/lib/utils";
 import { PopulatedProject } from "@/models/projects";
 
 import { CsiproLogo } from "../socials/logos/csipro-logo";
@@ -47,7 +48,7 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
       <div className="flex flex-row gap-2 md:flex-col">
         <div className="relative h-48 w-44 overflow-hidden rounded-2xl md:mt-4 md:w-full">
           <Image
-            src={`https://admin.csipro.isi.unison.mx${project.imagen_principal.url}`}
+            src={`${CMS_URL}${project.imagen_principal.url}`}
             alt={project.imagen_principal.alt}
             className="h-full w-full object-cover"
             width={176}
@@ -98,8 +99,8 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
             {members.slice(0, 4).map((member, idx) => (
               <div key={idx} className="size-7 overflow-hidden rounded-full">
                 <Image
-                  src={`https://admin.csipro.isi.unison.mx${member.foto.url}`}
-                  alt={member.foto.alt}
+                  src={`${CMS_URL}${member.miembro.foto.url}`}
+                  alt={member.miembro.foto.alt}
                   className="h-full w-full object-cover"
                   width={28}
                   height={28}

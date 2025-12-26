@@ -59,7 +59,7 @@ export const PopulatedEvent = Event.extend({
   imagenes_secundarias: z.object({
     id: z.string(),
     imagen: Media,
-  }),
+  }).array(),
 });
 
 export type PopulatedEvent = z.infer<typeof PopulatedEvent>;

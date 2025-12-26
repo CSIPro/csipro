@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 
+import { CMS_URL } from "@/lib/utils";
 import { PopulatedMember } from "@/models/members";
 
 import {
@@ -23,6 +24,8 @@ export const MembersWrapper: FC<MembersWrapperProps> = ({
           key={member.id}
           name={member.nombres}
           lastName={member.apellidos}
+          shortName={member.short_name}
+          slug={member.slug}
           email={member.email}
           networks={
             member.redes
@@ -40,7 +43,7 @@ export const MembersWrapper: FC<MembersWrapperProps> = ({
           }
           joinDate={member.fecha_entrada}
           projectCount={member.proyectos.totalDocs}
-          profilePicture={`https://admin.csipro.isi.unison.mx${member.foto.url}`}
+          profilePicture={`${CMS_URL}${member.foto.url}`}
           profilePictureAlt={member.foto.alt}
           position={
             member.cargo

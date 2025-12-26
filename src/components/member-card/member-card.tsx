@@ -10,7 +10,6 @@ import { PopulatedSocialMedia } from "@/models/social-media";
 
 import { Position } from "./../../models/positions";
 import { MemberBadge } from "./member-badge";
-import { NameDisplay } from "./name-display";
 
 type MappedNetworks = {
   id: string;
@@ -21,6 +20,8 @@ type MappedNetworks = {
 interface MemberCardProps {
   name: string;
   lastName: string;
+  shortName: string;
+  slug: string;
   email: string;
   networks: Array<MappedNetworks>;
   joinDate: string | null;
@@ -78,7 +79,9 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
         <div className="flex flex-col items-center justify-center gap-3 py-2 max-md:hidden">
           <div className="flex flex-col items-center justify-center gap-1">
             <div className="flex w-full items-center justify-center">
-              <NameDisplay names={props.name} lastnames={props.lastName} />
+              <h3 className="whitespace-nowrap text-center text-xl font-bold text-white">
+                {props.shortName}
+              </h3>
             </div>
 
             <div className="flex w-full items-center justify-center">
@@ -134,58 +137,13 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
           </div>
 
           <div className="flex justify-center">
-            <Button className="rounded-xl text-white transition-colors hover:bg-[#491288]">
-              Ver Portafolio
+            <Button
+              asChild
+              className="rounded-xl text-white transition-colors hover:bg-[#491288]"
+            >
+              <Link href={`/miembros/${props.slug}`}>Ver Portafolio</Link>
             </Button>
           </div>
-        </div>
-      </div>
-      <div className="hidden max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:space-y-3 max-md:p-5">
-        <div className="flex w-full flex-col items-center justify-center space-y-2">
-          <div className="flex w-full items-center justify-center">
-            <h1 className="text-center text-xl font-bold text-white">
-              <NameDisplay names={props.name} lastnames={props.lastName} />
-            </h1>
-          </div>
-          <div className="flex w-full items-center justify-center">
-            <h1 className="text-center text-sm font-normal text-white">
-              <MemberBadge
-                entryDate={props.joinDate}
-                position={props.position}
-              />
-            </h1>
-          </div>
-          <div className="flex w-full items-center justify-center gap-6">
-            {props.networks.map((net) => {
-              const logoMonoUrl =
-                typeof net.social_media.logo_monocromatico === "string"
-                  ? net.social_media.logo_monocromatico
-                  : net.social_media.logo_monocromatico?.url;
-              return (
-                <Link
-                  key={net.id}
-                  href={net.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-opacity hover:opacity-75"
-                >
-                  <Image
-                    key={net.id}
-                    src={`https://admin.csipro.isi.unison.mx${logoMonoUrl}`}
-                    alt={net.social_media.nombre}
-                    className="size-5"
-                    width={32}
-                    height={32}
-                  />
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-        <div className="flex w-full justify-center">
-          <Button className="rounded-xl text-white transition-colors hover:bg-[#491288]">
-            Ver Portafolio
-          </Button>
         </div>
       </div>
     </div>

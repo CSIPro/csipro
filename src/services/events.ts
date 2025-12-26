@@ -3,11 +3,11 @@ import {
   createResponseSchema,
   generateEmptyResponse,
 } from "@/models/cms-response";
-import { Event } from "@/models/events";
+import { PopulatedEvent } from "@/models/events";
 
 export const fetchEvents = async (limit: number, currentPage: number) => {
   const eventsRes = await fetch(
-    `${API_URL}/eventos/?limit=${limit}&page=${currentPage}`,
+    `${API_URL}/eventos/?depth=2&limit=${limit}&page=${currentPage}`,
     {
       // next: { revalidate: 600 },
       cache: "no-store",
@@ -18,7 +18,7 @@ export const fetchEvents = async (limit: number, currentPage: number) => {
     return generateEmptyResponse();
   }
 
-  const EventsResponse = createResponseSchema(Event);
+  const EventsResponse = createResponseSchema(PopulatedEvent);
 
   const eventsData = await eventsRes.json();
 

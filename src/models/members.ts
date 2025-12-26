@@ -1,13 +1,14 @@
 import { z } from "zod";
 
 import { Degree } from "./carrera";
+import { Event } from "./events";
 import { Media } from "./media";
 import { PersonalInterest } from "./personal-interest";
 import { Position } from "./positions";
 import { Project } from "./projects";
+import { Resume } from "./resumes";
 import { PopulatedSocialMedia, SocialMedia } from "./social-media";
 import { PopulatedTechnology, Technology } from "./technology";
-import { Event } from "./events";
 
 export const Member = z.object({
   id: z.number(),
@@ -25,7 +26,7 @@ export const Member = z.object({
   portfolio: z.string().url().nullable(),
   sobre_mi: z.object({}).passthrough().nullable(),
   subtitle: z.string().nullable(),
-  short_name: z.string().nullable(),
+  short_name: z.string(),
   estado: z.enum(["activo", "egresado", "inactivo"]).default("activo"),
   slug: z.string(),
   fecha_entrada: z.string().datetime().nullable(),
@@ -58,6 +59,7 @@ export const PopulatedMember = Member.extend({
     hasNextPage: z.boolean(),
     totalDocs: z.number(),
   }),
+  resume: Resume.nullable(),
   redes: z
     .object({
       id: z.string(),
