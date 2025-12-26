@@ -5,15 +5,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
-import EventsSection from "@/components/events-section/events-section";
-import { Footer } from "@/components/footer/footer"; // TODO: Rework events/projects sections
+import { Footer } from "@/components/footer/footer";
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import GradientBackground from "@/components/gradient-background/gradient-background";
+import MemberEvents from "@/components/members-section/member-events";
+import MemberProjects from "@/components/members-section/member-projects";
 import { Navbar } from "@/components/navbar/navbar";
-import ProjectsSection from "@/components/projects-section/projects-section";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
-import { SectionTitle } from "@/components/section-title/section-title";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -33,23 +32,12 @@ import {
 import { CMS_URL, cn } from "@/lib/utils";
 import { fetchMember } from "@/services/members";
 
-export default async function Page({
-  searchParams,
-  params,
-}: {
-  searchParams?: {
-    page?: string;
-  };
-  params: { slug: string };
-}) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const member = await fetchMember(params.slug);
 
   if (!member) {
     return notFound();
   }
-
-  const limit = 3;
-  const currentPage = Number(searchParams?.page) || 1;
 
   const gallery = [
     { id: "featured-picture", imagen: member.foto },
@@ -372,25 +360,27 @@ export default async function Page({
           </div>
         </div>
       </Section> */}
-      {/* <Section className="pb-16">
-        <EventsSection limit={limit} currentPage={currentPage} pageLimit={2} />
-      </Section>
-      <Section classNameDiv="pb-16">
-        <div className="flex w-full items-center justify-between pr-4">
-          <SectionTitle>Mis proyectos</SectionTitle>
-          <Button className="hidden uppercase sm:inline-flex">
-            <Link href="/proyectos" prefetch>
-              Ver todos
-            </Link>
-          </Button>
-        </div>
-        <ProjectsSection />
-        <Button className="uppercase sm:hidden">
+      {hasEvents && (
+        <Section className="pb-8">
+          <h2 className="px-4 font-justme text-5xl font-normal text-[#9870F4]">
+            Eventos
+          </h2>
+          <MemberEvents memberId={member.id} />
+        </Section>
+      )}
+      {hasProjects && (
+        <Section className="pb-16">
+          <h2 className="px-4 font-justme text-5xl font-normal text-[#9870F4]">
+            Proyectos
+          </h2>
+          <MemberProjects memberId={member.id} />
+          {/* <Button className="uppercase sm:hidden">
           <Link href="/proyectos" prefetch>
             Ver todos
           </Link>
-        </Button>
-      </Section> */}
+        </Button> */}
+        </Section>
+      )}
       <Footer />
     </>
   );

@@ -1,6 +1,11 @@
 import { API_URL } from "@/lib/utils";
-import { createResponseSchema } from "@/models/cms-response";
+import {
+  createResponseSchema,
+  generateEmptyResponse,
+} from "@/models/cms-response";
+import { PopulatedEvent } from "@/models/events";
 import { PopulatedMember } from "@/models/members";
+import { PopulatedProject } from "@/models/projects";
 
 export const fetchMember = async (slug: string) => {
   const memberRes = await fetch(
@@ -36,4 +41,50 @@ export const fetchMember = async (slug: string) => {
   }
 
   return memberData;
+};
+
+export const getMemberEvents = async (memberId: number) => {
+  const eventsRes = await fetch(`${API_URL}/miembros/${memberId}/events`, {
+    next: { revalidate: 600 },
+  });
+
+  if (!eventsRes.ok) {
+    return generateEmptyResponse();
+  }
+
+  const MembersEventsResponse = createResponseSchema(PopulatedEvent);
+
+  const eventsData = await eventsRes.json();
+
+  const events = MembersEventsResponse.safeParse(eventsData);
+
+  if (!events.success) {
+    console.log(events.error);
+    return generateEmptyResponse();
+  }
+
+  return events.data;
+};
+
+export const getMemberProjects = async (memberId: number) => {
+  const projectsRes = await fetch(`${API_URL}/miembros/${memberId}/projects`, {
+    next: { revalidate: 600 },
+  });
+
+  if (!projectsRes.ok) {
+    return generateEmptyResponse();
+  }
+
+  const MembersProjectsResponse = createResponseSchema(PopulatedProject);
+
+  const projectsData = await projectsRes.json();
+
+  const projects = MembersProjectsResponse.safeParse(projectsData);
+
+  if (!projects.success) {
+    console.log(projects.error);
+    return generateEmptyResponse();
+  }
+
+  return projects.data;
 };
