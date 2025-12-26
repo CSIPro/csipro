@@ -42,6 +42,7 @@ const gochiHand = Gochi_Hand({
 const fonts = `${GeistSans.variable} ${poppins.variable} ${justMeAgainDownHere.variable} font-sans ${kleeOne.variable} ${gochiHand.variable}`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://csipro.isi.unison.mx"),
   title: "CSI PRO",
   description:
     "Un espacio de desarrollo, innovación e investigación en la Universidad de Sonora",
