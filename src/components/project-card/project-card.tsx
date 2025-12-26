@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
+import { CMS_URL } from "@/lib/utils";
 import { Media } from "@/models/media";
 import { PopulatedTechnology } from "@/models/technology";
 
@@ -31,7 +32,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           />
           <Image
             fill
-            src={`https://admin.csipro.isi.unison.mx${props.thumbnail.url}`}
+            src={`${CMS_URL}${props.thumbnail.url}`}
             alt={props.thumbnail.alt}
             className="z-10 object-contain"
           />
@@ -47,7 +48,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
             {props.stack.map((tech) => (
               <Image
                 key={tech.id}
-                src={`https://admin.csipro.isi.unison.mx${tech.tecnologia.logo_monocromatico.url}`}
+                src={`${CMS_URL}${tech.tecnologia.logo_monocromatico.url}`}
                 alt={tech.tecnologia.logo.alt}
                 className="size-5"
                 width={32}

@@ -6,6 +6,7 @@ import { FC } from "react";
 import { DiTerminal } from "react-icons/di";
 
 import { Button } from "@/components/ui/button";
+import { CMS_URL } from "@/lib/utils";
 import { PopulatedSocialMedia } from "@/models/social-media";
 
 import { Position } from "./../../models/positions";
@@ -109,7 +110,7 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
                   >
                     <Image
                       key={net.id}
-                      src={`https://admin.csipro.isi.unison.mx${logoMonoUrl}`}
+                      src={`${CMS_URL}${logoMonoUrl}`}
                       alt={net.social_media.nombre}
                       className="size-5"
                       width={32}

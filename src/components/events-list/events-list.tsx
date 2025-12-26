@@ -1,3 +1,4 @@
+import { CMS_URL } from "@/lib/utils";
 import { fetchEvents } from "@/services/events";
 
 import { EventCard } from "../event-card/event-card";
@@ -51,7 +52,7 @@ export async function EventsList({ currentPage, limit }: Props) {
           type={event.tipo}
           duration={event.duracion}
           title={event.titulo}
-          image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
+          image={`${CMS_URL}${event.imagen_principal.url}`}
           imageAlt={event.imagen_principal.alt}
           dates={event.fechas_horas}
           location={event.lugar}

@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
 
-import { Event } from "@/models/events";
+import { CMS_URL } from "@/lib/utils";
+import { PopulatedEvent } from "@/models/events";
 
 import { EventCard } from "../event-card/event-card";
 import {
@@ -11,7 +12,7 @@ import {
 } from "../ui/carousel";
 
 interface EventsWrapperProps {
-  events: Array<Event>;
+  events: Array<PopulatedEvent>;
 }
 
 export const EventsWrapper: FC<EventsWrapperProps> = ({ events }) => {
@@ -25,7 +26,7 @@ export const EventsWrapper: FC<EventsWrapperProps> = ({ events }) => {
             type={event.tipo}
             dates={event.fechas_horas}
             duration={event.duracion}
-            image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
+            image={`${CMS_URL}${event.imagen_principal.url}`}
             imageAlt={event.imagen_principal.alt}
             spots={event.cupos - event.asistentes.length}
             location={event.lugar}
@@ -40,7 +41,7 @@ export const EventsWrapper: FC<EventsWrapperProps> = ({ events }) => {
               type={event.tipo}
               dates={event.fechas_horas}
               duration={event.duracion}
-              image={`https://admin.csipro.isi.unison.mx${event.imagen_principal.url}`}
+              image={`${CMS_URL}${event.imagen_principal.url}`}
               imageAlt={event.imagen_principal.alt}
               spots={event.cupos - event.asistentes.length}
               location={event.lugar}
