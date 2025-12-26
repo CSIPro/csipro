@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { Cake, Download, LinkIcon } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -31,6 +32,41 @@ import {
 } from "@/components/ui/table";
 import { CMS_URL, cn } from "@/lib/utils";
 import { fetchMember } from "@/services/members";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const member = await fetchMember(params.slug);
+
+  if (!member) {
+    return {
+      title: "Miembro no encontrado - CSI PRO",
+    };
+  }
+
+  return {
+    title: `${member.short_name} - CSI PRO`,
+    description: `Perfil de ${member.nombres} ${member.apellidos}, miembro del CSI PRO.`,
+    keywords: [
+      "CSI PRO",
+      "csipro",
+      "unison",
+      "Universidad de Sonora",
+      "isi",
+      "Ingeniería en Sistemas de Información",
+      "Ingeniería de Software",
+      "software development",
+      "Miembros CSI PRO",
+      member.nombres,
+      member.apellidos,
+      member.short_name,
+      member.subtitle,
+      ...(member.tecnologias.map((tech) => tech.nombre) || []),
+    ],
+  };
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const member = await fetchMember(params.slug);

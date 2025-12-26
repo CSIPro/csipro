@@ -14,6 +14,8 @@ export const Member = z.object({
   id: z.number(),
   nombres: z.string(),
   apellidos: z.string(),
+  short_name: z.string(),
+  subtitle: z.string(),
   fecha_nacimiento: z.string().datetime().nullable(),
   email: z.string().email(),
   redes: z.array(
@@ -25,8 +27,6 @@ export const Member = z.object({
   ),
   portfolio: z.string().url().nullable(),
   sobre_mi: z.object({}).passthrough().nullable(),
-  subtitle: z.string().nullable(),
-  short_name: z.string(),
   estado: z.enum(["activo", "egresado", "inactivo"]).default("activo"),
   slug: z.string(),
   fecha_entrada: z.string().datetime().nullable(),

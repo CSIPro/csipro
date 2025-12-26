@@ -1,5 +1,7 @@
 import "@/styles/globals.css";
 
+import { setDefaultOptions } from "date-fns";
+import { es } from "date-fns/locale";
 import { GeistSans } from "geist/font/sans";
 import { Metadata } from "next";
 import {
@@ -10,8 +12,6 @@ import {
 } from "next/font/google";
 
 import { AppProviders } from "@/context/providers";
-import { setDefaultOptions } from "date-fns";
-import { es } from "date-fns/locale";
 
 setDefaultOptions({ locale: es });
 
@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   title: "CSI PRO",
   description:
     "Un espacio de desarrollo, innovación e investigación en la Universidad de Sonora",
+  openGraph: {
+    images: "/portada.jpg",
+  },
 };
 
 export default function RootLayout({
