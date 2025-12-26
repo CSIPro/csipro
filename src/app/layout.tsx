@@ -45,9 +45,6 @@ export const metadata: Metadata = {
   title: "CSI PRO",
   description:
     "Un espacio de desarrollo, innovación e investigación en la Universidad de Sonora",
-  openGraph: {
-    images: "/portada.jpg",
-  },
 };
 
 export default function RootLayout({
