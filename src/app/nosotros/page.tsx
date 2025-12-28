@@ -23,7 +23,7 @@ export default function Page({
     page?: string;
   };
 }>) {
-  const limit = 6;
+  const limit = 8;
   const currentPage = Number(searchParams?.page) || 1;
   return (
     <>
@@ -108,7 +108,7 @@ export default function Page({
           </div>
         </div>
       </Section>
-      <Section classNameDiv="pb-16 pt-16">
+      <Section innerClassName="pb-16 pt-16">
         <div className="flex w-full items-center justify-center">
           <SectionTitle>NUESTRO EQUIPO</SectionTitle>
           <div className="w-full p-4 max-sm:hidden">

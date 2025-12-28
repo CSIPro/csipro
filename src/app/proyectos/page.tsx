@@ -91,7 +91,7 @@ export default async function Page({ searchParams }: Props) {
         </div>
       </Section>
 
-      <Section classNameDiv="pb-16">
+      <Section innerClassName="pb-16">
         <SectionTitle id={titleId}>PROYECTOS</SectionTitle>
 
         <GlowContainer>

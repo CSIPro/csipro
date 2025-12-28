@@ -166,6 +166,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                       href={`/api/resume?fileUrl=${member.resume.url}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      prefetch={false}
                     >
                       <Download size={16} />
                       Descargar CV
@@ -397,7 +398,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       </Section> */}
       {hasEvents && (
-        <Section className="pb-8">
+        <Section innerClassName="pb-8">
           <h2 className="px-4 font-justme text-5xl font-normal text-[#9870F4]">
             Eventos
           </h2>
@@ -405,7 +406,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </Section>
       )}
       {hasProjects && (
-        <Section className="pb-16">
+        <Section innerClassName="pb-16">
           <h2 className="px-4 font-justme text-5xl font-normal text-[#9870F4]">
             Proyectos
           </h2>

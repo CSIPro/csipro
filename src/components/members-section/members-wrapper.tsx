@@ -22,6 +22,7 @@ export const MembersWrapper: FC<MembersWrapperProps> = ({
       {members.map((member) => (
         <MemberCard
           key={member.id}
+          member={member}
           name={member.nombres}
           lastName={member.apellidos}
           shortName={member.short_name}
@@ -69,7 +70,7 @@ interface DesktopMembersProps extends MembersPaginationProps {
 const Members: FC<DesktopMembersProps> = ({ children, ...paginationProps }) => {
   return (
     <div className="flex flex-col gap-8">
-      <div className="grid w-full grid-cols-2 flex-col items-center gap-3 px-4 max-md:grid max-md:grid-cols-2 max-md:items-center max-md:justify-items-center max-sm:grid-cols-2 md:grid-cols-2 md:items-center md:justify-items-center md:gap-10 lg:grid-cols-3">
+      <div className="grid w-full grid-cols-2 flex-col items-center gap-3 px-4 max-md:grid max-md:grid-cols-2 max-md:items-center max-md:justify-items-center max-sm:grid-cols-2 md:grid-cols-2 md:items-center md:justify-items-center md:gap-10 lg:grid-cols-4">
         {children}
       </div>
       <MembersPagination {...paginationProps} />

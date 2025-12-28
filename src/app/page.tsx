@@ -150,7 +150,7 @@ export default async function Home({
       </Section>
 
       <EventsSection limit={limit} currentPage={currentPage} pageLimit={2} />
-      <Section classNameDiv="pb-16">
+      <Section innerClassName="pb-16">
         <div className="flex w-full items-center justify-between pr-4">
           <SectionTitle>Nuestros proyectos</SectionTitle>
           <Button asChild className="hidden uppercase sm:inline-flex">
