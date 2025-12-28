@@ -12,6 +12,7 @@ import {
 } from "next/font/google";
 
 import { AppProviders } from "@/context/providers";
+import { Footer } from "@/components/footer/footer";
 
 setDefaultOptions({ locale: es });
 
@@ -57,9 +58,10 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${fonts} bg-white dark:bg-muted`}>
         <AppProviders>
-          <main className="mx-auto flex min-h-screen w-full flex-col items-center justify-center">
+          <div className="mx-auto flex min-h-screen w-full flex-col items-center justify-center">
             {children}
-          </main>
+            <Footer />
+          </div>
         </AppProviders>
       </body>
     </html>
