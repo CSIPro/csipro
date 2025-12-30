@@ -1,3 +1,5 @@
+"use client";
+
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { PanelLeft } from "lucide-react";
@@ -210,7 +212,7 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="bg-sidebar text-sidebar-foreground w-[--sidebar-width] p-0 [&>button]:hidden"
+            className="bg-sidebar text-sidebar-foreground w-[--sidebar-width] border-primary p-0 [&>button]:hidden"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -555,6 +557,7 @@ const SidebarMenuButton = React.forwardRef<
     asChild?: boolean;
     isActive?: boolean;
     tooltip?: string | React.ComponentProps<typeof TooltipContent>;
+    closeOnSelect?: boolean;
   } & VariantProps<typeof sidebarMenuButtonVariants>
 >(
   (
@@ -565,12 +568,14 @@ const SidebarMenuButton = React.forwardRef<
       size = "default",
       tooltip,
       className,
+      closeOnSelect = true,
+      onClick,
       ...props
     },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
-    const { isMobile, state } = useSidebar();
+    const { isMobile, state, setOpenMobile } = useSidebar();
 
     const button = (
       <Comp
@@ -579,6 +584,14 @@ const SidebarMenuButton = React.forwardRef<
         data-size={size}
         data-active={isActive}
         className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+        onClick={(event) => {
+          if (onClick) {
+            onClick(event);
+          }
+          if (closeOnSelect && isMobile) {
+            setOpenMobile(false);
+          }
+        }}
         {...props}
       />
     );

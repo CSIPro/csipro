@@ -56,7 +56,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={`${fonts} bg-white dark:bg-muted`}>
+      <body className={`${fonts} bg-muted text-white`}>
         <AppProviders>
           <div className="mx-auto flex min-h-screen w-full flex-col items-center justify-center">
             {children}
