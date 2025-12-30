@@ -27,7 +27,7 @@ export default async function Home({
   const dummyImages = [
     { id: 1, url: "/portada.jpg" },
     { id: 2, url: "/portada2.jpg" },
-    { id: 3, url: "/portada4.jpg" },
+    { id: 3, url: "/portada-4.jpg" },
   ];
 
   return (

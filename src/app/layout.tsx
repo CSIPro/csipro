@@ -11,8 +11,8 @@ import {
   Gochi_Hand,
 } from "next/font/google";
 
-import { AppProviders } from "@/context/providers";
 import { Footer } from "@/components/footer/footer";
+import { AppProviders } from "@/context/providers";
 
 setDefaultOptions({ locale: es });
 
