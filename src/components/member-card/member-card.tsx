@@ -76,7 +76,7 @@ export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
             alt={member.foto.alt}
             className="object-cover"
             fill
-            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 1280px) 30vw, 25vw"
           />
         </div>
 
@@ -160,7 +160,7 @@ export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
       <div className="hidden max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:space-y-3 max-md:p-5">
         <div className="flex w-full flex-col items-center justify-center space-y-2">
           <div className="flex w-full items-center justify-center">
-            <h3 className="text-center text-xl font-bold text-white">
+            <h3 className="line-clamp-2 text-center text-xl font-bold text-white">
               {member.short_name}
             </h3>
           </div>
@@ -172,7 +172,7 @@ export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
               />
             </span>
           </div>
-          <div className="flex w-full items-center justify-center gap-6">
+          <div className="flex h-5 w-full items-center justify-center gap-2">
             {member.redes.map((net) => {
               const logoMonoUrl = net.red.logo_monocromatico?.url;
               return (

@@ -4,6 +4,7 @@ import { FC, HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 import { NavigationLink } from "./navigation-link";
+import { AppSidebar } from "../app-sidebar/app-sidebar";
 import {
   BrandingHeader,
   BrandingHeaderTitle,
@@ -16,7 +17,6 @@ import {
   NavigationMenuList,
 } from "../ui/navigation-menu";
 import { SidebarTrigger } from "../ui/sidebar";
-import { AppSidebar } from "../app-sidebar/app-sidebar";
 
 interface Props {
   titles: string[];

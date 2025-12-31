@@ -6,7 +6,6 @@ import {
 import { PopulatedMember } from "@/models/members";
 
 import { MembersWrapper } from "./members-wrapper";
-import FilterSection from "../filter-section/filter-section";
 
 const fetchMembers = async (limit: number, currentPage: number) => {
   const membersRes = await fetch(
@@ -46,7 +45,7 @@ export default async function MembersSection({
 
   return (
     <>
-      <FilterSection />
+      {/* <FilterSection /> */}
       <MembersWrapper
         members={docs}
         currentPage={page}

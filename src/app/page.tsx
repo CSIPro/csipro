@@ -100,7 +100,7 @@ export default async function Home({
           <div className="flex w-full flex-col items-center gap-5 px-4 pb-4 md:flex-row md:gap-6 md:pb-12 lg:gap-16">
             <div className="relative aspect-[3/4] h-fit w-full md:aspect-[4/3]">
               <Image
-                src="/nosotros.webp"
+                src="/nosotros/everyone.webp"
                 fill
                 alt="foto de portada"
                 className="rounded-3xl md:rounded-2xl md:object-cover md:object-[50%_15%]"
