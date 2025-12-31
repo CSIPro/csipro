@@ -56,7 +56,7 @@ export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
   const { color1, color2 } = getRandomColors();
 
   return (
-    <div className="flex flex-col max-md:w-[185px] max-md:items-center max-md:justify-center max-sm:w-[150px] lg:h-full">
+    <div className="flex w-full flex-col max-md:items-center max-md:justify-center lg:h-full">
       <div className="group relative h-full bg-[#16131F] max-md:flex max-md:size-[185px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:size-[150px] md:w-[280px] md:p-2">
         <div
           className="absolute inset-[-2px] z-[-1] bg-gradient-to-br opacity-80 max-md:rounded-full"

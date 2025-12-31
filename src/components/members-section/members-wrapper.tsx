@@ -70,7 +70,7 @@ interface DesktopMembersProps extends MembersPaginationProps {
 const Members: FC<DesktopMembersProps> = ({ children, ...paginationProps }) => {
   return (
     <div className="flex flex-col gap-8">
-      <div className="grid w-full grid-cols-2 flex-col items-center gap-3 px-4 max-md:justify-items-center md:grid-cols-2 md:items-center md:justify-items-center md:gap-10 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid w-full grid-cols-2 flex-col items-center gap-2 px-2 max-md:justify-items-center md:grid-cols-2 md:items-center md:justify-items-center md:gap-10 lg:grid-cols-3 xl:grid-cols-4">
         {children}
       </div>
       <MembersPagination {...paginationProps} />
