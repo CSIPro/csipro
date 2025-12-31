@@ -166,10 +166,7 @@ export default async function Page() {
                 Líder del equipo + Full Stack Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton
-              memberName="Saúl Alberto"
-              memberLastName="Ramos Laborín"
-            >
+            <CreativeTeamCardButton shortName="Saúl Ramos Laborín">
               Ver Portafolio
             </CreativeTeamCardButton>
           </CreativeTeamCard>
@@ -189,10 +186,7 @@ export default async function Page() {
                 Diseñadora UX/UI + Full Stack Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton
-              memberName="Karla Arleth"
-              memberLastName="Lerma Molina"
-            >
+            <CreativeTeamCardButton shortName="Karla Lerma Molina">
               Ver Portafolio
             </CreativeTeamCardButton>
           </CreativeTeamCard>
@@ -214,10 +208,7 @@ export default async function Page() {
                 Diseñadora UX/UI + Full Stack Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton
-              memberName="Karolina Abigail"
-              memberLastName="Badilla Ramírez"
-            >
+            <CreativeTeamCardButton shortName="Karolina Badilla">
               Ver Portafolio
             </CreativeTeamCardButton>
           </CreativeTeamCard>
@@ -239,10 +230,7 @@ export default async function Page() {
                 Diseñador UX/UI + Front End Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton
-              memberName="Andrés"
-              memberLastName="Antelo Figueroa"
-            >
+            <CreativeTeamCardButton shortName="Andrés Antelo Figueroa">
               Ver Portafolio
             </CreativeTeamCardButton>
           </CreativeTeamCard>
@@ -262,10 +250,7 @@ export default async function Page() {
               </CreativeTeamCardSubtitle>
               <CreativeTeamCardRole>Full Stack Developer</CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton
-              memberName="Luis Ernesto"
-              memberLastName="Hernández López"
-            >
+            <CreativeTeamCardButton shortName="Luis Ernesto Hernández">
               Ver Portafolio
             </CreativeTeamCardButton>
           </CreativeTeamCard>
@@ -285,10 +270,7 @@ export default async function Page() {
               </CreativeTeamCardSubtitle>
               <CreativeTeamCardRole>Diseñadora UX/UI</CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton
-              memberName="Verónica"
-              memberLastName="Rodríguez Navarro"
-            >
+            <CreativeTeamCardButton shortName="Verónica Rodríguez Navarro">
               Ver Portafolio
             </CreativeTeamCardButton>
           </CreativeTeamCard>
@@ -310,10 +292,7 @@ export default async function Page() {
                 Diseñador UX/UI + Front End Developer
               </CreativeTeamCardRole>
             </CreativeTeamCardContent>
-            <CreativeTeamCardButton
-              memberName="Kevin"
-              memberLastName="Ochoa Guerrero"
-            >
+            <CreativeTeamCardButton shortName="Kevin Ochoa Guerrero">
               Ver Portafolio
             </CreativeTeamCardButton>
           </CreativeTeamCard>

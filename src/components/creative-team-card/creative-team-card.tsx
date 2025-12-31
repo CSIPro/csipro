@@ -143,16 +143,14 @@ export const CreativeTeamCardRole: FC<CreativeTeamCardContentProps> = ({
 };
 
 interface CreativeTeamCardButtonProps extends ButtonProps {
-  memberName: string;
-  memberLastName: string;
+  shortName: string;
 }
 
 export const CreativeTeamCardButton: FC<CreativeTeamCardButtonProps> = ({
-  memberName,
-  memberLastName,
+  shortName,
   ...props
 }) => {
-  const memberQuery = useMemberByName(memberName, memberLastName);
+  const memberQuery = useMemberByName(shortName);
 
   if (memberQuery.isLoading) {
     return (
@@ -165,7 +163,7 @@ export const CreativeTeamCardButton: FC<CreativeTeamCardButtonProps> = ({
   if (memberQuery.isError || !memberQuery.data) {
     return (
       <Button disabled {...props}>
-        Portafolio no disponible
+        No disponible
       </Button>
     );
   }
