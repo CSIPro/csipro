@@ -38,7 +38,6 @@ export const useInfinitePopulatedEvents = ({
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.POPULATED_EVENTS_INFINITE, { limit }],
     queryFn: ({ pageParam = 1 }) => {
-      console.log("Fetching page:", pageParam);
       return fetchPopulatedEvents(limit, pageParam);
     },
     getNextPageParam: (lastPage, allPages) => {

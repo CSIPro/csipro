@@ -17,7 +17,11 @@ export const InfiniteEvents = ({ limit, initialData }: Props) => {
   const infiniteEvents = useInfinitePopulatedEvents({ limit, initialData });
   const trackingRef = useOnInView(
     (inView) => {
-      if (inView && infiniteEvents.hasNextPage && !infiniteEvents.isFetching) {
+      if (
+        inView &&
+        infiniteEvents.hasNextPage &&
+        !infiniteEvents.isFetchingNextPage
+      ) {
         infiniteEvents.fetchNextPage();
       }
     },
