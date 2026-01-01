@@ -29,15 +29,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
             src="/lines.png"
             alt="Cuadrícula de fondo"
             className="object-cover"
+            loading="lazy"
           />
           <Image
             fill
             src={`${CMS_URL}${props.thumbnail.url}`}
             alt={props.thumbnail.alt}
             className="z-10 object-contain"
+            loading="lazy"
           />
         </div>
-        <div className="text-2xl font-bold">{props.name}</div>
+        <h3 className="text-xl font-bold">{props.name}</h3>
         <div className="line-clamp-2 h-12 justify-between text-base font-normal">
           <span>{props.subtitle}</span>
         </div>

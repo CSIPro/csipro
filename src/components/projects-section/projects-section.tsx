@@ -50,7 +50,7 @@ export default async function ProjectsSection() {
           {projectsRes.docs.map((project) => (
             <CarouselItem
               key={project.id}
-              className="basis-5/6 sm:basis-3/4 md:basis-[45%] md:pl-8 lg:basis-[30%]"
+              className="basis-[90%] sm:basis-3/4 md:basis-[45%] md:pl-8 lg:basis-[30%]"
             >
               <ProjectCard
                 key={project.id}

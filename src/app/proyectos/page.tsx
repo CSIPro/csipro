@@ -5,7 +5,7 @@ import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionPagination } from "@/components/section-pagination/section-pagination";
 import { SectionTitle } from "@/components/section-title/section-title";
-import { fetchProjects } from "@/services/projects";
+import { fetchPopulatedProjects } from "@/services/projects";
 
 interface Props {
   searchParams?: {
@@ -17,7 +17,7 @@ export default async function Page({ searchParams }: Props) {
   const limit = 6;
   const currentPage = parseInt(searchParams?.page ?? "1");
 
-  const projects = await fetchProjects(limit, currentPage);
+  const projects = await fetchPopulatedProjects(limit, currentPage);
   const totalPages = Math.ceil(projects.totalDocs / limit);
 
   const titleId = "projects-title";

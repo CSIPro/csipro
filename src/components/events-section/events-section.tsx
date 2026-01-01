@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { fetchEvents } from "@/services/events";
+import { fetchPopulatedEvents } from "@/services/events";
 
 import { EventsWrapper } from "./events-wrapper";
 import { Glow, GlowContainer, GlowGroup } from "../glow/glow";
@@ -24,7 +24,7 @@ export default async function EventsSection({
   title = "Nuevos eventos",
   hideLink = false,
 }: Props) {
-  const eventsRes = await fetchEvents(limit, currentPage);
+  const eventsRes = await fetchPopulatedEvents(limit, currentPage);
 
   const totalPages = Math.min(
     Math.ceil(eventsRes.totalDocs / limit),

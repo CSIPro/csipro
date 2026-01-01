@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
-import EventsSection from "@/components/events-section/events-section";
+import { EventsCarousel } from "@/components/events-section/events-carousel";
 import { Glow, GlowContainer } from "@/components/glow/glow";
 import { HeroCard } from "@/components/hero-carousel/hero-card";
 import { HeroCarousel } from "@/components/hero-carousel/hero-carousel";
 import { Navbar } from "@/components/navbar/navbar";
-import ProjectsSection from "@/components/projects-section/projects-section";
+import { ProjectsCarousel } from "@/components/projects-section/projects-carousel";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import {
@@ -15,6 +15,8 @@ import {
   SummaryChipsSkeleton,
 } from "@/components/summary-chips/summary-chips";
 import { Button } from "@/components/ui/button";
+import { fetchPopulatedEvents } from "@/services/events";
+import { fetchPopulatedProjects } from "@/services/projects";
 
 export default async function Home({
   searchParams,
@@ -23,8 +25,11 @@ export default async function Home({
     page?: string;
   };
 }) {
-  const limit = 6;
-  const currentPage = Number(searchParams?.page) || 1;
+  const [populatedEvents, populatedProjects] = await Promise.all([
+    fetchPopulatedEvents(6, Number(searchParams?.page) || 1),
+    fetchPopulatedProjects(6, Number(searchParams?.page) || 1),
+  ]);
+
   const dummyImages = [
     { id: 1, url: "/portada.jpg" },
     { id: 2, url: "/portada2.jpg" },
@@ -69,9 +74,9 @@ export default async function Home({
               </span>
             </h1>
           </div>
-          <Button className="px-4 py-4 font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl ">
+          {/* <Button className="px-4 py-4 font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl ">
             Get Started
-          </Button>
+          </Button> */}
           <div className="sm:py-1"></div>
 
           <HeroCarousel images={dummyImages}>
@@ -106,6 +111,7 @@ export default async function Home({
                 alt="Miembros de CSI PRO al 2024."
                 className="rounded-3xl md:rounded-2xl md:object-cover md:object-[50%_15%]"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                loading="lazy"
               />
             </div>
             <div className="flex w-full flex-col items-center gap-5 md:items-start">
@@ -161,7 +167,23 @@ export default async function Home({
           </div>
         </Section>
 
-        <EventsSection limit={limit} currentPage={currentPage} pageLimit={2} />
+        {/* <EventsSection limit={limit} currentPage={currentPage} pageLimit={2} /> */}
+        <Section>
+          <div className="flex w-full items-center justify-between pr-4">
+            <SectionTitle>Eventos</SectionTitle>
+            <Button className="hidden uppercase sm:inline-flex" asChild>
+              <Link href="/eventos" prefetch>
+                Ver todos
+              </Link>
+            </Button>
+          </div>
+          <EventsCarousel initialData={populatedEvents} />
+          <Button className="uppercase sm:hidden" asChild>
+            <Link href="/eventos" prefetch>
+              Ver todos
+            </Link>
+          </Button>
+        </Section>
         <Section innerClassName="pb-16">
           <div className="flex w-full items-center justify-between pr-4">
             <SectionTitle>Nuestros proyectos</SectionTitle>
@@ -171,7 +193,7 @@ export default async function Home({
               </Link>
             </Button>
           </div>
-          <ProjectsSection />
+          <ProjectsCarousel initialData={populatedProjects} />
           <Button asChild className="uppercase sm:hidden">
             <Link href="/proyectos" prefetch>
               Ver todos

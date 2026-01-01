@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { Degree } from "./carrera";
+import { CMSPaginatedResponse } from "./cms-response";
 import { Event } from "./events";
 import { Media } from "./media";
 import { PersonalInterest } from "./personal-interest";
@@ -78,3 +79,17 @@ export const MembersCount = z.object({
 });
 
 export type MembersCount = z.infer<typeof MembersCount>;
+
+export const PaginatedMembersResponse = CMSPaginatedResponse.extend({
+  docs: z.array(Member),
+});
+
+export type PaginatedMembersResponse = z.infer<typeof PaginatedMembersResponse>;
+
+export const PopulatedPaginatedMembersResponse = CMSPaginatedResponse.extend({
+  docs: z.array(PopulatedMember),
+});
+
+export type PopulatedPaginatedMembersResponse = z.infer<
+  typeof PopulatedPaginatedMembersResponse
+>;

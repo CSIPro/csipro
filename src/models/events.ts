@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { CMSPaginatedResponse } from "./cms-response";
 import { Media } from "./media";
 import { Member } from "./members";
 import { SocialMedia } from "./social-media";
@@ -56,10 +57,26 @@ export type Event = z.infer<typeof Event>;
 export const PopulatedEvent = Event.extend({
   participantes: z.array(z.lazy(() => Member)),
   imagen_principal: Media,
-  imagenes_secundarias: z.object({
-    id: z.string(),
-    imagen: Media,
-  }).array(),
+  imagenes_secundarias: z
+    .object({
+      id: z.string(),
+      imagen: Media,
+    })
+    .array(),
 });
 
 export type PopulatedEvent = z.infer<typeof PopulatedEvent>;
+
+export const PaginatedEventsResponse = CMSPaginatedResponse.extend({
+  docs: z.array(Event),
+});
+
+export type PaginatedEventsResponse = z.infer<typeof PaginatedEventsResponse>;
+
+export const PopulatedPaginatedEventsResponse = CMSPaginatedResponse.extend({
+  docs: z.array(PopulatedEvent),
+});
+
+export type PopulatedPaginatedEventsResponse = z.infer<
+  typeof PopulatedPaginatedEventsResponse
+>;

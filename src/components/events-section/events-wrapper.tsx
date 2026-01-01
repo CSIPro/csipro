@@ -35,7 +35,7 @@ export const EventsWrapper: FC<EventsWrapperProps> = ({ events }) => {
       </DesktopEvents>
       <MobileEvents>
         {events.map((event) => (
-          <CarouselItem key={event.id} className="basis-5/6 sm:basis-3/4">
+          <CarouselItem key={event.id} className="basis-[90%] sm:basis-3/4">
             <EventCard
               title={event.titulo}
               type={event.tipo}

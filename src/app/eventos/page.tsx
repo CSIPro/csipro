@@ -2,7 +2,6 @@ import { EventsList } from "@/components/events-list/events-list";
 import EventsSection from "@/components/events-section/events-section";
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import { Navbar } from "@/components/navbar/navbar";
-import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import {
   Facebook,
@@ -25,9 +24,9 @@ export default async function Page({
   return (
     <>
       <Navbar titles={["TECH", "INSIGHTS", "TALKS", "WORKSHOPS", "EVENTS"]} />
-      <main>
+      <main className="w-full">
         <Section>
-          <div className="absolute left-1/2 top-0 z-0 h-[50%] w-full max-w-7xl -translate-x-1/2 overflow-hidden ">
+          <div className="absolute left-1/2 top-0 z-0 h-[50%] w-full -translate-x-1/2 overflow-hidden ">
             <svg
               className="absolute inset-0 h-full w-full"
               xmlns="http://www.w3.org/2000/svg"
@@ -77,17 +76,17 @@ export default async function Page({
             </h1>
 
             <p className="justify-center p-2 text-center text-base sm:text-xl">
-              Inscribete para ampliar tus conocimientos
+              Inscríbete para ampliar tus conocimientos
             </p>
-            <div className="rounded-2xl border border-[#281D3A] p-3 shadow-inner lg:p-4">
+            {/* <div className="rounded-2xl border border-[#281D3A] p-3 shadow-inner lg:p-4">
               <SearchBar
                 shortPlaceholder="Buscar eventos..."
                 longPlaceholder="Busca eventos, por categoría, organizador, orador..."
               />
-            </div>
+            </div> */}
 
             <p className="justify-center p-2 text-center text-base sm:text-xl">
-              Enterate al instante en nuestras redes sociales
+              Entérate al instante en nuestras redes sociales
             </p>
 
             <div className="flex items-center justify-center gap-2 pb-10">

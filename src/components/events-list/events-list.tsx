@@ -1,5 +1,5 @@
 import { CMS_URL } from "@/lib/utils";
-import { fetchEvents } from "@/services/events";
+import { fetchPopulatedEvents } from "@/services/events";
 
 import { EventCard } from "../event-card/event-card";
 import { Glow, GlowContainer, GlowGroup } from "../glow/glow";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export async function EventsList({ currentPage, limit }: Props) {
-  const eventsRes = await fetchEvents(limit, currentPage);
+  const eventsRes = await fetchPopulatedEvents(limit, currentPage);
   const totalPages = Math.min(Math.ceil(eventsRes.totalDocs / limit), 5);
   const { docs, page, prevPage, nextPage } = eventsRes;
 

@@ -78,7 +78,7 @@ export const EventCard: React.FC<EventCardProps> = ({
 
   if (variant === "compact") {
     return (
-      <div className="w-full px-2 flex items-center justify-center">
+      <div className="flex w-full items-center justify-center px-2">
         <div className="w-full max-w-sm rounded-xl border border-primary bg-[#160D2A] p-4 shadow-[0_0_12px_rgba(137,84,255,0.2)]">
           <div className="flex select-none items-center justify-between pb-2">
             <BrandingHeader>
@@ -100,6 +100,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                 alt={props.imageAlt}
                 fill
                 className="object-scale-down"
+                loading="lazy"
               />
               {isScheduled && (
                 <div className="absolute bottom-0 left-0 right-0 bg-primary px-2 text-center text-sm font-semibold text-white">
@@ -112,20 +113,20 @@ export const EventCard: React.FC<EventCardProps> = ({
 
             <div className="flex w-full flex-col justify-between text-white">
               <div className="space-y-1">
-                <h2 className="line-clamp-2 text-sm font-semibold">
+                <h3 className="line-clamp-2 text-sm font-semibold">
                   {props.title}
-                </h2>
-                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
+                </h3>
+                <div className="line-clamp-1 flex items-center gap-2 text-[11px]">
                   <IoLocationSharp />
                   <span>{props.location}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
+                <div className="line-clamp-1 flex items-center gap-2 text-[11px]">
                   <FaRegCalendar />
                   <span>{format(nextDate, "PPP", { locale: es })}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
+                <div className="line-clamp-1 flex items-center gap-2 text-[11px]">
                   <IoStopwatchOutline />
                   <span>{format(nextDate, "hh:mm aaaa", { locale: es })}</span>
                 </div>
@@ -159,9 +160,9 @@ export const EventCard: React.FC<EventCardProps> = ({
       </div>
       <div className="py-2"></div>
       <div className="flex h-14 w-full items-center justify-center">
-        <h1 className="line-clamp-2 select-text text-center text-xl font-medium text-white">
+        <h3 className="line-clamp-2 select-text text-center text-xl font-medium text-white">
           {props.title}
-        </h1>
+        </h3>
       </div>
       <div className="py-1"></div>
       <hr className="border-1 border-[#2D1B55]" />
@@ -172,6 +173,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           src={props.image}
           alt={props.imageAlt}
           className="object-contain"
+          loading="lazy"
         />
         {isScheduled && (
           <div className="absolute bottom-0 right-0 rounded bg-primary px-2 py-1 text-xs font-semibold text-white">

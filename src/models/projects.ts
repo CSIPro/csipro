@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { CMSPaginatedResponse } from "./cms-response";
 import { Media } from "./media";
 import { Member } from "./members";
 import { Role } from "./role";
@@ -77,3 +78,19 @@ export const ProjectsCount = z.object({
 });
 
 export type ProjectsCount = z.infer<typeof ProjectsCount>;
+
+export const PaginatedProjectsResponse = CMSPaginatedResponse.extend({
+  docs: z.array(Project),
+});
+
+export type PaginatedProjectsResponse = z.infer<
+  typeof PaginatedProjectsResponse
+>;
+
+export const PopulatedPaginatedProjectsResponse = CMSPaginatedResponse.extend({
+  docs: z.array(PopulatedProject),
+});
+
+export type PopulatedPaginatedProjectsResponse = z.infer<
+  typeof PopulatedPaginatedProjectsResponse
+>;

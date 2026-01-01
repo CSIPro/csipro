@@ -1,13 +1,16 @@
 import { API_URL } from "@/lib/utils";
+import { generateEmptyResponse } from "@/models/cms-response";
 import {
-  createResponseSchema,
-  generateEmptyResponse,
-} from "@/models/cms-response";
-import { PopulatedProject, ProjectsCount } from "@/models/projects";
+  PopulatedPaginatedProjectsResponse,
+  ProjectsCount,
+} from "@/models/projects";
 
-export const fetchProjects = async (limit: number, currentPage: number) => {
+export const fetchPopulatedProjects = async (
+  limit: number,
+  currentPage: number,
+) => {
   const projectRes = await fetch(
-    `${API_URL}/proyectos?limit=${limit}&page=${currentPage}`,
+    `${API_URL}/proyectos?depth=2&limit=${limit}&page=${currentPage}`,
     {
       next: { revalidate: 600 },
     },
@@ -17,11 +20,9 @@ export const fetchProjects = async (limit: number, currentPage: number) => {
     return generateEmptyResponse();
   }
 
-  const ProjectResponse = createResponseSchema(PopulatedProject);
-
   const projectsData = await projectRes.json();
 
-  const projects = ProjectResponse.safeParse(projectsData);
+  const projects = PopulatedPaginatedProjectsResponse.safeParse(projectsData);
 
   if (!projects.success) {
     console.log(projects.error.format());
