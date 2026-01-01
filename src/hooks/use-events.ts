@@ -37,9 +37,7 @@ export const useInfinitePopulatedEvents = ({
 }: UseInfiniteEventsProps) => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.POPULATED_EVENTS_INFINITE, { limit }],
-    queryFn: ({ pageParam = 1 }) => {
-      return fetchPopulatedEvents(limit, pageParam);
-    },
+    queryFn: ({ pageParam = 1 }) => fetchPopulatedEvents(limit, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const morePagesExist = lastPage.hasNextPage;
 

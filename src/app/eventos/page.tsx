@@ -13,7 +13,7 @@ import {
 import { fetchPopulatedEvents } from "@/services/events";
 
 export default async function EventsPage() {
-  const limit = 8;
+  const limit = 6;
   const events = await fetchPopulatedEvents(limit, 1);
 
   return (

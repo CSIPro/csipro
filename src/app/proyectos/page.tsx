@@ -1,26 +1,15 @@
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
 import { Navbar } from "@/components/navbar/navbar";
-import ProjectCardTemp from "@/components/project-card-temp/project-card-temp";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
-import { SectionPagination } from "@/components/section-pagination/section-pagination";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { fetchPopulatedProjects } from "@/services/projects";
+import { InfiniteProjects } from "@/components/projects-section/infinite-projects";
 
-interface Props {
-  searchParams?: {
-    page?: string;
-  };
-}
+export default async function ProjectsPage() {
+  const limit = 8;
 
-export default async function Page({ searchParams }: Props) {
-  const limit = 6;
-  const currentPage = parseInt(searchParams?.page ?? "1");
-
-  const projects = await fetchPopulatedProjects(limit, currentPage);
-  const totalPages = Math.ceil(projects.totalDocs / limit);
-
-  const titleId = "projects-title";
+  const projects = await fetchPopulatedProjects(limit, 1);
 
   return (
     <>
@@ -92,7 +81,7 @@ export default async function Page({ searchParams }: Props) {
         </Section>
 
         <Section innerClassName="pb-16">
-          <SectionTitle id={titleId}>PROYECTOS</SectionTitle>
+          <SectionTitle>PROYECTOS</SectionTitle>
 
           <GlowContainer>
             <GlowGroup className="origin-[12%_50%] 2xl:origin-[25%_50%]">
@@ -118,18 +107,7 @@ export default async function Page({ searchParams }: Props) {
             </GlowGroup>
           </GlowContainer>
 
-          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 md:px-4 lg:grid-cols-3">
-            {projects.docs.map((project) => (
-              <ProjectCardTemp key={project.id} project={project} />
-            ))}
-          </div>
-          <SectionPagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            nextPage={projects.nextPage}
-            prevPage={projects.prevPage}
-            scrollId={titleId}
-          />
+          <InfiniteProjects limit={limit} initialData={projects ?? undefined} />
         </Section>
       </main>
     </>
