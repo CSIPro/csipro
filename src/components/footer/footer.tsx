@@ -40,10 +40,10 @@ export const Footer: FC<FooterProps> = (props) => {
               <FooterLink href="/eventos">Eventos</FooterLink>
             </li>
             <li>
-              <FooterLink href="/nosotros">Nosotros</FooterLink>
+              <FooterLink href="/proyectos">Proyectos</FooterLink>
             </li>
             <li>
-              <FooterLink href="/proyectos">Proyectos</FooterLink>
+              <FooterLink href="/nosotros">Nosotros</FooterLink>
             </li>
             <li>
               <FooterLink href="/creative-team">Equipo Creativo</FooterLink>

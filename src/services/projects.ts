@@ -3,7 +3,7 @@ import {
   createResponseSchema,
   generateEmptyResponse,
 } from "@/models/cms-response";
-import { PopulatedProject } from "@/models/projects";
+import { PopulatedProject, ProjectsCount } from "@/models/projects";
 
 export const fetchProjects = async (limit: number, currentPage: number) => {
   const projectRes = await fetch(
@@ -29,4 +29,25 @@ export const fetchProjects = async (limit: number, currentPage: number) => {
   }
 
   return projects.data;
+};
+
+export const countProjects = async () => {
+  const countRes = await fetch(`${API_URL}/proyectos/count`, {
+    next: { revalidate: 600 },
+  });
+
+  if (!countRes.ok) {
+    return { active: 0, inactive: 0, finished: 0 };
+  }
+
+  const countsData = await countRes.json();
+
+  const countsParse = ProjectsCount.safeParse(countsData);
+
+  if (!countsParse.success) {
+    console.log(countsParse.error.format());
+    return { active: 0, inactive: 0, finished: 0 };
+  }
+
+  return countsParse.data;
 };

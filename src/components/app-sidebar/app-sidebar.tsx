@@ -54,13 +54,13 @@ export const AppSidebar = ({ titles = [], loopTitles = false }: Props) => {
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild isActive={path === "/nosotros"}>
-              <Link href="/nosotros">Nosotros</Link>
+            <SidebarMenuButton asChild isActive={path === "/proyectos"}>
+              <Link href="/proyectos">Proyectos</Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild isActive={path === "/proyectos"}>
-              <Link href="/proyectos">Proyectos</Link>
+            <SidebarMenuButton asChild isActive={path === "/nosotros"}>
+              <Link href="/nosotros">Nosotros</Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>

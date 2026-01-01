@@ -2,6 +2,8 @@ import { FC, HTMLAttributes, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
+import { Skeleton } from "../ui/skeleton";
+
 const variants = {
   purple: "border-[#895FE9] text-[#895FE9] bg-[#4600E5]/10",
   yellow: "border-[#FAFF00] text-[#FAFF00] bg-[#FAFF00]/10",
@@ -66,4 +68,8 @@ interface IconProps {
 
 export const ChipIcon: FC<IconProps> = ({ className, children }) => {
   return <span className={cn(className)}>{children}</span>;
+};
+
+export const ChipSkeleton = () => {
+  return <Skeleton className="h-6 w-24 rounded-full" />;
 };

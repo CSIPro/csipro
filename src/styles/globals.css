@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Klee+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Klee+One&display=swap");
 
 @layer base {
   :root {
@@ -19,6 +19,7 @@
 
     --primary: 258 64% 55%;
     --primary-foreground: 210 40% 98%;
+    --primary-light: 258 86% 70%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -67,6 +68,7 @@
 
     --primary: 258 64% 55%;
     --primary-foreground: 210 40% 98%;
+    --primary-light: 258 86% 70%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -99,8 +101,6 @@
     @apply border-border;
   }
 }
-
-
 
 @layer base {
   * {

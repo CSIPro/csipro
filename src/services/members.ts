@@ -4,7 +4,7 @@ import {
   generateEmptyResponse,
 } from "@/models/cms-response";
 import { PopulatedEvent } from "@/models/events";
-import { PopulatedMember } from "@/models/members";
+import { MembersCount, PopulatedMember } from "@/models/members";
 import { PopulatedProject } from "@/models/projects";
 
 export const fetchMember = async (slug: string) => {
@@ -87,4 +87,25 @@ export const getMemberProjects = async (memberId: number) => {
   }
 
   return projects.data;
+};
+
+export const countMembers = async () => {
+  const countRes = await fetch(`${API_URL}/miembros/count`, {
+    next: { revalidate: 600 },
+  });
+
+  if (!countRes.ok) {
+    return MembersCount.parse({ active: 0, inactive: 0, graduated: 0 });
+  }
+
+  const countsData = await countRes.json();
+
+  const countsParse = MembersCount.safeParse(countsData);
+
+  if (!countsParse.success) {
+    console.log(countsParse.error.format());
+    return MembersCount.parse({ active: 0, inactive: 0, graduated: 0 });
+  }
+
+  return countsParse.data;
 };

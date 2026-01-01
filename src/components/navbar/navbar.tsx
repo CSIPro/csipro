@@ -52,10 +52,10 @@ export const Navbar: FC<Props> = ({ titles, loopTitles, className }) => {
             <NavigationLink href="/eventos">Eventos</NavigationLink>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
-            <NavigationLink href="/nosotros">Nosotros</NavigationLink>
+            <NavigationLink href="/proyectos">Proyectos</NavigationLink>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
-            <NavigationLink href="/proyectos">Proyectos</NavigationLink>
+            <NavigationLink href="/nosotros">Nosotros</NavigationLink>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
             <NavigationLink href="/creative-team">

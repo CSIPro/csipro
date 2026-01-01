@@ -70,3 +70,11 @@ export const PopulatedMember = Member.extend({
   tecnologias: PopulatedTechnology.array(),
 });
 export type PopulatedMember = z.infer<typeof PopulatedMember>;
+
+export const MembersCount = z.object({
+  active: z.number(),
+  graduated: z.number(),
+  inactive: z.number(),
+});
+
+export type MembersCount = z.infer<typeof MembersCount>;

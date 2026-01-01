@@ -69,3 +69,11 @@ export const PopulatedProject = Project.extend({
 });
 
 export type PopulatedProject = z.infer<typeof PopulatedProject>;
+
+export const ProjectsCount = z.object({
+  active: z.number(),
+  inactive: z.number(),
+  finished: z.number(),
+});
+
+export type ProjectsCount = z.infer<typeof ProjectsCount>;

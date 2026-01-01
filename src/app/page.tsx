@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HiOutlineUserCircle } from "react-icons/hi";
-import { LuSquareCode } from "react-icons/lu";
-import { TbSeeding } from "react-icons/tb";
+import { Suspense } from "react";
 
-import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import EventsSection from "@/components/events-section/events-section";
 import { Glow, GlowContainer } from "@/components/glow/glow";
 import { HeroCard } from "@/components/hero-carousel/hero-card";
@@ -13,6 +10,10 @@ import { Navbar } from "@/components/navbar/navbar";
 import ProjectsSection from "@/components/projects-section/projects-section";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
+import {
+  SummaryChips,
+  SummaryChipsSkeleton,
+} from "@/components/summary-chips/summary-chips";
 import { Button } from "@/components/ui/button";
 
 export default async function Home({
@@ -98,44 +99,57 @@ export default async function Home({
             />
           </GlowContainer>
           <div className="flex w-full flex-col items-center gap-5 px-4 pb-4 md:flex-row md:gap-6 md:pb-12 lg:gap-16">
-            <div className="relative aspect-[3/4] h-fit w-full md:aspect-[4/3]">
+            <div className="relative aspect-[3/4] h-fit w-full md:aspect-[1/1]">
               <Image
                 src="/nosotros/everyone.webp"
                 fill
-                alt="foto de portada"
+                alt="Miembros de CSI PRO al 2024."
                 className="rounded-3xl md:rounded-2xl md:object-cover md:object-[50%_15%]"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="flex w-full flex-col items-center gap-5 md:items-start">
-              <div className="flex flex-row flex-wrap items-center justify-center gap-3 md:justify-start">
-                <Chip background>
-                  <ChipIcon>
-                    <TbSeeding />
-                  </ChipIcon>
-                  <ChipLabel className="text-sm">Fundado en 2014</ChipLabel>
-                </Chip>
-                <Chip background>
-                  <ChipIcon>
-                    <HiOutlineUserCircle />
-                  </ChipIcon>
-                  <ChipLabel className="text-sm">18 Miembros</ChipLabel>
-                </Chip>
-                <Chip background>
-                  <ChipIcon>
-                    <LuSquareCode />
-                  </ChipIcon>
-                  <ChipLabel className="text-sm">5 Proyectos Activos</ChipLabel>
-                </Chip>
-              </div>
-              <h2 className="text-center font-poppins text-3xl">
-                ¿Quiénes Somos?
-              </h2>
-              <p className="text-base">
+              <Suspense fallback={<SummaryChipsSkeleton />}>
+                <SummaryChips />
+              </Suspense>
+              <h3 className="text-center font-poppins text-3xl">
+                ¿Quiénes somos?
+              </h3>
+              <p className="text-pretty text-base">
                 Somos estudiantes de la{" "}
-                <span className="text-primary">Universidad de Sonora</span> en
-                la búsqueda de innovar. Realizamos e implementamos tecnologías,
-                tales como software desarrollado por nosotros
+                <span className="text-primary-light">
+                  Universidad de Sonora
+                </span>{" "}
+                en búsqueda de innovar. Nos dedicamos al desarrollo de proyectos
+                de software con el propósito de{" "}
+                <span className="text-primary-light">
+                  aprender y beneficiar
+                </span>{" "}
+                tanto a los integrantes del laboratorio, como a la comunidad
+                universitaria.
+              </p>
+              <p className="text-pretty text-base">
+                Nuestro objetivo es fomentar un espacio donde los estudiantes
+                pueden{" "}
+                <span className="text-primary-light">
+                  obtener experiencia práctica
+                </span>{" "}
+                más allá de lo que se ofrece en las aulas, promoviendo la{" "}
+                <span className="text-primary-light">
+                  colaboración, la creatividad, y el crecimiento
+                </span>{" "}
+                tanto personal como profesional.
+              </p>
+              <p className="text-pretty text-base">
+                Desde 2014, hemos sido testigos del impacto positivo que{" "}
+                <strong className="text-primary-light">CSI PRO</strong> ha
+                tenido en sus integrantes y en la comunidad universitaria, dando
+                renombre a todos aquellos que han formado parte de este espacio
+                e{" "}
+                <span className="text-primary-light">
+                  impulsando el interés
+                </span>{" "}
+                de los estudiantes en la tecnología.
               </p>
 
               <Button className="text-base" asChild>
