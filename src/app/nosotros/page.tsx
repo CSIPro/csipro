@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import GradientBackground from "@/components/gradient-background/gradient-background";
-import MembersSection from "@/components/members-section/members-section";
+import { InfiniteMembers } from "@/components/members-section/infinite-members";
 import { Navbar } from "@/components/navbar/navbar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
@@ -14,16 +14,12 @@ import {
   Twitter,
 } from "@/components/socials/socials";
 import { MarqueeItem, MarqueeWrapper } from "@/components/ui/marquee";
+import { fetchPopulatedMembers } from "@/services/members";
 
-export default function Page({
-  searchParams,
-}: Readonly<{
-  searchParams?: {
-    page?: string;
-  };
-}>) {
+export default async function AboutUsPage() {
   const limit = 8;
-  const currentPage = Number(searchParams?.page) || 1;
+  const members = await fetchPopulatedMembers(limit, 1);
+
   return (
     <>
       <Navbar titles={["TEAM", "LEGACY", "MEMBERS"]} />
@@ -161,7 +157,7 @@ export default function Page({
           />
         </div> */}
           <div className="max-md:w-full">
-            <MembersSection limit={limit} currentPage={currentPage} />
+            <InfiniteMembers limit={limit} initialData={members} />
           </div>
         </Section>
       </main>

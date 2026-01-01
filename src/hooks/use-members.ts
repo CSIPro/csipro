@@ -1,9 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import * as qs from "qs-esm";
 
-import { API_URL } from "@/lib/utils";
-import { createResponseSchema } from "@/models/cms-response";
-import { Member } from "@/models/members";
+import { API_URL, QUERY_KEYS } from "@/lib/utils";
+import {
+  PaginatedMembersResponse,
+  PopulatedPaginatedMembersResponse,
+} from "@/models/members";
+import { fetchPopulatedMembers } from "@/services/members";
 
 export const useMemberByName = (shortName: string) => {
   return useQuery({
@@ -26,9 +29,7 @@ export const useMemberByName = (shortName: string) => {
 
       const data = await res.json();
 
-      const MembersResponse = createResponseSchema(Member);
-
-      const dataParse = MembersResponse.safeParse(data);
+      const dataParse = PaginatedMembersResponse.safeParse(data);
 
       if (!dataParse.success) {
         console.error(dataParse.error);
@@ -37,5 +38,36 @@ export const useMemberByName = (shortName: string) => {
 
       return dataParse.data.docs[0] ? dataParse.data.docs[0] : null;
     },
+  });
+};
+
+interface UseInfiniteMembersProps {
+  limit?: number;
+  initialData?: PopulatedPaginatedMembersResponse;
+}
+
+export const useInfinitePopulatedMembers = ({
+  limit = 6,
+  initialData,
+}: UseInfiniteMembersProps) => {
+  return useInfiniteQuery({
+    queryKey: [QUERY_KEYS.POPULATED_MEMBERS_INFINITE, { limit }],
+    queryFn: ({ pageParam = 1 }) => fetchPopulatedMembers(limit, pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      const morePagesExist = lastPage.hasNextPage;
+
+      if (!morePagesExist) {
+        return undefined;
+      }
+
+      return lastPage.nextPage ?? allPages.length + 1;
+    },
+    initialPageParam: 1,
+    initialData: initialData
+      ? {
+          pages: [initialData],
+          pageParams: [1],
+        }
+      : undefined,
   });
 };

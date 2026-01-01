@@ -1,10 +1,10 @@
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
 import { Navbar } from "@/components/navbar/navbar";
+import { InfiniteProjects } from "@/components/projects-section/infinite-projects";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { fetchPopulatedProjects } from "@/services/projects";
-import { InfiniteProjects } from "@/components/projects-section/infinite-projects";
 
 export default async function ProjectsPage() {
   const limit = 8;

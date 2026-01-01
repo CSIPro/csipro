@@ -4,7 +4,10 @@ import {
   generateEmptyResponse,
 } from "@/models/cms-response";
 import { PopulatedEvent } from "@/models/events";
-import { MembersCount, PopulatedMember } from "@/models/members";
+import {
+  MembersCount,
+  PopulatedPaginatedMembersResponse,
+} from "@/models/members";
 import { PopulatedProject } from "@/models/projects";
 
 export const fetchMember = async (slug: string) => {
@@ -19,10 +22,8 @@ export const fetchMember = async (slug: string) => {
     return null;
   }
 
-  const MembersResponse = createResponseSchema(PopulatedMember);
-
   const membersData = await memberRes.json();
-  const membersParse = MembersResponse.safeParse(membersData);
+  const membersParse = PopulatedPaginatedMembersResponse.safeParse(membersData);
 
   if (!membersParse.success) {
     console.log(membersParse.error.format());
@@ -41,6 +42,34 @@ export const fetchMember = async (slug: string) => {
   }
 
   return memberData;
+};
+
+export const fetchPopulatedMembers = async (limit: number, page: number) => {
+  const membersRes = await fetch(
+    `${API_URL}/miembros?depth=2&limit=${limit}&page=${page}`,
+    {
+      next: { revalidate: 600 },
+    },
+  );
+
+  if (!membersRes.ok) {
+    return generateEmptyResponse();
+  }
+
+  const membersData = await membersRes.json();
+  const membersParse = PopulatedPaginatedMembersResponse.safeParse(membersData);
+
+  if (!membersParse.success) {
+    console.log(membersParse.error.format());
+
+    for (const err of membersParse.error.errors) {
+      console.error(err);
+    }
+
+    return generateEmptyResponse();
+  }
+
+  return membersParse.data;
 };
 
 export const getMemberEvents = async (memberId: number) => {
