@@ -1,8 +1,8 @@
-import { EventsList } from "@/components/events-list/events-list";
-import EventsSection from "@/components/events-section/events-section";
+import { InfiniteEvents } from "@/components/events-section/infinite-events";
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import { Navbar } from "@/components/navbar/navbar";
 import { Section } from "@/components/section/section";
+import { SectionTitle } from "@/components/section-title/section-title";
 import {
   Facebook,
   GitHub,
@@ -10,16 +10,11 @@ import {
   LinkedIn,
   Twitter,
 } from "@/components/socials/socials";
+import { fetchPopulatedEvents } from "@/services/events";
 
-export default async function Page({
-  searchParams,
-}: Readonly<{
-  searchParams?: {
-    page?: string;
-  };
-}>) {
-  const limit = 6;
-  const currentPage = Number(searchParams?.page) || 1;
+export default async function EventsPage() {
+  const limit = 8;
+  const events = await fetchPopulatedEvents(limit, 1);
 
   return (
     <>
@@ -98,18 +93,10 @@ export default async function Page({
             </div>
           </div>
         </Section>
-        <div className="pb-16 md:hidden">
-          <EventsList currentPage={currentPage} limit={limit} />
-        </div>
-
-        <div className="hidden w-full flex-col items-center gap-8 md:flex">
-          <EventsSection
-            title="Eventos"
-            limit={limit}
-            currentPage={currentPage}
-            hideLink
-          />
-        </div>
+        <Section innerClassName="pb-16">
+          <SectionTitle>Eventos</SectionTitle>
+          <InfiniteEvents limit={limit} initialData={events ?? undefined} />
+        </Section>
       </main>
     </>
   );
