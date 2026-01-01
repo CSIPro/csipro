@@ -148,13 +148,13 @@ export const EventCard: React.FC<EventCardProps> = ({
   }
 
   return (
-    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 md:w-full xl:max-w-[26rem] 2xl:max-w-full">
-      <div className="flex select-none items-center justify-between">
-        <BrandingHeader>
+    <div className="relative w-full rounded-2xl border border-primary bg-[#160D2A] p-4 xl:max-w-[26rem] 2xl:max-w-full">
+      <div className="grid w-full select-none grid-cols-2 items-center gap-2">
+        <BrandingHeader className="place-self-start">
           <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
           <BrandingHeaderHighlight>{props.type}</BrandingHeaderHighlight>
         </BrandingHeader>
-        <Chip variant={chipVariant.variant}>
+        <Chip variant={chipVariant.variant} className="place-self-end">
           <ChipLabel uppercase>{chipVariant.label}</ChipLabel>
         </Chip>
       </div>
@@ -192,7 +192,7 @@ export const EventCard: React.FC<EventCardProps> = ({
         </ChipLabel>
       </Chip>
       <div className="py-0.5"></div>
-      <div className="flex flex-col items-start gap-2 text-sm text-white">
+      <div className="flex w-full flex-col items-start gap-2 text-sm text-white">
         <div className="flex w-full items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <FaRegCalendar />
@@ -205,7 +205,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           <span>{props.location}</span>
         </div>
       </div>
-      <div className="mt-4 flex justify-center">
+      <div className="mt-4 flex w-full justify-center">
         <Button className="rounded-xl">
           {isScheduled ? "Registrate aquí" : "Más información"}
         </Button>

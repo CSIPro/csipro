@@ -103,7 +103,7 @@ export default async function Home({
               size="small"
             />
           </GlowContainer>
-          <div className="flex w-full flex-col items-center gap-5 px-4 pb-4 md:flex-row md:gap-6 md:pb-12 lg:gap-16">
+          <div className="flex w-full flex-col items-center gap-5 px-2 pb-4 md:flex-row md:gap-6 md:pb-12 lg:gap-16">
             <div className="relative aspect-[3/4] h-fit w-full md:aspect-[1/1]">
               <Image
                 src="/nosotros/everyone.webp"
