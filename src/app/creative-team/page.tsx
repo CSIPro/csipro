@@ -44,96 +44,386 @@ export default async function Page() {
               </p>
               <MarqueeWrapper className="lg:!hidden">
                 <MarqueeItem>
-                  <Image
-                    src="/creative-team/og-team.webp"
-                    alt="Equipo original del proyecto CSI PRO Website."
-                    width={300}
-                    height={192}
-                    className="size-full object-cover lg:hidden"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/og-team/og-team-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/og-team/og-team-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/og-team/og-team-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/og-team/og-team-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/og-team/og-team-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/og-team/og-team.webp"
+                      alt="Equipo original del proyecto CSI PRO Website."
+                      width={300}
+                      height={192}
+                      unoptimized
+                      className="size-full object-cover lg:hidden"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem>
-                  <Image
-                    src="/creative-team/creative-team-2.webp"
-                    alt="Luis Hernández y Karla Lerma, miembros de CSI PRO."
-                    width={180}
-                    height={192}
-                    className="size-full object-cover lg:hidden"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/creative-team-2/creative-team-2.webp"
+                      alt="Luis Hernández y Karla Lerma, miembros de CSI PRO."
+                      width={180}
+                      height={192}
+                      unoptimized
+                      className="size-full object-cover lg:hidden"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem>
-                  <Image
-                    src="/creative-team/creative-team-verito.webp"
-                    alt="Verónica Rodríguez, líder de CSI PRO (2025)."
-                    width={300}
-                    height={192}
-                    className="size-full object-cover lg:hidden"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/creative-team-vero/verito.webp"
+                      alt="Verónica Rodríguez, líder de CSI PRO (2025)."
+                      width={300}
+                      height={192}
+                      unoptimized
+                      className="size-full object-cover lg:hidden"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem>
-                  <Image
-                    src="/creative-team/creative-team-1.webp"
-                    alt="Saúl Ramos y Kevin Ochoa, exlíderes de CSI PRO (2022-2025)."
-                    width={300}
-                    height={192}
-                    className="size-full object-cover lg:hidden"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/creative-team-1/creative-team-1.webp"
+                      alt="Saúl Ramos y Kevin Ochoa, exlíderes de CSI PRO (2022-2025)."
+                      width={300}
+                      height={192}
+                      unoptimized
+                      className="size-full object-cover lg:hidden"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem>
-                  <Image
-                    src="/creative-team/creative-team-karo.webp"
-                    alt="Karolina Badilla, miembro de CSI PRO."
-                    width={144}
-                    height={192}
-                    className="size-full object-cover lg:hidden"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/creative-team-karo/karo.webp"
+                      alt="Karolina Badilla, miembro de CSI PRO."
+                      width={144}
+                      height={192}
+                      unoptimized
+                      className="size-full object-cover lg:hidden"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
               </MarqueeWrapper>
               <div className="relative hidden h-80 w-full gap-2 px-8 lg:flex">
                 <MarqueeItem className="translate-y-16 -rotate-12 transform">
-                  <Image
-                    src="/creative-team/og-team.webp"
-                    alt="Equipo original del proyecto CSI PRO Website."
-                    width={420}
-                    height={420}
-                    className="hidden size-full object-cover lg:block"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/og-team/og-team-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/og-team/og-team-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/og-team/og-team-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/og-team/og-team-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/og-team/og-team-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/og-team/og-team.webp"
+                      alt="Equipo original del proyecto CSI PRO Website."
+                      width={420}
+                      height={420}
+                      unoptimized
+                      className="hidden size-full object-cover lg:block"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem className="translate-y-5 -rotate-6 transform">
-                  <Image
-                    src="/creative-team/creative-team-2.webp"
-                    alt="Luis Hernández y Karla Lerma, miembros de CSI PRO."
-                    width={420}
-                    height={420}
-                    className="hidden size-full scale-125 object-cover object-[50%_65%] lg:block"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-2/creative-team-2-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/creative-team-2/creative-team-2.webp"
+                      alt="Luis Hernández y Karla Lerma, miembros de CSI PRO."
+                      width={420}
+                      height={420}
+                      unoptimized
+                      className="hidden size-full scale-125 object-cover object-[50%_65%] lg:block"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem>
-                  <Image
-                    src="/creative-team/creative-team-verito.webp"
-                    alt="Verónica Rodríguez, líder de CSI PRO (2025)."
-                    width={420}
-                    height={420}
-                    className="hidden size-full scale-125 object-cover object-[75%_50%] lg:block"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-vero/verito-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/creative-team-vero/verito.webp"
+                      alt="Verónica Rodríguez, líder de CSI PRO (2025)."
+                      width={420}
+                      height={420}
+                      unoptimized
+                      className="hidden size-full scale-125 object-cover object-[75%_50%] lg:block"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem className="translate-y-5 rotate-6 transform">
-                  <Image
-                    src="/creative-team/creative-team-1.webp"
-                    alt="Saúl Ramos y Kevin Ochoa, exlíderes de CSI PRO (2022-2025)."
-                    width={420}
-                    height={420}
-                    className="hidden size-full object-cover object-[55%_50%] lg:block"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-1/creative-team-1-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/creative-team-1/creative-team-1.webp"
+                      alt="Saúl Ramos y Kevin Ochoa, exlíderes de CSI PRO (2022-2025)."
+                      width={420}
+                      height={420}
+                      unoptimized
+                      className="hidden size-full object-cover object-[55%_50%] lg:block"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem className="translate-y-16 rotate-12 transform">
-                  <Image
-                    src="/creative-team/creative-team-karo.webp"
-                    alt="Karolina Badilla, miembro de CSI PRO."
-                    width={420}
-                    height={420}
-                    className="hidden size-full object-cover lg:block"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/creative-team/creative-team-karo/karo-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/creative-team/creative-team-karo/karo.webp"
+                      alt="Karolina Badilla, miembro de CSI PRO."
+                      width={420}
+                      height={420}
+                      unoptimized
+                      className="hidden size-full object-cover lg:block"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
               </div>
               <Button className="px-4 py-4 font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl">
@@ -155,7 +445,7 @@ export default async function Page() {
           <div className="grid w-full grid-cols-2 items-center justify-center gap-4 px-4 pb-12 lg:flex lg:flex-row lg:flex-wrap lg:px-32">
             <CreativeTeamCard>
               <CreativeTeamCardImage
-                src="/creative-team/saul-ramos.png"
+                fileName="saul-ramos"
                 alt="Saúl Ramos Laborín, presidente de CSI PRO (2023-2025)."
               />
               <CreativeTeamCardContent>
@@ -176,9 +466,9 @@ export default async function Page() {
             <CreativeTeamCard>
               <CreativeTeamCardImage
                 variant="orange"
-                src="/creative-team/karla-lerma.png"
+                fileName="karla-lerma"
                 alt="Karla Lerma, presidenta de CSI PRO (2023-2025)."
-                imageClassName="scale-125 object-[50%_25%] translate-x-2"
+                imageClassName="translate-x-2 scale-125 translate-y-6"
               />
               <CreativeTeamCardContent>
                 <CreativeTeamCardTitle>
@@ -198,9 +488,9 @@ export default async function Page() {
             <CreativeTeamCard>
               <CreativeTeamCardImage
                 variant="pink"
-                src="/creative-team/karolina-badilla.png"
+                fileName="karolina-badilla"
                 alt="Karolina Badilla, miembro de CSI PRO."
-                imageClassName="scale-125 object-[50%_35%]"
+                imageClassName="scale-125 translate-y-4"
               />
               <CreativeTeamCardContent>
                 <CreativeTeamCardTitle>
@@ -220,9 +510,9 @@ export default async function Page() {
             <CreativeTeamCard>
               <CreativeTeamCardImage
                 variant="cyan"
-                src="/creative-team/andres-antelo.png"
+                fileName="andres-antelo"
                 alt="Andrés Antelo, miembro de CSI PRO."
-                imageClassName="scale-[150%] object-[60%_50%] -translate-y-2"
+                imageClassName="scale-[200%] -translate-x-3 -translate-y-2"
               />
               <CreativeTeamCardContent>
                 <CreativeTeamCardTitle>
@@ -242,9 +532,9 @@ export default async function Page() {
             <CreativeTeamCard>
               <CreativeTeamCardImage
                 variant="lightPurple"
-                src="/creative-team/luis-hernandez.png"
+                fileName="luis-hernandez"
                 alt="Luis Hernández, miembro de CSI PRO."
-                imageClassName="scale-125 object-[50%_30%] -translate-x-2"
+                imageClassName="translate-y-4 scale-125 -translate-x-4"
               />
               <CreativeTeamCardContent>
                 <CreativeTeamCardTitle>
@@ -264,9 +554,9 @@ export default async function Page() {
             <CreativeTeamCard>
               <CreativeTeamCardImage
                 variant="red"
-                src="/creative-team/veronica-rodriguez.png"
+                fileName="veronica-rodriguez"
                 alt="Verónica Rodríguez, presidenta de CSI PRO (2025-actualidad)."
-                imageClassName="scale-125 object-[60%_50%]"
+                imageClassName="scale-[150%] -translate-x-3"
               />
               <CreativeTeamCardContent>
                 <CreativeTeamCardTitle>
@@ -284,9 +574,9 @@ export default async function Page() {
             <CreativeTeamCard className="col-span-2">
               <CreativeTeamCardImage
                 variant="green"
-                src="/creative-team/kevin-ochoa.png"
+                fileName="kevin-ochoa"
                 alt="Kevin Ochoa, presidente de CSI PRO (2022-2023)."
-                imageClassName="scale-[130%] object-[40%_50%] -translate-y-4"
+                imageClassName="scale-[175%] -translate-y-3 translate-x-2"
               />
               <CreativeTeamCardContent>
                 <CreativeTeamCardTitle>

@@ -1,7 +1,6 @@
 "use client";
 
 import { usePopulatedEvents } from "@/hooks/use-events";
-import { CMS_URL } from "@/lib/utils";
 import { PopulatedPaginatedEventsResponse } from "@/models/events";
 
 import { EventCard } from "../event-card/event-card";
@@ -45,8 +44,7 @@ export const EventsCarousel = ({ initialData }: Props) => {
               type={event.tipo}
               dates={event.fechas_horas}
               duration={event.duracion}
-              image={`${CMS_URL}${event.imagen_principal.url}`}
-              imageAlt={event.imagen_principal.alt}
+              image={event.imagen_principal}
               spots={event.cupos - event.asistentes.length}
               location={event.lugar}
             />

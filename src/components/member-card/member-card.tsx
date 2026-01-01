@@ -8,9 +8,9 @@ import { FC } from "react";
 import { Button } from "@/components/ui/button";
 import { CMS_URL } from "@/lib/utils";
 import { PopulatedMember } from "@/models/members";
+import { Position } from "@/models/positions";
 import { PopulatedSocialMedia } from "@/models/social-media";
 
-import { Position } from "./../../models/positions";
 import { MemberBadge } from "./member-badge";
 
 type MappedNetworks = {
@@ -71,13 +71,50 @@ export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
           }}
         ></div>
         <div className="relative h-52 overflow-hidden rounded max-md:flex max-md:w-full max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[135px] max-sm:w-[135px] md:h-64 md:w-full">
-          <Image
-            src={`${CMS_URL}${member.foto.url}`}
-            alt={member.foto.alt}
-            className="object-cover"
-            fill
-            sizes="(max-width: 1280px) 30vw, 25vw"
-          />
+          <picture>
+            {member.foto.sizes?.hero?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.hero?.url}`}
+                media="(min-width: 1800px)"
+                type="image/webp"
+              />
+            ) : null}
+            {member.foto.sizes?.large?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.large?.url}`}
+                media="(min-width: 1400px)"
+                type="image/webp"
+              />
+            ) : null}
+            {member.foto.sizes?.medium?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.medium?.url}`}
+                media="(min-width: 1000px)"
+                type="image/webp"
+              />
+            ) : null}
+            {member.foto.sizes?.small?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.small?.url}`}
+                media="(min-width: 600px)"
+                type="image/webp"
+              />
+            ) : null}
+            {member.foto.sizes?.small?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.small?.url}`}
+                media="(max-width: 599px)"
+                type="image/webp"
+              />
+            ) : null}
+            <Image
+              src={`${CMS_URL}${member.foto.url}`}
+              alt={member.foto.alt}
+              className="object-cover object-[50%_30%]"
+              unoptimized
+              fill
+            />
+          </picture>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-3 py-2 max-md:hidden">
@@ -152,7 +189,7 @@ export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
               asChild
               className="rounded-xl text-white transition-colors hover:bg-[#491288]"
             >
-              <Link href={`/miembros/${props.slug}`}>Ver Portafolio</Link>
+              <Link href={`/miembros/${member.slug}`}>Ver Portafolio</Link>
             </Button>
           </div>
         </div>
@@ -201,7 +238,7 @@ export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
             asChild
             className="rounded-xl text-white transition-colors hover:bg-[#491288]"
           >
-            <Link href={`/miembros/${props.slug}`}>Ver Portafolio</Link>
+            <Link href={`/miembros/${member.slug}`}>Ver Portafolio</Link>
           </Button>
         </div>
       </div>

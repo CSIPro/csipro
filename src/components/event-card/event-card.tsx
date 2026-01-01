@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { format, isFuture, isPast } from "date-fns";
 import { es } from "date-fns/locale";
 import Image from "next/image";
@@ -11,7 +10,9 @@ import {
 } from "react-icons/io5";
 
 import { Button } from "@/components/ui/button";
+import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { EventDate } from "@/models/events";
+import { Media } from "@/models/media";
 
 import {
   BrandingHeader,
@@ -43,8 +44,7 @@ interface EventCardProps {
   variant?: "default" | "compact";
   type: string;
   dates: Array<EventDate>;
-  image: string;
-  imageAlt: string;
+  image: Media;
   spots?: number;
   title: string;
   duration: number;
@@ -76,6 +76,9 @@ export const EventCard: React.FC<EventCardProps> = ({
 
   const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
 
+  const eventImage = getSmallestImageNotThumbnail(props.image);
+  const thumbnailImage = props.image.sizes?.thumbnail ?? eventImage;
+
   if (variant === "compact") {
     return (
       <div className="flex w-full items-center justify-center px-2">
@@ -96,8 +99,8 @@ export const EventCard: React.FC<EventCardProps> = ({
           <div className="flex gap-4">
             <div className="relative h-36 w-36 flex-shrink-0 overflow-hidden rounded">
               <Image
-                src={props.image}
-                alt={props.imageAlt}
+                src={`${CMS_URL}${thumbnailImage.url}`}
+                alt={props.image.alt}
                 fill
                 className="object-scale-down"
                 loading="lazy"
@@ -170,8 +173,8 @@ export const EventCard: React.FC<EventCardProps> = ({
       <div className="relative h-72 w-full overflow-hidden rounded md:h-52">
         <Image
           fill
-          src={props.image}
-          alt={props.imageAlt}
+          src={`${CMS_URL}${eventImage.url}`}
+          alt={props.image.alt}
           className="object-contain"
           loading="lazy"
         />

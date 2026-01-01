@@ -14,7 +14,7 @@ export const fetchMember = async (slug: string) => {
   const memberRes = await fetch(
     `${API_URL}/miembros?depth=2&where[slug][equals]=${encodeURIComponent(slug)}&limit=1`,
     {
-      next: { revalidate: 600 },
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
     },
   );
 

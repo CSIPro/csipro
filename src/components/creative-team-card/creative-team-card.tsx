@@ -50,14 +50,14 @@ const imageBackgroundVariants = cva(
 
 interface CreativeTeamCardImageProps
   extends VariantProps<typeof imageBackgroundVariants> {
-  src: string;
+  fileName: string;
   alt: string;
   className?: string;
   imageClassName?: string;
 }
 
 export const CreativeTeamCardImage: FC<CreativeTeamCardImageProps> = ({
-  src,
+  fileName,
   alt,
   variant = "default",
   className,
@@ -71,13 +71,42 @@ export const CreativeTeamCardImage: FC<CreativeTeamCardImageProps> = ({
         className,
       )}
     >
-      <Image
-        width={400}
-        height={400}
-        src={src}
-        alt={alt}
-        className={cn("size-full object-cover", imageClassName)}
-      />
+      <picture>
+        <source
+          srcSet={`/creative-team/${fileName}/${fileName}-large.webp`}
+          media="(min-width: 1800px)"
+          type="image/webp"
+        />
+        <source
+          srcSet={`/creative-team/${fileName}/${fileName}-medium.webp`}
+          media="(min-width: 1400px)"
+          type="image/webp"
+        />
+        <source
+          srcSet={`/creative-team/${fileName}/${fileName}-medium.webp`}
+          media="(min-width: 1000px)"
+          type="image/webp"
+        />
+        <source
+          srcSet={`/creative-team/${fileName}/${fileName}-small.webp`}
+          media="(min-width: 600px)"
+          type="image/webp"
+        />
+        <source
+          srcSet={`/creative-team/${fileName}/${fileName}-small.webp`}
+          media="(max-width: 599px)"
+          type="image/webp"
+        />
+        <Image
+          src={`/creative-team/${fileName}/${fileName}.webp`}
+          alt={alt}
+          width={400}
+          height={400}
+          unoptimized
+          className={cn("size-full object-cover", imageClassName)}
+          loading="lazy"
+        />
+      </picture>
     </div>
   );
 };

@@ -12,7 +12,7 @@ export const fetchPopulatedProjects = async (
   const projectRes = await fetch(
     `${API_URL}/proyectos?depth=2&limit=${limit}&page=${currentPage}`,
     {
-      next: { revalidate: 600 },
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
     },
   );
 

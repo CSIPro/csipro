@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import Image from "next/image";
 
-import { CMS_URL } from "@/lib/utils";
+import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { PopulatedProject } from "@/models/projects";
 
 import { CsiproLogo } from "../socials/logos/csipro-logo";
@@ -14,6 +14,8 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
   const isActive = project.estado === "Activo";
   const initialDate = format(new Date(project.fecha_inicio), "dd/MM/yyyy");
   const members = project.participantes ?? [];
+
+  const projectImage = getSmallestImageNotThumbnail(project.imagen_principal);
 
   return (
     <div className="w-full rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-80 lg:w-full">
@@ -48,7 +50,7 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
       <div className="flex flex-row gap-2 md:flex-col">
         <div className="relative h-48 w-44 overflow-hidden rounded-2xl md:mt-4 md:w-full">
           <Image
-            src={`${CMS_URL}${project.imagen_principal.url}`}
+            src={`${CMS_URL}${projectImage.url}`}
             alt={project.imagen_principal.alt}
             className="h-full w-full object-cover"
             width={176}
@@ -96,17 +98,29 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
             <span>{members.length} miembros</span>
           </div>
           <div className="flex gap-2 pt-4">
-            {members.slice(0, 4).map((member, idx) => (
-              <div key={idx} className="size-7 overflow-hidden rounded-full">
-                <Image
-                  src={`${CMS_URL}${member.miembro.foto.url}`}
-                  alt={member.miembro.foto.alt}
-                  className="h-full w-full object-cover"
-                  width={28}
-                  height={28}
-                />
-              </div>
-            ))}
+            {members.slice(0, 4).map((member, idx) => {
+              console.log(member);
+
+              const memberImage = getSmallestImageNotThumbnail(
+                member.miembro.foto,
+              );
+
+              const thumbnail = member.miembro.foto.sizes?.thumbnail?.url
+                ? member.miembro.foto.sizes.thumbnail
+                : memberImage;
+
+              return (
+                <div key={idx} className="size-7 overflow-hidden rounded-full">
+                  <Image
+                    src={`${CMS_URL}${thumbnail.url}`}
+                    alt={member.miembro.foto.alt}
+                    className="h-full w-full object-cover"
+                    width={28}
+                    height={28}
+                  />
+                </div>
+              );
+            })}
             {members.length > 4 && (
               <div className="relative flex size-7 items-center justify-center rounded-full bg-purple-700/50 text-xs text-white">
                 +{members.length - 4}

@@ -15,6 +15,7 @@ import {
   SummaryChipsSkeleton,
 } from "@/components/summary-chips/summary-chips";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { fetchPopulatedEvents } from "@/services/events";
 import { fetchPopulatedProjects } from "@/services/projects";
 
@@ -30,10 +31,43 @@ export default async function Home({
     fetchPopulatedProjects(6, Number(searchParams?.page) || 1),
   ]);
 
-  const dummyImages = [
-    { id: 1, url: "/portada.jpg" },
-    { id: 2, url: "/portada2.jpg" },
-    { id: 3, url: "/portada-4.jpg" },
+  const simpleImages = [
+    {
+      id: 1,
+      url: "/landing-hero/csipro-reboot-2023-og.jpg",
+      alt: "Paula Romero en el CSI PRO REBOOT 2023.",
+    },
+  ];
+
+  const srcSetImages = [
+    {
+      id: 2,
+      fileName: "og-team",
+      path: "/creative-team/og-team",
+      alt: "Equipo original de CSI PRO Website (2024).",
+      className: "",
+    },
+    {
+      id: 3,
+      fileName: "braintive-2024-1",
+      path: "/landing-hero/braintive",
+      alt: "Equipo de CSI PRO BrainTive en 2024.",
+      className: "-translate-y-12",
+    },
+    {
+      id: 4,
+      fileName: "miembros-csipro-gen-2020-2025",
+      path: "/landing-hero/gen-2020-2025",
+      alt: "Miembros de CSI PRO de la generación 2020-2025.",
+      className: "-translate-y-28",
+    },
+    {
+      id: 5,
+      fileName: "miembros-csipro-gen-2017-2024",
+      path: "/landing-hero/gen-2017-2024",
+      alt: "Miembros de CSI PRO de la generación 2017-2024.",
+      className: "",
+    },
   ];
 
   return (
@@ -79,16 +113,51 @@ export default async function Home({
           </Button> */}
           <div className="sm:py-1"></div>
 
-          <HeroCarousel images={dummyImages}>
-            {dummyImages.map((img) => (
+          <HeroCarousel images={[...simpleImages, ...srcSetImages]}>
+            {simpleImages.map((img) => (
               <HeroCard key={`heroCard ${img.id}`} imageId={img.id}>
                 <Image
                   src={img.url}
                   width={1200}
                   height={400}
-                  alt="foto de portada"
-                  className=" object-cover"
+                  alt={img.alt}
+                  className="object-cover"
+                  loading="eager"
                 />
+              </HeroCard>
+            ))}
+            {srcSetImages.map((img) => (
+              <HeroCard key={`heroCard ${img.id}`} imageId={img.id}>
+                <picture>
+                  <source
+                    srcSet={`${img.path}/${img.fileName}-hero.webp`}
+                    media="(min-width: 2000px)"
+                    type="image/webp"
+                  />
+                  <source
+                    srcSet={`${img.path}/${img.fileName}-large.webp`}
+                    media="(min-width: 1800px)"
+                    type="image/webp"
+                  />
+                  <source
+                    srcSet={`${img.path}/${img.fileName}-medium.webp`}
+                    media="(min-width: 1000px)"
+                    type="image/webp"
+                  />
+                  <source
+                    srcSet={`${img.path}/${img.fileName}-small.webp`}
+                    media="(max-width: 999px)"
+                    type="image/webp"
+                  />
+                  <Image
+                    src={`${img.path}/${img.fileName}.webp`}
+                    width={1200}
+                    height={400}
+                    alt={img.alt}
+                    className={cn("object-cover", img.className)}
+                    loading="eager"
+                  />
+                </picture>
               </HeroCard>
             ))}
           </HeroCarousel>
@@ -105,14 +174,41 @@ export default async function Home({
           </GlowContainer>
           <div className="flex w-full flex-col items-center gap-5 px-2 pb-4 md:flex-row md:gap-6 md:pb-12 lg:gap-16">
             <div className="relative aspect-[3/4] h-fit w-full md:aspect-[1/1]">
-              <Image
-                src="/nosotros/everyone.webp"
-                fill
-                alt="Miembros de CSI PRO al 2024."
-                className="rounded-3xl md:rounded-2xl md:object-cover md:object-[50%_15%]"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                loading="lazy"
-              />
+              <picture>
+                <source
+                  srcSet="/nosotros/everyone/everyone-hero.webp"
+                  media="(min-width: 1800px)"
+                  type="image/webp"
+                />
+                <source
+                  srcSet="/nosotros/everyone/everyone-large.webp"
+                  media="(min-width: 1400px)"
+                  type="image/webp"
+                />
+                <source
+                  srcSet="/nosotros/everyone/everyone-medium.webp"
+                  media="(min-width: 1000px)"
+                  type="image/webp"
+                />
+                <source
+                  srcSet="/nosotros/everyone/everyone-small.webp"
+                  media="(min-width: 600px)"
+                  type="image/webp"
+                />
+                <source
+                  srcSet="/nosotros/everyone/everyone-small.webp"
+                  media="(max-width: 599px)"
+                  type="image/webp"
+                />
+                <Image
+                  src="/nosotros/everyone/everyone.webp"
+                  fill
+                  alt="Miembros de CSI PRO al 2024."
+                  className="rounded-3xl md:rounded-2xl md:object-cover md:object-[50%_15%]"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="flex w-full flex-col items-center gap-5 md:items-start">
               <Suspense fallback={<SummaryChipsSkeleton />}>

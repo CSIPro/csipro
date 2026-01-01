@@ -1,5 +1,16 @@
 import { z } from "zod";
 
+export const GeneratedMedia = z.object({
+  width: z.number().nullable(),
+  height: z.number().nullable(),
+  mimeType: z.string().nullable(),
+  filesize: z.number().nullable(),
+  filename: z.string().nullable(),
+  url: z.string().nullable(),
+});
+
+export type GeneratedMedia = z.infer<typeof GeneratedMedia>;
+
 export const Media = z.object({
   id: z.number(),
   alt: z.string(),
@@ -11,39 +22,11 @@ export const Media = z.object({
   url: z.string(),
   sizes: z
     .object({
-      thumbnail: z
-        .object({
-          width: z.number().optional().nullable(),
-          height: z.number().optional().nullable(),
-          mimeType: z.string().optional().nullable(),
-          filesize: z.number().optional().nullable(),
-          filename: z.string().optional().nullable(),
-          url: z.string().optional().nullable(),
-        })
-        .optional()
-        .nullable(),
-      card: z
-        .object({
-          width: z.number().optional().nullable(),
-          height: z.number().optional().nullable(),
-          mimeType: z.string().optional().nullable(),
-          filesize: z.number().optional().nullable(),
-          filename: z.string().optional().nullable(),
-          url: z.string().optional().nullable(),
-        })
-        .optional()
-        .nullable(),
-      tablet: z
-        .object({
-          width: z.number().optional().nullable(),
-          height: z.number().optional().nullable(),
-          mimeType: z.string().optional().nullable(),
-          filesize: z.number().optional().nullable(),
-          filename: z.string().optional().nullable(),
-          url: z.string().optional().nullable(),
-        })
-        .optional()
-        .nullable(),
+      thumbnail: GeneratedMedia,
+      small: GeneratedMedia,
+      medium: GeneratedMedia,
+      large: GeneratedMedia,
+      hero: GeneratedMedia,
     })
     .optional(),
   createdAt: z.string().datetime(),

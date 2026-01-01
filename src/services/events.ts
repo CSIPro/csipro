@@ -9,8 +9,7 @@ export const fetchPopulatedEvents = async (
   const eventsRes = await fetch(
     `${API_URL}/eventos?depth=2&limit=${limit}&page=${currentPage}`,
     {
-      // next: { revalidate: 600 },
-      cache: "no-store",
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
     },
   );
 

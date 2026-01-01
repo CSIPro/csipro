@@ -60,81 +60,313 @@ export default async function AboutUsPage() {
               <div className="hidden w-1/2 justify-center lg:flex lg:gap-4 lg:px-20">
                 <div className="flex items-end max-lg:gap-3 lg:flex-col lg:space-y-4">
                   <div className="overflow-hidden rounded-xl lg:h-72 lg:w-64">
-                    <Image
-                      src="/nosotros/everyone.webp"
-                      alt="Miembros del CSI PRO al 2024."
-                      width={600}
-                      height={800}
-                      className="h-auto w-auto object-cover"
-                    />
+                    <picture>
+                      <source
+                        srcSet="/nosotros/everyone/everyone-large.webp"
+                        media="(min-width: 1800px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/everyone/everyone-medium.webp"
+                        media="(min-width: 1400px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/everyone/everyone-small.webp"
+                        media="(min-width: 1000px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/everyone/everyone-small.webp"
+                        media="(min-width: 600px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/everyone/everyone-small.webp"
+                        media="(max-width: 599px)"
+                        type="image/webp"
+                      />
+                      <Image
+                        src="/nosotros/everyone.webp"
+                        alt="Miembros del CSI PRO al 2024."
+                        width={600}
+                        height={800}
+                        unoptimized
+                        className="h-auto w-auto object-cover"
+                        loading="eager"
+                      />
+                    </picture>
                   </div>
                   <div className="h-56 w-72 overflow-hidden rounded-xl">
-                    <Image
-                      src="/nosotros/csipro-2024-1.webp"
-                      alt="Luis Ernesto Hernández, David Núñez, y Andrés Antelo."
-                      width={600}
-                      height={500}
-                      className="size-full object-cover"
-                    />
+                    <picture>
+                      <source
+                        srcSet="/nosotros/csipro-2024-1/csipro-2024-1-large.webp"
+                        media="(min-width: 1800px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/csipro-2024-1/csipro-2024-1-medium.webp"
+                        media="(min-width: 1400px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/csipro-2024-1/csipro-2024-1-small.webp"
+                        media="(min-width: 1000px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/csipro-2024-1/csipro-2024-1-small.webp"
+                        media="(min-width: 600px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/csipro-2024-1/csipro-2024-1-small.webp"
+                        media="(max-width: 599px)"
+                        type="image/webp"
+                      />
+                      <Image
+                        src="/nosotros/csipro-2024-1/csipro-2024-1.webp"
+                        alt="Luis Ernesto Hernández, David Núñez, y Andrés Antelo."
+                        width={600}
+                        height={500}
+                        unoptimized
+                        className="size-full object-cover"
+                        loading="eager"
+                      />
+                    </picture>
                   </div>
                 </div>
                 <div className="max-lg:flex max-lg:gap-3 lg:space-y-4">
                   <div className="mt-8 h-56 w-72 overflow-hidden rounded-xl">
-                    <Image
-                      src="/nosotros/csipro-reboot-2023.webp"
-                      alt="Paula Romero en el CSI PRO REBOOT 2023."
-                      width={600}
-                      height={500}
-                      className="size-full object-cover"
-                    />
+                    <picture>
+                      <source
+                        srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-large.webp"
+                        media="(min-width: 1800px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-medium.webp"
+                        media="(min-width: 1400px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-small.webp"
+                        media="(min-width: 1000px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-small.webp"
+                        media="(min-width: 600px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-small.webp"
+                        media="(max-width: 599px)"
+                        type="image/webp"
+                      />
+                      <Image
+                        src="/nosotros/csipro-reboot-2023/csipro-reboot-2023.webp"
+                        alt="Paula Romero en el CSI PRO REBOOT 2023."
+                        width={600}
+                        height={500}
+                        unoptimized
+                        className="size-full object-cover"
+                        loading="eager"
+                      />
+                    </picture>
                   </div>
                   <div className="overflow-hidden rounded-xl lg:h-72 lg:w-56">
-                    <Image
-                      src="/nosotros/sislab-devs.webp"
-                      alt="Kevin Ochoa y Saúl Fimbres en 2023."
-                      width={600}
-                      height={800}
-                      className="size-full object-cover"
-                    />
+                    <picture>
+                      <source
+                        srcSet="/nosotros/sislab-devs/sislab-devs-large.webp"
+                        media="(min-width: 1800px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/sislab-devs/sislab-devs-medium.webp"
+                        media="(min-width: 1400px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/sislab-devs/sislab-devs-small.webp"
+                        media="(min-width: 1000px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/sislab-devs/sislab-devs-small.webp"
+                        media="(min-width: 600px)"
+                        type="image/webp"
+                      />
+                      <source
+                        srcSet="/nosotros/sislab-devs/sislab-devs-small.webp"
+                        media="(max-width: 599px)"
+                        type="image/webp"
+                      />
+                      <Image
+                        src="/nosotros/sislab-devs/sislab-devs.webp"
+                        alt="Kevin Ochoa y Saúl Fimbres en 2023."
+                        width={600}
+                        height={800}
+                        unoptimized
+                        className="size-full object-cover"
+                        loading="eager"
+                      />
+                    </picture>
                   </div>
                 </div>
               </div>
               <MarqueeWrapper className="lg:!hidden">
                 <MarqueeItem className="pb-4 pt-2" innerClassName="h-64">
-                  <Image
-                    src="/nosotros/everyone.webp"
-                    alt="Miembros del CSI PRO al 2024."
-                    width={300}
-                    height={400}
-                    className="w-64 object-cover"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/nosotros/everyone/everyone-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/everyone/everyone-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/everyone/everyone-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/everyone/everyone-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/everyone/everyone-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/nosotros/everyone.webp"
+                      alt="Miembros del CSI PRO al 2024."
+                      width={300}
+                      height={400}
+                      unoptimized
+                      className="w-64 object-cover"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem className="pb-4 pt-2" innerClassName="h-64">
-                  <Image
-                    src="/nosotros/csipro-reboot-2023.webp"
-                    alt="Paula Romero en el CSI PRO REBOOT 2023."
-                    width={500}
-                    height={400}
-                    className="h-full w-80 object-cover"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/csipro-reboot-2023/csipro-reboot-2023-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/nosotros/csipro-reboot-2023/csipro-reboot-2023.webp"
+                      alt="Paula Romero en el CSI PRO REBOOT 2023."
+                      width={500}
+                      height={400}
+                      unoptimized
+                      className="h-full w-80 object-cover"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem className="pb-4 pt-2" innerClassName="h-64">
-                  <Image
-                    src="/nosotros/csipro-2024-1.webp"
-                    alt="Luis Ernesto Hernández, David Núñez, y Andrés Antelo."
-                    width={500}
-                    height={320}
-                    className="h-full w-72 object-cover"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/nosotros/csipro-2024-1/csipro-2024-1-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/csipro-2024-1/csipro-2024-1-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/csipro-2024-1/csipro-2024-1-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/csipro-2024-1/csipro-2024-1-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/csipro-2024-1/csipro-2024-1-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/nosotros/csipro-2024-1/csipro-2024-1.webp"
+                      alt="Luis Ernesto Hernández, David Núñez, y Andrés Antelo."
+                      width={500}
+                      height={320}
+                      unoptimized
+                      className="h-full w-72 object-cover"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
                 <MarqueeItem className="pb-4 pt-2" innerClassName="h-64">
-                  <Image
-                    src="/nosotros/sislab-devs.webp"
-                    alt="Kevin Ochoa y Saúl Fimbres en 2023."
-                    width={300}
-                    height={400}
-                    className="h-full w-64 object-cover"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/nosotros/sislab-devs/sislab-devs-large.webp"
+                      media="(min-width: 1800px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/sislab-devs/sislab-devs-medium.webp"
+                      media="(min-width: 1400px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/sislab-devs/sislab-devs-small.webp"
+                      media="(min-width: 1000px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/sislab-devs/sislab-devs-small.webp"
+                      media="(min-width: 600px)"
+                      type="image/webp"
+                    />
+                    <source
+                      srcSet="/nosotros/sislab-devs/sislab-devs-small.webp"
+                      media="(max-width: 599px)"
+                      type="image/webp"
+                    />
+                    <Image
+                      src="/nosotros/sislab-devs/sislab-devs.webp"
+                      alt="Kevin Ochoa y Saúl Fimbres en 2023."
+                      width={300}
+                      height={400}
+                      unoptimized
+                      className="h-full w-64 object-cover"
+                      loading="eager"
+                    />
+                  </picture>
                 </MarqueeItem>
               </MarqueeWrapper>
             </div>

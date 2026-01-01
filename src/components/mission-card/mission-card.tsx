@@ -16,13 +16,42 @@ export function MissionCard() {
       </div>
 
       <div className="w-full lg:w-1/3">
-        <Image
-          width={400}
-          height={600}
-          src="/miembros/equipo.JPG"
-          alt="Creative team"
-          className="w-full rounded-lg object-cover"
-        />
+        <picture>
+          <source
+            srcSet="/creative-team/og-team/og-team-large.webp"
+            media="(min-width: 1800px)"
+            type="image/webp"
+          />
+          <source
+            srcSet="/creative-team/og-team/og-team-medium.webp"
+            media="(min-width: 1400px)"
+            type="image/webp"
+          />
+          <source
+            srcSet="/creative-team/og-team/og-team-small.webp"
+            media="(min-width: 1000px)"
+            type="image/webp"
+          />
+          <source
+            srcSet="/creative-team/og-team/og-team-small.webp"
+            media="(min-width: 600px)"
+            type="image/webp"
+          />
+          <source
+            srcSet="/creative-team/og-team/og-team-small.webp"
+            media="(max-width: 599px)"
+            type="image/webp"
+          />
+          <Image
+            src="/creative-team/og-team/og-team.webp"
+            alt="Equipo original del proyecto CSI PRO Website."
+            width={400}
+            height={600}
+            unoptimized
+            className="w-full rounded-lg object-cover"
+            loading="eager"
+          />
+        </picture>
       </div>
     </div>
   );

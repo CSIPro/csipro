@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
-import { CMS_URL } from "@/lib/utils";
+import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { Media } from "@/models/media";
 import { PopulatedTechnology } from "@/models/technology";
 
@@ -20,6 +20,8 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
+  const projectImage = getSmallestImageNotThumbnail(props.thumbnail);
+
   return (
     <div className="flex w-full justify-center rounded-2xl gradient-border md:max-w-96">
       <div className="flex h-full w-full flex-col gap-2 rounded-[15px] bg-muted p-4">
@@ -33,7 +35,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           />
           <Image
             fill
-            src={`${CMS_URL}${props.thumbnail.url}`}
+            src={`${CMS_URL}${projectImage.url}`}
             alt={props.thumbnail.alt}
             className="z-10 object-contain"
             loading="lazy"
