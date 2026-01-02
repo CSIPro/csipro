@@ -34,7 +34,7 @@ export const fetchPopulatedProjects = async (
 
 export const countProjects = async () => {
   const countRes = await fetch(`${API_URL}/proyectos/count`, {
-    next: { revalidate: 600 },
+    next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
   });
 
   if (!countRes.ok) {

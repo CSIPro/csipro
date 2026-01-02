@@ -99,8 +99,6 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
           </div>
           <div className="flex gap-2 pt-4">
             {members.slice(0, 4).map((member, idx) => {
-              console.log(member);
-
               const memberImage = getSmallestImageNotThumbnail(
                 member.miembro.foto,
               );

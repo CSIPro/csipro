@@ -48,7 +48,7 @@ export const fetchPopulatedMembers = async (limit: number, page: number) => {
   const membersRes = await fetch(
     `${API_URL}/miembros?depth=2&limit=${limit}&page=${page}`,
     {
-      next: { revalidate: 600 },
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
     },
   );
 
@@ -74,7 +74,7 @@ export const fetchPopulatedMembers = async (limit: number, page: number) => {
 
 export const getMemberEvents = async (memberId: number) => {
   const eventsRes = await fetch(`${API_URL}/miembros/${memberId}/events`, {
-    next: { revalidate: 600 },
+    next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
   });
 
   if (!eventsRes.ok) {
@@ -97,7 +97,7 @@ export const getMemberEvents = async (memberId: number) => {
 
 export const getMemberProjects = async (memberId: number) => {
   const projectsRes = await fetch(`${API_URL}/miembros/${memberId}/projects`, {
-    next: { revalidate: 600 },
+    next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
   });
 
   if (!projectsRes.ok) {
@@ -120,7 +120,7 @@ export const getMemberProjects = async (memberId: number) => {
 
 export const countMembers = async () => {
   const countRes = await fetch(`${API_URL}/miembros/count`, {
-    next: { revalidate: 600 },
+    next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
   });
 
   if (!countRes.ok) {
