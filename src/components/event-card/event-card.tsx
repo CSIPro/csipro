@@ -77,7 +77,9 @@ export const EventCard: React.FC<EventCardProps> = ({
   const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
 
   const eventImage = getSmallestImageNotThumbnail(props.image);
-  const thumbnailImage = props.image.sizes?.thumbnail ?? eventImage;
+  const thumbnailImage = props.image.sizes?.thumbnail?.url
+    ? props.image.sizes.thumbnail
+    : eventImage;
 
   if (variant === "compact") {
     return (

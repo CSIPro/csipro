@@ -85,11 +85,11 @@ export default async function EventsPage() {
             </p>
 
             <div className="flex items-center justify-center gap-2 pb-10">
-              <Twitter className="h-4 w-4" />
-              <Facebook className="h-4 w-4" />
-              <Instagram className="h-4 w-4" />
-              <LinkedIn className="h-4 w-4" />
-              <GitHub className="h-4 w-4" />
+              <Twitter />
+              <Facebook />
+              <Instagram />
+              <LinkedIn />
+              <GitHub />
             </div>
           </div>
         </Section>

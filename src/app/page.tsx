@@ -52,21 +52,21 @@ export default async function Home({
       fileName: "braintive-2024-1",
       path: "/landing-hero/braintive",
       alt: "Equipo de CSI PRO BrainTive en 2024.",
-      className: "-translate-y-12",
+      className: "-translate-y-6 lg:-translate-y-12",
     },
     {
       id: 4,
       fileName: "miembros-csipro-gen-2020-2025",
       path: "/landing-hero/gen-2020-2025",
       alt: "Miembros de CSI PRO de la generación 2020-2025.",
-      className: "-translate-y-28",
+      className: "-translate-y-8 lg:-translate-y-28",
     },
     {
       id: 5,
       fileName: "miembros-csipro-gen-2017-2024",
       path: "/landing-hero/gen-2017-2024",
       alt: "Miembros de CSI PRO de la generación 2017-2024.",
-      className: "",
+      className: "scale-110",
     },
   ];
 

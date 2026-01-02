@@ -1,4 +1,3 @@
-import { CMS_URL } from "@/lib/utils";
 import { getMemberEvents } from "@/services/members";
 
 import { EventCard } from "../event-card/event-card";
@@ -24,8 +23,7 @@ export default async function MemberEvents({ memberId }: Props) {
               type={event.tipo}
               dates={event.fechas_horas}
               duration={event.duracion}
-              image={`${CMS_URL}${event.imagen_principal.url}`}
-              imageAlt={event.imagen_principal.alt}
+              image={event.imagen_principal}
               spots={event.cupos - event.asistentes.length}
               location={event.lugar}
             />

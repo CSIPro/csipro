@@ -91,7 +91,6 @@ export default async function AboutUsPage() {
                         alt="Miembros del CSI PRO al 2024."
                         width={600}
                         height={800}
-                        unoptimized
                         className="h-auto w-auto object-cover"
                         loading="eager"
                       />
@@ -129,7 +128,6 @@ export default async function AboutUsPage() {
                         alt="Luis Ernesto Hernández, David Núñez, y Andrés Antelo."
                         width={600}
                         height={500}
-                        unoptimized
                         className="size-full object-cover"
                         loading="eager"
                       />
@@ -169,7 +167,6 @@ export default async function AboutUsPage() {
                         alt="Paula Romero en el CSI PRO REBOOT 2023."
                         width={600}
                         height={500}
-                        unoptimized
                         className="size-full object-cover"
                         loading="eager"
                       />
@@ -207,7 +204,6 @@ export default async function AboutUsPage() {
                         alt="Kevin Ochoa y Saúl Fimbres en 2023."
                         width={600}
                         height={800}
-                        unoptimized
                         className="size-full object-cover"
                         loading="eager"
                       />
@@ -248,7 +244,6 @@ export default async function AboutUsPage() {
                       alt="Miembros del CSI PRO al 2024."
                       width={300}
                       height={400}
-                      unoptimized
                       className="w-64 object-cover"
                       loading="eager"
                     />
@@ -286,7 +281,6 @@ export default async function AboutUsPage() {
                       alt="Paula Romero en el CSI PRO REBOOT 2023."
                       width={500}
                       height={400}
-                      unoptimized
                       className="h-full w-80 object-cover"
                       loading="eager"
                     />
@@ -324,7 +318,6 @@ export default async function AboutUsPage() {
                       alt="Luis Ernesto Hernández, David Núñez, y Andrés Antelo."
                       width={500}
                       height={320}
-                      unoptimized
                       className="h-full w-72 object-cover"
                       loading="eager"
                     />
@@ -362,7 +355,6 @@ export default async function AboutUsPage() {
                       alt="Kevin Ochoa y Saúl Fimbres en 2023."
                       width={300}
                       height={400}
-                      unoptimized
                       className="h-full w-64 object-cover"
                       loading="eager"
                     />
