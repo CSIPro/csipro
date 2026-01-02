@@ -1,6 +1,7 @@
-import { CMS_URL } from "@/lib/utils";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+
+import { CMS_URL } from "@/lib/utils";
 
 export async function GET(req: NextRequest) {
   try {

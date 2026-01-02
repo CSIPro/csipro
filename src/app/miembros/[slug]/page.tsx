@@ -8,20 +8,13 @@ import { notFound } from "next/navigation";
 import { Chip, ChipIcon, ChipLabel } from "@/components/chip/chip";
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import GradientBackground from "@/components/gradient-background/gradient-background";
+import { ImageGallery } from "@/components/image-gallery/image-gallery";
 import MemberEvents from "@/components/members-section/member-events";
 import MemberProjects from "@/components/members-section/member-projects";
 import { Navbar } from "@/components/navbar/navbar";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
 import { Button } from "@/components/ui/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNavigation,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import {
   Table,
   TableBody,
@@ -123,13 +116,36 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     }}
                   ></div>
                   <div className="relative aspect-square w-full rounded-full">
-                    <Image
-                      src={`${CMS_URL}${member.foto.url}`}
-                      alt={`${member.nombres} ${member.apellidos}`}
-                      className="size-full rounded-full object-cover"
-                      fill
-                      sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+                    <picture>
+                      <source
+                        srcSet={`${CMS_URL}${member.foto.sizes?.large?.url}`}
+                        media="(min-width: 1024px)"
+                        type={
+                          member.foto.sizes?.large?.mimeType || "image/webp"
+                        }
+                      />
+                      <source
+                        srcSet={`${CMS_URL}${member.foto.sizes?.medium?.url}`}
+                        media="(min-width: 768px)"
+                        type={
+                          member.foto.sizes?.medium?.mimeType || "image/webp"
+                        }
+                      />
+                      <source
+                        srcSet={`${CMS_URL}${member.foto.sizes?.small?.url}`}
+                        media="(max-width: 767px)"
+                        type={
+                          member.foto.sizes?.small?.mimeType || "image/webp"
+                        }
+                      />
+                      <Image
+                        src={`${CMS_URL}${member.foto.url}`}
+                        alt={`${member.nombres} ${member.apellidos}`}
+                        className="size-full rounded-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </picture>
                   </div>
                 </div>
               </div>
@@ -211,34 +227,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
               </div>
             </div>
             <div className="w-full lg:max-w-lg">
-              <Carousel>
-                <CarouselContent className="-ml-4 h-96 w-full lg:aspect-[7/8] lg:h-auto">
-                  {gallery.map((image) => (
-                    <CarouselItem
-                      key={image.id}
-                      className={cn(
-                        "basis-5/6 pl-4 lg:basis-full",
-                        gallery.length === 1 && "basis-full",
-                      )}
-                    >
-                      <div className="relative size-full overflow-hidden rounded-md">
-                        <Image
-                          src={`${CMS_URL}${image.imagen.url}`}
-                          alt={image.imagen.alt}
-                          className="h-full w-full object-cover"
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="max-lg:hidden" />
-                <CarouselNext className="max-lg:hidden" />
-                <CarouselNavigation
-                  name={`Galería de ${member.nombres} ${member.apellidos}`}
-                />
-              </Carousel>
+              <ImageGallery
+                identifier={`${member.nombres} ${member.apellidos}`}
+                gallery={gallery}
+              />
             </div>
           </div>
         </Section>
