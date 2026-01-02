@@ -85,7 +85,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <>
       <Navbar titles={["TEAM", "LEGACY", "MEMBERS"]} />
-      <main>
+      <main className="w-full">
         <Section>
           <GradientBackground />
           <GlowContainer className="">

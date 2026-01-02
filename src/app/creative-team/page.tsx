@@ -21,7 +21,7 @@ export default async function Page() {
   return (
     <>
       <Navbar titles={["Our Team", "Reboot", "Devs"]} />
-      <main>
+      <main className="w-full">
         <Section>
           <div className="relative flex flex-col items-center justify-center">
             <GlowContainer className="absolute inset-0 z-0 flex items-center justify-center">

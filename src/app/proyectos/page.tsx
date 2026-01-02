@@ -14,7 +14,7 @@ export default async function ProjectsPage() {
   return (
     <>
       <Navbar titles={["DEVS", "TECH", "PROJECTS"]} />
-      <main>
+      <main className="w-full">
         <Section>
           <div className="absolute left-1/2 top-0 z-0 h-[50%] w-full max-w-7xl -translate-x-1/2 overflow-hidden ">
             <svg

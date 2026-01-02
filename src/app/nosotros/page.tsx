@@ -23,7 +23,7 @@ export default async function AboutUsPage() {
   return (
     <>
       <Navbar titles={["TEAM", "LEGACY", "MEMBERS"]} />
-      <main>
+      <main className="w-full">
         <Section innerClassName="gap-2">
           <div className="relative flex flex-col items-center justify-center">
             <GradientBackground />
