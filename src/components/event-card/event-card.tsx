@@ -154,7 +154,7 @@ export const EventCard: React.FC<EventCardProps> = ({
 
   return (
     <div className="relative w-full rounded-2xl border border-primary bg-[#160D2A] p-4 xl:max-w-[26rem] 2xl:max-w-full">
-      <div className="grid w-full select-none grid-cols-2 items-center gap-2">
+      <div className="flex w-full select-none items-center justify-between gap-2">
         <BrandingHeader className="place-self-start">
           <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
           <BrandingHeaderHighlight>{props.type}</BrandingHeaderHighlight>
@@ -196,7 +196,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           {isOngoing ? "Próxima fecha" : "Inicio"}
         </ChipLabel>
       </Chip>
-      <div className="py-0.5"></div>
+      <div className="py-1"></div>
       <div className="flex w-full flex-col items-start gap-2 text-sm text-white">
         <div className="flex w-full items-center justify-between gap-2">
           <div className="flex items-center gap-2">

@@ -72,17 +72,10 @@ export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
         ></div>
         <div className="relative h-52 overflow-hidden rounded max-md:flex max-md:w-full max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[135px] max-sm:w-[135px] md:h-64 md:w-full">
           <picture>
-            {member.foto.sizes?.hero?.url ? (
-              <source
-                srcSet={`${CMS_URL}${member.foto.sizes?.hero?.url}`}
-                media="(min-width: 1800px)"
-                type="image/webp"
-              />
-            ) : null}
             {member.foto.sizes?.large?.url ? (
               <source
                 srcSet={`${CMS_URL}${member.foto.sizes?.large?.url}`}
-                media="(min-width: 1400px)"
+                media="(min-width: 1800px)"
                 type="image/webp"
               />
             ) : null}

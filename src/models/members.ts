@@ -51,12 +51,34 @@ export type Member = z.infer<typeof Member>;
 
 export const PopulatedMember = Member.extend({
   proyectos: z.object({
-    docs: z.array(z.lazy(() => Project)),
+    docs: z.array(
+      z.lazy(() =>
+        Project.extend({
+          imagenes_secundarias: z
+            .object({
+              id: z.string(),
+              imagen: z.number(),
+            })
+            .array(),
+        }),
+      ),
+    ),
     hasNextPage: z.boolean(),
     totalDocs: z.number(),
   }),
   eventos: z.object({
-    docs: z.array(z.lazy(() => Event)),
+    docs: z.array(
+      z.lazy(() =>
+        Event.extend({
+          imagenes_secundarias: z
+            .object({
+              id: z.string(),
+              imagen: z.number(),
+            })
+            .array(),
+        }),
+      ),
+    ),
     hasNextPage: z.boolean(),
     totalDocs: z.number(),
   }),
