@@ -21,8 +21,13 @@ export const Project = z.object({
     .object({
       id: z.string(),
       miembro: z.number(),
-      roles: z.string().array(),
       descripcion: z.string(),
+      roles: z
+        .object({
+          id: z.string(),
+          rol: Role,
+        })
+        .array(),
     })
     .array(),
   tipo_sistema: ProjectType,
@@ -48,7 +53,7 @@ export const PopulatedProject = Project.extend({
     .object({
       id: z.string(),
       miembro: z.lazy(() => Member),
-      descripcion: z.string(),
+      descripcion: z.string().nullable(),
       roles: z
         .object({
           id: z.string(),

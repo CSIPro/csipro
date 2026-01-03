@@ -60,6 +60,19 @@ export const PopulatedMember = Member.extend({
               imagen: z.number(),
             })
             .array(),
+          participantes: z
+            .object({
+              id: z.string(),
+              miembro: z.number(),
+              descripcion: z.string().nullable(),
+              roles: z
+                .object({
+                  id: z.string(),
+                  rol: z.number(),
+                })
+                .array(),
+            })
+            .array(),
         }),
       ),
     ),
