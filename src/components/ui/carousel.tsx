@@ -271,7 +271,6 @@ const CarouselNavigation = React.forwardRef<
     setCurrent(api.selectedScrollSnap() + 1);
 
     api.on("select", () => {
-      console.log("select: ", api.selectedScrollSnap());
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);

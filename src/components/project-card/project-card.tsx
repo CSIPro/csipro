@@ -2,12 +2,13 @@ import Image from "next/image";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
+import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { Media } from "@/models/media";
-import { Technology } from "@/models/technology";
+import { PopulatedTechnology } from "@/models/technology";
 
 type MappedTechnology = {
   id: string;
-  tecnologia: Technology;
+  tecnologia: PopulatedTechnology;
 };
 
 interface ProjectCardProps {
@@ -19,6 +20,8 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
+  const projectImage = getSmallestImageNotThumbnail(props.thumbnail);
+
   return (
     <div className="flex w-full justify-center rounded-2xl gradient-border md:max-w-96">
       <div className="flex h-full w-full flex-col gap-2 rounded-[15px] bg-muted p-4">
@@ -28,15 +31,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
             src="/lines.png"
             alt="Cuadrícula de fondo"
             className="object-cover"
+            loading="lazy"
           />
           <Image
             fill
-            src={`https://admin.csipro.isi.unison.mx${props.thumbnail.url}`}
+            src={`${CMS_URL}${projectImage.url}`}
             alt={props.thumbnail.alt}
             className="z-10 object-contain"
+            loading="lazy"
           />
         </div>
-        <div className="text-2xl font-bold">{props.name}</div>
+        <h3 className="text-xl font-bold">{props.name}</h3>
         <div className="line-clamp-2 h-12 justify-between text-base font-normal">
           <span>{props.subtitle}</span>
         </div>
@@ -47,7 +52,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
             {props.stack.map((tech) => (
               <Image
                 key={tech.id}
-                src={`https://admin.csipro.isi.unison.mx${tech.tecnologia.logo_monocromatico.url}`}
+                src={`${CMS_URL}${tech.tecnologia.logo_monocromatico.url}`}
                 alt={tech.tecnologia.logo.alt}
                 className="size-5"
                 width={32}

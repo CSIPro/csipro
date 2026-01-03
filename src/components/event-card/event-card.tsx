@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { format, isFuture, isPast } from "date-fns";
 import { es } from "date-fns/locale";
 import Image from "next/image";
@@ -11,7 +10,9 @@ import {
 } from "react-icons/io5";
 
 import { Button } from "@/components/ui/button";
+import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { EventDate } from "@/models/events";
+import { Media } from "@/models/media";
 
 import {
   BrandingHeader,
@@ -43,8 +44,7 @@ interface EventCardProps {
   variant?: "default" | "compact";
   type: string;
   dates: Array<EventDate>;
-  image: string;
-  imageAlt: string;
+  image: Media;
   spots?: number;
   title: string;
   duration: number;
@@ -76,10 +76,15 @@ export const EventCard: React.FC<EventCardProps> = ({
 
   const nextDate = dates.find((date) => isFuture(date)) ?? dates[0];
 
+  const eventImage = getSmallestImageNotThumbnail(props.image);
+  const thumbnailImage = props.image.sizes?.thumbnail?.url
+    ? props.image.sizes.thumbnail
+    : eventImage;
+
   if (variant === "compact") {
     return (
-      <div className="w-full px-2 flex items-center justify-center">
-        <div className="w-full max-w-sm rounded-xl border border-primary bg-[#160D2A] p-4 shadow-[0_0_12px_rgba(137,84,255,0.2)]">
+      <div className="flex w-full items-center justify-center px-2">
+        <div className="w-full max-w-[28rem] rounded-xl border border-primary bg-[#160D2A] p-4 shadow-[0_0_12px_rgba(137,84,255,0.2)]">
           <div className="flex select-none items-center justify-between pb-2">
             <BrandingHeader>
               <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
@@ -96,10 +101,11 @@ export const EventCard: React.FC<EventCardProps> = ({
           <div className="flex gap-4">
             <div className="relative h-36 w-36 flex-shrink-0 overflow-hidden rounded">
               <Image
-                src={props.image}
-                alt={props.imageAlt}
+                src={`${CMS_URL}${thumbnailImage.url}`}
+                alt={props.image.alt}
                 fill
                 className="object-scale-down"
+                loading="lazy"
               />
               {isScheduled && (
                 <div className="absolute bottom-0 left-0 right-0 bg-primary px-2 text-center text-sm font-semibold text-white">
@@ -112,20 +118,20 @@ export const EventCard: React.FC<EventCardProps> = ({
 
             <div className="flex w-full flex-col justify-between text-white">
               <div className="space-y-1">
-                <h2 className="line-clamp-2 text-sm font-semibold">
+                <h3 className="line-clamp-2 text-sm font-semibold">
                   {props.title}
-                </h2>
-                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
+                </h3>
+                <div className="line-clamp-1 flex items-center gap-2 text-[11px]">
                   <IoLocationSharp />
                   <span>{props.location}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
+                <div className="line-clamp-1 flex items-center gap-2 text-[11px]">
                   <FaRegCalendar />
                   <span>{format(nextDate, "PPP", { locale: es })}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-[11px] line-clamp-1">
+                <div className="line-clamp-1 flex items-center gap-2 text-[11px]">
                   <IoStopwatchOutline />
                   <span>{format(nextDate, "hh:mm aaaa", { locale: es })}</span>
                 </div>
@@ -147,21 +153,21 @@ export const EventCard: React.FC<EventCardProps> = ({
   }
 
   return (
-    <div className="w-full rounded-2xl border border-primary bg-[#160D2A] p-4 md:w-full xl:max-w-[26rem] 2xl:max-w-full">
-      <div className="flex select-none items-center justify-between">
-        <BrandingHeader>
+    <div className="relative w-full rounded-2xl border border-primary bg-[#160D2A] p-4 xl:max-w-[26rem] 2xl:max-w-full">
+      <div className="flex w-full select-none items-center justify-between gap-2">
+        <BrandingHeader className="place-self-start">
           <BrandingHeaderTitle>CSI PRO</BrandingHeaderTitle>
           <BrandingHeaderHighlight>{props.type}</BrandingHeaderHighlight>
         </BrandingHeader>
-        <Chip variant={chipVariant.variant}>
+        <Chip variant={chipVariant.variant} className="place-self-end">
           <ChipLabel uppercase>{chipVariant.label}</ChipLabel>
         </Chip>
       </div>
       <div className="py-2"></div>
       <div className="flex h-14 w-full items-center justify-center">
-        <h1 className="line-clamp-2 select-text text-center text-xl font-medium text-white">
+        <h3 className="line-clamp-2 select-text text-center text-xl font-medium text-white">
           {props.title}
-        </h1>
+        </h3>
       </div>
       <div className="py-1"></div>
       <hr className="border-1 border-[#2D1B55]" />
@@ -169,9 +175,10 @@ export const EventCard: React.FC<EventCardProps> = ({
       <div className="relative h-72 w-full overflow-hidden rounded md:h-52">
         <Image
           fill
-          src={props.image}
-          alt={props.imageAlt}
+          src={`${CMS_URL}${eventImage.url}`}
+          alt={props.image.alt}
           className="object-contain"
+          loading="lazy"
         />
         {isScheduled && (
           <div className="absolute bottom-0 right-0 rounded bg-primary px-2 py-1 text-xs font-semibold text-white">
@@ -189,8 +196,8 @@ export const EventCard: React.FC<EventCardProps> = ({
           {isOngoing ? "Próxima fecha" : "Inicio"}
         </ChipLabel>
       </Chip>
-      <div className="py-0.5"></div>
-      <div className="flex flex-col items-start gap-2 text-sm text-white">
+      <div className="py-1"></div>
+      <div className="flex w-full flex-col items-start gap-2 text-sm text-white">
         <div className="flex w-full items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <FaRegCalendar />
@@ -203,7 +210,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           <span>{props.location}</span>
         </div>
       </div>
-      <div className="mt-4 flex justify-center">
+      <div className="mt-4 flex w-full justify-center">
         <Button className="rounded-xl">
           {isScheduled ? "Registrate aquí" : "Más información"}
         </Button>

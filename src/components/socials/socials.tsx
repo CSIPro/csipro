@@ -50,7 +50,7 @@ const SocialLink: FC<Props> = (props) => {
       href={social.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="h-full w-10 p-2 sm:w-8"
+      className="min-w-10 p-2"
     >
       <social.icon
         className={cn(

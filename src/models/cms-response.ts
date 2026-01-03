@@ -25,3 +25,17 @@ export const generateEmptyResponse = () => ({
   nextPage: null,
   docs: [],
 });
+
+export const CMSPaginatedResponse = z.object({
+  totalDocs: z.number(),
+  limit: z.number(),
+  page: z.number(),
+  pagingCounter: z.number(),
+  hasPrevPage: z.boolean(),
+  hasNextPage: z.boolean(),
+  prevPage: z.number().nullable(),
+  nextPage: z.number().nullable(),
+  docs: z.array(z.record(z.any())),
+});
+
+export type CMSPaginatedResponse = z.infer<typeof CMSPaginatedResponse>;

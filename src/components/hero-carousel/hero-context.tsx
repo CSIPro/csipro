@@ -12,7 +12,6 @@ import { useMediaQuery } from "usehooks-ts";
 
 export interface HeroImage {
   id: number;
-  url: string;
 }
 
 interface HeroContextProps {

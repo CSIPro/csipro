@@ -1,16 +1,17 @@
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { CalendarCheck2, Terminal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import { DiTerminal } from "react-icons/di";
 
 import { Button } from "@/components/ui/button";
+import { CMS_URL } from "@/lib/utils";
+import { PopulatedMember } from "@/models/members";
+import { Position } from "@/models/positions";
 import { PopulatedSocialMedia } from "@/models/social-media";
 
-import { Position } from "./../../models/positions";
 import { MemberBadge } from "./member-badge";
-import { NameDisplay } from "./name-display";
 
 type MappedNetworks = {
   id: string;
@@ -21,6 +22,8 @@ type MappedNetworks = {
 interface MemberCardProps {
   name: string;
   lastName: string;
+  shortName: string;
+  slug: string;
   email: string;
   networks: Array<MappedNetworks>;
   joinDate: string | null;
@@ -28,9 +31,10 @@ interface MemberCardProps {
   profilePictureAlt: string;
   position: Array<Position>;
   projectCount: number;
+  member: PopulatedMember;
 }
 
-export const MemberCard: FC<MemberCardProps> = (props) => {
+export const MemberCard: FC<MemberCardProps> = ({ member, ...props }) => {
   const colors = [
     "#7145D6",
     "#FF9E45",
@@ -52,8 +56,8 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
   const { color1, color2 } = getRandomColors();
 
   return (
-    <div className="max-md:w-[185px] max-md:items-center max-md:justify-center max-sm:w-[150px]">
-      <div className="group relative h-full bg-[#16131F] max-md:flex max-md:h-[185px] max-md:w-[185px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[150px] max-sm:w-[150px] md:w-[280px] md:p-2 md:px-[15px]">
+    <div className="flex w-full flex-col max-md:items-center max-md:justify-center lg:h-full">
+      <div className="group relative h-full bg-[#16131F] max-md:flex max-md:size-[185px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:size-[150px] md:w-[280px] md:p-2">
         <div
           className="absolute inset-[-2px] z-[-1] bg-gradient-to-br opacity-80 max-md:rounded-full"
           style={{
@@ -61,41 +65,71 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
           }}
         ></div>
         <div
-          className="absolute inset-[-3px] z-[-2] bg-gradient-to-br  blur-[50px] transition-opacity group-hover:opacity-50"
+          className="absolute inset-[-3px] z-[-2] bg-gradient-to-br blur-[50px] transition-opacity group-hover:opacity-50 lg:opacity-50 lg:group-hover:opacity-100"
           style={{
             background: `linear-gradient(235deg, ${color1}, #16131F, ${color2}`,
           }}
         ></div>
-        <div className="relative h-52 overflow-hidden rounded max-md:flex max-md:h-[175px] max-md:w-[175px] max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[135px] max-sm:w-[135px] md:w-full">
-          <Image
-            fill
-            src={props.profilePicture}
-            alt={props.profilePictureAlt}
-            className="object-cover"
-          />
+        <div className="relative h-52 overflow-hidden rounded max-md:flex max-md:w-full max-md:items-center max-md:justify-center max-md:rounded-full max-sm:h-[135px] max-sm:w-[135px] md:h-64 md:w-full">
+          <picture>
+            {member.foto.sizes?.large?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.large?.url}`}
+                media="(min-width: 1800px)"
+                type="image/webp"
+              />
+            ) : null}
+            {member.foto.sizes?.medium?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.medium?.url}`}
+                media="(min-width: 1000px)"
+                type="image/webp"
+              />
+            ) : null}
+            {member.foto.sizes?.small?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.small?.url}`}
+                media="(min-width: 600px)"
+                type="image/webp"
+              />
+            ) : null}
+            {member.foto.sizes?.small?.url ? (
+              <source
+                srcSet={`${CMS_URL}${member.foto.sizes?.small?.url}`}
+                media="(max-width: 599px)"
+                type="image/webp"
+              />
+            ) : null}
+            <Image
+              src={`${CMS_URL}${member.foto.url}`}
+              alt={member.foto.alt}
+              className="object-cover object-[50%_30%]"
+              unoptimized
+              fill
+            />
+          </picture>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-3 py-2 max-md:hidden">
-          <div className="flex flex-col items-center justify-center gap-1">
+          <div className="flex w-full flex-col items-center justify-center gap-2 lg:gap-1">
             <div className="flex w-full items-center justify-center">
-              <NameDisplay names={props.name} lastnames={props.lastName} />
+              <h3 className="whitespace-nowrap text-center text-xl font-bold text-white">
+                {member.short_name}
+              </h3>
             </div>
 
             <div className="flex w-full items-center justify-center">
-              <h1 className="text-center text-sm font-normal text-white">
+              <span className="text-center text-sm font-normal text-white">
                 <MemberBadge
-                  entryDate={props.joinDate}
+                  entryDate={member.fecha_entrada}
                   position={props.position}
                 />
-              </h1>
+              </span>
             </div>
 
             <div className="flex w-full items-center justify-center gap-6">
-              {props.networks.map((net) => {
-                const logoMonoUrl =
-                  typeof net.social_media.logo_monocromatico === "string"
-                    ? net.social_media.logo_monocromatico
-                    : net.social_media.logo_monocromatico?.url;
+              {member.redes.map((net) => {
+                const logoMonoUrl = net.red.logo_monocromatico?.url;
                 return (
                   <Link
                     key={net.id}
@@ -106,8 +140,8 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
                   >
                     <Image
                       key={net.id}
-                      src={`https://admin.csipro.isi.unison.mx${logoMonoUrl}`}
-                      alt={net.social_media.nombre}
+                      src={`${CMS_URL}${logoMonoUrl}`}
+                      alt={net.red.nombre}
                       className="size-5"
                       width={32}
                       height={32}
@@ -115,27 +149,40 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
                   </Link>
                 );
               })}
+              {member.redes.length === 0 && <div className="h-5" />}
             </div>
           </div>
 
           <hr className="w-full border border-[#2D1B55]" />
 
           <div className="flex items-center">
-            {props.joinDate ? (
-              <h1 className="text-sm font-light text-white/80">
-                {`Miembro desde ${format(new Date(props.joinDate), "LLL yyyy", { locale: es })}`}
-              </h1>
+            {member.fecha_entrada ? (
+              <span className="text-sm font-light text-white/80">
+                {`Miembro desde ${format(new Date(member.fecha_entrada), "LLL yyyy", { locale: es })}`}
+              </span>
             ) : null}
           </div>
 
-          <div className="flex items-center gap-4 text-white">
-            <DiTerminal size={30} />
-            <h1 className="text-lg font-bold">{`${props.projectCount} Proyecto${props.projectCount !== 1 ? "s" : ""}`}</h1>
-          </div>
+          {member.proyectos.totalDocs > 0 ? (
+            <div className="flex items-center gap-4 text-white">
+              <Terminal size={24} />
+              <span className="text-lg font-bold">{`${member.proyectos.totalDocs} proyecto${member.proyectos.totalDocs !== 1 ? "s" : ""}`}</span>
+            </div>
+          ) : member.eventos.totalDocs > 0 ? (
+            <div className="flex items-center gap-4 text-white">
+              <CalendarCheck2 size={24} />
+              <span className="text-lg font-bold">{`${member.eventos.totalDocs} evento${member.eventos.totalDocs !== 1 ? "s" : ""}`}</span>
+            </div>
+          ) : (
+            <div className="h-6" />
+          )}
 
           <div className="flex justify-center">
-            <Button className="rounded-xl text-white transition-colors hover:bg-[#491288]">
-              Ver Portafolio
+            <Button
+              asChild
+              className="rounded-xl text-white transition-colors hover:bg-[#491288]"
+            >
+              <Link href={`/miembros/${member.slug}`}>Ver Portafolio</Link>
             </Button>
           </div>
         </div>
@@ -143,24 +190,21 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
       <div className="hidden max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:space-y-3 max-md:p-5">
         <div className="flex w-full flex-col items-center justify-center space-y-2">
           <div className="flex w-full items-center justify-center">
-            <h1 className="text-center text-xl font-bold text-white">
-              <NameDisplay names={props.name} lastnames={props.lastName} />
-            </h1>
+            <h3 className="line-clamp-2 text-center text-xl font-bold text-white">
+              {member.short_name}
+            </h3>
           </div>
           <div className="flex w-full items-center justify-center">
-            <h1 className="text-center text-sm font-normal text-white">
+            <span className="text-center text-sm font-normal text-white">
               <MemberBadge
-                entryDate={props.joinDate}
+                entryDate={member.fecha_entrada}
                 position={props.position}
               />
-            </h1>
+            </span>
           </div>
-          <div className="flex w-full items-center justify-center gap-6">
-            {props.networks.map((net) => {
-              const logoMonoUrl =
-                typeof net.social_media.logo_monocromatico === "string"
-                  ? net.social_media.logo_monocromatico
-                  : net.social_media.logo_monocromatico?.url;
+          <div className="flex h-5 w-full items-center justify-center gap-2">
+            {member.redes.map((net) => {
+              const logoMonoUrl = net.red.logo_monocromatico?.url;
               return (
                 <Link
                   key={net.id}
@@ -171,8 +215,8 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
                 >
                   <Image
                     key={net.id}
-                    src={`https://admin.csipro.isi.unison.mx${logoMonoUrl}`}
-                    alt={net.social_media.nombre}
+                    src={`${CMS_URL}${logoMonoUrl}`}
+                    alt={net.red.nombre}
                     className="size-5"
                     width={32}
                     height={32}
@@ -182,9 +226,12 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
             })}
           </div>
         </div>
-        <div className="flex w-full justify-center">
-          <Button className="rounded-xl text-white transition-colors hover:bg-[#491288]">
-            Ver Portafolio
+        <div className="flex justify-center">
+          <Button
+            asChild
+            className="rounded-xl text-white transition-colors hover:bg-[#491288]"
+          >
+            <Link href={`/miembros/${member.slug}`}>Ver Portafolio</Link>
           </Button>
         </div>
       </div>

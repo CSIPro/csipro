@@ -1,16 +1,15 @@
 import { API_URL } from "@/lib/utils";
-import {
-  createResponseSchema,
-  generateEmptyResponse,
-} from "@/models/cms-response";
-import { Event } from "@/models/events";
+import { generateEmptyResponse } from "@/models/cms-response";
+import { PopulatedPaginatedEventsResponse } from "@/models/events";
 
-export const fetchEvents = async (limit: number, currentPage: number) => {
+export const fetchPopulatedEvents = async (
+  limit: number,
+  currentPage: number,
+) => {
   const eventsRes = await fetch(
-    `${API_URL}/eventos/?limit=${limit}&page=${currentPage}`,
+    `${API_URL}/eventos?depth=2&limit=${limit}&page=${currentPage}`,
     {
-      // next: { revalidate: 600 },
-      cache: "no-store",
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
     },
   );
 
@@ -18,11 +17,9 @@ export const fetchEvents = async (limit: number, currentPage: number) => {
     return generateEmptyResponse();
   }
 
-  const EventsResponse = createResponseSchema(Event);
-
   const eventsData = await eventsRes.json();
 
-  const events = EventsResponse.safeParse(eventsData);
+  const events = PopulatedPaginatedEventsResponse.safeParse(eventsData);
 
   if (!events.success) {
     console.log(events.error);

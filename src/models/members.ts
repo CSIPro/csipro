@@ -1,14 +1,23 @@
 import { z } from "zod";
 
+import { Degree } from "./carrera";
+import { CMSPaginatedResponse } from "./cms-response";
+import { Event } from "./events";
 import { Media } from "./media";
+import { PersonalInterest } from "./personal-interest";
 import { Position } from "./positions";
 import { Project } from "./projects";
+import { Resume } from "./resumes";
 import { PopulatedSocialMedia, SocialMedia } from "./social-media";
+import { PopulatedTechnology, Technology } from "./technology";
 
 export const Member = z.object({
   id: z.number(),
   nombres: z.string(),
   apellidos: z.string(),
+  short_name: z.string(),
+  subtitle: z.string(),
+  fecha_nacimiento: z.string().datetime().nullable(),
   email: z.string().email(),
   redes: z.array(
     z.object({
@@ -18,11 +27,22 @@ export const Member = z.object({
     }),
   ),
   portfolio: z.string().url().nullable(),
+  sobre_mi: z.object({}).passthrough().nullable(),
+  estado: z.enum(["activo", "egresado", "inactivo"]).default("activo"),
   slug: z.string(),
   fecha_entrada: z.string().datetime().nullable(),
   fecha_salida: z.string().datetime().nullable(),
   foto: Media,
-  cargo: Position.or(z.string()),
+  "fotos-secundarias": z
+    .object({
+      id: z.string(),
+      imagen: Media,
+    })
+    .array(),
+  carrera: Degree.nullable(),
+  tecnologias: Technology.array(),
+  cargo: Position.or(z.string()).nullable(),
+  intereses: PersonalInterest.array(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
@@ -31,10 +51,51 @@ export type Member = z.infer<typeof Member>;
 
 export const PopulatedMember = Member.extend({
   proyectos: z.object({
-    docs: z.array(z.lazy(() => Project)),
+    docs: z.array(
+      z.lazy(() =>
+        Project.extend({
+          imagenes_secundarias: z
+            .object({
+              id: z.string(),
+              imagen: z.number(),
+            })
+            .array(),
+          participantes: z
+            .object({
+              id: z.string(),
+              miembro: z.number(),
+              descripcion: z.string().nullable(),
+              roles: z
+                .object({
+                  id: z.string(),
+                  rol: z.number(),
+                })
+                .array(),
+            })
+            .array(),
+        }),
+      ),
+    ),
     hasNextPage: z.boolean(),
     totalDocs: z.number(),
   }),
+  eventos: z.object({
+    docs: z.array(
+      z.lazy(() =>
+        Event.extend({
+          imagenes_secundarias: z
+            .object({
+              id: z.string(),
+              imagen: z.number(),
+            })
+            .array(),
+        }),
+      ),
+    ),
+    hasNextPage: z.boolean(),
+    totalDocs: z.number(),
+  }),
+  resume: Resume.nullable(),
   redes: z
     .object({
       id: z.string(),
@@ -42,5 +103,28 @@ export const PopulatedMember = Member.extend({
       link: z.string().url(),
     })
     .array(),
+  tecnologias: PopulatedTechnology.array(),
 });
 export type PopulatedMember = z.infer<typeof PopulatedMember>;
+
+export const MembersCount = z.object({
+  active: z.number(),
+  graduated: z.number(),
+  inactive: z.number(),
+});
+
+export type MembersCount = z.infer<typeof MembersCount>;
+
+export const PaginatedMembersResponse = CMSPaginatedResponse.extend({
+  docs: z.array(Member),
+});
+
+export type PaginatedMembersResponse = z.infer<typeof PaginatedMembersResponse>;
+
+export const PopulatedPaginatedMembersResponse = CMSPaginatedResponse.extend({
+  docs: z.array(PopulatedMember),
+});
+
+export type PopulatedPaginatedMembersResponse = z.infer<
+  typeof PopulatedPaginatedMembersResponse
+>;

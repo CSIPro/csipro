@@ -1,8 +1,10 @@
 import { z } from "zod";
 
+import { CMSPaginatedResponse } from "./cms-response";
 import { Media } from "./media";
 import { Member } from "./members";
-import { Technology } from "./technology";
+import { Role } from "./role";
+import { PopulatedTechnology } from "./technology";
 
 export const ProjectType = z.enum([
   "Aplicación Web",
@@ -19,15 +21,22 @@ export const Project = z.object({
     .object({
       id: z.string(),
       miembro: z.number(),
-      rol: z.string(),
       descripcion: z.string(),
+      roles: z
+        .object({
+          id: z.string(),
+          rol: Role,
+        })
+        .array(),
     })
     .array(),
   tipo_sistema: ProjectType,
   subtitulo: z.string(),
   descripcion: z.object({}).passthrough().nullable(),
   imagen_principal: z.number(),
-  imagenes_secundarias: z.number().array(),
+  imagenes_secundarias: z
+    .object({ id: z.string(), imagen: z.number() })
+    .array(),
   tecnologias: z.object({ id: z.string(), tecnologia: z.number() }).array(),
   fecha_inicio: z.string().datetime(),
   fecha_termino: z.string().datetime().nullable(),
@@ -40,10 +49,53 @@ export const Project = z.object({
 export type Project = z.infer<typeof Project>;
 
 export const PopulatedProject = Project.extend({
-  participantes: z.array(z.lazy(() => Member)),
+  participantes: z
+    .object({
+      id: z.string(),
+      miembro: z.lazy(() => Member),
+      descripcion: z.string().nullable(),
+      roles: z
+        .object({
+          id: z.string(),
+          rol: Role,
+        })
+        .array(),
+    })
+    .array(),
   imagen_principal: Media,
-  imagenes_secundarias: z.array(Media).optional(),
-  tecnologias: z.array(z.object({ id: z.string(), tecnologia: Technology })),
+  imagenes_secundarias: z
+    .object({
+      id: z.string(),
+      imagen: Media,
+    })
+    .array(),
+  tecnologias: z.array(
+    z.object({ id: z.string(), tecnologia: PopulatedTechnology }),
+  ),
 });
 
 export type PopulatedProject = z.infer<typeof PopulatedProject>;
+
+export const ProjectsCount = z.object({
+  active: z.number(),
+  inactive: z.number(),
+  finished: z.number(),
+});
+
+export type ProjectsCount = z.infer<typeof ProjectsCount>;
+
+export const PaginatedProjectsResponse = CMSPaginatedResponse.extend({
+  docs: z.array(Project),
+});
+
+export type PaginatedProjectsResponse = z.infer<
+  typeof PaginatedProjectsResponse
+>;
+
+export const PopulatedPaginatedProjectsResponse = CMSPaginatedResponse.extend({
+  docs: z.array(PopulatedProject),
+});
+
+export type PopulatedPaginatedProjectsResponse = z.infer<
+  typeof PopulatedPaginatedProjectsResponse
+>;

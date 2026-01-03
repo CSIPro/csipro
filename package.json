@@ -10,7 +10,12 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+    "@payloadcms/richtext-lexical": "^3.69.0",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
+    "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tooltip": "^1.2.8",
     "@react-hook/media-query": "^1.1.1",
     "@tanstack/react-query": "^5.90.2",
     "class-variance-authority": "^0.7.0",
@@ -28,6 +33,7 @@
     "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.50.1",
     "react-icons": "^5.2.1",
+    "react-intersection-observer": "^10.0.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "typewriter-effect": "^2.21.0",
