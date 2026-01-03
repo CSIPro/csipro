@@ -6,6 +6,7 @@ import {
 import { PopulatedEvent } from "@/models/events";
 import {
   MembersCount,
+  PopulatedMember,
   PopulatedPaginatedMembersResponse,
 } from "@/models/members";
 import { PopulatedProject } from "@/models/projects";
@@ -42,6 +43,31 @@ export const fetchMember = async (slug: string) => {
   }
 
   return memberData;
+};
+
+export const fetchMemberById = async (id: number) => {
+  const memberRes = await fetch(`${API_URL}/miembros/${id}?depth=2`, {
+    next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
+  });
+
+  if (!memberRes.ok) {
+    return null;
+  }
+
+  const memberData = await memberRes.json();
+  const memberParse = PopulatedMember.safeParse(memberData);
+
+  if (!memberParse.success) {
+    console.log(memberParse.error.format());
+
+    for (const err of memberParse.error.errors) {
+      console.error(err);
+    }
+
+    return null;
+  }
+
+  return memberParse.data;
 };
 
 export const fetchPopulatedMembers = async (limit: number, page: number) => {

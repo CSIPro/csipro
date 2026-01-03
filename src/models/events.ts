@@ -13,30 +13,37 @@ export const EventDate = z.object({
 export type EventDate = z.infer<typeof EventDate>;
 
 export const Attendant = z.object({
-  id: z.number(),
+  id: z.string(),
   nombre: z.string(),
   apellido: z.string(),
   email: z.string(),
   expediente: z.string().optional(),
 });
 
+export type Attendant = z.infer<typeof Attendant>;
+
 export const EventRequirement = z.object({
-  id: z.number(),
-  nombre_requisito: z.array(z.object({})),
-  detalles: z.array(z.object({})).optional(),
+  id: z.string(),
+  text: z.string(),
+  link: z.string().optional().nullable(),
 });
 
+export type EventRequirement = z.infer<typeof EventRequirement>;
+
 export const EventPost = z.object({
-  id: z.number(),
+  id: z.string(),
   link: z.string(),
   titulo_publicacion: z.string(),
   red_social: SocialMedia,
 });
 
+export type EventPost = z.infer<typeof EventPost>;
+
 export const Event = z.object({
   id: z.number(),
   tipo: z.string(),
   titulo: z.string(),
+  slug: z.string(),
   fechas_horas: z.array(EventDate),
   descripcion: z.object({}).passthrough().nullable(),
   asistentes: z.array(Attendant),

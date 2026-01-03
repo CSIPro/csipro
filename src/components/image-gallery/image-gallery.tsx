@@ -15,12 +15,19 @@ import {
 interface Props {
   gallery: { id: string; imagen: Media }[];
   identifier?: string;
+  className?: string;
 }
 
-export const ImageGallery = ({ gallery, identifier = "gallery" }: Props) => {
+export const ImageGallery = ({
+  gallery,
+  identifier = "gallery",
+  className,
+}: Props) => {
   return (
     <Carousel>
-      <CarouselContent className="-ml-4 h-96 w-full lg:aspect-[7/8] lg:h-auto">
+      <CarouselContent
+        className={cn("-ml-4 h-96 w-full lg:aspect-[7/8] lg:h-auto", className)}
+      >
         {gallery.map((image) => (
           <CarouselItem
             key={image.id}
