@@ -15,6 +15,35 @@ import { Section } from "@/components/section/section";
 import { CMS_URL } from "@/lib/utils";
 import { fetchEvent } from "@/services/events";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const event = await fetchEvent(params.slug);
+
+  if (!event) {
+    return {
+      title: "Evento no encontrado - CSI PRO",
+    };
+  }
+
+  return {
+    title: `${event.titulo} - CSI PRO`,
+    description: event.descripcion
+      ? "Descripción del evento " + event.titulo
+      : "Evento organizado por CSI PRO",
+    keywords: [
+      "CSI PRO",
+      event.titulo,
+      ...event.participantes.map((p) => p.short_name),
+      "Ingeniería de Software",
+      "Tech Talks",
+      "Workshops",
+    ],
+  };
+}
+
 export default async function EventPage({
   params,
 }: {
@@ -103,7 +132,7 @@ export default async function EventPage({
               />
             </picture>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background">
-              <div className="relative z-10 flex w-full flex-col items-start gap-4 justify-end h-full px-4">
+              <div className="relative z-10 flex h-full w-full flex-col items-start justify-end gap-4 px-4">
                 <Chip variant={chipVariant.variant}>
                   <ChipLabel uppercase>{chipVariant.label}</ChipLabel>
                 </Chip>
