@@ -1,6 +1,7 @@
 import { format, isFuture, isPast } from "date-fns";
 import { es } from "date-fns/locale";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaRegCalendar } from "react-icons/fa6";
 import {
@@ -20,7 +21,6 @@ import {
   BrandingHeaderTitle,
 } from "../branding-header/branding-header";
 import { Chip, ChipLabel } from "../chip/chip";
-import Link from "next/link";
 
 export const chipVariants = {
   completed: {
