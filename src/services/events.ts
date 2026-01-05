@@ -2,6 +2,40 @@ import { API_URL } from "@/lib/utils";
 import { generateEmptyResponse } from "@/models/cms-response";
 import { PopulatedPaginatedEventsResponse } from "@/models/events";
 
+export const fetchEvent = async (slug: string) => {
+  const eventRes = await fetch(
+    `${API_URL}/eventos?depth=2&where[slug][equals]=${encodeURIComponent(slug)}&limit=1`,
+    {
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
+    },
+  );
+
+  if (!eventRes.ok) {
+    return null;
+  }
+
+  const eventData = await eventRes.json();
+  const eventParse = PopulatedPaginatedEventsResponse.safeParse(eventData);
+
+  if (!eventParse.success) {
+    console.log(eventParse.error.format());
+
+    for (const err of eventParse.error.errors) {
+      console.error(err);
+    }
+
+    return null;
+  }
+
+  const event = eventParse.data.docs[0];
+
+  if (!event) {
+    return null;
+  }
+
+  return event;
+};
+
 export const fetchPopulatedEvents = async (
   limit: number,
   currentPage: number,

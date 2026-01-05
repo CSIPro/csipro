@@ -1,6 +1,7 @@
 import { format, isFuture, isPast } from "date-fns";
 import { es } from "date-fns/locale";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaRegCalendar } from "react-icons/fa6";
 import {
@@ -21,9 +22,9 @@ import {
 } from "../branding-header/branding-header";
 import { Chip, ChipLabel } from "../chip/chip";
 
-const chipVariants = {
+export const chipVariants = {
   completed: {
-    variant: "gray",
+    variant: "purple",
     label: "Completed",
   },
   ongoing: {
@@ -49,6 +50,7 @@ interface EventCardProps {
   title: string;
   duration: number;
   location: string;
+  slug: string;
 }
 
 export const EventCard: React.FC<EventCardProps> = ({
@@ -141,8 +143,11 @@ export const EventCard: React.FC<EventCardProps> = ({
                 <Button
                   variant="default"
                   className="rounded-s px-4 py-1 text-xs"
+                  asChild
                 >
-                  {isScheduled ? "Registrarse aquí" : "Más información"}
+                  <Link href={`/eventos/${props.slug}`}>
+                    {isScheduled ? "Registrarse aquí" : "Más información"}
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -211,8 +216,10 @@ export const EventCard: React.FC<EventCardProps> = ({
         </div>
       </div>
       <div className="mt-4 flex w-full justify-center">
-        <Button className="rounded-xl">
-          {isScheduled ? "Registrate aquí" : "Más información"}
+        <Button className="rounded-xl" asChild>
+          <Link href={`/eventos/${props.slug}`}>
+            {isScheduled ? "Registrate aquí" : "Más información"}
+          </Link>
         </Button>
       </div>
     </div>
