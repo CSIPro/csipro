@@ -205,23 +205,12 @@ export default async function ProjecPage({ params }: Props) {
               </div>
             </div>
           </div>
-          <div className="w-full px-4">
-            <span className="block h-px w-full bg-primary"></span>
-          </div>
         </Section>
         <div className="mx-auto grid max-w-9xl grid-cols-1 items-start gap-x-8 lg:grid-cols-3">
           <Section
             innerClassName="pb-8 lg:border-x-0"
             className="lg:col-span-2"
           >
-            <div className="flex w-full flex-col gap-2 px-4 lg:hidden">
-              <ImageGallery
-                gallery={gallery}
-                identifier={`Galería de ${project.nombre}`}
-                className="aspect-[5/4] h-auto w-full"
-                imageClassName="rounded-md object-contain"
-              />
-            </div>
             <SectionTitle>Descripción</SectionTitle>
             <div className="flex w-full flex-col gap-2 px-4">
               {project.descripcion ? (
@@ -250,23 +239,23 @@ export default async function ProjecPage({ params }: Props) {
             </ul>
           </Section>
           <Section
-            className="hidden lg:col-span-2 lg:flex"
+            className="col-span-1 lg:col-span-2"
             innerClassName="pb-8 lg:border-x-0"
           >
             <SectionTitle>Galería</SectionTitle>
-            <div className="hidden w-full flex-col gap-2 px-4 lg:flex">
+            <div className="flex w-full flex-col gap-2 px-4">
               <ImageGallery
                 gallery={gallery}
                 identifier={`Galería de ${project.nombre}`}
-                className="aspect-[4/3] h-auto w-full lg:aspect-[2]"
-                carouselClassName="lg:basis-1/2"
+                className="aspect-[5/4] h-auto w-full md:aspect-[2] lg:aspect-[2]"
+                carouselClassName="md:basis-1/2 lg:basis-1/2"
                 imageClassName="rounded-md object-contain"
               />
             </div>
           </Section>
           <Section innerClassName="pb-8 lg:border-x-0">
             <SectionTitle>Links</SectionTitle>
-            <div className="flex w-full flex-col gap-4 px-4">
+            <div className="flex w-full flex-col gap-4 px-4 md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap">
               {project.links.length === 0 ? (
                 <span className="italic text-stone-400/80">
                   No hay descripción disponible.
@@ -412,7 +401,7 @@ export default async function ProjecPage({ params }: Props) {
           >
             <SectionTitle>Equipo</SectionTitle>
             <div className="w-full px-4">
-              <ul className="grid w-full grid-cols-1 gap-2 lg:grid-cols-3">
+              <ul className="grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                 {project.participantes.length === 0 && (
                   <span className="col-span-full italic text-stone-400/80">
                     No hay participantes en este proyecto.
