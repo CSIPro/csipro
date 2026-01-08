@@ -14,22 +14,32 @@ export const ProjectType = z.enum([
 
 export const ProjectStatus = z.enum(["Activo", "Inactivo", "Finalizado"]);
 
+export const ProjectParticipant = z.object({
+  id: z.string(),
+  miembro: z.number(),
+  descripcion: z.string().nullable(),
+  roles: z
+    .object({
+      id: z.string(),
+      rol: Role,
+    })
+    .array(),
+});
+
+export type ProjectParticipant = z.infer<typeof ProjectParticipant>;
+
+export const PopulatedProjectParticipant = ProjectParticipant.extend({
+  miembro: z.lazy(() => Member),
+});
+
+export type PopulatedProjectParticipant = z.infer<
+  typeof PopulatedProjectParticipant
+>;
+
 export const Project = z.object({
   id: z.number(),
   nombre: z.string(),
-  participantes: z
-    .object({
-      id: z.string(),
-      miembro: z.number(),
-      descripcion: z.string(),
-      roles: z
-        .object({
-          id: z.string(),
-          rol: Role,
-        })
-        .array(),
-    })
-    .array(),
+  participantes: ProjectParticipant.array(),
   tipo_sistema: ProjectType,
   logo: z.number().nullable().optional(),
   subtitulo: z.string(),
@@ -50,19 +60,7 @@ export const Project = z.object({
 export type Project = z.infer<typeof Project>;
 
 export const PopulatedProject = Project.extend({
-  participantes: z
-    .object({
-      id: z.string(),
-      miembro: z.lazy(() => Member),
-      descripcion: z.string().nullable(),
-      roles: z
-        .object({
-          id: z.string(),
-          rol: Role,
-        })
-        .array(),
-    })
-    .array(),
+  participantes: PopulatedProjectParticipant.array(),
   logo: Media.nullable().optional(),
   imagen_principal: Media,
   imagenes_secundarias: z

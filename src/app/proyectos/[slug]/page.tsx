@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { ImageGallery } from "@/components/image-gallery/image-gallery";
 import { Navbar } from "@/components/navbar/navbar";
+import { ProjectParticipantCard } from "@/components/project-participants/project-participant-card";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
@@ -196,6 +197,23 @@ export default async function ProjecPage({ params }: Props) {
               </li>
             ))}
           </ul>
+        </Section>
+        <Section innerClassName="pb-8">
+          <SectionTitle>Equipo</SectionTitle>
+          <div className="w-full px-4">
+            <ul className="grid w-full grid-cols-1 gap-2">
+              {project.participantes.length === 0 && (
+                <span className="col-span-full italic text-stone-400/80">
+                  No hay participantes en este proyecto.
+                </span>
+              )}
+              {project.participantes.map((participant) => (
+                <li key={participant.id}>
+                  <ProjectParticipantCard participant={participant} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </Section>
       </main>
     </>
