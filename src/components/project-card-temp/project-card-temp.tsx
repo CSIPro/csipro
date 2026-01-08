@@ -1,10 +1,13 @@
 import { format } from "date-fns";
 import Image from "next/image";
+import Link from "next/link";
 
 import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { PopulatedProject } from "@/models/projects";
 
 import { CsiproLogo } from "../socials/logos/csipro-logo";
+import { Button } from "../ui/button";
+import { RichText } from "../rich-text/rich-text";
 
 interface ProjectCardProps {
   project: PopulatedProject;
@@ -69,15 +72,15 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
             <h3 className="text-sm font-semibold text-[#A1A1AA]">
               {project.subtitulo}
             </h3>
-            <p className="mt-2 line-clamp-5 text-xs text-[#C8C4D6]  md:line-clamp-3">
-              lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <div className="min-h-20">
+              {project.descripcion ? (
+                <RichText
+                  // @ts-expect-error RichText content
+                  content={project.descripcion}
+                  className="line-clamp-5 text-pretty text-xs"
+                />
+              ) : null}
+            </div>
             <p className="mt-2 text-sm font-semibold text-[#A1A1AA]">
               {project.tipo_sistema}
             </p>
@@ -127,9 +130,9 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
           </div>
         </div>
         <div className="md:pt-4">
-          <button className="w-32 rounded-lg bg-[#7c3AED] py-2 text-sm font-semibold text-white">
-            Ver más
-          </button>
+          <Button asChild>
+            <Link href={`/proyectos/${project.slug}`}>Ver más</Link>
+          </Button>
         </div>
       </div>
     </div>

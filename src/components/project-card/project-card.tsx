@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ interface ProjectCardProps {
   name: string;
   subtitle: string;
   systemType: string;
+  slug: string;
   stack: Array<MappedTechnology>;
   thumbnail: Media;
 }
@@ -49,7 +51,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         <div className="flex items-center justify-between">
           <div className="align-text-bottom text-sm">{props.systemType}</div>
           <div className="flex items-center gap-2">
-            {props.stack.map((tech) => (
+            {props.stack.slice(0, 3).map((tech) => (
               <Image
                 key={tech.id}
                 src={`${CMS_URL}${tech.tecnologia.logo_monocromatico.url}`}
@@ -62,7 +64,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           </div>
         </div>
         <div className="flex justify-center pt-4">
-          <Button>Ver más</Button>
+          <Button asChild>
+            <Link href={`/proyectos/${props.slug}`}>Ver más</Link>
+          </Button>
         </div>
       </div>
     </div>

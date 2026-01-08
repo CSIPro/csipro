@@ -58,6 +58,7 @@ export const Project = z.object({
   participantes: ProjectParticipant.array(),
   tipo_sistema: ProjectType,
   logo: z.number().nullable().optional(),
+  slug: z.string(),
   subtitulo: z.string(),
   descripcion: z.object({}).passthrough().nullable(),
   imagen_principal: z.number(),

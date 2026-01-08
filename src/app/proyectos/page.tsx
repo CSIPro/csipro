@@ -62,13 +62,13 @@ export default async function ProjectsPage() {
           <div className="relative z-10">
             <h1 className="px-4 pt-10 text-center text-4xl font-bold sm:text-6xl lg:pt-20">
               ¡Descubre los proyectos del{" "}
-              <span className="text-primary">CSI PRO</span>!
+              <span className="text-primary">CSI&nbsp;PRO</span>!
             </h1>
 
             <p className="justify-center p-2 text-center text-base sm:text-xl">
-              En CSI PRO encontrarás una variedad de proyectos de los miembros
-              del laboratorio que resuelven problemas reales usando nuevas
-              tecnologías.
+              En CSI&nbsp;PRO encontrarás una variedad de proyectos de los
+              miembros del laboratorio que resuelven problemas reales usando
+              nuevas tecnologías.
             </p>
 
             <div className="md:mx-auto md:px-32">

@@ -9,19 +9,19 @@ import {
   LinkIcon,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ImageGallery } from "@/components/image-gallery/image-gallery";
 import { Navbar } from "@/components/navbar/navbar";
 import { ProjectParticipantCard } from "@/components/project-participants/project-participant-card";
+import { ProjectLink } from "@/components/projects-section/project-link";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { CsiproLogo } from "@/components/socials/logos/csipro-logo";
 import { TechChip } from "@/components/tech-chip/tech-chip";
 import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
-import { ProjectLink } from "@/models/projects";
+import { ProjectLink as ProjectLinkType } from "@/models/projects";
 import { fetchProject } from "@/services/projects";
 
 interface Props {
@@ -91,7 +91,7 @@ export default async function ProjecPage({ params }: Props) {
       demo: [],
       application: [],
       docs: [],
-    } as Record<ProjectLink["type"], ProjectLink[]>,
+    } as Record<ProjectLinkType["type"], ProjectLinkType[]>,
   );
 
   return (
@@ -270,14 +270,7 @@ export default async function ProjecPage({ params }: Props) {
                   <ul className="flex flex-wrap gap-2">
                     {groupedLinks.website.map((link) => (
                       <li key={link.id}>
-                        <Link
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md border border-white/10 bg-gradient-to-r from-[#BC8DC8]/30 to-[#665097]/30 px-2 py-1 text-lg font-medium text-primary-light"
-                        >
-                          {link.label}
-                        </Link>
+                        <ProjectLink link={link} />
                       </li>
                     ))}
                   </ul>
@@ -292,14 +285,7 @@ export default async function ProjecPage({ params }: Props) {
                   <ul className="flex flex-wrap gap-2">
                     {groupedLinks.repository.map((link) => (
                       <li key={link.id}>
-                        <Link
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md border border-white/10 bg-gradient-to-r from-[#BC8DC8]/30 to-[#665097]/30 px-2 py-1 text-lg font-medium text-primary-light"
-                        >
-                          {link.label}
-                        </Link>
+                        <ProjectLink link={link} />
                       </li>
                     ))}
                   </ul>
@@ -314,14 +300,7 @@ export default async function ProjecPage({ params }: Props) {
                   <ul className="flex flex-wrap gap-2">
                     {groupedLinks.application.map((link) => (
                       <li key={link.id}>
-                        <Link
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md border border-white/10 bg-gradient-to-r from-[#BC8DC8]/30 to-[#665097]/30 px-2 py-1 text-lg font-medium text-primary-light"
-                        >
-                          {link.label}
-                        </Link>
+                        <ProjectLink link={link} />
                       </li>
                     ))}
                   </ul>
@@ -336,14 +315,7 @@ export default async function ProjecPage({ params }: Props) {
                   <ul className="flex flex-wrap gap-2">
                     {groupedLinks.docs.map((link) => (
                       <li key={link.id}>
-                        <Link
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md border border-white/10 bg-gradient-to-r from-[#BC8DC8]/30 to-[#665097]/30 px-2 py-1 text-lg font-medium text-primary-light"
-                        >
-                          {link.label}
-                        </Link>
+                        <ProjectLink link={link} />
                       </li>
                     ))}
                   </ul>
@@ -358,14 +330,7 @@ export default async function ProjecPage({ params }: Props) {
                   <ul className="flex flex-wrap gap-2">
                     {groupedLinks.demo.map((link) => (
                       <li key={link.id}>
-                        <Link
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md border border-white/10 bg-gradient-to-r from-[#BC8DC8]/30 to-[#665097]/30 px-2 py-1 text-lg font-medium text-primary-light"
-                        >
-                          {link.label}
-                        </Link>
+                        <ProjectLink link={link} />
                       </li>
                     ))}
                   </ul>
@@ -380,14 +345,7 @@ export default async function ProjecPage({ params }: Props) {
                   <ul className="flex flex-wrap gap-2">
                     {groupedLinks.other.map((link) => (
                       <li key={link.id}>
-                        <Link
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md border border-white/10 bg-gradient-to-r from-[#BC8DC8]/30 to-[#665097]/30 px-2 py-1 text-lg font-medium text-primary-light"
-                        >
-                          {link.label}
-                        </Link>
+                        <ProjectLink link={link} />
                       </li>
                     ))}
                   </ul>
