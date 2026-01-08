@@ -16,12 +16,16 @@ interface Props {
   gallery: { id: string; imagen: Media }[];
   identifier?: string;
   className?: string;
+  carouselClassName?: string;
+  imageClassName?: string;
 }
 
 export const ImageGallery = ({
   gallery,
   identifier = "gallery",
   className,
+  carouselClassName,
+  imageClassName,
 }: Props) => {
   return (
     <Carousel>
@@ -34,6 +38,7 @@ export const ImageGallery = ({
             className={cn(
               "basis-5/6 pl-4 lg:basis-full",
               gallery.length === 1 && "basis-full",
+              carouselClassName,
             )}
           >
             <div className="relative size-full overflow-hidden rounded-md">
@@ -62,7 +67,7 @@ export const ImageGallery = ({
                 <Image
                   src={`${CMS_URL}${image.imagen.url}`}
                   alt={image.imagen.alt}
-                  className="h-full w-full object-cover"
+                  className={cn("h-full w-full object-cover", imageClassName)}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />

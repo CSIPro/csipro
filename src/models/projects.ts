@@ -31,6 +31,7 @@ export const Project = z.object({
     })
     .array(),
   tipo_sistema: ProjectType,
+  logo: z.number().nullable().optional(),
   subtitulo: z.string(),
   descripcion: z.object({}).passthrough().nullable(),
   imagen_principal: z.number(),
@@ -62,6 +63,7 @@ export const PopulatedProject = Project.extend({
         .array(),
     })
     .array(),
+  logo: Media.nullable().optional(),
   imagen_principal: Media,
   imagenes_secundarias: z
     .object({
