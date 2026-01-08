@@ -14,6 +14,22 @@ export const ProjectType = z.enum([
 
 export const ProjectStatus = z.enum(["Activo", "Inactivo", "Finalizado"]);
 
+export const ProjectLink = z.object({
+  id: z.string(),
+  type: z.enum([
+    "website",
+    "repository",
+    "demo",
+    "application",
+    "docs",
+    "other",
+  ]),
+  label: z.string(),
+  url: z.string().url(),
+});
+
+export type ProjectLink = z.infer<typeof ProjectLink>;
+
 export const ProjectParticipant = z.object({
   id: z.string(),
   miembro: z.number(),
@@ -55,6 +71,7 @@ export const Project = z.object({
   url: z.string().nullable(),
   github_url: z.string().nullable(),
   color: z.string().optional(),
+  links: ProjectLink.array(),
 });
 
 export type Project = z.infer<typeof Project>;

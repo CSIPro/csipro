@@ -2,7 +2,7 @@
 
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { CMS_URL, cn, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { PopulatedProjectParticipant } from "@/models/projects";
@@ -29,17 +29,17 @@ interface Props {
 
 export const ProjectParticipantCard = ({ participant }: Props) => {
   const [open, setOpen] = useState(false);
-  const [participantColors, _setParticipantColors] = useState(() => {
+  const participantColors = useMemo(() => {
     const shuffled = [...colors].sort(() => 0.5 - Math.random());
     return { color1: shuffled[0], color2: shuffled[1] };
-  });
+  }, []);
 
   const { color1, color2 } = participantColors;
 
   const profilePicture = getSmallestImageNotThumbnail(participant.miembro.foto);
 
   return (
-    <div className="flex w-full flex-col gap-2 rounded-xl border border-[rgba(255,255,255,0.11)] bg-[#6D6972]/15 p-2 transition-all duration-300 ease-in-out">
+    <div className="flex w-full flex-col gap-2 rounded-xl border border-white/10 bg-[#6D6972]/15 p-2 transition-all duration-300 ease-in-out">
       <div className="flex h-20 w-full items-start gap-2">
         <div className="group relative size-20">
           <div
