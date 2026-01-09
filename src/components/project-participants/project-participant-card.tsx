@@ -1,7 +1,8 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { CMS_URL, cn, getSmallestImageNotThumbnail } from "@/lib/utils";
@@ -54,9 +55,10 @@ export const ProjectParticipantCard = ({ participant }: Props) => {
               background: `linear-gradient(235deg, ${color1}, #16131F, ${color2}`,
             }}
           ></div>
-          <div
+          <Link
+            href={`/miembros/${participant.miembro.slug}`}
             className={cn(
-              "z-0 size-20 overflow-hidden rounded-[5px] bg-black p-0.5",
+              "z-0 block size-20 overflow-hidden rounded-[5px] bg-black p-0.5",
             )}
           >
             <Image
@@ -66,29 +68,37 @@ export const ProjectParticipantCard = ({ participant }: Props) => {
               height={80}
               className="size-full rounded-[3px] object-cover"
             />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-1 flex-col items-start">
-          <h3 className="text-xl font-bold">
-            {participant.miembro.short_name}
-          </h3>
+          <Link
+            href={`/miembros/${participant.miembro.slug}`}
+            className="relative inline-flex w-full pr-8 underline-offset-4 hover:underline"
+          >
+            <h3 className="line-clamp-1 text-xl font-bold">
+              {participant.miembro.short_name}
+            </h3>
+            <ArrowRight className="absolute right-4 top-1.5" size={16} />
+          </Link>
           <p className="line-clamp-1 text-sm text-stone-400">
             {participant.roles.map((role) => role.rol.role).join(", ")}
           </p>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setOpen((o) => !o)}
-            className="self-end hover:bg-transparent hover:text-white focus:bg-transparent focus:text-white active:bg-transparent active:text-white"
-            aria-label="Toggle description"
-          >
-            <ChevronDown
-              className={cn(
-                "transition-all duration-300 ease-in-out",
-                open && "rotate-180",
-              )}
-            />
-          </Button>
+          {participant.descripcion ? (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setOpen((o) => !o)}
+              className="self-end hover:bg-transparent hover:text-white focus:bg-transparent focus:text-white active:bg-transparent active:text-white"
+              aria-label="Toggle description"
+            >
+              <ChevronDown
+                className={cn(
+                  "transition-all duration-300 ease-in-out",
+                  open && "rotate-180",
+                )}
+              />
+            </Button>
+          ) : null}
         </div>
       </div>
       {open && (

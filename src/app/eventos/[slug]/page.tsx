@@ -10,9 +10,10 @@ import { EventRequirementItem } from "@/components/events-section/event-requirem
 import { ImageGallery } from "@/components/image-gallery/image-gallery";
 import { MemberChip } from "@/components/member-chip/member-chip";
 import { Navbar } from "@/components/navbar/navbar";
+import { extractPlainText } from "@/components/rich-text/converters/plaintext";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
-import { CMS_URL } from "@/lib/utils";
+import { CMS_URL, truncateDescription } from "@/lib/utils";
 import { fetchEvent } from "@/services/events";
 
 export async function generateMetadata({
@@ -31,8 +32,8 @@ export async function generateMetadata({
   return {
     title: `${event.titulo} - CSI PRO`,
     description: event.descripcion
-      ? "Descripción del evento " + event.titulo
-      : "Evento organizado por CSI PRO",
+      ? truncateDescription(extractPlainText({ data: event.descripcion }), 160)
+      : `Descubre más sobre el evento ${event.titulo} organizado por CSI PRO.`,
     keywords: [
       "CSI PRO",
       event.titulo,

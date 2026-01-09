@@ -5,9 +5,9 @@ import Link from "next/link";
 import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { PopulatedProject } from "@/models/projects";
 
+import { extractPlainText } from "../rich-text/converters/plaintext";
 import { CsiproLogo } from "../socials/logos/csipro-logo";
 import { Button } from "../ui/button";
-import { RichText } from "../rich-text/rich-text";
 
 interface ProjectCardProps {
   project: PopulatedProject;
@@ -19,6 +19,10 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
   const members = project.participantes ?? [];
 
   const projectImage = getSmallestImageNotThumbnail(project.imagen_principal);
+
+  const plainTextDescription = extractPlainText({
+    data: project.descripcion,
+  });
 
   return (
     <div className="w-full rounded-2xl bg-[#160D2A]/90 p-4 text-white shadow-lg md:w-80 lg:w-full">
@@ -74,11 +78,7 @@ export default function ProjectCardTemp({ project }: ProjectCardProps) {
             </h3>
             <div className="min-h-20">
               {project.descripcion ? (
-                <RichText
-                  // @ts-expect-error RichText content
-                  content={project.descripcion}
-                  className="line-clamp-5 text-pretty text-xs"
-                />
+                <p className="line-clamp-5 text-xs">{plainTextDescription}</p>
               ) : null}
             </div>
             <p className="mt-2 text-sm font-semibold text-[#A1A1AA]">

@@ -15,12 +15,18 @@ import { ImageGallery } from "@/components/image-gallery/image-gallery";
 import { Navbar } from "@/components/navbar/navbar";
 import { ProjectParticipantCard } from "@/components/project-participants/project-participant-card";
 import { ProjectLink } from "@/components/projects-section/project-link";
+import { ProjectStatusBadge } from "@/components/projects-section/project-status";
+import { extractPlainText } from "@/components/rich-text/converters/plaintext";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { CsiproLogo } from "@/components/socials/logos/csipro-logo";
 import { TechChip } from "@/components/tech-chip/tech-chip";
-import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
+import {
+  CMS_URL,
+  getSmallestImageNotThumbnail,
+  truncateDescription,
+} from "@/lib/utils";
 import { ProjectLink as ProjectLinkType } from "@/models/projects";
 import { fetchProject } from "@/services/projects";
 
@@ -42,8 +48,11 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${project.nombre} - CSI PRO`,
     description: project.descripcion
-      ? "Descripción del proyecto " + project.nombre
-      : "Proyecto desarrollado por CSI PRO",
+      ? truncateDescription(
+          extractPlainText({ data: project.descripcion }),
+          160,
+        )
+      : `Proyecto desarrollado por CSI PRO: ${project.nombre}`,
     keywords: [
       "CSI PRO",
       project.nombre,
@@ -94,9 +103,11 @@ export default async function ProjecPage({ params }: Props) {
     } as Record<ProjectLinkType["type"], ProjectLinkType[]>,
   );
 
+  const projectTitles = project.titles.map((t) => t.title);
+
   return (
     <>
-      <Navbar titles={["DEVS", "TECH", "PROJECTS"]} />
+      <Navbar titles={["DEVS", "TECH", "PROJECTS", ...projectTitles]} />
       <main className="w-full">
         <Section innerClassName="pb-8 lg:border-x-0">
           <div className="relative h-[28rem] w-full overflow-hidden lg:h-[36rem]">
@@ -151,11 +162,10 @@ export default async function ProjecPage({ params }: Props) {
             </picture>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background">
               <div className="relative z-10 flex h-full w-full flex-col items-start justify-end gap-2 px-4 lg:justify-center">
-                <div className="absolute bottom-10 right-20 hidden items-center justify-center rounded-xl border-2 border-primary-light bg-[#1D0B47] px-4 py-2 lg:flex">
-                  <span className="text-center text-lg font-bold uppercase tracking-wider text-primary-light">
-                    {project.estado}
-                  </span>
-                </div>
+                <ProjectStatusBadge
+                  status={project.estado}
+                  className="absolute bottom-10 right-20 hidden lg:flex"
+                />
                 <div className="absolute bottom-10 left-20 hidden items-center justify-center gap-2 rounded-xl border border-white/10 bg-gradient-to-r from-[#BC8DC8]/30 to-[#665097]/30 px-4 py-2 lg:flex">
                   <Calendar />
                   <span className="text-lg font-medium">
@@ -163,7 +173,12 @@ export default async function ProjecPage({ params }: Props) {
                   </span>
                 </div>
                 <div className="flex w-full items-end gap-2 lg:flex-col lg:items-center lg:gap-8 lg:pt-28">
-                  <div className="relative flex size-24 shrink-0 items-center justify-center rounded-lg border-4 border-background bg-primary p-2">
+                  <div
+                    className="relative flex size-24 shrink-0 items-center justify-center rounded-lg border-4 border-background bg-primary p-2"
+                    style={{
+                      backgroundColor: project.color ?? undefined,
+                    }}
+                  >
                     {projectLogo ? (
                       <Image
                         src={`${CMS_URL}${projectLogo.url}`}
@@ -185,11 +200,10 @@ export default async function ProjecPage({ params }: Props) {
                     </div>
                   </div>
                 </div>
-                <div className="flex w-full items-center justify-center rounded-xl border-2 border-primary-light bg-[#1D0B47] py-2 lg:hidden">
-                  <span className="text-center text-lg font-bold uppercase tracking-wider text-primary-light">
-                    {project.estado}
-                  </span>
-                </div>
+                <ProjectStatusBadge
+                  status={project.estado}
+                  className="flex w-full lg:hidden"
+                />
                 <div className="inline-flex w-full items-center justify-center gap-1 text-base uppercase text-stone-400 lg:hidden">
                   <span>
                     Inicio:{" "}
@@ -207,152 +221,156 @@ export default async function ProjecPage({ params }: Props) {
           </div>
         </Section>
         <div className="mx-auto grid max-w-9xl grid-cols-1 items-start gap-x-8 lg:grid-cols-3">
-          <Section
-            innerClassName="pb-8 lg:border-x-0"
-            className="lg:col-span-2"
-          >
-            <SectionTitle>Descripción</SectionTitle>
-            <div className="flex w-full flex-col gap-2 px-4">
-              {project.descripcion ? (
-                <RichText
-                  // @ts-expect-error I don't want to type out the Lexical output structure
-                  content={project.descripcion}
-                  className="space-y-4 text-pretty leading-relaxed"
+          <div className="col-span-1 flex w-full flex-col lg:col-span-2">
+            <Section
+              innerClassName="pb-8 lg:border-x-0"
+              className="lg:col-span-2"
+            >
+              <SectionTitle>Descripción</SectionTitle>
+              <div className="flex w-full flex-col gap-2 px-4">
+                {project.descripcion ? (
+                  <RichText
+                    // @ts-expect-error I don't want to type out the Lexical output structure
+                    data={project.descripcion}
+                    className="space-y-4 text-pretty leading-relaxed"
+                  />
+                ) : (
+                  <span className="italic text-stone-400/80">
+                    No hay descripción disponible.
+                  </span>
+                )}
+              </div>
+            </Section>
+            <Section
+              className="col-span-1 lg:col-span-2"
+              innerClassName="pb-8 lg:border-x-0"
+            >
+              <SectionTitle>Galería</SectionTitle>
+              <div className="flex w-full flex-col gap-2 px-4">
+                <ImageGallery
+                  gallery={gallery}
+                  identifier={`Galería de ${project.nombre}`}
+                  className="aspect-[5/4] h-auto w-full md:aspect-[2] lg:aspect-[2]"
+                  carouselClassName="md:basis-1/2 lg:basis-1/2"
+                  imageClassName="rounded-md object-contain"
                 />
-              ) : (
-                <span className="italic text-stone-400/80">
-                  No hay descripción disponible.
-                </span>
-              )}
-            </div>
-          </Section>
-          <Section innerClassName="pb-8 lg:border-x-0">
-            <SectionTitle>Tecnologías</SectionTitle>
-            <ul className="flex w-full flex-wrap gap-2 px-4">
-              {project.tecnologias.map((tech) => (
-                <li key={tech.id}>
-                  <TechChip icon={tech.tecnologia.logo_monocromatico}>
-                    {tech.tecnologia.nombre}
-                  </TechChip>
-                </li>
-              ))}
-            </ul>
-          </Section>
-          <Section
-            className="col-span-1 lg:col-span-2"
-            innerClassName="pb-8 lg:border-x-0"
-          >
-            <SectionTitle>Galería</SectionTitle>
-            <div className="flex w-full flex-col gap-2 px-4">
-              <ImageGallery
-                gallery={gallery}
-                identifier={`Galería de ${project.nombre}`}
-                className="aspect-[5/4] h-auto w-full md:aspect-[2] lg:aspect-[2]"
-                carouselClassName="md:basis-1/2 lg:basis-1/2"
-                imageClassName="rounded-md object-contain"
-              />
-            </div>
-          </Section>
-          <Section innerClassName="pb-8 lg:border-x-0">
-            <SectionTitle>Links</SectionTitle>
-            <div className="flex w-full flex-col gap-4 px-4 md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap">
-              {project.links.length === 0 ? (
-                <span className="italic text-stone-400/80">
-                  No hay descripción disponible.
-                </span>
-              ) : null}
-              {groupedLinks.website.length > 0 ? (
-                <div className="flex flex-col items-start gap-2">
-                  <span className="flex items-center gap-1 text-white">
-                    <Globe />
-                    <h3 className="text-lg font-semibold">Website</h3>
+              </div>
+            </Section>
+          </div>
+          <div className="flex w-full flex-col">
+            <Section innerClassName="pb-8 lg:border-x-0">
+              <SectionTitle>Tecnologías</SectionTitle>
+              <ul className="flex w-full flex-wrap gap-2 px-4">
+                {project.tecnologias.map((tech) => (
+                  <li key={tech.id}>
+                    <TechChip icon={tech.tecnologia.logo_monocromatico}>
+                      {tech.tecnologia.nombre}
+                    </TechChip>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+            <Section innerClassName="pb-8 lg:border-x-0">
+              <SectionTitle>Links</SectionTitle>
+              <div className="flex w-full flex-col gap-4 px-4 md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap">
+                {project.links.length === 0 ? (
+                  <span className="italic text-stone-400/80">
+                    No hay descripción disponible.
                   </span>
-                  <ul className="flex flex-wrap gap-2">
-                    {groupedLinks.website.map((link) => (
-                      <li key={link.id}>
-                        <ProjectLink link={link} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-              {groupedLinks.repository.length > 0 ? (
-                <div className="flex flex-col items-start gap-2">
-                  <span className="flex items-center gap-1 text-white">
-                    <GitBranch />
-                    <h3 className="text-lg font-semibold">Repository</h3>
-                  </span>
-                  <ul className="flex flex-wrap gap-2">
-                    {groupedLinks.repository.map((link) => (
-                      <li key={link.id}>
-                        <ProjectLink link={link} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-              {groupedLinks.application.length > 0 ? (
-                <div className="flex flex-col items-start gap-2">
-                  <span className="flex items-center gap-1 text-white">
-                    <LayoutGrid />
-                    <h3 className="text-lg font-semibold">Application</h3>
-                  </span>
-                  <ul className="flex flex-wrap gap-2">
-                    {groupedLinks.application.map((link) => (
-                      <li key={link.id}>
-                        <ProjectLink link={link} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-              {groupedLinks.docs.length > 0 ? (
-                <div className="flex flex-col items-start gap-2">
-                  <span className="flex items-center gap-1 text-white">
-                    <FileCode />
-                    <h3 className="text-lg font-semibold">Docs</h3>
-                  </span>
-                  <ul className="flex flex-wrap gap-2">
-                    {groupedLinks.docs.map((link) => (
-                      <li key={link.id}>
-                        <ProjectLink link={link} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-              {groupedLinks.demo.length > 0 ? (
-                <div className="flex flex-col items-start gap-2">
-                  <span className="flex items-center gap-1 text-white">
-                    <Bug />
-                    <h3 className="text-lg font-semibold">Demo</h3>
-                  </span>
-                  <ul className="flex flex-wrap gap-2">
-                    {groupedLinks.demo.map((link) => (
-                      <li key={link.id}>
-                        <ProjectLink link={link} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-              {groupedLinks.other.length > 0 ? (
-                <div className="flex flex-col items-start gap-2">
-                  <span className="flex items-center gap-1 text-white">
-                    <LinkIcon />
-                    <h3 className="text-lg font-semibold">Other</h3>
-                  </span>
-                  <ul className="flex flex-wrap gap-2">
-                    {groupedLinks.other.map((link) => (
-                      <li key={link.id}>
-                        <ProjectLink link={link} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-            </div>
-          </Section>
+                ) : null}
+                {groupedLinks.website.length > 0 ? (
+                  <div className="flex flex-col items-start gap-2">
+                    <span className="flex items-center gap-1 text-white">
+                      <Globe />
+                      <h3 className="text-lg font-semibold">Website</h3>
+                    </span>
+                    <ul className="flex flex-wrap gap-2">
+                      {groupedLinks.website.map((link) => (
+                        <li key={link.id}>
+                          <ProjectLink link={link} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {groupedLinks.repository.length > 0 ? (
+                  <div className="flex flex-col items-start gap-2">
+                    <span className="flex items-center gap-1 text-white">
+                      <GitBranch />
+                      <h3 className="text-lg font-semibold">Repository</h3>
+                    </span>
+                    <ul className="flex flex-wrap gap-2">
+                      {groupedLinks.repository.map((link) => (
+                        <li key={link.id}>
+                          <ProjectLink link={link} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {groupedLinks.application.length > 0 ? (
+                  <div className="flex flex-col items-start gap-2">
+                    <span className="flex items-center gap-1 text-white">
+                      <LayoutGrid />
+                      <h3 className="text-lg font-semibold">Application</h3>
+                    </span>
+                    <ul className="flex flex-wrap gap-2">
+                      {groupedLinks.application.map((link) => (
+                        <li key={link.id}>
+                          <ProjectLink link={link} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {groupedLinks.docs.length > 0 ? (
+                  <div className="flex flex-col items-start gap-2">
+                    <span className="flex items-center gap-1 text-white">
+                      <FileCode />
+                      <h3 className="text-lg font-semibold">Docs</h3>
+                    </span>
+                    <ul className="flex flex-wrap gap-2">
+                      {groupedLinks.docs.map((link) => (
+                        <li key={link.id}>
+                          <ProjectLink link={link} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {groupedLinks.demo.length > 0 ? (
+                  <div className="flex flex-col items-start gap-2">
+                    <span className="flex items-center gap-1 text-white">
+                      <Bug />
+                      <h3 className="text-lg font-semibold">Demo</h3>
+                    </span>
+                    <ul className="flex flex-wrap gap-2">
+                      {groupedLinks.demo.map((link) => (
+                        <li key={link.id}>
+                          <ProjectLink link={link} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {groupedLinks.other.length > 0 ? (
+                  <div className="flex flex-col items-start gap-2">
+                    <span className="flex items-center gap-1 text-white">
+                      <LinkIcon />
+                      <h3 className="text-lg font-semibold">Other</h3>
+                    </span>
+                    <ul className="flex flex-wrap gap-2">
+                      {groupedLinks.other.map((link) => (
+                        <li key={link.id}>
+                          <ProjectLink link={link} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
+            </Section>
+          </div>
           <Section
             className="col-span-full"
             innerClassName="pb-8 lg:border-x-0"

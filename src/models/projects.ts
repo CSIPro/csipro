@@ -12,7 +12,11 @@ export const ProjectType = z.enum([
   "Aplicación de Escritorio",
 ]);
 
+export type ProjectType = z.infer<typeof ProjectType>;
+
 export const ProjectStatus = z.enum(["Activo", "Inactivo", "Finalizado"]);
+
+export type ProjectStatus = z.infer<typeof ProjectStatus>;
 
 export const ProjectLink = z.object({
   id: z.string(),
@@ -59,6 +63,12 @@ export const Project = z.object({
   tipo_sistema: ProjectType,
   logo: z.number().nullable().optional(),
   slug: z.string(),
+  titles: z
+    .object({
+      id: z.string(),
+      title: z.string(),
+    })
+    .array(),
   subtitulo: z.string(),
   descripcion: z.object({}).passthrough().nullable(),
   imagen_principal: z.number(),
@@ -71,7 +81,7 @@ export const Project = z.object({
   estado: ProjectStatus,
   url: z.string().nullable(),
   github_url: z.string().nullable(),
-  color: z.string().optional(),
+  color: z.string().nullable(),
   links: ProjectLink.array(),
 });
 

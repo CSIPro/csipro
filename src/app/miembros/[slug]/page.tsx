@@ -12,6 +12,7 @@ import { ImageGallery } from "@/components/image-gallery/image-gallery";
 import MemberEvents from "@/components/members-section/member-events";
 import MemberProjects from "@/components/members-section/member-projects";
 import { Navbar } from "@/components/navbar/navbar";
+import { extractPlainText } from "@/components/rich-text/converters/plaintext";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
 import { Button } from "@/components/ui/button";
@@ -22,7 +23,7 @@ import {
   TableHead,
   TableRow,
 } from "@/components/ui/table";
-import { CMS_URL, cn } from "@/lib/utils";
+import { CMS_URL, cn, truncateDescription } from "@/lib/utils";
 import { fetchMember } from "@/services/members";
 
 export async function generateMetadata({
@@ -40,7 +41,9 @@ export async function generateMetadata({
 
   return {
     title: `${member.short_name} - CSI PRO`,
-    description: `Perfil de ${member.nombres} ${member.apellidos}, miembro del CSI PRO.`,
+    description: member.sobre_mi
+      ? truncateDescription(extractPlainText({ data: member.sobre_mi }), 160)
+      : `Perfil de ${member.nombres} ${member.apellidos}, miembro del CSI PRO.`,
     keywords: [
       "CSI PRO",
       "csipro",
