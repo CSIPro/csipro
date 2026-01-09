@@ -14,8 +14,8 @@ import { MissionCard } from "@/components/mission-card/mission-card";
 import { Navbar } from "@/components/navbar/navbar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
-import { Button } from "@/components/ui/button";
 import { MarqueeItem, MarqueeWrapper } from "@/components/ui/marquee";
+import { ProjectPageButton } from "@/components/creative-team/project-page-button";
 
 export default async function Page() {
   return (
@@ -426,9 +426,7 @@ export default async function Page() {
                   </picture>
                 </MarqueeItem>
               </div>
-              <Button className="px-4 py-4 font-bold uppercase sm:rounded-2xl sm:px-5 sm:py-7 sm:text-2xl">
-                Más del proyecto
-              </Button>
+              <ProjectPageButton />
             </div>
           </div>
         </Section>
@@ -567,7 +565,7 @@ export default async function Page() {
                 </CreativeTeamCardSubtitle>
                 <CreativeTeamCardRole>Diseñadora UX/UI</CreativeTeamCardRole>
               </CreativeTeamCardContent>
-              <CreativeTeamCardButton shortName="Verónica Rodríguez Navarro">
+              <CreativeTeamCardButton shortName="Verónica Rodríguez">
                 Ver Portafolio
               </CreativeTeamCardButton>
             </CreativeTeamCard>

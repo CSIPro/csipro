@@ -6,7 +6,7 @@ import {
 
 import { QUERY_KEYS } from "@/lib/utils";
 import { PopulatedPaginatedProjectsResponse } from "@/models/projects";
-import { fetchPopulatedProjects } from "@/services/projects";
+import { fetchPopulatedProjects, fetchProject } from "@/services/projects";
 
 interface UseProjectsProps {
   limit?: number;
@@ -54,5 +54,12 @@ export const useInfinitePopulatedProjects = ({
           pageParams: [1],
         }
       : undefined,
+  });
+};
+
+export const useProject = (slug: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.POPULATED_PROJECTS, slug],
+    queryFn: () => fetchProject(slug),
   });
 };
