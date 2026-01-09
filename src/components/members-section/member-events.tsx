@@ -30,6 +30,7 @@ export default async function MemberEvents({ memberId }: Props) {
               image={event.imagen_principal}
               spots={event.cupos - event.asistentes.length}
               location={event.lugar}
+              event={event}
               slug={event.slug}
             />
           </CarouselItem>
