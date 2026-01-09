@@ -22,6 +22,7 @@ export default async function MemberProjects({ memberId }: Props) {
               key={project.id}
               name={project.nombre}
               subtitle={project.subtitulo}
+              slug={project.slug}
               systemType={project.tipo_sistema}
               stack={project.tecnologias ?? []}
               thumbnail={project.imagen_principal}

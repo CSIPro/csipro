@@ -103,11 +103,16 @@ export default async function ProjecPage({ params }: Props) {
     } as Record<ProjectLinkType["type"], ProjectLinkType[]>,
   );
 
-  const projectTitles = project.titles.map((t) => t.title);
+  const projectTitles = [
+    ...(project.titles.length > 0
+      ? ["PROJECTS"]
+      : ["DEVS", "TECH", "PROJECTS"]),
+    ...project.titles.map((t) => t.title),
+  ];
 
   return (
     <>
-      <Navbar titles={["DEVS", "TECH", "PROJECTS", ...projectTitles]} />
+      <Navbar titles={projectTitles} />
       <main className="w-full">
         <Section innerClassName="pb-8 lg:border-x-0">
           <div className="relative h-[28rem] w-full overflow-hidden lg:h-[36rem]">

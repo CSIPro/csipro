@@ -41,7 +41,7 @@ export const ProjectParticipantCard = ({ participant }: Props) => {
 
   return (
     <div className="flex w-full flex-col gap-2 rounded-xl border border-white/10 bg-[#6D6972]/15 p-2 transition-all duration-300 ease-in-out">
-      <div className="flex h-20 w-full items-start gap-2">
+      <div className="relative flex h-20 w-full items-start gap-2">
         <div className="group relative size-20">
           <div
             className={cn("absolute -inset-0.5 -z-[1] rounded-[6px]")}
@@ -73,22 +73,22 @@ export const ProjectParticipantCard = ({ participant }: Props) => {
         <div className="flex flex-1 flex-col items-start">
           <Link
             href={`/miembros/${participant.miembro.slug}`}
-            className="relative inline-flex w-full pr-8 underline-offset-4 hover:underline"
+            className="inline-flex w-full pr-4 underline-offset-4 hover:underline"
           >
-            <h3 className="line-clamp-1 text-xl font-bold">
+            <h3 className="line-clamp-1 text-lg font-bold lg:text-xl">
               {participant.miembro.short_name}
             </h3>
-            <ArrowRight className="absolute right-4 top-1.5" size={16} />
+            <ArrowRight className="absolute right-3 top-1.5" size={16} />
           </Link>
-          <p className="line-clamp-1 text-sm text-stone-400">
+          <p className="line-clamp-2 pr-4 text-sm text-stone-400 lg:text-base">
             {participant.roles.map((role) => role.rol.role).join(", ")}
           </p>
           {participant.descripcion ? (
             <Button
               variant="ghost"
-              size="sm"
+              size="icon"
               onClick={() => setOpen((o) => !o)}
-              className="self-end hover:bg-transparent hover:text-white focus:bg-transparent focus:text-white active:bg-transparent active:text-white"
+              className="absolute -bottom-2 right-0 hover:bg-transparent hover:text-white focus:bg-transparent focus:text-white focus:ring-0 active:bg-transparent active:text-white active:ring-0"
               aria-label="Toggle description"
             >
               <ChevronDown
@@ -96,6 +96,7 @@ export const ProjectParticipantCard = ({ participant }: Props) => {
                   "transition-all duration-300 ease-in-out",
                   open && "rotate-180",
                 )}
+                size={16}
               />
             </Button>
           ) : null}
