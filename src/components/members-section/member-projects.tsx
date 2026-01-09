@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { getMemberProjects } from "@/services/members";
 
 import { ProjectCard } from "../project-card/project-card";
@@ -16,7 +17,10 @@ export default async function MemberProjects({ memberId }: Props) {
         {memberProjects.docs.map((project) => (
           <CarouselItem
             key={project.id}
-            className="basis-5/6 sm:basis-3/4 md:basis-[45%] md:pl-8 lg:basis-1/3"
+            className={cn(
+              "basis-5/6 sm:basis-3/4 md:basis-[45%] md:pl-8 lg:basis-1/4",
+              memberProjects.docs.length === 1 && "basis-full md:basis-1/2",
+            )}
           >
             <ProjectCard
               key={project.id}
@@ -26,6 +30,7 @@ export default async function MemberProjects({ memberId }: Props) {
               systemType={project.tipo_sistema}
               stack={project.tecnologias ?? []}
               thumbnail={project.imagen_principal}
+              project={project}
             />
           </CarouselItem>
         ))}

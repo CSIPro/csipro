@@ -60,6 +60,7 @@ export default async function ProjectsSection() {
                 systemType={project.tipo_sistema}
                 stack={project.tecnologias ?? []}
                 thumbnail={project.imagen_principal}
+                project={project}
               />
             </CarouselItem>
           ))}

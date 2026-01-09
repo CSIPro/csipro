@@ -48,6 +48,7 @@ export const ProjectsCarousel = ({ initialData }: Props) => {
               systemType={project.tipo_sistema}
               stack={project.tecnologias ?? []}
               thumbnail={project.imagen_principal}
+              project={project}
             />
           </CarouselItem>
         ))}

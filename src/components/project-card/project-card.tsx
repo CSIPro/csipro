@@ -5,7 +5,10 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { CMS_URL, getSmallestImageNotThumbnail } from "@/lib/utils";
 import { Media } from "@/models/media";
+import { PopulatedProject } from "@/models/projects";
 import { PopulatedTechnology } from "@/models/technology";
+
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 type MappedTechnology = {
   id: string;
@@ -19,6 +22,7 @@ interface ProjectCardProps {
   slug: string;
   stack: Array<MappedTechnology>;
   thumbnail: Media;
+  project: PopulatedProject;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
@@ -26,8 +30,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
 
   return (
     <div className="flex w-full justify-center rounded-2xl gradient-border md:max-w-96">
-      <div className="flex h-full w-full flex-col gap-2 rounded-[15px] bg-muted p-4">
-        <div className="relative flex h-64 w-full justify-center md:h-48">
+      <div className="flex h-full w-full flex-col gap-2 rounded-[15px] bg-muted p-2 pb-3">
+        <div className="relative flex aspect-square w-full justify-center overflow-hidden rounded-[7px]">
           <Image
             fill
             src="/lines.png"
@@ -51,15 +55,21 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         <div className="flex items-center justify-between">
           <div className="align-text-bottom text-sm">{props.systemType}</div>
           <div className="flex items-center gap-2">
-            {props.stack.slice(0, 3).map((tech) => (
-              <Image
-                key={tech.id}
-                src={`${CMS_URL}${tech.tecnologia.logo_monocromatico.url}`}
-                alt={tech.tecnologia.logo.alt}
-                className="size-5"
-                width={32}
-                height={32}
-              />
+            {props.stack.slice(0, 4).map((tech) => (
+              <Tooltip key={tech.id}>
+                <TooltipTrigger>
+                  <Image
+                    src={`${CMS_URL}${tech.tecnologia.logo_monocromatico.url}`}
+                    alt={tech.tecnologia.logo.alt}
+                    className="size-5"
+                    width={32}
+                    height={32}
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{tech.tecnologia.nombre}</p>
+                </TooltipContent>
+              </Tooltip>
             ))}
           </div>
         </div>
