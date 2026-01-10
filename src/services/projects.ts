@@ -2,6 +2,7 @@ import { API_URL } from "@/lib/utils";
 import { generateEmptyResponse } from "@/models/cms-response";
 import {
   PopulatedPaginatedProjectsResponse,
+  PopulatedProject,
   ProjectsCount,
 } from "@/models/projects";
 
@@ -38,6 +39,31 @@ export const fetchProject = async (slug: string) => {
   }
 
   return projectData;
+};
+
+export const fetchProjectById = async (id: number) => {
+  const projectRes = await fetch(`${API_URL}/proyectos/${id}?depth=2`, {
+    next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
+  });
+
+  if (!projectRes.ok) {
+    return null;
+  }
+
+  const projectData = await projectRes.json();
+  const projectParse = PopulatedProject.safeParse(projectData);
+
+  if (!projectParse.success) {
+    console.log(projectParse.error.format());
+
+    for (const err of projectParse.error.errors) {
+      console.error(err);
+    }
+
+    return null;
+  }
+
+  return projectParse.data;
 };
 
 export const fetchPopulatedProjects = async (

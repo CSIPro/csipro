@@ -64,10 +64,15 @@ export const ChipLabel: FC<TextProps> = ({
 interface IconProps {
   children: ReactNode;
   className?: string;
+  style?: HTMLAttributes<HTMLSpanElement>["style"];
 }
 
-export const ChipIcon: FC<IconProps> = ({ className, children }) => {
-  return <span className={cn(className)}>{children}</span>;
+export const ChipIcon: FC<IconProps> = ({ className, children, style }) => {
+  return (
+    <span className={cn(className)} style={style}>
+      {children}
+    </span>
+  );
 };
 
 export const ChipSkeleton = () => {
