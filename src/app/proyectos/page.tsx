@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
 import { Navbar } from "@/components/navbar/navbar";
 import { InfiniteProjects } from "@/components/projects-section/infinite-projects";
-import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import {
@@ -92,12 +91,12 @@ export default async function ProjectsPage() {
               nuevas tecnologías.
             </p>
 
-            <div className="md:mx-auto md:px-32">
+            {/* <div className="md:mx-auto md:px-32">
               <SearchBar
                 shortPlaceholder="Buscar proyectos..."
                 longPlaceholder="Búsca proyectos por tecnología, miembros, tipo..."
               />
-            </div>
+            </div> */}
           </div>
         </Section>
 
