@@ -5,6 +5,41 @@ import {
   ProjectsCount,
 } from "@/models/projects";
 
+export const fetchProject = async (slug: string) => {
+  const projectRes = await fetch(
+    `${API_URL}/proyectos?depth=2&where[slug][equals]=${encodeURIComponent(slug)}&limit=1`,
+    {
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
+    },
+  );
+
+  if (!projectRes.ok) {
+    return null;
+  }
+
+  const projectsData = await projectRes.json();
+  const projectsParse =
+    PopulatedPaginatedProjectsResponse.safeParse(projectsData);
+
+  if (!projectsParse.success) {
+    console.log(projectsParse.error.format());
+
+    for (const err of projectsParse.error.errors) {
+      console.error(err);
+    }
+
+    return null;
+  }
+
+  const projectData = projectsParse.data.docs[0];
+
+  if (!projectData) {
+    return null;
+  }
+
+  return projectData;
+};
+
 export const fetchPopulatedProjects = async (
   limit: number,
   currentPage: number,

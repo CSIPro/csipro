@@ -44,9 +44,11 @@ export const ProjectsCarousel = ({ initialData }: Props) => {
             <ProjectCard
               name={project.nombre}
               subtitle={project.subtitulo}
+              slug={project.slug}
               systemType={project.tipo_sistema}
               stack={project.tecnologias ?? []}
               thumbnail={project.imagen_principal}
+              project={project}
             />
           </CarouselItem>
         ))}

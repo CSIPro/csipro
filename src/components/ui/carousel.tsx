@@ -306,7 +306,7 @@ const CarouselDot = React.forwardRef<HTMLButtonElement, CarouselDotProps>(
       <Button
         ref={ref}
         className={cn(
-          "size-4 rounded-full border border-primary p-0 transition-colors duration-300 sm:size-3  ",
+          "size-4 rounded-full border border-primary p-0 transition-colors duration-300 sm:size-3 md:size-5",
           isActive
             ? "bg-primary hover:bg-primary/35 focus:bg-primary"
             : "bg-transparent hover:bg-transparent focus:bg-transparent",

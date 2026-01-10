@@ -12,25 +12,63 @@ export const ProjectType = z.enum([
   "Aplicación de Escritorio",
 ]);
 
+export type ProjectType = z.infer<typeof ProjectType>;
+
 export const ProjectStatus = z.enum(["Activo", "Inactivo", "Finalizado"]);
+
+export type ProjectStatus = z.infer<typeof ProjectStatus>;
+
+export const ProjectLink = z.object({
+  id: z.string(),
+  type: z.enum([
+    "website",
+    "repository",
+    "demo",
+    "application",
+    "docs",
+    "other",
+  ]),
+  label: z.string(),
+  url: z.string().url(),
+});
+
+export type ProjectLink = z.infer<typeof ProjectLink>;
+
+export const ProjectParticipant = z.object({
+  id: z.string(),
+  miembro: z.number(),
+  descripcion: z.string().nullable(),
+  roles: z
+    .object({
+      id: z.string(),
+      rol: Role,
+    })
+    .array(),
+});
+
+export type ProjectParticipant = z.infer<typeof ProjectParticipant>;
+
+export const PopulatedProjectParticipant = ProjectParticipant.extend({
+  miembro: z.lazy(() => Member),
+});
+
+export type PopulatedProjectParticipant = z.infer<
+  typeof PopulatedProjectParticipant
+>;
 
 export const Project = z.object({
   id: z.number(),
   nombre: z.string(),
-  participantes: z
+  participantes: ProjectParticipant.array(),
+  tipo_sistema: ProjectType,
+  logo: z.number().nullable().optional(),
+  slug: z.string(),
+  titles: z
     .object({
       id: z.string(),
-      miembro: z.number(),
-      descripcion: z.string(),
-      roles: z
-        .object({
-          id: z.string(),
-          rol: Role,
-        })
-        .array(),
+      title: z.string(),
     })
     .array(),
-  tipo_sistema: ProjectType,
   subtitulo: z.string(),
   descripcion: z.object({}).passthrough().nullable(),
   imagen_principal: z.number(),
@@ -43,25 +81,15 @@ export const Project = z.object({
   estado: ProjectStatus,
   url: z.string().nullable(),
   github_url: z.string().nullable(),
-  color: z.string().optional(),
+  color: z.string().nullable(),
+  links: ProjectLink.array(),
 });
 
 export type Project = z.infer<typeof Project>;
 
 export const PopulatedProject = Project.extend({
-  participantes: z
-    .object({
-      id: z.string(),
-      miembro: z.lazy(() => Member),
-      descripcion: z.string().nullable(),
-      roles: z
-        .object({
-          id: z.string(),
-          rol: Role,
-        })
-        .array(),
-    })
-    .array(),
+  participantes: PopulatedProjectParticipant.array(),
+  logo: Media.nullable().optional(),
   imagen_principal: Media,
   imagenes_secundarias: z
     .object({

@@ -28,7 +28,7 @@ export const InfiniteEvents = ({ limit, initialData }: Props) => {
   );
 
   return (
-    <ul className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid w-full grid-cols-1 gap-4 px-2 sm:grid-cols-2 lg:grid-cols-3">
       {infiniteEvents.data?.pages.map((page) =>
         page.docs.map((event) => (
           <li key={event.id}>
@@ -42,6 +42,7 @@ export const InfiniteEvents = ({ limit, initialData }: Props) => {
               spots={event.cupos - event.asistentes.length}
               location={event.lugar}
               slug={event.slug}
+              event={event}
             />
           </li>
         )),

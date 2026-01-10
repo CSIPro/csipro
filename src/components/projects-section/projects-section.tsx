@@ -56,9 +56,11 @@ export default async function ProjectsSection() {
                 key={project.id}
                 name={project.nombre}
                 subtitle={project.subtitulo}
+                slug={project.slug}
                 systemType={project.tipo_sistema}
                 stack={project.tecnologias ?? []}
                 thumbnail={project.imagen_principal}
+                project={project}
               />
             </CarouselItem>
           ))}

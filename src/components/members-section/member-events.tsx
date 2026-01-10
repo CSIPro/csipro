@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { getMemberEvents } from "@/services/members";
 
 import { EventCard } from "../event-card/event-card";
@@ -16,7 +17,10 @@ export default async function MemberEvents({ memberId }: Props) {
         {memberEvents.docs.map((event) => (
           <CarouselItem
             key={event.id}
-            className="basis-5/6 sm:basis-3/4 md:basis-[45%] md:pl-8 lg:basis-1/3"
+            className={cn(
+              "basis-5/6 sm:basis-3/4 md:basis-[45%] md:pl-8 lg:basis-1/4",
+              memberEvents.docs.length === 1 && "basis-full md:basis-1/2",
+            )}
           >
             <EventCard
               title={event.titulo}
@@ -26,6 +30,7 @@ export default async function MemberEvents({ memberId }: Props) {
               image={event.imagen_principal}
               spots={event.cupos - event.asistentes.length}
               location={event.lugar}
+              event={event}
               slug={event.slug}
             />
           </CarouselItem>

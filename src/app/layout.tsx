@@ -12,6 +12,11 @@ import {
 } from "next/font/google";
 
 import { Footer } from "@/components/footer/footer";
+import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
 import { AppProviders } from "@/context/providers";
 
 setDefaultOptions({ locale: es });
@@ -44,9 +49,9 @@ const fonts = `${GeistSans.variable} ${poppins.variable} ${justMeAgainDownHere.v
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://csipro.isi.unison.mx"),
-  title: "CSI PRO",
-  description:
-    "Un espacio de desarrollo, innovación e investigación en la Universidad de Sonora",
+  title: generateMetaTitle(),
+  description: generateMetaDescription(),
+  keywords: defaultKeywords,
 };
 
 export default function RootLayout({

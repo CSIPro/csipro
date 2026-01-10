@@ -48,6 +48,7 @@ export const EventsCarousel = ({ initialData }: Props) => {
               spots={event.cupos - event.asistentes.length}
               location={event.lugar}
               slug={event.slug}
+              event={event}
             />
           </CarouselItem>
         ))}

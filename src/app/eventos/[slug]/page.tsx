@@ -10,9 +10,15 @@ import { EventRequirementItem } from "@/components/events-section/event-requirem
 import { ImageGallery } from "@/components/image-gallery/image-gallery";
 import { MemberChip } from "@/components/member-chip/member-chip";
 import { Navbar } from "@/components/navbar/navbar";
+import { extractPlainText } from "@/components/rich-text/converters/plaintext";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
-import { CMS_URL } from "@/lib/utils";
+import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
+import { CMS_URL, truncateDescription } from "@/lib/utils";
 import { fetchEvent } from "@/services/events";
 
 export async function generateMetadata({
@@ -24,17 +30,23 @@ export async function generateMetadata({
 
   if (!event) {
     return {
-      title: "Evento no encontrado - CSI PRO",
+      title: generateMetaTitle("Evento no encontrado"),
+      description: generateMetaDescription(
+        "El evento que buscas no existe o ha sido eliminado.",
+      ),
+      keywords: [...defaultKeywords, "Evento no encontrado"],
     };
   }
 
   return {
-    title: `${event.titulo} - CSI PRO`,
+    title: generateMetaTitle(event.titulo),
     description: event.descripcion
-      ? "Descripción del evento " + event.titulo
-      : "Evento organizado por CSI PRO",
+      ? truncateDescription(extractPlainText({ data: event.descripcion }), 160)
+      : generateMetaDescription(
+          `Descubre más sobre el evento ${event.titulo} organizado por CSI PRO.`,
+        ),
     keywords: [
-      "CSI PRO",
+      ...defaultKeywords,
       event.titulo,
       ...event.participantes.map((p) => p.short_name),
       "Ingeniería de Software",
