@@ -3,7 +3,12 @@ import { JSXConvertersFunction } from "@payloadcms/richtext-lexical/react";
 import Link from "next/link";
 
 import { MemberChip } from "@/components/member-chip/member-chip";
+import { PopulatedEvent } from "@/models/events";
 import { Member } from "@/models/members";
+import { PopulatedProject } from "@/models/projects";
+
+import { LinkToEvent } from "../links/link-to-event";
+import { LinkToProject } from "../links/link-to-project";
 
 export const jsxConverter: JSXConvertersFunction<DefaultNodeTypes> = ({
   defaultConverters,
@@ -33,6 +38,22 @@ export const jsxConverter: JSXConvertersFunction<DefaultNodeTypes> = ({
           >
             {text}
           </MemberChip>
+        );
+      }
+
+      if (relation === "proyectos") {
+        return (
+          <LinkToProject project={node.fields.doc.value as PopulatedProject}>
+            {text}
+          </LinkToProject>
+        );
+      }
+
+      if (relation === "eventos") {
+        return (
+          <LinkToEvent event={node.fields.doc.value as PopulatedEvent}>
+            {text}
+          </LinkToEvent>
         );
       }
     }

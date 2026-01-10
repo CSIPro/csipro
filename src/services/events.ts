@@ -1,6 +1,9 @@
 import { API_URL } from "@/lib/utils";
 import { generateEmptyResponse } from "@/models/cms-response";
-import { PopulatedPaginatedEventsResponse } from "@/models/events";
+import {
+  PopulatedEvent,
+  PopulatedPaginatedEventsResponse,
+} from "@/models/events";
 
 export const fetchEvent = async (slug: string) => {
   const eventRes = await fetch(
@@ -34,6 +37,26 @@ export const fetchEvent = async (slug: string) => {
   }
 
   return event;
+};
+
+export const fetchEventById = async (id: number) => {
+  const eventRes = await fetch(`${API_URL}/eventos/${id}?depth=2`, {
+    next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 600 },
+  });
+
+  if (!eventRes.ok) {
+    return null;
+  }
+
+  const eventData = await eventRes.json();
+  const eventParse = PopulatedEvent.safeParse(eventData);
+
+  if (!eventParse.success) {
+    console.log(eventParse.error.format());
+    return null;
+  }
+
+  return eventParse.data;
 };
 
 export const fetchPopulatedEvents = async (
