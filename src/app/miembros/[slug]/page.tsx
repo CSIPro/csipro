@@ -169,8 +169,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 <h2 className="font-justme text-5xl font-normal text-white">
                   About me
                 </h2>
-                {/* @ts-expect-error I don't want to type out the Lexical output structure */}
-                {member.sobre_mi ? <RichText data={member.sobre_mi} /> : null}
+                {member.sobre_mi ? (
+                  <RichText
+                    // @ts-expect-error I don't want to type out the Lexical output structure
+                    data={member.sobre_mi}
+                    className="space-y-4 text-pretty leading-relaxed"
+                  />
+                ) : null}
               </div>
               {member.fecha_nacimiento ? (
                 <div className="inline-flex w-full items-center justify-start gap-2">

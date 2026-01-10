@@ -32,12 +32,12 @@ export const LinkToProject = async (props: Props) => {
       <Chip
         variant="white"
         className={cn(
-          "gap-1 rounded border-none bg-primary/20 p-1 px-1 transition-all duration-300 ease-in-out group-hover:bg-primary/40",
+          "gap-1 rounded border-none bg-primary/20 px-0.5 py-0 transition-all duration-300 ease-in-out group-hover:bg-primary/40",
         )}
       >
         <ChipIcon
           className={cn(
-            "flex size-6 items-center justify-center overflow-hidden rounded-full bg-primary p-1",
+            "flex size-4 items-center justify-center overflow-hidden rounded-[2px] bg-primary p-0.5",
           )}
           style={{
             backgroundColor: project.color ?? undefined,
@@ -49,13 +49,13 @@ export const LinkToProject = async (props: Props) => {
               alt={project.logo?.alt ?? ""}
               width={32}
               height={32}
-              className="size-full object-contain"
+              className="object-contain"
             />
           ) : (
             <CsiproLogo />
           )}
         </ChipIcon>
-        <ChipLabel className="font-medium">
+        <ChipLabel className="text-base font-medium leading-relaxed">
           {props.children ?? project.nombre}
         </ChipLabel>
       </Chip>

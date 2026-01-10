@@ -2,12 +2,12 @@ import { DefaultNodeTypes } from "@payloadcms/richtext-lexical";
 import { JSXConvertersFunction } from "@payloadcms/richtext-lexical/react";
 import Link from "next/link";
 
-import { MemberChip } from "@/components/member-chip/member-chip";
 import { PopulatedEvent } from "@/models/events";
-import { Member } from "@/models/members";
+import { PopulatedMember } from "@/models/members";
 import { PopulatedProject } from "@/models/projects";
 
 import { LinkToEvent } from "../links/link-to-event";
+import { LinkToMember } from "../links/link-to-member";
 import { LinkToProject } from "../links/link-to-project";
 
 export const jsxConverter: JSXConvertersFunction<DefaultNodeTypes> = ({
@@ -30,14 +30,9 @@ export const jsxConverter: JSXConvertersFunction<DefaultNodeTypes> = ({
 
       if (relation === "miembros") {
         return (
-          <MemberChip
-            member={node.fields.doc.value as Member}
-            className="inline-block"
-            chipClassName="py-0 px-1 underline [&>span]:text-base"
-            iconClassName="size-4"
-          >
+          <LinkToMember member={node.fields.doc.value as PopulatedMember}>
             {text}
-          </MemberChip>
+          </LinkToMember>
         );
       }
 
