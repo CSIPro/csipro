@@ -13,6 +13,11 @@ import { Navbar } from "@/components/navbar/navbar";
 import { extractPlainText } from "@/components/rich-text/converters/plaintext";
 import { RichText } from "@/components/rich-text/rich-text";
 import { Section } from "@/components/section/section";
+import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
 import { CMS_URL, truncateDescription } from "@/lib/utils";
 import { fetchEvent } from "@/services/events";
 
@@ -25,17 +30,23 @@ export async function generateMetadata({
 
   if (!event) {
     return {
-      title: "Evento no encontrado - CSI PRO",
+      title: generateMetaTitle("Evento no encontrado"),
+      description: generateMetaDescription(
+        "El evento que buscas no existe o ha sido eliminado.",
+      ),
+      keywords: [...defaultKeywords, "Evento no encontrado"],
     };
   }
 
   return {
-    title: `${event.titulo} - CSI PRO`,
+    title: generateMetaTitle(event.titulo),
     description: event.descripcion
       ? truncateDescription(extractPlainText({ data: event.descripcion }), 160)
-      : `Descubre más sobre el evento ${event.titulo} organizado por CSI PRO.`,
+      : generateMetaDescription(
+          `Descubre más sobre el evento ${event.titulo} organizado por CSI PRO.`,
+        ),
     keywords: [
-      "CSI PRO",
+      ...defaultKeywords,
       event.titulo,
       ...event.participantes.map((p) => p.short_name),
       "Ingeniería de Software",

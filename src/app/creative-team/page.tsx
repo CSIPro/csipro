@@ -1,5 +1,7 @@
+import { Metadata } from "next";
 import Image from "next/image";
 
+import { ProjectPageButton } from "@/components/creative-team/project-page-button";
 import {
   CreativeTeamCard,
   CreativeTeamCardButton,
@@ -15,7 +17,29 @@ import { Navbar } from "@/components/navbar/navbar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
 import { MarqueeItem, MarqueeWrapper } from "@/components/ui/marquee";
-import { ProjectPageButton } from "@/components/creative-team/project-page-button";
+import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
+
+export const metadata: Metadata = {
+  title: generateMetaTitle("Equipo Creativo"),
+  description: generateMetaDescription(
+    "Conoce al equipo creativo detrás del proyecto CSI PRO: diseñadores y desarrolladores apasionados por la tecnología y dedicados a aprender, enseñar, y crear.",
+  ),
+  keywords: [
+    ...defaultKeywords,
+    "CSI PRO Reboot",
+    "CSI PRO Website",
+    "Equipo Creativo",
+    "Diseño UX/UI",
+    "Desarrollo Web",
+    "Proyectos Estudiantiles",
+    "Innovación Tecnológica",
+    "Experiencias Digitales",
+  ],
+};
 
 export default async function Page() {
   return (

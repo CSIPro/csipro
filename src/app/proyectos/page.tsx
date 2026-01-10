@@ -1,10 +1,31 @@
+import { Metadata } from "next";
+
 import { GlowContainer, Glow, GlowGroup } from "@/components/glow/glow";
 import { Navbar } from "@/components/navbar/navbar";
 import { InfiniteProjects } from "@/components/projects-section/infinite-projects";
 import { SearchBar } from "@/components/search-bar.tsx/search-bar";
 import { Section } from "@/components/section/section";
 import { SectionTitle } from "@/components/section-title/section-title";
+import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
 import { fetchPopulatedProjects } from "@/services/projects";
+
+export const metadata: Metadata = {
+  title: generateMetaTitle("Proyectos"),
+  description: generateMetaDescription(
+    "¡Descubre los proyectos del CSI PRO! Encuentra una variedad de proyectos de los miembros del laboratorio que resuelven problemas reales usando nuevas tecnologías.",
+  ),
+  keywords: [
+    ...defaultKeywords,
+    "CSI PRO",
+    "Proyectos",
+    "Soluciones",
+    "Tecnologías emergentes",
+  ],
+};
 
 export default async function ProjectsPage() {
   const limit = 8;

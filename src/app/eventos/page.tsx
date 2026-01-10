@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import { InfiniteEvents } from "@/components/events-section/infinite-events";
 import { GlowContainer, Glow } from "@/components/glow/glow";
 import { Navbar } from "@/components/navbar/navbar";
@@ -10,7 +12,26 @@ import {
   LinkedIn,
   Twitter,
 } from "@/components/socials/socials";
+import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
 import { fetchPopulatedEvents } from "@/services/events";
+
+export const metadata: Metadata = {
+  title: generateMetaTitle("Eventos"),
+  description: generateMetaDescription(
+    "¡No te pierdas ningún evento del CSI PRO! Inscríbete para ampliar tus conocimientos y entérate al instante en nuestras redes sociales.",
+  ),
+  keywords: [
+    ...defaultKeywords,
+    "Eventos",
+    "Talleres",
+    "Charlas",
+    "Conferencias",
+  ],
+};
 
 export default async function EventsPage() {
   const limit = 6;

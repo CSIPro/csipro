@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 
 import { GlowContainer, Glow } from "@/components/glow/glow";
@@ -14,7 +15,27 @@ import {
   Twitter,
 } from "@/components/socials/socials";
 import { MarqueeItem, MarqueeWrapper } from "@/components/ui/marquee";
+import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
 import { fetchPopulatedMembers } from "@/services/members";
+
+export const metadata: Metadata = {
+  title: generateMetaTitle("Nosotros"),
+  description: generateMetaDescription(
+    "Conoce sobre nosotros y nuestra historia. Somos alumnos amantes de la tecnología trabajando diariamente nuestro futuro en este espacio de desarrollo, innovación e investigación llamado CSI PRO.",
+  ),
+  keywords: [
+    ...defaultKeywords,
+    "Miembros",
+    "Equipo",
+    "Historia",
+    "Nosotros",
+    "Legado",
+  ],
+};
 
 export default async function AboutUsPage() {
   const limit = 8;
@@ -40,7 +61,7 @@ export default async function AboutUsPage() {
                   <p className="text-base opacity-70 max-lg:text-center">
                     Somos alumnos amantes de la tecnología trabajando
                     diariamente nuestro futuro en este espacio de desarrollo,
-                    innovación e investigación llamado el CSI PRO.
+                    innovación e investigación llamado CSI PRO.
                   </p>
                 </div>
                 <div className="space-y-2">

@@ -23,6 +23,11 @@ import { SectionTitle } from "@/components/section-title/section-title";
 import { CsiproLogo } from "@/components/socials/logos/csipro-logo";
 import { TechChip } from "@/components/tech-chip/tech-chip";
 import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
+import {
   CMS_URL,
   getSmallestImageNotThumbnail,
   truncateDescription,
@@ -41,25 +46,30 @@ export async function generateMetadata({ params }: Props) {
 
   if (!project) {
     return {
-      title: "Proyecto no encontrado - CSI PRO",
+      title: generateMetaTitle("Proyecto no encontrado"),
+      description: generateMetaDescription(
+        "El proyecto que estás buscando no existe o ha sido eliminado.",
+      ),
+      keywords: [...defaultKeywords, "Proyecto no encontrado"],
     };
   }
 
   return {
-    title: `${project.nombre} - CSI PRO`,
+    title: generateMetaTitle(project.nombre),
     description: project.descripcion
-      ? truncateDescription(
-          extractPlainText({ data: project.descripcion }),
-          160,
+      ? generateMetaDescription(
+          truncateDescription(
+            extractPlainText({ data: project.descripcion }),
+            160,
+          ),
         )
-      : `Proyecto desarrollado por CSI PRO: ${project.nombre}`,
+      : generateMetaDescription(
+          `Proyecto desarrollado por CSI PRO: ${project.nombre}`,
+        ),
     keywords: [
-      "CSI PRO",
+      ...defaultKeywords,
       project.nombre,
       ...project.participantes.map((m) => m.miembro.short_name),
-      "Ingeniería de Software",
-      "Desarrollo de Software",
-      "Proyectos Tecnológicos",
     ],
   };
 }

@@ -23,6 +23,11 @@ import {
   TableHead,
   TableRow,
 } from "@/components/ui/table";
+import {
+  defaultKeywords,
+  generateMetaDescription,
+  generateMetaTitle,
+} from "@/constants/metadata";
 import { CMS_URL, cn, truncateDescription } from "@/lib/utils";
 import { fetchMember } from "@/services/members";
 
@@ -35,30 +40,32 @@ export async function generateMetadata({
 
   if (!member) {
     return {
-      title: "Miembro no encontrado - CSI PRO",
+      title: generateMetaTitle("Miembro no encontrado"),
+      description:
+        "El miembro que estás buscando no existe o ha sido eliminado.",
+      keywords: [...defaultKeywords, "Miembro no encontrado"],
     };
   }
 
   return {
-    title: `${member.short_name} - CSI PRO`,
+    title: generateMetaTitle(member.short_name),
     description: member.sobre_mi
-      ? truncateDescription(extractPlainText({ data: member.sobre_mi }), 160)
-      : `Perfil de ${member.nombres} ${member.apellidos}, miembro del CSI PRO.`,
+      ? generateMetaDescription(
+          truncateDescription(extractPlainText({ data: member.sobre_mi }), 160),
+        )
+      : generateMetaDescription(
+          `Perfil de ${member.nombres} ${member.apellidos}, miembro de CSI PRO.`,
+        ),
     keywords: [
-      "CSI PRO",
-      "csipro",
-      "unison",
-      "Universidad de Sonora",
-      "isi",
-      "Ingeniería en Sistemas de Información",
-      "Ingeniería de Software",
-      "software development",
+      ...defaultKeywords,
       "Miembros CSI PRO",
       member.nombres,
       member.apellidos,
       member.short_name,
       member.subtitle,
-      ...(member.tecnologias.map((tech) => tech.nombre) || []),
+      ...(member.tecnologias.map(
+        (tech) => `Desarrolladores de ${tech.nombre}`,
+      ) || []),
     ],
   };
 }
