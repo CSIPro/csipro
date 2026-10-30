@@ -1,16 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { isValidRevalidationSecret } from "./_is-valid-revalidation-secret";
 import { revalidatePaths } from "./_revalidate-path";
-
-const REVALIDATION_TOKEN = process.env.REVALIDATION_TOKEN;
 
 export async function POST(request: NextRequest) {
   try {
-    const { paths, secret } = await request.json();
+    const body = await request.json().catch(() => null);
+    const { paths, secret } = body ?? {};
 
-    console.log("Revalidation request received for paths:", paths);
-
-    if (secret !== REVALIDATION_TOKEN) {
+    if (!isValidRevalidationSecret(secret, process.env.REVALIDATION_TOKEN)) {
       return NextResponse.json(
         { message: "Invalid token", success: false },
         { status: 401 },

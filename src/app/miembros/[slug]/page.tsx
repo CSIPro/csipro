@@ -194,7 +194,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     >
                       <Link
                         download={member.resume.name}
-                        href={`/api/resume?fileUrl=${member.resume.url}`}
+                        href={`/api/resume?fileUrl=${encodeURIComponent(member.resume.url)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         prefetch={false}
