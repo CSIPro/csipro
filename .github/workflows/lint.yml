@@ -1,30 +1,41 @@
-name: Lint project
+name: Check project
 
 on:
-  push:
-    branches:
-      - "*"
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
 
 jobs:
+  # Branch protection on main requires a check named "lint", so keep this id.
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+        uses: actions/checkout@v7
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v6
         with:
-          version: latest
+          version: 12.14.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Check linting
         run: pnpm lint
+
+      - name: Check types
+        run: pnpm typecheck
+
+      - name: Run tests
+        run: pnpm test
