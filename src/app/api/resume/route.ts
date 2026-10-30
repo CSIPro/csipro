@@ -3,6 +3,8 @@ import { NextRequest } from "next/server";
 
 import { CMS_URL } from "@/lib/utils";
 
+import { resolveResumeUrl } from "./_resolve-resume-url";
+
 export async function GET(req: NextRequest) {
   try {
     const searchParams = req.nextUrl.searchParams;
@@ -15,7 +17,16 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const response = await fetch(`${CMS_URL}${fileUrl}`);
+    const resumeUrl = resolveResumeUrl(fileUrl, CMS_URL);
+
+    if (!resumeUrl) {
+      return NextResponse.json(
+        { error: "Invalid fileUrl parameter" },
+        { status: 400 },
+      );
+    }
+
+    const response = await fetch(resumeUrl);
 
     if (!response.ok) {
       return NextResponse.json(
